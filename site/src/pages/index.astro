@@ -1,0 +1,154 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ProductCard from '../components/ProductCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import company from '../data/company.json';
+import heroImage from '../assets/images/hero-install-chamber.jpg';
+
+const products = await getCollection('products');
+const families = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const whyPlastic = [
+  {
+    title: 'Corrosion & H2S resistant',
+    body: 'Polypropylene resists pH 1–13 and the hydrogen sulphide/sulphuric acid attack that degrades concrete sewer structures over time.',
+  },
+  {
+    title: 'Manual install, no crane',
+    body: 'Base, riser and cover elements are supplied separately and handled by 1–2 installers — no crane or heavy lifting plant required for a standard install.',
+  },
+  {
+    title: 'Faster on site',
+    body: 'Modular RRJ assembly and on-site height adjustment cut typical install time well below a precast concrete equivalent.',
+  },
+  {
+    title: '100-year design life',
+    body: 'Engineered for a 100-year service life, backed by WSAA Product Appraisal PA 1317 (Issue 5) to WSA 137:2019.',
+  },
+];
+
+const applications = [
+  {
+    audience: 'Water utilities & asset owners',
+    body: 'WSAA-appraised structures, documented standards compliance and a 100-year design life for whole-of-life cost planning.',
+    href: '/applications/#utilities',
+  },
+  {
+    audience: 'Civil contractors & plumbers',
+    body: 'Lightweight, manually-handled components and on-site configurability cut install time and plant hire versus concrete.',
+    href: '/applications/#contractors',
+  },
+  {
+    audience: 'Design engineers & specifiers',
+    body: 'Full crawlable spec tables, part codes and configuration options for every product family — no PDF required to check a dimension.',
+    href: '/applications/#engineers',
+  },
+];
+---
+
+<BaseLayout
+  title="SMS | WSAA-Approved Polypropylene Sewer Maintenance Structures Australia"
+  description="SMS AXEDO and SMS ROMOLD polypropylene sewer maintenance shafts, chambers and holes. WSAA PA 1317 appraised, Class D rated, 100-year design life, installed by hand. National coverage."
+  canonicalPath="/"
+>
+  <Hero
+    title="Australia's WSAA-appraised plastic sewer maintenance structures — 100-year design life, installed by hand"
+    subtitle="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes replace corrosion-prone concrete pits with a lighter, faster, longer-lasting alternative — appraised to WSA 137:2019 and rated Class D to AS 3996."
+    image={heroImage}
+    imageAlt="SMS technician hand-installing a polypropylene maintenance structure base into a sewer trench, excavator in background"
+  />
+
+  <TrustStrip />
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="products-heading">
+    <div class="flex items-end justify-between gap-4 mb-8">
+      <h2 id="products-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">The SMS range</h2>
+      <a href="/products/" class="text-sm font-semibold text-sms-green-600 hover:underline shrink-0">All products &rarr;</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {families.map((p) => (
+        <ProductCard
+          href={`/products/${p.id}/`}
+          title={p.data.title}
+          dnSize={p.data.dnSize}
+          brand={p.data.brand}
+          useCase={p.data.cardUseCase}
+          image={p.data.productImage}
+          imageAlt={p.data.productImageAlt}
+          imageBackground={p.data.productImageBackground}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-sms-charcoal-50 py-16" aria-labelledby="why-plastic-heading">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-4 mb-8">
+        <h2 id="why-plastic-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">Why plastic vs concrete</h2>
+        <a href="/why-plastic-vs-concrete/" class="text-sm font-semibold text-sms-green-600 hover:underline shrink-0">Full comparison &rarr;</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {whyPlastic.map((item) => (
+          <div class="rounded-xl bg-white border border-sms-charcoal-100 p-6">
+            <h3 class="font-bold text-sms-charcoal-900 mb-2">{item.title}</h3>
+            <p class="text-sm text-sms-charcoal-500 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="applications-heading">
+    <h2 id="applications-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-8">Built for utilities, contractors and engineers</h2>
+    <div class="grid sm:grid-cols-3 gap-8">
+      {applications.map((item) => (
+        <a href={item.href} class="block rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md transition-all">
+          <h3 class="font-bold text-sms-charcoal-900 mb-2">{item.audience}</h3>
+          <p class="text-sm text-sms-charcoal-500 leading-relaxed">{item.body}</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-sms-green-600">Learn more &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-sms-charcoal-900 text-white py-16" aria-labelledby="approvals-heading">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 id="approvals-heading" class="text-2xl sm:text-3xl font-bold mb-4">Independently appraised, not just claimed</h2>
+        <p class="text-sms-charcoal-100 leading-relaxed mb-6">
+          The SMS range holds WSAA Product Appraisal PA 1317 (Issue 5), is manufactured to WSA 137:2019 and
+          EN 13598-2, and is fitted with access covers rated Class D to AS 3996. Every product page publishes
+          the full standards list alongside its spec table — not buried in a PDF.
+        </p>
+        <a href="/approvals/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors">
+          View approvals & standards &rarr;
+        </a>
+      </div>
+      <ul class="grid grid-cols-2 gap-4">
+        {['WSAA PA 1317 (Issue 5)', 'WSA 137:2019', 'AS 3996 Class D', 'EN 13598-2', 'AS 1646', 'AS/NZS 5065'].map((s) => (
+          <li class="rounded-lg border border-white/20 p-4 text-center font-semibold">{s}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="coverage-heading">
+    <h2 id="coverage-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">National supply coverage</h2>
+    <p class="text-sms-charcoal-500 max-w-2xl mb-8">
+      SMS supplies AXEDO and ROMOLD maintenance structures across every major Australian market, plus the
+      Pacific region.
+    </p>
+    <ul class="flex flex-wrap gap-3">
+      {company.coverage.map((c) => (
+        <li class="rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700">{c}</li>
+      ))}
+    </ul>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

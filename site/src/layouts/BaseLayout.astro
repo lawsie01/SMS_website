@@ -1,0 +1,75 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import company from '../data/company.json';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string; // e.g. "/products/dn1000-maintenance-hole/"
+  ogImage?: string;
+}
+
+const { title, description, canonicalPath, ogImage } = Astro.props;
+const siteUrl = 'https://sewerms.com.au';
+const canonicalURL = new URL(canonicalPath, siteUrl).toString();
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'SMS (Sewer Maintenance Shaft Pty Ltd)',
+  alternateName: ['Sewer Maintenance Shaft', 'SMS AXEDO', 'SMS ROMOLD'],
+  url: siteUrl,
+  logo: `${siteUrl}/images/sms-logo.png`,
+  telephone: company.phone,
+  email: company.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.addressLine1,
+    addressLocality: 'Carrum Downs',
+    addressRegion: 'VIC',
+    postalCode: '3201',
+    addressCountry: 'AU',
+  },
+  areaServed: company.coverage,
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Clover',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#63b447" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="SMS - Sewer Maintenance Shaft" />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl).toString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

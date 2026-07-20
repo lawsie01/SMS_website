@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const approvals = [
+  {
+    code: 'WSAA Product Appraisal PA 1317 (Issue 5)',
+    body: 'Independent Water Services Association of Australia appraisal covering SMS polypropylene sewer maintenance shafts, chambers and holes against WSA 137:2019.',
+  },
+  {
+    code: 'WSA 137:2019',
+    body: 'Industry standard for unplasticised PVC, polypropylene and polyethylene maintenance shafts, chambers and holes for sewerage — the core standard the SMS range is manufactured and appraised against.',
+  },
+  {
+    code: 'AS 3996',
+    body: 'Access covers and grates. All SMS access cover arrangements (Top Hat, concrete cover plate, concrete load distribution ring) are rated Class D — trafficable — to this standard.',
+  },
+  {
+    code: 'EN 13598-2',
+    body: 'European standard for plastics piping systems used in manholes and inspection chambers, in traffic areas and deep underground installations.',
+  },
+  {
+    code: 'AS 1646',
+    body: 'Elastomeric seals for waterworks purposes — governs the EPDM/SBR seals used throughout the SMS range.',
+  },
+  {
+    code: 'AS/NZS 2566',
+    body: 'Buried flexible pipelines — referenced for installation practice (bedding, backfill, compaction) around SMS structures.',
+  },
+  {
+    code: 'AS/NZS 5065',
+    body: 'Polyethylene and polypropylene pipes and fittings for drainage and sewerage applications.',
+  },
+  {
+    code: 'EN 14396',
+    body: 'Fixed ladders for manholes — applies to the DN1000 Maintenance Hole\'s person-entry ladder.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is WSAA Product Appraisal PA 1317?',
+    answer: 'PA 1317 (currently Issue 5) is the Water Services Association of Australia\'s independent appraisal of the SMS range of PP sewer maintenance shafts, chambers and holes against WSA 137:2019, the industry standard water utilities use to assess these products for network use.',
+  },
+  {
+    question: 'What load class are SMS access covers rated to?',
+    answer: 'Class D (trafficable) to AS 3996, across the standard Top Hat, concrete cover plate and concrete load distribution ring options, on all three SMS product families.',
+  },
+  {
+    question: 'Does the SMS range meet European as well as Australian standards?',
+    answer: 'Yes. In addition to WSA 137:2019 and the referenced Australian Standards (AS 3996, AS 1646, AS/NZS 2566, AS/NZS 5065), the range is manufactured to EN 13598-2, and the DN1000 Hole\'s ladder to EN 14396.',
+  },
+  {
+    question: 'Where can I see the current WSAA appraisal certificate?',
+    answer: 'Contact SMS or download it from the Technical Resources hub — the current certificate is PA 1317, Issue 5.',
+  },
+];
+---
+
+<BaseLayout
+  title="Approvals & Standards | SMS WSAA PA 1317, WSA 137, AS 3996"
+  description="SMS polypropylene sewer maintenance structures are appraised under WSAA PA 1317 (Issue 5) to WSA 137:2019, with access covers rated Class D to AS 3996 and construction to EN 13598-2."
+  canonicalPath="/approvals/"
+>
+  <Breadcrumbs items={[{ label: 'Approvals', href: '/approvals/' }]} />
+  <Hero
+    eyebrow="Approvals & standards"
+    title="Independently appraised, not just claimed"
+    subtitle="Every claim on this page is backed by a named standard or appraisal — not marketing language. Full certificates are available in the Technical Resources hub."
+    compact
+  />
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <section aria-labelledby="approvals-grid-heading">
+      <h2 id="approvals-grid-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Standards & appraisals</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {approvals.map((a) => (
+          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+            <p class="font-bold text-sms-green-600 mb-2">{a.code}</p>
+            <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-sms-charcoal-400 mt-6">
+        Quality management certification (AS/NZS ISO 9001) and any current WaterMark licensing referenced on
+        prior SMS materials are being reconfirmed for the current AXEDO/ROMOLD range — contact SMS for the
+        latest certificate if this is required for your project's documentation.
+      </p>
+    </section>
+
+    <FaqAccordion items={faqs} />
+  </div>
+
+  <CtaBand
+    heading="Need a certificate for your project file?"
+    subtitle="Request the current WSAA appraisal certificate or a specific standard's compliance documentation."
+  />
+</BaseLayout>

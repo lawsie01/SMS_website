@@ -1,0 +1,59 @@
+---
+import company from '../data/company.json';
+
+const year = new Date().getFullYear();
+const productLinks = [
+  { label: 'DN375 Maintenance Shaft', href: '/products/dn375-maintenance-shaft/' },
+  { label: 'DN600 Maintenance Chamber', href: '/products/dn600-maintenance-chamber/' },
+  { label: 'DN1000 Maintenance Hole', href: '/products/dn1000-maintenance-hole/' },
+];
+const resourceLinks = [
+  { label: 'Approvals & Standards', href: '/approvals/' },
+  { label: 'Technical Resources', href: '/technical-resources/' },
+  { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
+  { label: 'Applications', href: '/applications/' },
+];
+---
+
+<footer class="bg-sms-charcoal-900 text-sms-charcoal-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <p class="text-white font-semibold text-lg mb-2">SMS</p>
+      <p class="text-sm leading-relaxed">
+        Australia's WSAA-appraised polypropylene sewer maintenance structures, sold under the
+        SMS AXEDO and SMS ROMOLD brands. Part of Clover.
+      </p>
+    </div>
+    <div>
+      <p class="text-white font-semibold mb-3">Products</p>
+      <ul class="space-y-2 text-sm">
+        {productLinks.map((l) => (
+          <li><a href={l.href} class="hover:text-sms-green-400">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="text-white font-semibold mb-3">Resources</p>
+      <ul class="space-y-2 text-sm">
+        {resourceLinks.map((l) => (
+          <li><a href={l.href} class="hover:text-sms-green-400">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="text-white font-semibold mb-3">Contact</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`tel:${company.phoneHref}`} class="hover:text-sms-green-400">{company.phone}</a></li>
+        <li><a href={`mailto:${company.email}`} class="hover:text-sms-green-400">{company.email}</a></li>
+        <li>{company.addressLine1}, {company.addressLine2}</li>
+        <li><a href="/contact/" class="hover:text-sms-green-400">Enquire online →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-sms-charcoal-700">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row justify-between gap-2 text-xs text-sms-charcoal-300">
+      <p>&copy; {year} Sewer Maintenance Shaft Pty Ltd. All rights reserved.</p>
+      <p>WSAA Product Appraisal PA 1317 (Issue 5) &middot; WSA 137:2019 &middot; AS 3996 Class D</p>
+    </div>
+  </div>
+</footer>

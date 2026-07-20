@@ -1,0 +1,57 @@
+---
+import company from '../data/company.json';
+import logo from '../assets/images/sms-logo.png';
+import { Image } from 'astro:assets';
+
+const nav = [
+  { label: 'Products', href: '/products/' },
+  { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
+  { label: 'Applications', href: '/applications/' },
+  { label: 'Approvals', href: '/approvals/' },
+  { label: 'Technical Resources', href: '/technical-resources/' },
+  { label: 'About', href: '/about/' },
+];
+
+const phoneHref = `tel:${company.phoneHref}`;
+---
+
+<header class="border-b border-sms-charcoal-100 bg-white sticky top-0 z-40">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">
+        <Image src={logo} alt="SMS" width={110} height={54} />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-sms-charcoal-700">
+        {nav.map((item) => (
+          <a href={item.href} class="hover:text-sms-green-600 transition-colors">
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href={phoneHref}
+          class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-sms-charcoal-900 hover:text-sms-green-600"
+        >
+          {company.phone}
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
+        >
+          Enquire
+        </a>
+      </div>
+    </div>
+
+    <nav class="lg:hidden flex flex-wrap gap-x-4 gap-y-1 pb-3 text-sm font-medium text-sms-charcoal-700">
+      {nav.map((item) => (
+        <a href={item.href} class="hover:text-sms-green-600 transition-colors">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

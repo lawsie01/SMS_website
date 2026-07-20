@@ -1,0 +1,37 @@
+---
+import company from '../data/company.json';
+
+interface Props {
+  heading?: string;
+  subtitle?: string;
+  productContext?: string;
+}
+const {
+  heading = 'Talk to SMS about your next sewer maintenance structure',
+  subtitle = 'Send us your project specs and we\'ll confirm the right configuration, lead time and depth for your site.',
+  productContext,
+} = Astro.props;
+---
+
+<section class="bg-sms-green-600">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 flex flex-col lg:flex-row items-center justify-between gap-8">
+    <div class="text-center lg:text-left">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white">{heading}</h2>
+      <p class="mt-2 text-white/90 max-w-xl">{subtitle}</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4 shrink-0">
+      <a
+        href={productContext ? `/contact/?product=${productContext}` : '/contact/'}
+        class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-800 transition-colors"
+      >
+        Enquire now
+      </a>
+      <a
+        href={`tel:${company.phoneHref}`}
+        class="inline-flex items-center rounded-md border-2 border-white px-6 py-3 text-base font-semibold text-white hover:bg-white hover:text-sms-green-600 transition-colors"
+      >
+        Call {company.phone}
+      </a>
+    </div>
+  </div>
+</section>

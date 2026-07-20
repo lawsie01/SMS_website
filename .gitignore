@@ -1,0 +1,2 @@
+# local Claude Code settings (per-session permission cache, not project config)
+.claude/settings.local.json

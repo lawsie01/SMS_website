@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const products = await getCollection('products');
+const withDownloads = products
+  .filter((p) => p.data.downloads.length > 0)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const certificate = {
+  label: 'WSAA Product Appraisal PA 1317 (Issue 5) — Certificate',
+  file: '/downloads/WSAA-PA1317-Issue5-Certificate.pdf',
+};
+---
+
+<BaseLayout
+  title="Technical Resources | SMS Brochures, Drawings & Approvals"
+  description="Download SMS product brochures and the WSAA PA 1317 appraisal certificate. Full engineering drawings are available on request for active projects."
+  canonicalPath="/technical-resources/"
+>
+  <Breadcrumbs items={[{ label: 'Technical Resources', href: '/technical-resources/' }]} />
+  <Hero
+    eyebrow="Technical resources"
+    title="Brochures, drawings and approvals in one place"
+    subtitle="Product brochures and the current WSAA appraisal certificate are available to download directly. Full engineering drawings are supplied on request once we understand your project."
+    compact
+  />
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <section aria-labelledby="certs-heading">
+      <h2 id="certs-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Approvals</h2>
+      <a href={certificate.file} download class="inline-flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all">
+        <span class="font-semibold text-sms-charcoal-900">{certificate.label}</span>
+        <span class="text-sm text-sms-green-600 font-medium">Download PDF &rarr;</span>
+      </a>
+    </section>
+
+    <section aria-labelledby="downloads-heading">
+      <h2 id="downloads-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Product brochures & drawings</h2>
+      <div class="space-y-4">
+        {withDownloads.map((p) => (
+          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+            <h3 class="font-bold text-sms-charcoal-900 mb-3">
+              <a href={`/products/${p.id}/`} class="hover:text-sms-green-600">{p.data.title}</a>
+            </h3>
+            <ul class="space-y-2">
+              {p.data.downloads.map((d) => (
+                <li class="flex items-center gap-2 text-sm">
+                  {d.restricted ? (
+                    <>
+                      <span class="text-sms-charcoal-400">{d.label} —</span>
+                      <a href={`/contact/?product=${p.id}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
+                    </>
+                  ) : (
+                    <a href={d.file} download class="text-sms-green-600 font-medium hover:underline">{d.label} ({d.fileType})</a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-sms-charcoal-400 mt-6">
+        Full engineering drawings are commercial-in-confidence documents and are supplied directly to
+        specifiers and contractors on active projects rather than published openly — request access above.
+      </p>
+    </section>
+  </div>
+
+  <CtaBand
+    heading="Need drawings or specs for a tender?"
+    subtitle="Tell us the product and project and we'll get the right documentation to you."
+  />
+</BaseLayout>

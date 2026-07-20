@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const sections = [
+  {
+    id: 'utilities',
+    heading: 'Water utilities & asset owners',
+    intro: 'Whole-of-life cost, documented standards compliance and supplier credibility are the priorities for network owners and their procurement teams.',
+    points: [
+      'WSAA Product Appraisal PA 1317 (Issue 5) to WSA 137:2019 — an independent, water-industry-recognised assessment, not just a manufacturer claim.',
+      '100-year design life engineered specifically for sewer gas exposure (pH 1–13, H2S/H2SO4 resistant), reducing the corrosion-driven rehabilitation cycle typical of unprotected concrete assets.',
+      'Consistent part-code configurations and full spec tables per product family, simplifying asset register and GIS attribute data entry.',
+      'National supply across every major Australian market plus the Pacific region, supporting standardisation across a multi-region network.',
+    ],
+    cta: { label: 'View approvals & standards', href: '/approvals/' },
+  },
+  {
+    id: 'contractors',
+    heading: 'Civil contractors & plumbers',
+    intro: 'Install speed, weight, and site availability are what matter when a structure has to go in on program.',
+    points: [
+      'Base, riser and access cover elements are supplied separately and light enough for 1–2 installers to place by hand — no crane or heavy lifting plant for a standard installation.',
+      'On-site height adjustment (riser trimming) and angled base configurations reduce the need for custom fabrication or return trips.',
+      'DN100–DN200 lateral drop-in connections can be added on-site with a hole saw and rubber collar kit if an extra inlet is needed after the base is set.',
+      'Step-by-step installation guides (bedding, backfill, compaction, access cover fitting) are published on each product page and in the technical resources hub.',
+    ],
+    cta: { label: 'Installation & depth guidance', href: '/technical-resources/' },
+  },
+  {
+    id: 'engineers',
+    heading: 'Design engineers & specifiers',
+    intro: 'Specifiers need real dimensional and configuration data to select and document the right product — not a PDF to download before they can check a single figure.',
+    points: [
+      'Full HTML spec tables on every product page: dimensions, tolerances, weights, load ratings and standards — crawlable and copy-pasteable, not locked in an image or PDF.',
+      'Complete configuration/part-code tables per product family, covering inlet/outlet size and RRJ angle combinations.',
+      'Installation depth ranges and base-socket angle/gradient tolerances published for depth and alignment checks during design.',
+      'Engineering drawings available on request for projects requiring full dimensional detail beyond the published spec tables.',
+    ],
+    cta: { label: 'Browse the product range', href: '/products/' },
+  },
+];
+---
+
+<BaseLayout
+  title="Applications | Who SMS Maintenance Structures Are Built For"
+  description="How SMS AXEDO and SMS ROMOLD polypropylene maintenance structures serve water utilities, civil contractors and design engineers across Australia."
+  canonicalPath="/applications/"
+>
+  <Breadcrumbs items={[{ label: 'Applications', href: '/applications/' }]} />
+  <Hero
+    eyebrow="Applications"
+    title="Built for utilities, contractors and engineers"
+    subtitle="Different roles need different things from a sewer maintenance structure. Here's how the SMS range answers each."
+    compact
+  />
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    {sections.map((s) => (
+      <section id={s.id} aria-labelledby={`${s.id}-heading`} class="scroll-mt-24">
+        <h2 id={`${s.id}-heading`} class="text-2xl font-bold text-sms-charcoal-900 mb-3">{s.heading}</h2>
+        <p class="text-sms-charcoal-500 mb-6 max-w-3xl">{s.intro}</p>
+        <ul class="space-y-3 mb-6">
+          {s.points.map((p) => (
+            <li class="flex gap-3">
+              <span class="text-sms-green-600 font-bold" aria-hidden="true">&check;</span>
+              <span class="text-sms-charcoal-700">{p}</span>
+            </li>
+          ))}
+        </ul>
+        <a href={s.cta.href} class="text-sm font-semibold text-sms-green-600 hover:underline">{s.cta.label} &rarr;</a>
+      </section>
+    ))}
+  </div>
+
+  <CtaBand />
+</BaseLayout>

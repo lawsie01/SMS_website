@@ -1,0 +1,22 @@
+---
+const items = [
+  { label: 'WSAA PA 1317', sub: 'Issue 5 Product Appraisal' },
+  { label: 'WSA 137:2019', sub: 'Industry standard compliant' },
+  { label: 'AS 3996 Class D', sub: 'Trafficable access covers' },
+  { label: '100-year design life', sub: 'PP structure service life' },
+  { label: 'Germany & Netherlands', sub: 'Engineered manufacture' },
+];
+---
+
+<section class="border-y border-sms-charcoal-100 bg-sms-charcoal-50" aria-label="Approvals and credentials">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+      {items.map((item) => (
+        <li class="text-center">
+          <p class="font-bold text-sms-charcoal-900 text-sm sm:text-base">{item.label}</p>
+          <p class="text-xs text-sms-charcoal-400 mt-1">{item.sub}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+interface Crumb {
+  label: string;
+  href: string;
+}
+interface Props {
+  items: Crumb[]; // does not include Home, added automatically
+}
+const { items } = Astro.props;
+const siteUrl = 'https://sewerms.com.au';
+const allItems = [{ label: 'Home', href: '/' }, ...items];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: allItems.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    item: new URL(item.href, siteUrl).toString(),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="bg-sms-charcoal-50 border-b border-sms-charcoal-100">
+  <ol class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-1.5 text-sm text-sms-charcoal-400">
+    {allItems.map((item, i) => (
+      <li class="flex items-center gap-1.5">
+        {i > 0 && <span aria-hidden="true">/</span>}
+        {i === allItems.length - 1 ? (
+          <span class="text-sms-charcoal-700 font-medium" aria-current="page">{item.label}</span>
+        ) : (
+          <a href={item.href} class="hover:text-sms-green-600">{item.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

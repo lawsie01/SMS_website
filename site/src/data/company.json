@@ -1,0 +1,42 @@
+{
+  "legalName": "Sewer Maintenance Shaft Pty Ltd",
+  "tradingName": "SMS",
+  "parentCompany": "Clover",
+  "phone": "1300 482 228",
+  "phoneHref": "1300482228",
+  "email": "sales@sewerms.com.au",
+  "addressLine1": "9A Colemans Road",
+  "addressLine2": "Carrum Downs VIC 3201",
+  "addressCountry": "Australia",
+  "addressNote": "CONFIRM exact street number/suburb spelling with client before publishing — public directories show a minor 9 vs 9A inconsistency.",
+  "abn": "77 005 234 293",
+  "abnNote": "CONFIRM current ABN with client before publishing.",
+  "coverage": [
+    "Melbourne",
+    "Sydney",
+    "Brisbane",
+    "Townsville",
+    "Perth",
+    "Adelaide",
+    "Tasmania",
+    "Pacific Region"
+  ],
+  "contacts": [
+    {
+      "name": "Peter Fox",
+      "role": "Business Development Manager, Technical Sales"
+    },
+    {
+      "name": "Gavin Roberts",
+      "role": "Sales & Technical Contact"
+    },
+    {
+      "name": "Alex Waites",
+      "role": "Sales & Technical Contact"
+    }
+  ],
+  "contactsNote": "Roles/regions for Gavin Roberts and Alex Waites could not be independently verified during research — confirm exact titles and whether enquiries should route by region or product before launch.",
+  "socials": {
+    "linkedin": ""
+  }
+}

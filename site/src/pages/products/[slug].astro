@@ -1,0 +1,163 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import AtAGlance from '../../components/AtAGlance.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import ConfigTable from '../../components/ConfigTable.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SchemaProduct from '../../components/SchemaProduct.astro';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await render(product);
+const data = product.data;
+const path = `/products/${product.id}/`;
+const isFamily = data.category !== 'accessory';
+---
+
+<BaseLayout
+  title={data.seoTitle ?? `${data.title} | SMS`}
+  description={data.seoDescription ?? data.shortDescription}
+  canonicalPath={path}
+>
+  <Breadcrumbs items={[{ label: 'Products', href: '/products/' }, { label: data.title, href: path }]} />
+
+  <Hero
+    eyebrow={`${data.brand}${data.dnSize ? ` · ${data.dnSize}` : ''}`}
+    title={data.title}
+    subtitle={data.shortDescription}
+    image={data.heroImage}
+    imageAlt={data.heroImageAlt}
+    primaryCta={{ label: `Enquire about the ${data.title}`, href: `/contact/?product=${product.id}` }}
+    compact
+  />
+
+  <SchemaProduct
+    name={`SMS ${data.title}`}
+    description={data.shortDescription}
+    brand={data.brand}
+    path={path}
+  />
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    {data.atAGlance.length > 0 && (
+      <section aria-labelledby="glance-heading">
+        <h2 id="glance-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">At a glance</h2>
+        <AtAGlance items={data.atAGlance} />
+      </section>
+    )}
+
+    <div class="grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-16">
+        {data.specSections.length > 0 && (
+          <section aria-labelledby="specs-heading">
+            <h2 id="specs-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Full specification</h2>
+            <SpecTable sections={data.specSections} />
+          </section>
+        )}
+
+        {isFamily && data.configurations.length > 0 && (
+          <section aria-labelledby="config-heading">
+            <h2 id="config-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Configurations & part codes</h2>
+            <ConfigTable rows={data.configurations} intro={data.configurationsIntro} />
+          </section>
+        )}
+
+        {data.installationSections.length > 0 && (
+          <section aria-labelledby="install-heading">
+            <h2 id="install-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">
+              {isFamily ? 'Installation & depth' : 'Installation'}
+            </h2>
+            <div class="space-y-6">
+              {data.installationSections.map((s) => (
+                <div>
+                  <h3 class="font-semibold text-sms-charcoal-900 mb-2">{s.heading}</h3>
+                  <p class="text-sms-charcoal-500 leading-relaxed">{s.body}</p>
+                  {s.bullets && (
+                    <ul class="mt-2 list-disc list-inside text-sms-charcoal-500 space-y-1">
+                      {s.bullets.map((b) => <li>{b}</li>)}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {data.standards.length > 0 && (
+          <section aria-labelledby="standards-heading">
+            <h2 id="standards-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Standards & approvals</h2>
+            <ul class="grid sm:grid-cols-2 gap-4">
+              {data.standards.map((s) => (
+                <li class="rounded-lg border border-sms-charcoal-100 p-4">
+                  <p class="font-bold text-sms-green-600">{s.code}</p>
+                  <p class="text-sm text-sms-charcoal-500 mt-1">{s.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {data.faqs.length > 0 && <FaqAccordion items={data.faqs} />}
+      </div>
+
+      <aside class="space-y-8">
+        {data.productImage && (
+          <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center", data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
+            <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+          </div>
+        )}
+
+        {data.downloads.length > 0 && (
+          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+            <h2 class="font-bold text-sms-charcoal-900 mb-4">Downloads</h2>
+            <ul class="space-y-3">
+              {data.downloads.map((d) => (
+                <li>
+                  {d.restricted ? (
+                    <span class="text-sm text-sms-charcoal-400">
+                      {d.label} — <a href={`/contact/?product=${product.id}`} class="text-sms-green-600 font-medium hover:underline">available on request</a>
+                    </span>
+                  ) : (
+                    <a href={d.file} class="text-sm text-sms-green-600 font-medium hover:underline" download>
+                      {d.label} ({d.fileType})
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {data.countryOfManufacture && (
+          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+            <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
+            <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
+            {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
+          </div>
+        )}
+
+        <div class="prose prose-sm max-w-none text-sms-charcoal-500">
+          <Content />
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <CtaBand
+    heading={`Ready to spec the ${data.title}?`}
+    subtitle="Send us your project depth, inlet sizes and load rating requirements and we'll confirm the right configuration."
+    productContext={product.id}
+  />
+</BaseLayout>

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette extracted directly from the SMS logo and brochures */
+  --color-sms-green-50: #eef8ea;
+  --color-sms-green-100: #d6f0cb;
+  --color-sms-green-200: #b1e29c;
+  --color-sms-green-300: #8ad46e;
+  --color-sms-green-400: #63b447; /* primary brand green (logo clover) */
+  --color-sms-green-500: #4f9938;
+  --color-sms-green-600: #3f7a2d;
+  --color-sms-green-700: #315f24;
+  --color-sms-green-800: #26491c;
+  --color-sms-green-900: #1b3414;
+
+  --color-sms-charcoal-50: #f4f4f4;
+  --color-sms-charcoal-100: #e2e2e1;
+  --color-sms-charcoal-200: #b9b8b7;
+  --color-sms-charcoal-300: #8f8d8c;
+  --color-sms-charcoal-400: #5c5a59;
+  --color-sms-charcoal-500: #383635;
+  --color-sms-charcoal-600: #2a2828;
+  --color-sms-charcoal-700: #232121;
+  --color-sms-charcoal-800: #1d1c1b;
+  --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-sms-charcoal-900 font-sans antialiased;
+}
+
+.skip-link {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md;
+}
+

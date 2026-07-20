@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import company from '../../../data/company.json';
+---
+
+<BaseLayout
+  title="Thank You | SMS"
+  description="Thanks for your enquiry — SMS will be in touch shortly."
+  canonicalPath="/contact/thank-you/"
+>
+  <Breadcrumbs items={[{ label: 'Contact', href: '/contact/' }, { label: 'Thank you', href: '/contact/thank-you/' }]} />
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <h1 class="text-3xl font-bold text-sms-charcoal-900 mb-4">Thanks — we've got your enquiry</h1>
+    <p class="text-sms-charcoal-500 mb-8">
+      A member of the SMS team will be in touch shortly. If it's urgent, call us directly on
+      <a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a>.
+    </p>
+    <a href="/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors">
+      Back to home
+    </a>
+  </div>
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const products = await getCollection('products');
+const families = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
+const accessories = products
+  .filter((p) => p.data.category === 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Products | SMS Polypropylene Sewer Maintenance Structures"
+  description="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes, plus fittings and accessories. WSAA PA 1317 appraised, Class D rated."
+  canonicalPath="/products/"
+>
+  <Breadcrumbs items={[{ label: 'Products', href: '/products/' }]} />
+  <Hero
+    eyebrow="Product range"
+    title="Polypropylene maintenance structures, DN375 to DN1000"
+    subtitle="Three WSAA-appraised product families covering reticulation to trunk sewer access, plus the fittings and accessories to complete every installation."
+    compact
+  />
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <section aria-labelledby="families-heading">
+      <h2 id="families-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-8">Maintenance structures</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {families.map((p) => (
+          <ProductCard
+            href={`/products/${p.id}/`}
+            title={p.data.title}
+            dnSize={p.data.dnSize}
+            brand={p.data.brand}
+            useCase={p.data.cardUseCase}
+            image={p.data.productImage}
+            imageAlt={p.data.productImageAlt}
+            imageBackground={p.data.productImageBackground}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="accessories-heading">
+      <h2 id="accessories-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-8">Fittings & accessories</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {accessories.map((p) => (
+          <ProductCard
+            href={`/products/${p.id}/`}
+            title={p.data.title}
+            brand={p.data.brand}
+            useCase={p.data.cardUseCase}
+            image={p.data.productImage}
+            imageAlt={p.data.productImageAlt}
+            imageBackground={p.data.productImageBackground}
+          />
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <CtaBand />
+</BaseLayout>

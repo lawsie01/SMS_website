@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import company from '../../data/company.json';
+
+const products = await getCollection('products');
+const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Contact SMS | Enquire About Sewer Maintenance Structures"
+  description="Enquire about SMS AXEDO and SMS ROMOLD polypropylene maintenance structures. Call 1300 482 228, email sales@sewerms.com.au, or send project details via the enquiry form."
+  canonicalPath="/contact/"
+>
+  <Breadcrumbs items={[{ label: 'Contact', href: '/contact/' }]} />
+  <Hero
+    eyebrow="Contact"
+    title="Talk to SMS about your project"
+    subtitle="Send us your project details or call the team directly — we'll confirm the right product configuration, lead time and depth for your site."
+    compact
+  />
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-5 gap-12">
+    <div class="lg:col-span-3">
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-6">Send an enquiry</h2>
+      <form
+        name="enquiry"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/contact/thank-you/"
+        class="space-y-5"
+      >
+        <input type="hidden" name="form-name" value="enquiry" />
+        <p class="hidden">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Name *</label>
+            <input type="text" id="name" name="name" required class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+          </div>
+          <div>
+            <label for="company" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Company</label>
+            <input type="text" id="company" name="company" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="email" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Email *</label>
+            <input type="email" id="email" name="email" required class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Phone</label>
+            <input type="tel" id="phone" name="phone" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label for="product" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Product of interest</label>
+          <select id="product" name="product" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none">
+            <option value="">Not sure / general enquiry</option>
+            {sortedProducts.map((p) => (
+              <option value={p.id}>{p.data.title}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Project details *</label>
+          <textarea id="message" name="message" required rows="5" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" placeholder="Install depth, inlet sizes, load rating, timeframe, location..."></textarea>
+        </div>
+
+        <button type="submit" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors">
+          Send enquiry
+        </button>
+      </form>
+
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get('product');
+        if (product) {
+          const select = document.getElementById('product');
+          if (select instanceof HTMLSelectElement && [...select.options].some((o) => o.value === product)) {
+            select.value = product;
+          }
+        }
+      </script>
+    </div>
+
+    <div class="lg:col-span-2 space-y-8">
+      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <h2 class="font-bold text-sms-charcoal-900 mb-4">Direct contact</h2>
+        <ul class="space-y-3 text-sm">
+          <li><a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a></li>
+          <li><a href={`mailto:${company.email}`} class="text-sms-green-600 font-semibold">{company.email}</a></li>
+          <li class="text-sms-charcoal-500">{company.addressLine1}, {company.addressLine2}</li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <h2 class="font-bold text-sms-charcoal-900 mb-4">Sales & technical contacts</h2>
+        <ul class="space-y-3 text-sm">
+          {company.contacts.map((c) => (
+            <li>
+              <span class="font-semibold text-sms-charcoal-900">{c.name}</span>
+              <span class="block text-sms-charcoal-500">{c.role}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <h2 class="font-bold text-sms-charcoal-900 mb-4">National coverage</h2>
+        <ul class="flex flex-wrap gap-2">
+          {company.coverage.map((c) => (
+            <li class="rounded-full border border-sms-charcoal-200 px-3 py-1 text-xs font-medium text-sms-charcoal-700">{c}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

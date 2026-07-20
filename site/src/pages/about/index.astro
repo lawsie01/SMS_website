@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import company from '../../data/company.json';
+---
+
+<BaseLayout
+  title="About SMS | Sewer Maintenance Shaft Pty Ltd"
+  description="SMS (Sewer Maintenance Shaft Pty Ltd) supplies polypropylene sewer maintenance structures under the AXEDO and ROMOLD brands across Australia. Part of Clover."
+  canonicalPath="/about/"
+>
+  <Breadcrumbs items={[{ label: 'About', href: '/about/' }]} />
+  <Hero
+    eyebrow="About SMS"
+    title="A dedicated PP maintenance structure supplier, backed by Clover"
+    subtitle="SMS (Sewer Maintenance Shaft Pty Ltd) supplies the AXEDO and ROMOLD ranges of polypropylene sewer maintenance shafts, chambers and holes to water utilities, civil contractors and engineers across Australia and the Pacific."
+    compact
+  />
+
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <section>
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">What we supply</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+        SMS supplies three core polypropylene maintenance structure families — the DN375 Maintenance
+        Shaft and DN600 Maintenance Chamber under the SMS AXEDO brand, and the DN1000 Maintenance Hole
+        under the SMS ROMOLD brand — plus the bends, connectors, caps, access covers and pipe markers
+        needed to complete an installation.
+      </p>
+      <p class="text-sms-charcoal-500 leading-relaxed">
+        Every product in the range is appraised under WSAA Product Appraisal PA 1317 (Issue 5) to
+        WSA 137:2019, engineered for a 100-year design life, and manufactured in Germany and the
+        Netherlands by our AXEDO and ROMOLD manufacturing partners.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Part of Clover</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed">
+        SMS (Sewer Maintenance Shaft Pty Ltd) is owned by Clover, giving the business the backing of a
+        larger group while remaining a dedicated, specialist supplier of PP sewer maintenance structures
+        to the Australian water industry.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Where we supply</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+        SMS supplies water utilities and contractors nationally, with active coverage across:
+      </p>
+      <ul class="flex flex-wrap gap-3">
+        {company.coverage.map((c) => (
+          <li class="rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700">{c}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Talk to the team</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+        For product, sales or technical enquiries, reach the SMS team directly:
+      </p>
+      <ul class="space-y-2 text-sms-charcoal-700">
+        {company.contacts.map((c) => (
+          <li><span class="font-semibold">{c.name}</span> — {c.role}</li>
+        ))}
+      </ul>
+      <p class="mt-4">
+        <a href="/contact/" class="text-sm font-semibold text-sms-green-600 hover:underline">Get in touch &rarr;</a>
+      </p>
+    </section>
+  </div>
+
+  <CtaBand />
+</BaseLayout>

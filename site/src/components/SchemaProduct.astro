@@ -1,0 +1,44 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  brand: string;
+  sku?: string;
+  path: string; // canonical path e.g. /products/dn1000-maintenance-hole/
+  image?: string;
+}
+const { name, description, brand, sku, path, image } = Astro.props;
+const siteUrl = 'https://sewerms.com.au';
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name,
+  description,
+  brand: {
+    '@type': 'Brand',
+    name: brand,
+  },
+  manufacturer: {
+    '@type': 'Organization',
+    name: 'SMS (Sewer Maintenance Shaft Pty Ltd)',
+  },
+  ...(sku ? { sku } : {}),
+  ...(image ? { image: new URL(image, siteUrl).toString() } : {}),
+  url: new URL(path, siteUrl).toString(),
+  additionalProperty: [
+    {
+      '@type': 'PropertyValue',
+      name: 'WSAA Product Appraisal',
+      value: 'PA 1317 Issue 5',
+    },
+    {
+      '@type': 'PropertyValue',
+      name: 'Industry standard',
+      value: 'WSA 137:2019',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(productSchema)} />
