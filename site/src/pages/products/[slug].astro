@@ -137,7 +137,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
                 <li>
                   {d.restricted ? (
                     <span class="text-sm text-sms-charcoal-400">
-                      {d.label} — <a href={`/contact/?product=${product.id}`} class="text-sms-green-600 font-medium hover:underline">available on request</a>
+                      {d.label} — <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
                     </span>
                   ) : (
                     <a href={d.file} class="text-sm text-sms-green-600 font-medium hover:underline" download>

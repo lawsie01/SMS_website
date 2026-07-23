@@ -1,9 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import company from '../../data/company.json';
+
+const products = await getCollection('products');
+const families = products
+  .filter((p) => p.data.category !== 'accessory' && p.data.countryOfManufacture)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -30,9 +36,26 @@ import company from '../../data/company.json';
       </p>
       <p class="text-sms-charcoal-500 leading-relaxed">
         Every product in the range is appraised under WSAA Product Appraisal PA 1317 (Issue 5) to
-        WSA 137:2019, engineered for a 100-year design life, and manufactured in Germany and the
-        Netherlands by our AXEDO and ROMOLD manufacturing partners.
+        WSA 137:2019 and engineered for a 100-year design life — see the full breakdown on the{' '}
+        <a href="/approvals/" class="text-sms-green-600 font-medium hover:underline">Approvals &amp; Standards</a> page.
       </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Manufacturing partners</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+        Each product family is engineered and manufactured by a specialist European partner, rather
+        than one blanket production line for the whole range:
+      </p>
+      <ul class="space-y-3">
+        {families.map((p) => (
+          <li class="rounded-lg border border-sms-charcoal-100 p-4">
+            <span class="font-semibold text-sms-charcoal-900">{p.data.title}</span>
+            <span class="text-sms-charcoal-500"> — {p.data.countryOfManufacture}</span>
+            {p.data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-1">{p.data.manufacturerNote}</p>}
+          </li>
+        ))}
+      </ul>
     </section>
 
     <section>

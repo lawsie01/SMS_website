@@ -9,64 +9,80 @@ const products = await getCollection('products');
 const withDownloads = products
   .filter((p) => p.data.downloads.length > 0)
   .sort((a, b) => a.data.order - b.data.order);
+const withRestricted = withDownloads.filter((p) => p.data.downloads.some((d) => d.restricted));
 
 const certificate = {
   label: 'WSAA Product Appraisal PA 1317 (Issue 5) — Certificate',
   file: '/downloads/WSAA-PA1317-Issue5-Certificate.pdf',
 };
+
+const assetToParam = (label: string) =>
+  label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)';
 ---
 
 <BaseLayout
   title="Technical Resources | SMS Brochures, Drawings & Approvals"
-  description="Download SMS product brochures and the WSAA PA 1317 appraisal certificate. Full engineering drawings are available on request for active projects."
+  description="Download SMS product brochures and the WSAA PA 1317 appraisal certificate directly, or request CAD/BIM models and full engineering drawings for an active project."
   canonicalPath="/technical-resources/"
 >
   <Breadcrumbs items={[{ label: 'Technical Resources', href: '/technical-resources/' }]} />
   <Hero
     eyebrow="Technical resources"
-    title="Brochures, drawings and approvals in one place"
-    subtitle="Product brochures and the current WSAA appraisal certificate are available to download directly. Full engineering drawings are supplied on request once we understand your project."
+    title="Brochures, drawings, CAD/BIM and approvals in one place"
+    subtitle="Marketing brochures and the current WSAA appraisal certificate are free to download below. CAD/BIM models and full engineering drawings are commercial-in-confidence and supplied directly to your project team on request."
     compact
   />
 
-  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <section aria-labelledby="certs-heading">
-      <h2 id="certs-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Approvals</h2>
-      <a href={certificate.file} download class="inline-flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all">
+      <h2 id="certs-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Public downloads</h2>
+      <p class="text-sm text-sms-charcoal-500 mb-6">No form required — these are free to download for anyone.</p>
+      <a href={certificate.file} download class="flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all mb-4">
         <span class="font-semibold text-sms-charcoal-900">{certificate.label}</span>
-        <span class="text-sm text-sms-green-600 font-medium">Download PDF &rarr;</span>
+        <span class="text-sm text-sms-green-600 font-medium ml-auto">Download PDF &rarr;</span>
       </a>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {withDownloads.map((p) =>
+          p.data.downloads.filter((d) => !d.restricted).map((d) => (
+            <a href={d.file} download class="flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all">
+              <span>
+                <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
+                <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title} &middot; {d.fileType}</span>
+              </span>
+              <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Download &rarr;</span>
+            </a>
+          ))
+        )}
+      </div>
     </section>
 
-    <section aria-labelledby="downloads-heading">
-      <h2 id="downloads-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Product brochures & drawings</h2>
-      <div class="space-y-4">
-        {withDownloads.map((p) => (
-          <div class="rounded-xl border border-sms-charcoal-100 p-6">
-            <h3 class="font-bold text-sms-charcoal-900 mb-3">
-              <a href={`/products/${p.id}/`} class="hover:text-sms-green-600">{p.data.title}</a>
-            </h3>
-            <ul class="space-y-2">
-              {p.data.downloads.map((d) => (
-                <li class="flex items-center gap-2 text-sm">
-                  {d.restricted ? (
-                    <>
-                      <span class="text-sms-charcoal-400">{d.label} —</span>
-                      <a href={`/contact/?product=${p.id}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
-                    </>
-                  ) : (
-                    <a href={d.file} download class="text-sms-green-600 font-medium hover:underline">{d.label} ({d.fileType})</a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <p class="text-xs text-sms-charcoal-400 mt-6">
-        Full engineering drawings are commercial-in-confidence documents and are supplied directly to
-        specifiers and contractors on active projects rather than published openly — request access above.
+    <section aria-labelledby="gated-heading" class="rounded-2xl border border-sms-charcoal-100 bg-sms-charcoal-50 p-8">
+      <h2 id="gated-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">CAD/BIM files & full engineering drawings</h2>
+      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-2xl">
+        These are commercial-in-confidence assets, so they go straight to the person working on a
+        real project rather than into a public library. Tell us what you need — product, file type,
+        and a bit about the project — and we'll verify and send it through, usually within one
+        business day.
       </p>
+      <div class="grid sm:grid-cols-2 gap-4 mb-6">
+        {withRestricted.map((p) =>
+          p.data.downloads.filter((d) => d.restricted).map((d) => (
+            <a
+              href={`/technical-resources/request-access/?product=${p.id}&asset=${encodeURIComponent(assetToParam(d.label))}`}
+              class="flex items-center gap-3 rounded-lg border border-sms-charcoal-200 bg-white p-5 hover:border-sms-green-300 hover:shadow-md transition-all"
+            >
+              <span>
+                <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
+                <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title}</span>
+              </span>
+              <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Request &rarr;</span>
+            </a>
+          ))
+        )}
+      </div>
+      <a href="/technical-resources/request-access/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors">
+        Request CAD/BIM or drawings &rarr;
+      </a>
     </section>
   </div>
 

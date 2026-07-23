@@ -40,6 +40,17 @@ const approvals = [
   },
 ];
 
+const matrix = [
+  { code: 'WSA 137:2019', shaft: true, chamber: true, hole: true },
+  { code: 'WSAA PA 1317 (Issue 5)', shaft: true, chamber: true, hole: true },
+  { code: 'EN 13598-2', shaft: true, chamber: true, hole: true },
+  { code: 'AS 3996 (Class D covers)', shaft: true, chamber: true, hole: true },
+  { code: 'AS 1646 (seals)', shaft: true, chamber: true, hole: true },
+  { code: 'AS/NZS 2566 (buried pipelines)', shaft: true, chamber: true, hole: true },
+  { code: 'AS/NZS 5065 (PP/PE pipes)', shaft: false, chamber: true, hole: true },
+  { code: 'EN 14396 (fixed ladders)', shaft: false, chamber: false, hole: true },
+];
+
 const faqs = [
   {
     question: 'What is WSAA Product Appraisal PA 1317?',
@@ -88,6 +99,49 @@ const faqs = [
         Quality management certification (AS/NZS ISO 9001) and any current WaterMark licensing referenced on
         prior SMS materials are being reconfirmed for the current AXEDO/ROMOLD range — contact SMS for the
         latest certificate if this is required for your project's documentation.
+      </p>
+    </section>
+
+    <section aria-labelledby="matrix-heading">
+      <h2 id="matrix-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Compliance at a glance, by product</h2>
+      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-2xl">
+        Not every standard applies to every product — this is the same data published on each
+        product's own Standards &amp; Approvals section, side by side for quick reference.
+      </p>
+      <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100">
+        <table class="w-full border-collapse text-sm">
+          <thead>
+            <tr class="bg-sms-charcoal-900 text-white">
+              <th scope="col" class="text-left px-4 py-3 font-semibold">Standard</th>
+              <th scope="col" class="text-center px-4 py-3 font-semibold">DN375 Shaft</th>
+              <th scope="col" class="text-center px-4 py-3 font-semibold">DN600 Chamber</th>
+              <th scope="col" class="text-center px-4 py-3 font-semibold">DN1000 Hole</th>
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.map((row, i) => (
+              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+                <th scope="row" class="text-left px-4 py-3 font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="process-heading">
+      <h2 id="process-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">What a WSAA Product Appraisal actually checks</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed max-w-3xl">
+        A WSAA Product Appraisal is an independent review process run by the Water Services
+        Association of Australia — it isn't SMS grading its own homework. The appraisal assesses a
+        product against the relevant WSA specification (WSA 137:2019 for maintenance shafts,
+        chambers and holes), covering material properties, structural performance and manufacturing
+        quality control, and results in a formal certificate with a defined validity period that
+        water utilities can rely on when accepting a product onto their network. PA 1317's current
+        certificate is Issue 5 — download it from the <a href="/technical-resources/" class="text-sms-green-600 font-medium hover:underline">Technical Resources hub</a>.
       </p>
     </section>
 

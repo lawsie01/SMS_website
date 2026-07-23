@@ -125,12 +125,15 @@ downloads:
   - label: "SMS Maintenance Chamber Brochure (March 2027)"
     file: "/downloads/SMS-Maintenance-Chamber-Brochure-Mar2027.pdf"
     fileType: "PDF"
-    restricted: false     # false = public download link; true = "available on request" (routes to /contact/)
+    restricted: false     # false = public download link; true = gated behind /technical-resources/request-access/
 ```
 
-Full engineering drawings are treated as commercial-in-confidence by default (`restricted: true`) —
-they show as "available on request" and link to the contact form rather than a public URL. Only
-flip a drawing to `restricted: false` if it has been cleared for public distribution.
+Full engineering drawings and CAD/BIM files are treated as commercial-in-confidence by default
+(`restricted: true`) — they show as "request access" and link to the dedicated
+`/technical-resources/request-access/` lead-capture form (a separate Netlify form,
+`download-request`, from the general enquiry form) rather than a public URL. That form pre-fills
+the product and asset type from the link's query string. Only flip a drawing to
+`restricted: false` if it has been cleared for public distribution.
 
 ### Editing company-wide details (phone, email, address, sales contacts, coverage areas)
 

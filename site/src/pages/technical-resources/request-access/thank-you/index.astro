@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import company from '../../../../data/company.json';
+---
+
+<BaseLayout
+  title="Request Received | SMS Technical Resources"
+  description="Thanks — your CAD/BIM and engineering drawing request has been received."
+  canonicalPath="/technical-resources/request-access/thank-you/"
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Technical Resources', href: '/technical-resources/' },
+      { label: 'Request CAD & Drawings', href: '/technical-resources/request-access/' },
+      { label: 'Request received', href: '/technical-resources/request-access/thank-you/' },
+    ]}
+  />
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <h1 class="text-3xl font-bold text-sms-charcoal-900 mb-4">Request received</h1>
+    <p class="text-sms-charcoal-500 mb-4">
+      Thanks — we've got your request for CAD/BIM files or engineering drawings. Most requests are
+      verified and sent within one business day, direct to the email address you gave us.
+    </p>
+    <p class="text-sms-charcoal-500 mb-8">
+      Need it faster? Call us on
+      <a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a>.
+    </p>
+    <a href="/technical-resources/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors">
+      Back to Technical Resources
+    </a>
+  </div>
+</BaseLayout>

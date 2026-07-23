@@ -15,6 +15,8 @@ const sections = [
       'Consistent part-code configurations and full spec tables per product family, simplifying asset register and GIS attribute data entry.',
       'National supply across every major Australian market plus the Pacific region, supporting standardisation across a multi-region network.',
     ],
+    projectTypes: ['Sewer backlog/renewal programs', 'Reticulation network extensions', 'Failed concrete manhole replacement', 'New development handover assets'],
+    bestFit: 'Standardising on one appraised range across DN375–DN1000 covers reticulation through to trunk sewer access with a single set of WSA 137 documentation.',
     cta: { label: 'View approvals & standards', href: '/approvals/' },
   },
   {
@@ -27,6 +29,8 @@ const sections = [
       'DN100–DN200 lateral drop-in connections can be added on-site with a hole saw and rubber collar kit if an extra inlet is needed after the base is set.',
       'Step-by-step installation guides (bedding, backfill, compaction, access cover fitting) are published on each product page and in the technical resources hub.',
     ],
+    projectTypes: ['Residential subdivision developments', 'Remote/mining camp installations', 'Program works with tight install windows', 'Sites with restricted crane access'],
+    bestFit: 'The DN375 Shaft and DN600 Chamber cover most reticulation-depth connections without a crane; the DN1000 Hole is the one to reach for once a job needs person entry.',
     cta: { label: 'Installation & depth guidance', href: '/technical-resources/' },
   },
   {
@@ -37,8 +41,10 @@ const sections = [
       'Full HTML spec tables on every product page: dimensions, tolerances, weights, load ratings and standards — crawlable and copy-pasteable, not locked in an image or PDF.',
       'Complete configuration/part-code tables per product family, covering inlet/outlet size and RRJ angle combinations.',
       'Installation depth ranges and base-socket angle/gradient tolerances published for depth and alignment checks during design.',
-      'Engineering drawings available on request for projects requiring full dimensional detail beyond the published spec tables.',
+      'CAD/BIM models and full engineering drawings available on request for detailed design beyond the published spec tables.',
     ],
+    projectTypes: ['Gravity network hydraulic design', 'Confined-space-avoidance design briefs', 'Asset standardisation specifications', 'Tender documentation & BOQs'],
+    bestFit: 'Base-socket angle tolerance (±2° to ±7.5° depending on product) and the RRJ configuration tables let most alignment changes be handled with a standard part code, not a custom fitting.',
     cta: { label: 'Browse the product range', href: '/products/' },
   },
 ];
@@ -62,7 +68,7 @@ const sections = [
       <section id={s.id} aria-labelledby={`${s.id}-heading`} class="scroll-mt-24">
         <h2 id={`${s.id}-heading`} class="text-2xl font-bold text-sms-charcoal-900 mb-3">{s.heading}</h2>
         <p class="text-sms-charcoal-500 mb-6 max-w-3xl">{s.intro}</p>
-        <ul class="space-y-3 mb-6">
+        <ul class="space-y-3 mb-8">
           {s.points.map((p) => (
             <li class="flex gap-3">
               <span class="text-sms-green-600 font-bold" aria-hidden="true">&check;</span>
@@ -70,6 +76,20 @@ const sections = [
             </li>
           ))}
         </ul>
+
+        <div class="grid sm:grid-cols-2 gap-6 mb-6">
+          <div class="rounded-xl border border-sms-charcoal-100 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-sms-charcoal-400 mb-3">Typical project types</h3>
+            <ul class="space-y-1.5 text-sm text-sms-charcoal-700">
+              {s.projectTypes.map((pt) => <li>&bull; {pt}</li>)}
+            </ul>
+          </div>
+          <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-5">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-sms-green-600 mb-3">Where to start looking</h3>
+            <p class="text-sm text-sms-charcoal-700 leading-relaxed">{s.bestFit}</p>
+          </div>
+        </div>
+
         <a href={s.cta.href} class="text-sm font-semibold text-sms-green-600 hover:underline">{s.cta.label} &rarr;</a>
       </section>
     ))}
