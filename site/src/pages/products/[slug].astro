@@ -9,7 +9,14 @@ import ConfigTable from '../../components/ConfigTable.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import SchemaProduct from '../../components/SchemaProduct.astro';
+import Product3DViewer from '../../components/Product3DViewer.astro';
 import { Image } from 'astro:assets';
+
+const VIEWER_KEY_BY_SLUG: Record<string, 'shaft' | 'chamber' | 'hole'> = {
+  'dn375-maintenance-shaft': 'shaft',
+  'dn600-maintenance-chamber': 'chamber',
+  'dn1000-maintenance-hole': 'hole',
+};
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -24,6 +31,7 @@ const { Content } = await render(product);
 const data = product.data;
 const path = `/products/${product.id}/`;
 const isFamily = data.category !== 'accessory';
+const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
 ---
 
 <BaseLayout
@@ -49,6 +57,8 @@ const isFamily = data.category !== 'accessory';
     brand={data.brand}
     path={path}
   />
+
+  {viewerKey && <Product3DViewer product={viewerKey} title={data.title} />}
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
     {data.atAGlance.length > 0 && (

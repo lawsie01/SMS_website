@@ -1,0 +1,275 @@
+---
+interface Props {
+  product: 'shaft' | 'chamber' | 'hole';
+  title: string;
+}
+const { product, title } = Astro.props;
+---
+
+<section aria-labelledby="viewer-heading" class="bg-sms-charcoal-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+      <h2 id="viewer-heading" class="text-xl font-bold text-white">Explore the {title} in 3D</h2>
+      <p class="text-xs text-sms-charcoal-300">Drag to rotate &middot; scroll or pinch to zoom</p>
+    </div>
+
+    <div
+      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-700 bg-gradient-to-b from-sms-charcoal-800 to-sms-charcoal-900 overflow-hidden"
+      data-product={product}
+      style="height: 480px;"
+    >
+      <div class="viewer-loading absolute inset-0 flex items-center justify-center text-sms-charcoal-400 text-sm">
+        Loading 3D preview&hellip;
+      </div>
+      <noscript>
+        <div class="absolute inset-0 flex items-center justify-center text-sms-charcoal-400 text-sm p-6 text-center">
+          Enable JavaScript to view the interactive 3D model.
+        </div>
+      </noscript>
+    </div>
+
+    <p class="mt-3 text-xs text-sms-charcoal-400 max-w-2xl">
+      Placeholder geometry for concept purposes — approximates the real product's proportions and
+      construction (corrugated riser, access cover, RRJ inlet/outlet sockets) but is not derived from
+      the actual CAD model. Swap in the real .glb/.gltf asset when available.
+    </p>
+  </div>
+</section>
+
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+  type ProductKey = 'shaft' | 'chamber' | 'hole';
+
+  interface ProductConfig {
+    bodyRadius: number;
+    bodyHeight: number;
+    ribbed: boolean;
+    riserColor: number;
+    capRadius: number;
+    capHeight: number;
+    stubCount: number;
+    stubRadius: number;
+    stubLength: number;
+    cameraDistance: number;
+  }
+
+  const CONFIGS: Record<ProductKey, ProductConfig> = {
+    shaft: {
+      bodyRadius: 0.34,
+      bodyHeight: 1.9,
+      ribbed: false,
+      riserColor: 0xe4e2dc,
+      capRadius: 0.46,
+      capHeight: 0.16,
+      stubCount: 1,
+      stubRadius: 0.11,
+      stubLength: 0.5,
+      cameraDistance: 3.4,
+    },
+    chamber: {
+      bodyRadius: 0.5,
+      bodyHeight: 2.1,
+      ribbed: true,
+      riserColor: 0x4a4a4a,
+      capRadius: 0.62,
+      capHeight: 0.18,
+      stubCount: 2,
+      stubRadius: 0.14,
+      stubLength: 0.55,
+      cameraDistance: 4.0,
+    },
+    hole: {
+      bodyRadius: 0.66,
+      bodyHeight: 2.5,
+      ribbed: true,
+      riserColor: 0x4a4a4a,
+      capRadius: 0.8,
+      capHeight: 0.2,
+      stubCount: 2,
+      stubRadius: 0.17,
+      stubLength: 0.65,
+      cameraDistance: 4.8,
+    },
+  };
+
+  function buildGrateTexture(): THREE.CanvasTexture {
+    const size = 256;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d')!;
+    ctx.fillStyle = '#2a2a2a';
+    ctx.fillRect(0, 0, size, size);
+    ctx.strokeStyle = '#0f0f0f';
+    ctx.lineWidth = 3;
+    const cx = size / 2;
+    const cy = size / 2;
+    for (let r = 20; r < size / 2; r += 18) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    for (let a = 0; a < 12; a++) {
+      const angle = (a / 12) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(angle) * size * 0.48, cy + Math.sin(angle) * size * 0.48);
+      ctx.stroke();
+    }
+    return new THREE.CanvasTexture(canvas);
+  }
+
+  function buildBody(config: ProductConfig): THREE.Group {
+    const group = new THREE.Group();
+    const material = new THREE.MeshStandardMaterial({
+      color: config.riserColor,
+      roughness: 0.65,
+      metalness: 0.05,
+    });
+
+    if (config.ribbed) {
+      const ribCount = Math.round(config.bodyHeight * 14);
+      const ribHeight = config.bodyHeight / ribCount;
+      for (let i = 0; i < ribCount; i++) {
+        const t = i / ribCount;
+        const radius = config.bodyRadius * (i % 2 === 0 ? 1 : 0.86);
+        const geo = new THREE.CylinderGeometry(radius, radius, ribHeight * 1.05, 32);
+        const mesh = new THREE.Mesh(geo, material);
+        mesh.position.y = t * config.bodyHeight - config.bodyHeight / 2 + ribHeight / 2;
+        group.add(mesh);
+      }
+    } else {
+      const geo = new THREE.CylinderGeometry(config.bodyRadius, config.bodyRadius * 1.05, config.bodyHeight, 32);
+      const mesh = new THREE.Mesh(geo, material);
+      group.add(mesh);
+    }
+    return group;
+  }
+
+  function buildCap(config: ProductConfig): THREE.Group {
+    const group = new THREE.Group();
+    const capMaterial = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.5, metalness: 0.1 });
+    const grateMaterial = new THREE.MeshStandardMaterial({ map: buildGrateTexture(), roughness: 0.8, metalness: 0.1 });
+
+    const collarGeo = new THREE.CylinderGeometry(config.bodyRadius * 1.1, config.capRadius, config.capHeight * 0.7, 32);
+    const collar = new THREE.Mesh(collarGeo, capMaterial);
+    collar.position.y = config.bodyHeight / 2 + (config.capHeight * 0.7) / 2;
+    group.add(collar);
+
+    const lidGeo = new THREE.CylinderGeometry(config.capRadius, config.capRadius, config.capHeight, 32, 1, false);
+    const lidMaterials = [capMaterial, grateMaterial, capMaterial];
+    const lid = new THREE.Mesh(lidGeo, lidMaterials);
+    lid.position.y = config.bodyHeight / 2 + config.capHeight * 0.7 + config.capHeight / 2;
+    group.add(lid);
+
+    return group;
+  }
+
+  function buildStubs(config: ProductConfig): THREE.Group {
+    const group = new THREE.Group();
+    const material = new THREE.MeshStandardMaterial({ color: 0xd8d5cc, roughness: 0.55, metalness: 0.05 });
+    const positions = config.stubCount === 1 ? [0] : [0, Math.PI];
+    const stubHeight = -config.bodyHeight / 2 + config.stubRadius * 1.6;
+
+    positions.forEach((angle) => {
+      const geo = new THREE.CylinderGeometry(config.stubRadius, config.stubRadius, config.stubLength, 20);
+      const mesh = new THREE.Mesh(geo, material);
+      mesh.rotation.z = Math.PI / 2;
+      const dist = config.bodyRadius + config.stubLength / 2 - 0.05;
+      mesh.position.set(Math.cos(angle) * dist, stubHeight, Math.sin(angle) * dist);
+      mesh.rotation.y = angle;
+      group.add(mesh);
+    });
+    return group;
+  }
+
+  function buildBase(config: ProductConfig): THREE.Mesh {
+    const material = new THREE.MeshStandardMaterial({ color: 0x2e2e2e, roughness: 0.7, metalness: 0.05 });
+    const geo = new THREE.CylinderGeometry(config.bodyRadius * 1.15, config.bodyRadius * 1.2, 0.12, 32);
+    const mesh = new THREE.Mesh(geo, material);
+    mesh.position.y = -config.bodyHeight / 2 - 0.06;
+    return mesh;
+  }
+
+  function initViewer(container: HTMLElement) {
+    const productKey = (container.dataset.product as ProductKey) ?? 'hole';
+    const config = CONFIGS[productKey];
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(config.cameraDistance * 0.7, config.cameraDistance * 0.35, config.cameraDistance * 0.9);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.5;
+    container.appendChild(renderer.domElement);
+
+    const loading = container.querySelector('.viewer-loading');
+    if (loading) loading.remove();
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1.1));
+    const key = new THREE.DirectionalLight(0xffffff, 2.2);
+    key.position.set(4, 6, 4);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffffff, 1.1);
+    fill.position.set(-3, 2, 4);
+    scene.add(fill);
+    const rim = new THREE.DirectionalLight(0x63b447, 0.9);
+    rim.position.set(-4, 3, -4);
+    scene.add(rim);
+
+    const productGroup = new THREE.Group();
+    productGroup.add(buildBody(config));
+    productGroup.add(buildCap(config));
+    productGroup.add(buildStubs(config));
+    productGroup.add(buildBase(config));
+    scene.add(productGroup);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0, 0);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.enablePan = false;
+    controls.minDistance = config.cameraDistance * 0.4;
+    controls.maxDistance = config.cameraDistance * 1.8;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.6;
+    controls.addEventListener('start', () => {
+      controls.autoRotate = false;
+    });
+
+    function resize() {
+      const { clientWidth, clientHeight } = container;
+      camera.aspect = clientWidth / clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(clientWidth, clientHeight);
+    }
+    new ResizeObserver(resize).observe(container);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+
+  function initAll() {
+    document.querySelectorAll<HTMLElement>('.product-3d-viewer').forEach((el) => {
+      if (el.dataset.initialized) return;
+      el.dataset.initialized = 'true';
+      initViewer(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+  document.addEventListener('astro:page-load', initAll);
+</script>
