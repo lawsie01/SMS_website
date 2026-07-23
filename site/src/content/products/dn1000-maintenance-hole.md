@@ -6,7 +6,7 @@ category: "maintenance-hole"
 order: 3
 shortDescription: "Person-accessible polypropylene maintenance hole for trunk sewers, with a fixed ladder, 600mm clear opening and Class D rated access cover options."
 cardUseCase: "Trunk sewer and deeper reticulation access requiring person entry, standard installation up to 6m."
-productImage: "../../assets/images/product-dn1000-hole.jpg"
+productImage: "../../assets/images/product-dn1000-hole-clover.jpg"
 productImageAlt: "SMS ROMOLD DN1000 polypropylene maintenance hole assembly with base, risers, cone and ladder"
 heroImage: "../../assets/images/brand-lookup-manhole.jpg"
 heroImageAlt: "View looking up through an installed ROMOLD polypropylene maintenance hole and fixed ladder"
