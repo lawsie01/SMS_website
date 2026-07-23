@@ -2,8 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
+import AtAGlance from '../../components/AtAGlance.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import installImage from '../../assets/images/install-trench-row.jpg';
+
+const glance = [
+  { label: 'Design service life', value: '100 years' },
+  { label: 'Standard install', value: 'No crane' },
+  { label: 'Max traffic load', value: 'Class D' },
+  { label: 'Chemical resistance', value: 'pH 1–13' },
+  { label: 'Joint system', value: 'Sealed RRJ' },
+  { label: 'Appraisal', value: 'WSA 137' },
+];
 
 const rows = [
   {
@@ -77,10 +88,16 @@ const faqs = [
     eyebrow="Comparison"
     title="Plastic vs concrete sewer maintenance structures"
     subtitle="Polypropylene maintenance shafts, chambers and holes are increasingly specified in place of precast concrete manholes. Here's how they compare, factor by factor."
-    compact
+    image={installImage}
+    imageAlt="Row of SMS polypropylene maintenance structures installed along a sewer trench"
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <section aria-labelledby="glance-heading">
+      <h2 id="glance-heading" class="sr-only">At a glance</h2>
+      <AtAGlance items={glance} />
+    </section>
+
     <section aria-labelledby="table-heading">
       <h2 id="table-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Factor-by-factor comparison</h2>
       <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100">
