@@ -9,12 +9,12 @@ import Icon from '../../components/Icon.astro';
 import installImage from '../../assets/images/install-trench-row.jpg';
 
 const glance = [
-  { label: 'Design service life', value: '100 years' },
-  { label: 'Standard install', value: 'No crane' },
-  { label: 'Max traffic load', value: 'Class D' },
-  { label: 'Chemical resistance', value: 'pH 1–13' },
-  { label: 'Joint system', value: 'Sealed RRJ' },
-  { label: 'Appraisal', value: 'WSA 137' },
+  { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
+  { label: 'Standard install', value: 'No crane', icon: 'feather' as const },
+  { label: 'Max traffic load', value: 'Class D', icon: 'load' as const },
+  { label: 'Chemical resistance', value: 'pH 1–13', icon: 'chemical' as const },
+  { label: 'Joint system', value: 'Sealed RRJ', icon: 'joint' as const },
+  { label: 'Appraisal', value: 'WSA 137', icon: 'wsaa' as const },
 ];
 
 const rows = [
@@ -26,11 +26,13 @@ const rows = [
   },
   {
     factor: 'Design service life',
+    icon: 'service-life' as const,
     plastic: '100 years (SMS AXEDO/ROMOLD range)',
     concrete: 'Typically shorter effective service life in aggressive sewer environments without additional corrosion protection',
   },
   {
     factor: 'Component weight & handling',
+    icon: 'feather' as const,
     plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component — handled by 1–2 installers without a crane',
     concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes, requiring crane or excavator lifting',
   },
@@ -47,11 +49,13 @@ const rows = [
   },
   {
     factor: 'Load rating available',
+    icon: 'load' as const,
     plastic: 'Class D (trafficable) to AS 3996, with load transferred to surrounding bedding via the access cover — not the PP structure',
     concrete: 'Class D achievable, structure itself typically load-bearing',
   },
   {
     factor: 'Standards & appraisal',
+    icon: 'wsaa' as const,
     plastic: 'WSAA Product Appraisal PA 1317 (Issue 5) to WSA 137:2019, EN 13598-2',
     concrete: 'Assessed under separate precast concrete manhole standards/specifications',
   },
