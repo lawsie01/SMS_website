@@ -1,5 +1,4 @@
 ---
-import company from '../data/company.json';
 import logo from '../assets/images/sms-logo.png';
 import { Image } from 'astro:assets';
 
@@ -11,8 +10,6 @@ const nav = [
   { label: 'Technical Resources', href: '/technical-resources/' },
   { label: 'About', href: '/about/' },
 ];
-
-const phoneHref = `tel:${company.phoneHref}`;
 ---
 
 <header class="border-b border-sms-charcoal-100 bg-white sticky top-0 z-40">
@@ -31,12 +28,6 @@ const phoneHref = `tel:${company.phoneHref}`;
       </nav>
 
       <div class="flex items-center gap-3">
-        <a
-          href={phoneHref}
-          class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-sms-charcoal-900 hover:text-sms-green-600"
-        >
-          {company.phone}
-        </a>
         <a
           href="/contact/"
           class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
