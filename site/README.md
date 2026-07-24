@@ -42,9 +42,13 @@ This repo is configured for **Netlify** (`netlify.toml`):
 
 - Build command: `npm run build`
 - Publish directory: `dist`
-- The enquiry form on `/contact/` uses **Netlify Forms** (`data-netlify="true"`) — no serverless
-  function or third-party form service needed. Submissions appear in the Netlify dashboard under
-  Forms, and can be forwarded to `sales@sewerms.com.au` via a Netlify notification/webhook.
+- The enquiry form on `/contact/`, the gated download form on `/technical-resources/request-access/`,
+  and the quote builder on `/quote/` each use a separate **Netlify Forms** instance
+  (`data-netlify="true"`, forms named `contact`, `download-request` and `quote-request`) — no
+  serverless function or third-party form service needed. Submissions appear in the Netlify
+  dashboard under Forms, and can be forwarded to `sales@sewerms.com.au` via a Netlify
+  notification/webhook. Set up a **2-business-day SLA reminder** on the `quote-request` form
+  notification so quote requests don't sit unreviewed.
 
 To deploy elsewhere (Vercel, Cloudflare Pages), point the platform at `npm run build` with output
 directory `dist`, and replace the Netlify Forms `data-netlify` attribute in
@@ -134,6 +138,22 @@ Full engineering drawings and CAD/BIM files are treated as commercial-in-confide
 `download-request`, from the general enquiry form) rather than a public URL. That form pre-fills
 the product and asset type from the link's query string. Only flip a drawing to
 `restricted: false` if it has been cleared for public distribution.
+
+### How the quote builder (`/quote/`) works
+
+`/quote/` lets a visitor pick products and quantities into a quote list, then submit it as one
+request — it does **not** calculate pricing. The product picker (configurations, quantities) and the
+running quote list are entirely client-side (vanilla JS + `localStorage`, no framework), so the list
+persists across page loads without a backend. Each product page also has an "Add to quote" link
+(`/quote/?add=<product-slug>`) that pre-adds that product when the quote page loads.
+
+On submit, a hidden field builds a human-readable itemised summary (product, quantity, configuration)
+from the quote list and sends it to the `quote-request` Netlify form alongside the requester's contact
+and project details — so whoever reviews it in the Netlify Forms dashboard (or a forwarded
+notification email) can read the list without parsing JSON. **The 2-business-day turnaround promised
+on the page and thank-you screen is a process commitment, not something the site enforces** — someone
+on the SMS team needs to actually check the Forms dashboard (or notification inbox) regularly and send
+the reviewed quote back manually within that window.
 
 ### Editing company-wide details (phone, email, address, sales contacts, coverage areas)
 

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import company from '../../../data/company.json';
+---
+
+<BaseLayout
+  title="Quote Request Received | SMS"
+  description="Thanks — your quote request has been received and is being reviewed by the SMS team."
+  canonicalPath="/quote/thank-you/"
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Get a Quote', href: '/quote/' },
+      { label: 'Quote received', href: '/quote/thank-you/' },
+    ]}
+  />
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <h1 class="text-3xl font-bold text-sms-charcoal-900 mb-4">Quote request received</h1>
+    <p class="text-sms-charcoal-500 mb-4">
+      Thanks — we've got your quote request. An SMS team member is reviewing pricing, availability and
+      lead time for each item now, and will email your formal quote directly to you within
+      <strong>2 business days</strong>.
+    </p>
+    <p class="text-sms-charcoal-500 mb-8">
+      Need it sooner? Call us on{' '}
+      <a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a>.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/quote/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors">
+        Start another quote
+      </a>
+      <a href="/products/" class="inline-flex items-center rounded-md border border-sms-charcoal-200 px-6 py-3 text-base font-semibold text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-green-600 transition-colors">
+        Browse products
+      </a>
+    </div>
+  </div>
+</BaseLayout>

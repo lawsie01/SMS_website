@@ -123,6 +123,19 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
       </div>
 
       <aside class="space-y-8">
+        <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
+          <h2 class="font-bold text-sms-charcoal-900 mb-2">Building a project quote?</h2>
+          <p class="text-sm text-sms-charcoal-500 mb-4">
+            Add the {data.title} to your quote list and submit it with your other products in one request.
+          </p>
+          <a
+            href={`/quote/?add=${product.id}`}
+            class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors"
+          >
+            Add to quote &rarr;
+          </a>
+        </div>
+
         {data.productImage && (
           <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center", data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
             <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
