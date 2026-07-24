@@ -2,7 +2,63 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import applicationsImage from '../../assets/images/brand-lookup-manhole.jpg';
+
+const jumpNav = [
+  { id: 'utilities', label: 'Water utilities' },
+  { id: 'contractors', label: 'Contractors & plumbers' },
+  { id: 'engineers', label: 'Design engineers' },
+  { id: 'fit-guide', label: 'Which product fits?' },
+];
+
+const fitGuide = [
+  {
+    scenario: 'Standard gravity reticulation access, single inlet/outlet run',
+    product: 'DN375 Maintenance Shaft',
+    href: '/products/dn375-maintenance-shaft/',
+  },
+  {
+    scenario: 'Larger reticulation junction, multiple inlets or a deeper install',
+    product: 'DN600 Maintenance Chamber',
+    href: '/products/dn600-maintenance-chamber/',
+  },
+  {
+    scenario: 'Trunk sewer access where person entry is required for inspection or maintenance',
+    product: 'DN1000 Maintenance Hole',
+    href: '/products/dn1000-maintenance-hole/',
+  },
+  {
+    scenario: 'Extra lateral connection needed after the base is already installed',
+    product: 'Drop-in connector/tee junction fitting',
+    href: '/products/connectors-drop-tee-junctions/',
+  },
+  {
+    scenario: 'Alignment change beyond a standard socket angle, without a custom fitting',
+    product: 'Bends (check angle range against the base-socket tolerance)',
+    href: '/products/bends/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Which SMS product should I use for a standard reticulation connection?',
+    answer: 'For most single-inlet reticulation-depth connections, the DN375 Maintenance Shaft is the standard choice. Step up to the DN600 Maintenance Chamber for a larger junction with multiple inlets, and to the DN1000 Maintenance Hole where person entry is required for trunk sewer inspection or maintenance.',
+  },
+  {
+    question: 'Can SMS structures be used on remote or mining sites without crane access?',
+    answer: 'Yes — this is one of the main reasons contractors specify the range for remote and program works. Base, riser and access cover elements are supplied separately and light enough for 1–2 installers to place by hand, so a standard installation doesn\'t need a crane mobilised to site.',
+  },
+  {
+    question: 'Do design engineers need to request CAD files before they can specify a product?',
+    answer: 'No — every product page publishes full HTML spec tables (dimensions, tolerances, weights, load ratings, configuration/part codes) that are crawlable and copy-pasteable for early-stage design and documentation. CAD/BIM models and full engineering drawings are available on request for detailed design once a product is selected.',
+  },
+  {
+    question: 'What if my project needs a configuration outside the standard part-code tables?',
+    answer: 'Base-socket angle tolerance (±2° to ±7.5° depending on product) and the published RRJ configuration tables cover most alignment and inlet/outlet changes with a standard part code. For anything outside that range, contact SMS directly with your project specifics.',
+  },
+];
 
 const sections = [
   {
@@ -59,9 +115,23 @@ const sections = [
   <Hero
     eyebrow="Applications"
     title="Built for utilities, contractors and engineers"
-    subtitle="Different roles need different things from a sewer maintenance structure. Here's how the SMS range answers each."
-    compact
+    subtitle="Different roles need different things from a sewer maintenance structure. Here's how the SMS range answers each — and which product fits your project."
+    image={applicationsImage}
+    imageAlt="Looking up through an installed SMS maintenance structure and access ladder to street level"
   />
+
+  <nav aria-label="Jump to section" class="border-b border-sms-charcoal-100 bg-sms-charcoal-50">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap gap-3">
+      {jumpNav.map((item) => (
+        <a
+          href={`#${item.id}`}
+          class="inline-flex items-center rounded-full border border-sms-charcoal-200 bg-white px-4 py-1.5 text-sm font-medium text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-green-600 transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     {sections.map((s) => (
@@ -93,6 +163,36 @@ const sections = [
         <a href={s.cta.href} class="text-sm font-semibold text-sms-green-600 hover:underline">{s.cta.label} &rarr;</a>
       </section>
     ))}
+
+    <section id="fit-guide" aria-labelledby="fit-guide-heading" class="scroll-mt-24">
+      <h2 id="fit-guide-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Which product fits your application?</h2>
+      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-2xl">
+        A quick cross-reference from project scenario to the SMS product most likely to fit. Check the
+        full spec table on each product page to confirm against your exact depth and inlet requirements.
+      </p>
+      <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100">
+        <table class="w-full border-collapse text-sm">
+          <thead>
+            <tr class="bg-sms-charcoal-900 text-white">
+              <th scope="col" class="text-left px-4 py-3 font-semibold">Project scenario</th>
+              <th scope="col" class="text-left px-4 py-3 font-semibold">Likely fit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fitGuide.map((row, i) => (
+              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+                <td class="px-4 py-3 text-sms-charcoal-700 align-top">{row.scenario}</td>
+                <td class="px-4 py-3 align-top border-l border-sms-charcoal-100">
+                  <a href={row.href} class="font-semibold text-sms-green-600 hover:underline">{row.product}</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <FaqAccordion items={faqs} />
   </div>
 
   <CtaBand />
