@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CorrugationDivider from '../components/CorrugationDivider.astro';
 import '../styles/global.css';
 import company from '../data/company.json';
 
@@ -71,7 +70,6 @@ const organizationSchema = {
     <main id="main-content">
       <slot />
     </main>
-    <CorrugationDivider />
     <Footer />
   </body>
 </html>
