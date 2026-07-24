@@ -6,6 +6,23 @@ const specRow = z.object({
   value: z.string(),
 });
 
+const iconName = z.enum([
+  'chemical',
+  'service-life',
+  'depth',
+  'ladder',
+  'load',
+  'diameter',
+  'feather',
+  'joint',
+  'shield',
+  'wsaa',
+]);
+
+const atAGlanceRow = specRow.extend({
+  icon: iconName.optional(), // matches an Icon.astro name — omit to render text-only
+});
+
 const specSection = z.object({
   heading: z.string(),
   rows: z.array(specRow),
@@ -64,7 +81,7 @@ const products = defineCollection({
       productImageBackground: z.enum(['dark', 'light']).default('light'),
       countryOfManufacture: z.string().optional(),
       manufacturerNote: z.string().optional(),
-      atAGlance: z.array(specRow).default([]),
+      atAGlance: z.array(atAGlanceRow).default([]),
       specSections: z.array(specSection).default([]),
       configurationsIntro: z.string().optional(),
       configurations: z.array(configRow).default([]),

@@ -16,16 +16,22 @@ manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Netherlands
 atAGlance:
   - label: "Service life"
     value: "100 years"
+    icon: "service-life"
   - label: "Max install depth"
     value: "6m (5m in groundwater)"
+    icon: "depth"
   - label: "Person entry"
     value: "No"
+    icon: "ladder"
   - label: "Chemical resistance"
     value: "pH 1–13"
+    icon: "chemical"
   - label: "Max traffic load"
     value: "Class D"
+    icon: "load"
   - label: "Riser weight"
     value: "20kg/m"
+    icon: "feather"
 specSections:
   - heading: "Product overview"
     rows:

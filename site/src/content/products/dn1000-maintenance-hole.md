@@ -15,16 +15,22 @@ manufacturerNote: "Designed, engineered and manufactured by Romold GmbH, Germany
 atAGlance:
   - label: "Service life"
     value: "100 years"
+    icon: "service-life"
   - label: "Max install depth"
     value: "6m (5m in groundwater)"
+    icon: "depth"
   - label: "Person entry"
     value: "Yes — fixed ladder"
+    icon: "ladder"
   - label: "Chemical resistance"
     value: "pH 1–13"
+    icon: "chemical"
   - label: "Max traffic load"
     value: "Class D"
+    icon: "load"
   - label: "Clear opening"
     value: "600mm"
+    icon: "diameter"
 specSections:
   - heading: "Product overview"
     rows:

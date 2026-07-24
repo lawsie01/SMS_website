@@ -86,6 +86,18 @@ specSections:
         value: "±7.5° horizontal angle and ±7.5° gradient"   # <- edit this
 ```
 
+Each `atAGlance` row can optionally carry an `icon` (one of the names in `src/components/Icon.astro`
+— `chemical`, `service-life`, `depth`, `ladder`, `load`, `diameter`, `feather`, `joint`, `shield`,
+`wsaa`) to show a small line-icon above the value. Omit it and the tile just renders as text, same as
+before:
+
+```yaml
+atAGlance:
+  - label: "Chemical resistance"
+    value: "pH 1–13"
+    icon: "chemical"   # optional — leave out for a text-only tile
+```
+
 Every section on the product page maps to a field in this file:
 
 | Page section | Frontmatter field |

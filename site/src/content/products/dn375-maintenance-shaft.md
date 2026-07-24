@@ -16,16 +16,22 @@ manufacturerNote: "Engineered and supplied under the SMS/DYKA product range (Dyk
 atAGlance:
   - label: "Service life"
     value: "100 years"
+    icon: "service-life"
   - label: "Max install depth"
     value: "4m"
+    icon: "depth"
   - label: "Person entry"
     value: "No"
+    icon: "ladder"
   - label: "Chemical resistance"
     value: "pH 1–13"
+    icon: "chemical"
   - label: "Max traffic load"
     value: "Class D"
+    icon: "load"
   - label: "Manual install"
     value: "No crane"
+    icon: "feather"
 specSections:
   - heading: "Product overview"
     rows:

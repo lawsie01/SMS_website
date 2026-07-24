@@ -4,10 +4,12 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
 
 const approvals = [
   {
     code: 'WSAA Product Appraisal PA 1317 (Issue 5)',
+    icon: 'wsaa' as const,
     body: 'Independent Water Services Association of Australia appraisal covering SMS polypropylene sewer maintenance shafts, chambers and holes against WSA 137:2019.',
   },
   {
@@ -90,7 +92,14 @@ const faqs = [
       <div class="grid sm:grid-cols-2 gap-6">
         {approvals.map((a) => (
           <div class="rounded-xl border border-sms-charcoal-100 p-6">
-            <p class="font-bold text-sms-green-600 mb-2">{a.code}</p>
+            {'icon' in a && a.icon ? (
+              <div class="flex items-center gap-3 mb-2">
+                <Icon name={a.icon} class="w-8 h-8 shrink-0 text-sms-green-600" />
+                <p class="font-bold text-sms-green-600">{a.code}</p>
+              </div>
+            ) : (
+              <p class="font-bold text-sms-green-600 mb-2">{a.code}</p>
+            )}
             <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
           </div>
         ))}

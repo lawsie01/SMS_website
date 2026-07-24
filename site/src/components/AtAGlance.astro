@@ -1,7 +1,10 @@
 ---
+import Icon, { type IconName } from './Icon.astro';
+
 interface Row {
   label: string;
   value: string;
+  icon?: IconName;
 }
 interface Props {
   items: Row[];
@@ -12,6 +15,7 @@ const { items } = Astro.props;
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
   {items.map((item) => (
     <div class="rounded-lg border border-sms-charcoal-100 bg-white p-4 text-center">
+      {item.icon && <Icon name={item.icon} class="w-5 h-5 mx-auto mb-2 text-sms-green-600" />}
       <p class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{item.value}</p>
       <p class="text-xs text-sms-charcoal-400 mt-1">{item.label}</p>
     </div>
