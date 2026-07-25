@@ -1,6 +1,9 @@
 {
   "legalName": "Sewer Maintenance Shaft Pty Ltd",
   "tradingName": "SMS",
+  "brandExpansion": "Sewer Maintenance Structures",
+  "brandExpansionNote": "CONFIRM which name is correct where. Client-supplied About copy expands SMS as 'Sewer Maintenance Structures'; the registered entity on prior materials is 'Sewer Maintenance Shaft Pty Ltd'. Both are currently used — legalName for the footer copyright and schema legalName, brandExpansion in body copy.",
+  "foundingYear": 2003,
   "parentCompany": "Clover",
   "phone": "1300 482 228",
   "phoneHref": "1300482228",
