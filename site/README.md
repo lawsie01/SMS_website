@@ -54,6 +54,33 @@ To deploy elsewhere (Vercel, Cloudflare Pages), point the platform at `npm run b
 directory `dist`, and replace the Netlify Forms `data-netlify` attribute in
 `src/pages/contact/index.astro` with whatever form backend you use instead.
 
+## Design checks (Impeccable)
+
+The site is checked against [Impeccable](https://github.com/pbakaus/impeccable), a UI
+anti-pattern detector. It needs no API key and isn't a project dependency — it runs via `npx`:
+
+```bash
+npx --yes impeccable detect src/          # static pass over source
+npm run preview                           # then, in a second terminal:
+npx --yes impeccable detect http://localhost:4321/ http://localhost:4321/quote/
+```
+
+The URL pass renders in a real browser and is the one worth trusting — it catches computed
+contrast, heading order and line length that static analysis misses. All pages currently report
+zero failures at both 1280x800 and 390x844.
+
+Two things to know before acting on its output:
+
+- **`cramped-padding` is ignored** via `.impeccable/config.json`. It fires on the bordered data
+  tables, which fill their container edge-to-edge by design — adding inset would put a white
+  gutter around each table's dark header row. Genuine false positive for this pattern.
+- **`em-dash-overuse` is advisory** and never fails a run. What remains is mostly the `MS8 — RRJ
+  180° Straight` style separators in configuration dropdowns, which are UI labels rather than prose.
+
+Note that Impeccable's `overused-font` rule does **not** see Tailwind v4 `@theme` custom
+properties — it only matches real `font-family` declarations. A bad font named in
+`src/styles/global.css` will pass the static pass and only be caught by the URL pass.
+
 ---
 
 ## Editing content (the important bit)
@@ -196,3 +223,9 @@ collection, since it's page-specific narrative content rather than per-product d
 - **Brand colours were extracted directly from the SMS logo**, not guessed — see
   `src/styles/global.css` (`--color-sms-green-400: #63b447`, `--color-sms-green-900: #191717`). If
   the client provides an official brand guideline later, update the `@theme` block in that one file.
+- **Typefaces are self-hosted via Fontsource, not a CDN** — Archivo for headings, IBM Plex Sans for
+  body and tables, both installed as npm packages and served from `/_astro/`. Nothing is fetched
+  from Google Fonts at runtime, so there's no third-party dependency and no silent fallback. Only
+  the `wght` axis and the latin subset ship (~36kB + ~48kB). If the client supplies an official
+  brand typeface, swap `--font-display` / `--font-sans` in `global.css` and drop the two
+  `@fontsource-variable` imports above them.

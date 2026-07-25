@@ -138,7 +138,7 @@ const sections = [
     {sections.map((s) => (
       <section id={s.id} aria-labelledby={`${s.id}-heading`} class="scroll-mt-24">
         <h2 id={`${s.id}-heading`} class="text-2xl font-bold text-sms-charcoal-900 mb-3">{s.heading}</h2>
-        <p class="text-sms-charcoal-500 mb-6 max-w-3xl">{s.intro}</p>
+        <p class="text-sms-charcoal-500 mb-6 max-w-[68ch]">{s.intro}</p>
         <ul class="space-y-3 mb-8">
           {s.points.map((p) => (
             <li class="flex gap-3">
@@ -167,7 +167,7 @@ const sections = [
 
     <section id="fit-guide" aria-labelledby="fit-guide-heading" class="scroll-mt-24">
       <h2 id="fit-guide-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Which product fits your application?</h2>
-      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-2xl">
+      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-[68ch]">
         A quick cross-reference from project scenario to the SMS product most likely to fit. Check the
         full spec table on each product page to confirm against your exact depth and inlet requirements.
       </p>

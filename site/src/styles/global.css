@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Self-hosted via Fontsource (no CDN dependency, no silent fallback).
+   wght.css = weight axis only, unicode-range split — the browser fetches
+   just the ~36-48kB latin subset it needs. */
+@import "@fontsource-variable/archivo/wght.css";
+@import "@fontsource-variable/ibm-plex-sans/wght.css";
+
 @theme {
   /* Brand palette extracted directly from the SMS logo and brochures */
   --color-sms-green-50: #eef8ea;
@@ -24,7 +30,13 @@
   --color-sms-charcoal-800: #1d1c1b;
   --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Type pairing. IBM Plex Sans carries body and spec tables — it was designed
+     for technical documentation and has genuine tabular figures, which this
+     site leans on heavily. Archivo is the display face: a tighter, more
+     assertive grotesk with an industrial-signage lineage that suits civil
+     infrastructure, and gives headings contrast against the body text. */
+  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Variable", "IBM Plex Sans Variable", ui-sans-serif, sans-serif;
 }
 
 html {
@@ -35,7 +47,21 @@ body {
   @apply bg-white text-sms-charcoal-900 font-sans antialiased;
 }
 
+/* Headings take the display face site-wide, so individual pages don't each
+   have to remember to opt in. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Spec, configuration and comparison tables line up columns of dimensions and
+   part codes — proportional digits make those columns ragged. */
+table {
+  font-variant-numeric: tabular-nums;
+}
+
 .skip-link {
   @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md;
 }
-

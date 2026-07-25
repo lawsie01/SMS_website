@@ -8,11 +8,15 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "design:check": "impeccable detect src/",
+    "design:check:live": "impeccable detect http://localhost:4321/ http://localhost:4321/products/dn1000-maintenance-hole/ http://localhost:4321/quote/"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
     "astro": "^7.1.1",
     "sharp": "^0.35.3",
     "three": "^0.185.1",

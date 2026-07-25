@@ -16,7 +16,7 @@ const accessories = products
 
 const steps = [
   { n: '1', title: 'Add products to your quote', body: 'Pick a quantity (and configuration, where relevant) for each product you need and add it to your quote list below.' },
-  { n: '2', title: 'Submit your request', body: 'Add your contact and project details and send it through — no pricing is generated automatically.' },
+  { n: '2', title: 'Submit your request', body: 'Add your contact and project details and send it through. No pricing is generated automatically.' },
   { n: '3', title: 'SMS reviews & replies', body: 'Our team checks pricing, availability and lead time for every line item and sends your formal quote by email within 2 business days.' },
 ];
 ---
@@ -35,20 +35,23 @@ const steps = [
   />
 
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid sm:grid-cols-3 gap-6 mb-16">
-      {steps.map((s) => (
-        <div class="rounded-xl border border-sms-charcoal-100 p-6">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sms-green-600 text-white font-bold text-sm mb-3">{s.n}</span>
-          <h3 class="font-bold text-sms-charcoal-900 mb-2">{s.title}</h3>
-          <p class="text-sm text-sms-charcoal-500 leading-relaxed">{s.body}</p>
-        </div>
-      ))}
-    </div>
+    <section aria-labelledby="how-it-works-heading" class="mb-16">
+      <h2 id="how-it-works-heading" class="sr-only">How it works</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {steps.map((s) => (
+          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sms-green-600 text-white font-bold text-sm mb-3">{s.n}</span>
+            <h3 class="font-bold text-sms-charcoal-900 mb-2">{s.title}</h3>
+            <p class="text-sm text-sms-charcoal-500 leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
     <section aria-labelledby="picker-heading" class="mb-16">
       <h2 id="picker-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">1. Select your products</h2>
-      <p class="text-sm text-sms-charcoal-500 mb-8 max-w-2xl">
-        Not sure which configuration you need? Leave it on "Not sure / standard" — SMS will confirm the
+      <p class="text-sm text-sms-charcoal-500 mb-8 max-w-[68ch]">
+        Not sure which configuration you need? Leave it on "Not sure / standard" and SMS will confirm the
         right part code when reviewing your request. See each product's full spec page for details.
       </p>
 
@@ -151,7 +154,7 @@ const steps = [
       </h2>
       <div class="rounded-xl border border-sms-charcoal-100 overflow-hidden">
         <p id="quote-empty-state" class="p-6 text-sm text-sms-charcoal-400">
-          You haven't added anything yet — add products above to start your quote.
+          You haven't added anything yet. Add products above to start your quote.
         </p>
         <ul id="quote-items-list" class="divide-y divide-sms-charcoal-100"></ul>
       </div>
@@ -163,8 +166,8 @@ const steps = [
     <section aria-labelledby="submit-heading" class="grid lg:grid-cols-5 gap-12">
       <div class="lg:col-span-3">
         <h2 id="submit-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">3. Submit your quote request</h2>
-        <p class="text-sm text-sms-charcoal-500 mb-6">
-          Fields marked * are required. This sends your itemised list above to SMS for review — it does
+        <p class="text-sm text-sms-charcoal-500 mb-6 max-w-[68ch]">
+          Fields marked * are required. This sends your itemised list above to SMS for review; it does
           not generate pricing automatically.
         </p>
 
@@ -228,14 +231,14 @@ const steps = [
 
           <div>
             <label for="notes" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Anything else we should know?</label>
-            <textarea id="notes" name="notes" rows="4" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" placeholder="Install depth, inlet sizes, site access constraints, delivery location — anything that helps us quote accurately"></textarea>
+            <textarea id="notes" name="notes" rows="4" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" placeholder="Install depth, inlet sizes, site access constraints, delivery location, or anything else that helps us quote accurately"></textarea>
           </div>
 
           <label class="flex items-start gap-2 text-sm text-sms-charcoal-500">
             <input type="checkbox" name="consent" required class="mt-1 rounded border-sms-charcoal-300 text-sms-green-600 focus:ring-sms-green-600" />
             <span>
               I understand this is a quote request, not an order, and that SMS will review it and reply
-              by email — usually within 2 business days. *
+              by email, usually within 2 business days. *
             </span>
           </label>
 
@@ -243,7 +246,7 @@ const steps = [
             type="submit"
             id="quote-submit-btn"
             disabled
-            class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors disabled:bg-sms-charcoal-100 disabled:text-sms-charcoal-500 disabled:cursor-not-allowed"
           >
             Submit quote request
           </button>
@@ -256,7 +259,7 @@ const steps = [
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
             An SMS team member checks pricing, stock availability and lead time for every item on your
             list, confirms the right configuration for anything marked "not sure", and emails your
-            formal quote back to you — usually within <strong>2 business days</strong>.
+            formal quote back to you, usually within <strong>2 business days</strong>.
           </p>
         </div>
 
