@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
+import AtAGlance from '../../components/AtAGlance.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import company from '../../data/company.json';
 
@@ -10,6 +12,16 @@ const products = await getCollection('products');
 const families = products
   .filter((p) => p.data.category !== 'accessory' && p.data.countryOfManufacture)
   .sort((a, b) => a.data.order - b.data.order);
+
+const manufacturingCountries = new Set(families.map((p) => p.data.countryOfManufacture));
+
+const facts = [
+  { label: 'Product families', value: String(families.length) },
+  { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
+  { label: 'Product appraisal', value: 'PA 1317', icon: 'wsaa' as const },
+  { label: 'Manufacturing partners', value: String(manufacturingCountries.size) },
+  { label: 'Regions supplied', value: String(company.coverage.length) },
+];
 ---
 
 <BaseLayout
@@ -25,8 +37,13 @@ const families = products
     compact
   />
 
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 space-y-12">
-    <section>
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <section aria-labelledby="facts-heading">
+      <h2 id="facts-heading" class="sr-only">SMS at a glance</h2>
+      <AtAGlance items={facts} />
+    </section>
+
+    <section class="max-w-3xl">
       <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">What we supply</h2>
       <p class="text-sms-charcoal-500 leading-relaxed mb-4">
         SMS supplies three core polypropylene maintenance structure families — the DN375 Maintenance
@@ -41,24 +58,31 @@ const families = products
       </p>
     </section>
 
-    <section>
-      <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Manufacturing partners</h2>
-      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+    <section aria-labelledby="manufacturing-heading">
+      <h2 id="manufacturing-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Manufacturing partners</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed mb-6 max-w-3xl">
         Each product family is engineered and manufactured by a specialist European partner, rather
         than one blanket production line for the whole range:
       </p>
-      <ul class="space-y-3">
+      <div class="grid sm:grid-cols-3 gap-6">
         {families.map((p) => (
-          <li class="rounded-lg border border-sms-charcoal-100 p-4">
-            <span class="font-semibold text-sms-charcoal-900">{p.data.title}</span>
-            <span class="text-sms-charcoal-500"> — {p.data.countryOfManufacture}</span>
-            {p.data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-1">{p.data.manufacturerNote}</p>}
-          </li>
+          <a href={`/products/${p.id}/`} class="group rounded-xl border border-sms-charcoal-100 bg-white overflow-hidden hover:border-sms-green-300 hover:shadow-lg transition-all">
+            {p.data.productImage && (
+              <div class:list={["aspect-4/3 flex items-center justify-center overflow-hidden", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
+                <Image src={p.data.productImage} alt={p.data.productImageAlt ?? ''} class="h-full w-full object-contain p-4" widths={[320, 480]} sizes="(min-width: 640px) 320px, 50vw" />
+              </div>
+            )}
+            <div class="p-5">
+              <span class="font-semibold text-sms-charcoal-900 group-hover:text-sms-green-600 transition-colors">{p.data.title}</span>
+              <span class="block text-sm text-sms-green-600 font-medium mt-1">{p.data.countryOfManufacture}</span>
+              {p.data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{p.data.manufacturerNote}</p>}
+            </div>
+          </a>
         ))}
-      </ul>
+      </div>
     </section>
 
-    <section>
+    <section class="max-w-3xl">
       <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Part of Clover</h2>
       <p class="text-sms-charcoal-500 leading-relaxed">
         SMS (Sewer Maintenance Shaft Pty Ltd) is owned by Clover, giving the business the backing of a
@@ -69,7 +93,7 @@ const families = products
 
     <section>
       <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Where we supply</h2>
-      <p class="text-sms-charcoal-500 leading-relaxed mb-4">
+      <p class="text-sms-charcoal-500 leading-relaxed mb-4 max-w-3xl">
         SMS supplies water utilities and contractors nationally, with active coverage across:
       </p>
       <ul class="flex flex-wrap gap-3">
@@ -79,7 +103,7 @@ const families = products
       </ul>
     </section>
 
-    <section>
+    <section class="max-w-3xl">
       <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-4">Talk to the team</h2>
       <p class="text-sms-charcoal-500 leading-relaxed mb-4">
         For product, sales or technical enquiries, reach the SMS team directly:
