@@ -110,7 +110,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
             <h2 id="standards-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Standards & approvals</h2>
             <ul class="grid sm:grid-cols-2 gap-4">
               {data.standards.map((s) => (
-                <li class="rounded-lg border border-sms-charcoal-100 p-4">
+                <li class="border-t border-sms-charcoal-100 pt-5">
                   <p class="font-bold text-sms-green-600">{s.code}</p>
                   <p class="text-sm text-sms-charcoal-500 mt-1">{s.description}</p>
                 </li>
@@ -143,7 +143,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
         )}
 
         {data.downloads.length > 0 && (
-          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+          <div class="border-t border-sms-charcoal-100 pt-5">
             <h2 class="font-bold text-sms-charcoal-900 mb-4">Downloads</h2>
             <ul class="space-y-3">
               {data.downloads.map((d) => (
@@ -164,7 +164,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
         )}
 
         {data.countryOfManufacture && (
-          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+          <div class="border-t border-sms-charcoal-100 pt-5">
             <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
             <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
             {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}

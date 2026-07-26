@@ -12,12 +12,24 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-  {items.map((item) => (
-    <div class="rounded-lg border border-sms-charcoal-100 bg-white p-4 text-center">
-      {item.icon && <Icon name={item.icon} class="w-5 h-5 mx-auto mb-2 text-sms-green-600" />}
-      <p class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{item.value}</p>
-      <p class="text-xs text-sms-charcoal-400 mt-1">{item.label}</p>
-    </div>
-  ))}
+{/* One framed set rather than six separate boxes. The corner marks are a
+    drafting registration convention — they enclose the block without adding
+    another card to the page. */}
+<div class="relative border-y border-sms-charcoal-100 py-8 px-1">
+  <span class="absolute -top-px -left-px h-2.5 w-2.5 border-t-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
+  <span class="absolute -top-px -right-px h-2.5 w-2.5 border-t-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
+  <span class="absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
+  <span class="absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
+
+  <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-7">
+    {items.map((item) => (
+      <div>
+        <dt class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">
+          {item.icon && <Icon name={item.icon} class="w-3.5 h-3.5 shrink-0 text-sms-green-600" />}
+          <span>{item.label}</span>
+        </dt>
+        <dd class="mt-1.5 text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{item.value}</dd>
+      </div>
+    ))}
+  </dl>
 </div>

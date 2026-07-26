@@ -91,10 +91,10 @@ const faqs = [
       <h2 id="approvals-grid-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Standards & appraisals</h2>
       <div class="grid sm:grid-cols-2 gap-6">
         {approvals.map((a) => (
-          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+          <div class="border-t border-sms-charcoal-100 pt-5">
             {'icon' in a && a.icon ? (
-              <div class="flex items-center gap-3 mb-2">
-                <Icon name={a.icon} class="w-8 h-8 shrink-0 text-sms-green-600" />
+              <div class="flex items-center gap-2 mb-2">
+                <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-green-600" />
                 <p class="font-bold text-sms-green-600">{a.code}</p>
               </div>
             ) : (

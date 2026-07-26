@@ -39,7 +39,7 @@ const steps = [
       <h2 id="how-it-works-heading" class="sr-only">How it works</h2>
       <div class="grid sm:grid-cols-3 gap-6">
         {steps.map((s) => (
-          <div class="rounded-xl border border-sms-charcoal-100 p-6">
+          <div class="border-t border-sms-charcoal-100 pt-5">
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sms-green-600 text-white font-bold text-sm mb-3">{s.n}</span>
             <h3 class="font-bold text-sms-charcoal-900 mb-2">{s.title}</h3>
             <p class="text-sm text-sms-charcoal-500 leading-relaxed">{s.body}</p>
@@ -254,7 +254,7 @@ const steps = [
       </div>
 
       <div class="lg:col-span-2 space-y-8">
-        <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <div class="border-t border-sms-charcoal-100 pt-5">
           <h2 class="font-bold text-sms-charcoal-900 mb-3">What happens after you submit</h2>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
             An SMS team member checks pricing, stock availability and lead time for every item on your
@@ -263,7 +263,7 @@ const steps = [
           </p>
         </div>
 
-        <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <div class="border-t border-sms-charcoal-100 pt-5">
           <h2 class="font-bold text-sms-charcoal-900 mb-3">Need it faster?</h2>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed mb-4">
             Call the team directly and we'll get your quote moving straight away.
@@ -271,7 +271,7 @@ const steps = [
           <a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a>
         </div>
 
-        <div class="rounded-xl border border-sms-charcoal-100 p-6">
+        <div class="border-t border-sms-charcoal-100 pt-5">
           <h2 class="font-bold text-sms-charcoal-900 mb-3">Still comparing options?</h2>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
             Browse full spec tables and part codes on the <a href="/products/" class="text-sms-green-600 font-medium hover:underline">product range</a> page, or check <a href="/applications/" class="text-sms-green-600 font-medium hover:underline">which product fits your application</a> before you add items to your quote.

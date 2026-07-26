@@ -93,7 +93,7 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
     </div>
 
     <div class="lg:col-span-2 space-y-8">
-      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+      <div class="border-t border-sms-charcoal-100 pt-5">
         <h2 class="font-bold text-sms-charcoal-900 mb-4">Direct contact</h2>
         <ul class="space-y-3 text-sm">
           <li><a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a></li>
@@ -102,7 +102,7 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
         </ul>
       </div>
 
-      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+      <div class="border-t border-sms-charcoal-100 pt-5">
         <h2 class="font-bold text-sms-charcoal-900 mb-4">Sales & technical contacts</h2>
         <ul class="space-y-3 text-sm">
           {company.contacts.map((c) => (
@@ -114,7 +114,7 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
         </ul>
       </div>
 
-      <div class="rounded-xl border border-sms-charcoal-100 p-6">
+      <div class="border-t border-sms-charcoal-100 pt-5">
         <h2 class="font-bold text-sms-charcoal-900 mb-4">National coverage</h2>
         <ul class="flex flex-wrap gap-2">
           {company.coverage.map((c) => (
