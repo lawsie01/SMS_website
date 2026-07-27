@@ -118,7 +118,7 @@ const faqs = [
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <th scope="row" class="text-left px-4 py-3 font-medium text-sms-charcoal-900 align-top w-1/5">
                   <span class="flex items-start gap-2">
                     {'icon' in row && row.icon && <Icon name={row.icon} class="w-4 h-4 mt-0.5 shrink-0 text-sms-green-600" />}

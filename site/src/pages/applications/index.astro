@@ -181,7 +181,7 @@ const sections = [
           </thead>
           <tbody>
             {fitGuide.map((row, i) => (
-              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <td class="px-4 py-3 text-sms-charcoal-700 align-top">{row.scenario}</td>
                 <td class="px-4 py-3 align-top border-l border-sms-charcoal-100">
                   <a href={row.href} class="font-semibold text-sms-green-600 hover:underline">{row.product}</a>

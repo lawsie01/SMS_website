@@ -129,7 +129,7 @@ const faqs = [
           </thead>
           <tbody>
             {matrix.map((row, i) => (
-              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+              <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <th scope="row" class="text-left px-4 py-3 font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
                 <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
                 <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>

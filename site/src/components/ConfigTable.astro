@@ -28,7 +28,7 @@ const hasNotes = rows.some((r) => r.notes);
       </thead>
       <tbody>
         {rows.map((row, i) => (
-          <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50']}>
+          <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
             <td class="px-3 py-2 font-mono text-xs text-sms-charcoal-900">{row.code}</td>
             <td class="px-3 py-2 text-sms-charcoal-900">{row.configuration}</td>
             {hasSize && <td class="px-3 py-2 text-sms-charcoal-900">{row.size ?? '—'}</td>}
