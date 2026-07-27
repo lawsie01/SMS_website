@@ -5,7 +5,6 @@ import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import ProductCard from '../components/ProductCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import company from '../data/company.json';
 import heroImage from '../assets/images/hero-install-chamber.jpg';
 
 const products = await getCollection('products');
@@ -19,8 +18,8 @@ const whyPlastic = [
     body: 'Polypropylene resists pH 1–13 and the hydrogen sulphide/sulphuric acid attack that degrades concrete sewer structures over time.',
   },
   {
-    title: 'Manual install, no crane',
-    body: 'Base, riser and cover elements are supplied separately and handled by 1–2 installers — no crane or heavy lifting plant required for a standard install.',
+    title: 'Manual install, no extra plant',
+    body: 'Base, riser and cover elements are supplied separately and handled by 1–2 installers using the excavator already on site for the dig — no crane or additional lifting equipment required.',
   },
   {
     title: 'Faster on site',
@@ -28,8 +27,21 @@ const whyPlastic = [
   },
   {
     title: '100-year design life',
-    body: 'Engineered for a 100-year service life, backed by WSAA Product Appraisal PA 1317 (Issue 5) to WSA 137:2019.',
+    body: 'Engineered for a 100-year service life, backed by WSAA Product Appraisal PA 1317 to WSA 137:2019.',
   },
+];
+
+// Same coverage data as company.coverage, grouped by state so depth of
+// supply (e.g. two Queensland markets) reads at a glance instead of as
+// eight same-weighted pills mixing cities, a state and a region together.
+const coverageByRegion = [
+  { region: 'VIC', places: ['Melbourne'] },
+  { region: 'NSW', places: ['Sydney'] },
+  { region: 'QLD', places: ['Brisbane', 'Townsville'] },
+  { region: 'WA', places: ['Perth'] },
+  { region: 'SA', places: ['Adelaide'] },
+  { region: 'TAS', places: ['Statewide'] },
+  { region: 'Pacific', places: ['Pacific Region'] },
 ];
 
 const applications = [
@@ -45,7 +57,7 @@ const applications = [
   },
   {
     audience: 'Design engineers & specifiers',
-    body: 'Full crawlable spec tables, part codes and configuration options for every product family — no PDF required to check a dimension.',
+    body: 'Modular configurations, defined tolerances and independent appraisal reduce specification risk and total installed cost — full spec data for BIM and documentation on every product page.',
     href: '/applications/#engineers',
   },
 ];
@@ -58,7 +70,7 @@ const applications = [
 >
   <Hero
     title="Australia's WSAA-appraised plastic sewer maintenance structures — 100-year design life, installed by hand"
-    subtitle="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes replace corrosion-prone concrete pits with a lighter, faster, longer-lasting alternative — appraised to WSA 137:2019 and rated Class D to AS 3996."
+    subtitle="SMS polypropylene maintenance holes, chambers and shafts replace corrosion-prone concrete pits with a lighter, faster, longer-lasting alternative — appraised to WSA 137:2019 and rated Class D to AS 3996."
     image={heroImage}
     imageAlt="SMS technician hand-installing a polypropylene maintenance structure base into a sewer trench, excavator in background"
   />
@@ -121,16 +133,15 @@ const applications = [
       <div>
         <h2 id="approvals-heading" class="text-2xl sm:text-3xl font-bold mb-4">Independently appraised, not just claimed</h2>
         <p class="text-sms-charcoal-100 leading-relaxed mb-6">
-          The SMS range holds WSAA Product Appraisal PA 1317 (Issue 5), is manufactured to WSA 137:2019 and
-          EN 13598-2, and is fitted with access covers rated Class D to AS 3996. Every product page publishes
-          the full standards list alongside its spec table — not buried in a PDF.
+          The SMS range holds WSAA Product Appraisal PA 1317, is manufactured to WSA 137:2019 and
+          EN 13598-2, and is fitted with access covers rated Class D to AS 3996.
         </p>
         <a href="/approvals/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors">
           View approvals & standards &rarr;
         </a>
       </div>
       <ul class="grid grid-cols-2 gap-4">
-        {['WSAA PA 1317 (Issue 5)', 'WSA 137:2019', 'AS 3996 Class D', 'EN 13598-2', 'AS 1646', 'AS/NZS 5065'].map((s) => (
+        {['WSAA PA 1317', 'WSA 137:2019', 'AS 3996 Class D', 'EN 13598-2', 'AS 1646', 'AS/NZS 5065'].map((s) => (
           <li class="rounded-lg border border-white/20 p-4 text-center font-semibold">{s}</li>
         ))}
       </ul>
@@ -143,11 +154,22 @@ const applications = [
       SMS supplies AXEDO and ROMOLD maintenance structures across every major Australian market, plus the
       Pacific region.
     </p>
-    <ul class="flex flex-wrap gap-3">
-      {company.coverage.map((c) => (
-        <li class="rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700">{c}</li>
-      ))}
-    </ul>
+    <div class="relative border-y border-sms-charcoal-100 py-8 px-1">
+      <span class="absolute -top-px -left-px h-2.5 w-2.5 border-t-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
+      <span class="absolute -top-px -right-px h-2.5 w-2.5 border-t-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
+      <span class="absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
+      <span class="absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
+      <dl class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-7">
+        {coverageByRegion.map((r) => (
+          <div>
+            <dt class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{r.region}</dt>
+            <dd class="mt-1.5 text-xs font-semibold uppercase tracking-wider text-sms-charcoal-400 leading-relaxed">
+              {r.places.join(', ')}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   </section>
 
   <CtaBand />

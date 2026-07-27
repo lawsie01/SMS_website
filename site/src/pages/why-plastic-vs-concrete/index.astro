@@ -10,7 +10,7 @@ import installImage from '../../assets/images/install-trench-row.jpg';
 
 const glance = [
   { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
-  { label: 'Standard install', value: 'No crane', icon: 'feather' as const },
+  { label: 'Standard install', value: 'By hand', icon: 'feather' as const },
   { label: 'Max traffic load', value: 'Class D', icon: 'load' as const },
   { label: 'Chemical resistance', value: 'pH 1–13', icon: 'chemical' as const },
   { label: 'Joint system', value: 'Sealed RRJ', icon: 'joint' as const },
@@ -33,8 +33,8 @@ const rows = [
   {
     factor: 'Component weight & handling',
     icon: 'feather' as const,
-    plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component — handled by 1–2 installers without a crane',
-    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes, requiring crane or excavator lifting',
+    plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component — handled by 1–2 installers using the excavator already on site for the dig',
+    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes, requiring purpose-mobilised crane or excavator lifting',
   },
   {
     factor: 'Typical install method',
@@ -56,7 +56,7 @@ const rows = [
   {
     factor: 'Standards & appraisal',
     icon: 'wsaa' as const,
-    plastic: 'WSAA Product Appraisal PA 1317 (Issue 5) to WSA 137:2019, EN 13598-2',
+    plastic: 'WSAA Product Appraisal PA 1317 to WSA 137:2019, EN 13598-2',
     concrete: 'Assessed under separate precast concrete manhole standards/specifications',
   },
 ];
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     question: 'Do plastic maintenance structures need a crane to install?',
-    answer: 'No. SMS structures are supplied as separate base, riser and access cover elements, each light enough for 1–2 installers to place by hand on a standard installation — unlike precast concrete sections, which are generally crane- or excavator-lifted.',
+    answer: 'No. SMS structures are supplied as separate base, riser and access cover elements, each light enough for 1–2 installers to place by hand using the excavator already on site for the trench — unlike precast concrete sections, which generally need a crane or excavator specifically mobilised to lift them.',
   },
   {
     question: 'How does installation time compare to concrete?',
@@ -80,7 +80,7 @@ const faqs = [
   },
   {
     question: 'Is WSAA appraisal the same as an Australian Standard?',
-    answer: 'A WSAA Product Appraisal (SMS holds PA 1317, Issue 5) is a water-industry-recognised assessment that a product meets the relevant standard — in this case WSA 137:2019 — for use in Australian water utility networks. It sits alongside, not instead of, the underlying Australian and international standards referenced on each product page.',
+    answer: 'A WSAA Product Appraisal (SMS holds PA 1317) is a water-industry-recognised assessment that a product meets the relevant standard — in this case WSA 137:2019 — for use in Australian water utility networks. It sits alongside, not instead of, the underlying Australian and international standards referenced on each product page.',
   },
 ];
 ---
@@ -140,8 +140,8 @@ const faqs = [
         <div class="border-t border-sms-charcoal-100 pt-5">
           <h3 class="font-bold text-sms-charcoal-900 mb-2">Plant &amp; labour</h3>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-            No crane or excavator lift means one fewer piece of plant to mobilise, and a smaller
-            install crew can handle a standard structure by hand.
+            No separate crane or lifting rig to mobilise — the excavator already on site for the
+            trench does the job, and a smaller install crew can handle a standard structure by hand.
           </p>
         </div>
         <div class="border-t border-sms-charcoal-100 pt-5">

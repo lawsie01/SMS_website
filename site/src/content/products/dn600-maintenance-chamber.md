@@ -4,7 +4,7 @@ brand: "AXEDO"
 dnSize: "DN600"
 category: "maintenance-chamber"
 order: 2
-shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated Class D and installed to 6m depth without a crane."
+shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated Class D and installed to 6m depth by hand, no crane required."
 cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
 productImage: "../../assets/images/product-dn600-chamber-clover.jpg"
 productImageAlt: "SMS AXEDO DN600 polypropylene maintenance chamber with corrugated riser and access cover"
@@ -117,7 +117,7 @@ standards:
     description: "Access covers and grates — Class D trafficable rating"
   - code: "AS 1646"
     description: "Elastomeric seals for waterworks purposes"
-  - code: "WSAA PA 1317 (Issue 5)"
+  - code: "WSAA PA 1317"
     description: "WSAA Product Appraisal — PP Sewer Maintenance Shafts, Chambers and Holes"
   - code: "WSA PS-337 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for maintenance chambers, access covers and PVC-U pipework"
@@ -129,11 +129,11 @@ faqs:
   - question: "What size inlet and outlet connections does the DN600 Chamber take?"
     answer: "The chamber base is available in standard RRJ configurations for DN150 and DN225 inlets/outlets, across straight and 30°/60°/90°/120° angled and 4-way cross arrangements. Additional DN100/DN150 lateral drop-in connections can be added on-site."
   - question: "How much does the DN600 Chamber weigh per component?"
-    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre — light enough to install and adjust by hand, without a crane."
+    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre — light enough to install and adjust by hand, with no lifting equipment beyond the excavator already on site."
   - question: "What angle tolerance does the DN600 Chamber base allow at pipe connections?"
     answer: "The base sockets accommodate up to ±7.5° of horizontal angle change and ±7.5° of gradient change (simultaneous changes reduce the maximum achievable value in each direction)."
   - question: "What standards does the DN600 Chamber comply with?"
-    answer: "The DN600 Chamber is manufactured to WSA 137:2019 and EN 13598-2, and is covered under WSAA Product Appraisal PA 1317 (Issue 5), with access covers rated Class D to AS 3996."
+    answer: "The DN600 Chamber is manufactured to WSA 137:2019 and EN 13598-2, and is covered under WSAA Product Appraisal PA 1317, with access covers rated Class D to AS 3996."
 downloads:
   - label: "SMS Maintenance Chamber Brochure (September 2025)"
     file: "/downloads/SMS-Maintenance-Chamber-Brochure-Sep2025.pdf"
@@ -148,6 +148,6 @@ seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber — WSAA PA 1
 ---
 
 The SMS AXEDO DN600 Maintenance Chamber pairs a polypropylene base with a corrugated PP riser to give
-water utilities and contractors a deeper-reach maintenance access point without the weight, crane
-requirement or corrosion exposure of a precast concrete chamber. Standard installation reaches 6m,
-with every component still light enough for manual handling.
+water utilities and contractors a deeper-reach maintenance access point without the weight, extra
+lifting equipment or corrosion exposure of a precast concrete chamber. Standard installation reaches
+6m, with every component still light enough for manual handling.

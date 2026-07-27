@@ -10,6 +10,15 @@ interface Props {
   items: Row[];
 }
 const { items } = Astro.props;
+
+// Sized to the item count so a 5-item set doesn't leave a dead trailing cell
+// in a grid built for 6.
+const lgCols: Record<number, string> = {
+  4: 'lg:grid-cols-4',
+  5: 'lg:grid-cols-5',
+  6: 'lg:grid-cols-6',
+};
+const lgColsClass = lgCols[items.length] ?? 'lg:grid-cols-6';
 ---
 
 {/* One framed set rather than six separate boxes. The corner marks are a
@@ -21,7 +30,7 @@ const { items } = Astro.props;
   <span class="absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
   <span class="absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
 
-  <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-7">
+  <dl class:list={["grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-7", lgColsClass]}>
     {items.map((item) => (
       <div>
         <dt class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">

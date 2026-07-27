@@ -19,7 +19,6 @@ const manufacturingCountries = new Set(families.map((p) => p.data.countryOfManuf
 
 const facts = [
   { label: 'Specialising since', value: String(company.foundingYear) },
-  { label: 'Range held as stock', value: 'Ex-stock' },
   { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
   { label: 'Product appraisal', value: 'PA 1317', icon: 'wsaa' as const },
   { label: 'Manufacturing partners', value: String(manufacturingCountries.size) },

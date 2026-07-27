@@ -30,7 +30,7 @@ atAGlance:
     value: "Class D"
     icon: "load"
   - label: "Manual install"
-    value: "No crane"
+    value: "No extra equipment"
     icon: "feather"
 specSections:
   - heading: "Product overview"
@@ -74,7 +74,7 @@ installationSections:
   - heading: "Installation depth"
     body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required, cut on the corrugation/rib line and deburred."
   - heading: "Handling & weight"
-    body: "DN375 Shaft components are supplied as separate base, riser and cap/access-cover elements, each light enough for one or two people to place by hand — no crane or heavy lifting equipment is required on a standard installation."
+    body: "DN375 Shaft components are supplied as separate base, riser and cap/access-cover elements, each light enough for one or two people to place by hand using the excavator already on site for the dig — no crane or additional lifting equipment required."
   - heading: "Access cover options"
     body: "Two access cover arrangements are available:"
     bullets:
@@ -96,7 +96,7 @@ standards:
     description: "Access covers and grates — Class D trafficable rating"
   - code: "AS 1646"
     description: "Elastomeric seals for waterworks purposes"
-  - code: "WSAA PA 1317 (Issue 5)"
+  - code: "WSAA PA 1317"
     description: "WSAA Product Appraisal — PP Sewer Maintenance Shafts, Chambers and Holes"
   - code: "WSA PS-341 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for maintenance shafts, access covers and PVC-U pipework"
@@ -106,9 +106,9 @@ faqs:
   - question: "Is the DN375 Shaft rated for Class D traffic loads?"
     answer: "Yes. Fitted with the standard Top Hat or concrete cover plate access cover, the DN375 Shaft is rated Class D (trafficable) to AS 3996."
   - question: "Can the DN375 Shaft be installed without a crane?"
-    answer: "Yes. The base, riser and access cover are supplied as separate lightweight PP/PVC components designed for manual handling and assembly by one or two installers."
+    answer: "Yes. The base, riser and access cover are supplied as separate lightweight PP/PVC components designed for manual handling and assembly by one or two installers, using the excavator already on site for the dig — no separate crane is needed."
   - question: "What standards does the DN375 Shaft comply with?"
-    answer: "The DN375 Shaft is manufactured to WSA 137:2019 and is covered under WSAA Product Appraisal PA 1317 (Issue 5), with access covers rated Class D to AS 3996 and seals to AS 1646."
+    answer: "The DN375 Shaft is manufactured to WSA 137:2019 and is covered under WSAA Product Appraisal PA 1317, with access covers rated Class D to AS 3996 and seals to AS 1646."
   - question: "Can extra inlet or outlet connections be added after the shaft is installed?"
     answer: "Yes. DN100 and DN150 lateral drop-in connections can be added on-site using a hole saw and a rubber collar/connector kit, without returning the unit to the factory."
   - question: "What is the DN375 Shaft's chemical resistance?"
@@ -129,5 +129,5 @@ seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft — WSAA PA 131
 The SMS AXEDO DN375 Maintenance Shaft is a modular polypropylene maintenance access structure for gravity
 sewer reticulation, engineered as a lightweight, corrosion-resistant alternative to small precast concrete
 maintenance holes. Supplied as separate base, riser and access-cover elements, it is assembled and installed
-by hand — no crane or specialised lifting equipment required — cutting typical installation time compared
-with a concrete equivalent.
+by hand using the excavator already on site for the dig — no crane or specialised lifting equipment
+required — cutting typical installation time compared with a concrete equivalent.

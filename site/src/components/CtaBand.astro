@@ -1,6 +1,4 @@
 ---
-import company from '../data/company.json';
-
 interface Props {
   heading?: string;
   subtitle?: string;
@@ -25,12 +23,6 @@ const {
         class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-800 transition-colors"
       >
         Enquire now
-      </a>
-      <a
-        href={`tel:${company.phoneHref}`}
-        class="inline-flex items-center rounded-md border-2 border-white px-6 py-3 text-base font-semibold text-white hover:bg-white hover:text-sms-green-600 transition-colors"
-      >
-        Call {company.phone}
       </a>
     </div>
   </div>
