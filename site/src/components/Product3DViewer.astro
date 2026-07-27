@@ -236,10 +236,17 @@ const { product, title } = Astro.props;
     controls.enablePan = false;
     controls.minDistance = config.cameraDistance * 0.4;
     controls.maxDistance = config.cameraDistance * 1.8;
-    controls.autoRotate = true;
+    // Continuous unprompted motion is exactly what prefers-reduced-motion exists
+    // to suppress, so only spin for viewers who haven't asked us not to. Drag and
+    // zoom stay available either way, so nothing is lost by holding still.
+    const wantsLessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    controls.autoRotate = !wantsLessMotion.matches;
     controls.autoRotateSpeed = 1.6;
     controls.addEventListener('start', () => {
       controls.autoRotate = false;
+    });
+    wantsLessMotion.addEventListener('change', (e) => {
+      if (e.matches) controls.autoRotate = false;
     });
 
     function resize() {

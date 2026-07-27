@@ -152,6 +152,10 @@ const steps = [
       <h2 id="list-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">
         2. Your quote list <span class="text-sms-charcoal-400 font-normal">(<span id="quote-count">0</span> items)</span>
       </h2>
+      {/* Toggling an element's visibility with unchanged text doesn't reliably
+          announce, so add/remove confirmations are written into this region
+          instead. The visible green tick stays for sighted users. */}
+      <p id="quote-live" role="status" aria-live="polite" class="sr-only"></p>
       <div class="rounded-xl border border-sms-charcoal-100 overflow-hidden">
         <p id="quote-empty-state" class="p-6 text-sm text-sms-charcoal-400">
           You haven't added anything yet. Add products above to start your quote.
@@ -171,7 +175,7 @@ const steps = [
           not generate pricing automatically.
         </p>
 
-        <p id="quote-empty-error" class="hidden mb-4 rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p id="quote-empty-error" role="alert" class="hidden mb-4 rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
           Add at least one product to your quote list before submitting.
         </p>
 
@@ -301,6 +305,14 @@ const steps = [
 
     function saveItems(items: QuoteItem[]): void {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      // The header badge lives in a separate script; storage events only fire in
+      // *other* tabs, so tell this page's header directly.
+      window.dispatchEvent(new CustomEvent('sms-quote-change', { detail: { count: items.length } }));
+    }
+
+    function announce(message: string): void {
+      const region = document.getElementById('quote-live');
+      if (region) region.textContent = message;
     }
 
     function renderList(): void {
@@ -377,6 +389,7 @@ const steps = [
         items.push({ title, qty, configLabel });
         saveItems(items);
         renderList();
+        announce(`${title} added. ${items.length} ${items.length === 1 ? 'item' : 'items'} in your quote.`);
 
         const feedback = card.querySelector('[data-added-feedback]');
         if (feedback) {
@@ -396,9 +409,10 @@ const steps = [
         const index = parseInt(btn.dataset.removeIndex || '-1', 10);
         const items = loadItems();
         if (index >= 0 && index < items.length) {
-          items.splice(index, 1);
+          const [removed] = items.splice(index, 1);
           saveItems(items);
           renderList();
+          announce(`${removed.title} removed. ${items.length} ${items.length === 1 ? 'item' : 'items'} in your quote.`);
         }
       });
     }
@@ -408,6 +422,7 @@ const steps = [
       clearBtn.addEventListener('click', () => {
         saveItems([]);
         renderList();
+        announce('Quote list cleared.');
       });
     }
 
