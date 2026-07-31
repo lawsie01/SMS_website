@@ -6,6 +6,9 @@ import TrustStrip from '../components/TrustStrip.astro';
 import ProductCard from '../components/ProductCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import heroImage from '../assets/images/hero-install-chamber.jpg';
+import company from '../data/company.json';
+
+const warehouseMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${company.addressLine1}, ${company.addressLine2}`)}`;
 
 const products = await getCollection('products');
 const families = products
@@ -206,10 +209,18 @@ const applications = [
       <dl class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-7">
         {coverageByRegion.map((r) => (
           <div>
-            <dt class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{r.region}</dt>
-            <dd class="mt-1.5 text-xs font-semibold uppercase tracking-wider text-sms-charcoal-400 leading-relaxed">
-              {r.places.join(', ')}
-            </dd>
+            <a
+              href={warehouseMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block rounded-md -m-1 p-1 hover:bg-sms-green-50 transition-colors"
+              aria-label={`${r.region} — find SMS's warehouse on Google Maps`}
+            >
+              <dt class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{r.region}</dt>
+              <dd class="mt-1.5 text-xs font-semibold uppercase tracking-wider text-sms-charcoal-400 leading-relaxed">
+                {r.places.join(', ')}
+              </dd>
+            </a>
           </div>
         ))}
       </dl>
