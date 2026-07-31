@@ -124,15 +124,15 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
 
       <aside class="space-y-8">
         <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
-          <h2 class="font-bold text-sms-charcoal-900 mb-2">Building a project quote?</h2>
+          <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
           <p class="text-sm text-sms-charcoal-500 mb-4">
-            Add the {data.title} to your quote list and submit it with your other products in one request.
+            Request a quote and let us know which products you need — we'll confirm configuration, lead time and price.
           </p>
           <a
-            href={`/quote/?add=${product.id}`}
+            href={`/contact/?product=${product.id}`}
             class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors"
           >
-            Add to quote &rarr;
+            Request a quote &rarr;
           </a>
         </div>
 
