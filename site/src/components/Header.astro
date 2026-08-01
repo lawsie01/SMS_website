@@ -1,15 +1,23 @@
 ---
 import logo from '../assets/images/sms-logo.png';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
 const nav = [
-  { label: 'Products', href: '/products/' },
   { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
   { label: 'Applications', href: '/applications/' },
   { label: 'Approvals', href: '/approvals/' },
   { label: 'Technical Resources', href: '/technical-resources/' },
   { label: 'About', href: '/about/' },
 ];
+
+const products = await getCollection('products');
+const productFamilies = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
+const accessories = products
+  .filter((p) => p.data.category === 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <header id="site-header" class="border-b border-sms-charcoal-100 bg-white sticky top-0 z-40 transition-shadow duration-200">
@@ -20,6 +28,44 @@ const nav = [
       </a>
 
       <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-sms-charcoal-700" aria-label="Main">
+        <div class="relative">
+          <button
+            type="button"
+            id="products-nav-toggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="products-nav-panel"
+            class="flex items-center gap-1 hover:text-sms-green-600 transition-colors"
+          >
+            Products
+            <svg id="products-nav-chevron" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div
+            id="products-nav-panel"
+            hidden
+            class="absolute left-0 top-full mt-2 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg"
+          >
+            <p class="px-4 pt-1 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">Maintenance structures</p>
+            {productFamilies.map((p) => (
+              <a href={`/products/${p.id}/`} class="block px-4 py-2 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">
+                {p.data.title}
+              </a>
+            ))}
+            <div class="my-1.5 border-t border-sms-charcoal-100"></div>
+            <p class="px-4 pt-1 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">Fittings & accessories</p>
+            {accessories.map((p) => (
+              <a href={`/products/${p.id}/`} class="block px-4 py-2 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">
+                {p.data.title}
+              </a>
+            ))}
+            <div class="my-1.5 border-t border-sms-charcoal-100"></div>
+            <a href="/products/" class="block px-4 py-2 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">
+              View all products &rarr;
+            </a>
+          </div>
+        </div>
         {nav.map((item) => (
           <a href={item.href} class="hover:text-sms-green-600 transition-colors">
             {item.label}
@@ -72,6 +118,41 @@ const nav = [
 
     <nav id="mobile-nav" hidden class="lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
       <ul>
+        <li>
+          <button
+            type="button"
+            id="mobile-products-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-products-panel"
+            class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors"
+          >
+            <span>Products</span>
+            <svg id="mobile-products-chevron" class="w-4 h-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul id="mobile-products-panel" hidden class="pl-4 pb-2 space-y-1">
+            {productFamilies.map((p) => (
+              <li>
+                <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                  {p.data.title}
+                </a>
+              </li>
+            ))}
+            {accessories.map((p) => (
+              <li>
+                <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                  {p.data.title}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="/products/" class="block py-2 text-sm font-semibold text-sms-green-600">
+                View all products &rarr;
+              </a>
+            </li>
+          </ul>
+        </li>
         {nav.map((item) => (
           <li>
             <a
@@ -135,6 +216,40 @@ const nav = [
     if (e.key === STORAGE_KEY) paintBadge();
   });
 
+  // ---- desktop Products dropdown ------------------------------------------
+  const productsToggle = document.getElementById('products-nav-toggle');
+  const productsPanel = document.getElementById('products-nav-panel');
+  const productsChevron = document.getElementById('products-nav-chevron');
+
+  function setProductsOpen(open: boolean): void {
+    if (!productsToggle || !productsPanel || !productsChevron) return;
+    productsToggle.setAttribute('aria-expanded', String(open));
+    productsChevron.style.transform = open ? 'rotate(180deg)' : '';
+    if (open) productsPanel.removeAttribute('hidden');
+    else productsPanel.setAttribute('hidden', '');
+  }
+
+  if (productsToggle && productsPanel) {
+    productsToggle.addEventListener('click', () => {
+      setProductsOpen(productsToggle.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (e) => {
+      if (
+        productsToggle.getAttribute('aria-expanded') === 'true' &&
+        !productsPanel.contains(e.target as Node) &&
+        !productsToggle.contains(e.target as Node)
+      ) {
+        setProductsOpen(false);
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && productsToggle.getAttribute('aria-expanded') === 'true') {
+        setProductsOpen(false);
+        productsToggle.focus();
+      }
+    });
+  }
+
   // ---- mobile nav disclosure --------------------------------------------
   const toggle = document.getElementById('nav-toggle');
   const panel = document.getElementById('mobile-nav');
@@ -170,7 +285,29 @@ const nav = [
     // toggle doesn't come back already flagged as expanded.
     const wide = window.matchMedia('(min-width: 1024px)');
     wide.addEventListener('change', (e) => {
-      if (e.matches) setNav(false);
+      if (e.matches) {
+        setNav(false);
+        setMobileProductsOpen(false);
+      } else {
+        setProductsOpen(false);
+      }
     });
   }
+
+  // ---- mobile nested Products disclosure ----------------------------------
+  const mobileProductsToggle = document.getElementById('mobile-products-toggle');
+  const mobileProductsPanel = document.getElementById('mobile-products-panel');
+  const mobileProductsChevron = document.getElementById('mobile-products-chevron');
+
+  function setMobileProductsOpen(open: boolean): void {
+    if (!mobileProductsToggle || !mobileProductsPanel || !mobileProductsChevron) return;
+    mobileProductsToggle.setAttribute('aria-expanded', String(open));
+    mobileProductsChevron.style.transform = open ? 'rotate(180deg)' : '';
+    if (open) mobileProductsPanel.removeAttribute('hidden');
+    else mobileProductsPanel.setAttribute('hidden', '');
+  }
+
+  mobileProductsToggle?.addEventListener('click', () => {
+    setMobileProductsOpen(mobileProductsToggle.getAttribute('aria-expanded') !== 'true');
+  });
 </script>
