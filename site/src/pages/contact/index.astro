@@ -60,14 +60,36 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
           </div>
         </div>
 
-        <div>
-          <label for="product" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Product(s) of interest</label>
-          <p class="text-xs text-sms-charcoal-400 mb-2">Hold Ctrl (Windows) or Cmd (Mac) to select more than one — leave blank for a general enquiry.</p>
-          <select id="product" name="product" multiple size="6" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none">
+        <div class="relative">
+          <label id="product-label" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Product(s) of interest</label>
+          <button
+            type="button"
+            id="product-toggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="product-panel"
+            aria-labelledby="product-label product-summary"
+            class="w-full flex items-center justify-between gap-2 rounded-md border border-sms-charcoal-200 px-3 py-2 text-sm text-left text-sms-charcoal-700 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"
+          >
+            <span id="product-summary">Select product(s) — optional</span>
+            <svg id="product-chevron" class="w-4 h-4 shrink-0 text-sms-charcoal-400 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div
+            id="product-panel"
+            role="group"
+            aria-labelledby="product-label"
+            hidden
+            class="absolute z-10 mt-1 w-full max-h-64 overflow-y-auto rounded-md border border-sms-charcoal-200 bg-white shadow-lg p-2 space-y-0.5"
+          >
             {sortedProducts.map((p) => (
-              <option value={p.id}>{p.data.title}</option>
+              <label class="flex items-center gap-2 rounded px-2 py-1.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 cursor-pointer">
+                <input type="checkbox" name="product" value={p.id} data-product-title={p.data.title} class="rounded border-sms-charcoal-300 text-sms-green-600 focus:ring-sms-green-600" />
+                {p.data.title}
+              </label>
             ))}
-          </select>
+          </div>
         </div>
 
         <div>
@@ -81,15 +103,55 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
       </form>
 
       <script>
+        const toggle = document.getElementById('product-toggle');
+        const panel = document.getElementById('product-panel');
+        const summary = document.getElementById('product-summary');
+        const chevron = document.getElementById('product-chevron');
+        const checkboxes = document.querySelectorAll<HTMLInputElement>('#product-panel input[type="checkbox"]');
+
+        function setOpen(open: boolean): void {
+          if (!toggle || !panel || !chevron) return;
+          toggle.setAttribute('aria-expanded', String(open));
+          chevron.style.transform = open ? 'rotate(180deg)' : '';
+          if (open) panel.removeAttribute('hidden');
+          else panel.setAttribute('hidden', '');
+        }
+
+        function refreshSummary(): void {
+          if (!summary) return;
+          const checked = [...checkboxes].filter((c) => c.checked);
+          if (checked.length === 0) summary.textContent = 'Select product(s) — optional';
+          else if (checked.length === 1) summary.textContent = checked[0].dataset.productTitle ?? checked[0].value;
+          else summary.textContent = `${checked.length} products selected`;
+        }
+
+        toggle?.addEventListener('click', () => {
+          setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+        });
+
+        checkboxes.forEach((box) => box.addEventListener('change', refreshSummary));
+
+        document.addEventListener('click', (e) => {
+          if (!panel || !toggle) return;
+          if (toggle.getAttribute('aria-expanded') === 'true' && !panel.contains(e.target as Node) && !toggle.contains(e.target as Node)) {
+            setOpen(false);
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+            setOpen(false);
+            toggle.focus();
+          }
+        });
+
         const params = new URLSearchParams(window.location.search);
         const wanted = new Set(params.getAll('product'));
         if (wanted.size) {
-          const select = document.getElementById('product');
-          if (select instanceof HTMLSelectElement) {
-            [...select.options].forEach((opt) => {
-              if (wanted.has(opt.value)) opt.selected = true;
-            });
-          }
+          checkboxes.forEach((box) => {
+            if (wanted.has(box.value)) box.checked = true;
+          });
+          refreshSummary();
         }
       </script>
     </div>
