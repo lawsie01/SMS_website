@@ -42,12 +42,19 @@ const {
   <div class:list={["relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", compact ? "py-16 sm:py-20" : "py-24 sm:py-32"]}>
     <div class="max-w-3xl">
       {eyebrow && <p class="text-sms-green-400 font-semibold tracking-wide uppercase text-sm mb-3">{eyebrow}</p>}
-      <h1 class:list={["font-bold tracking-tight", compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-6xl"]}>{title}</h1>
+      <h1 class:list={["font-bold tracking-tight", compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-6xl"]}>
+        <slot name="title">{title}</slot>
+      </h1>
       {subtitle && <p class="mt-6 text-lg text-sms-charcoal-100 leading-relaxed max-w-[65ch]">{subtitle}</p>}
       <div class="mt-8 flex flex-wrap gap-4">
         <a
           href={primaryCta.href}
-          class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
+          class:list={[
+            "inline-flex items-center rounded-md px-6 py-3 text-base font-semibold transition-colors",
+            image
+              ? "border-2 border-sms-green-400 bg-transparent text-sms-green-400 hover:bg-sms-green-400 hover:text-sms-charcoal-900"
+              : "bg-sms-green-600 text-white shadow-sm hover:bg-sms-green-700",
+          ]}
         >
           {primaryCta.label}
         </a>

@@ -38,7 +38,6 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
   title={data.seoTitle ?? `${data.title} | SMS`}
   description={data.seoDescription ?? data.shortDescription}
   canonicalPath={path}
-  footerContour={Boolean(data.heroImage)}
 >
   <Breadcrumbs items={[{ label: 'Products', href: '/products/' }, { label: data.title, href: path }]} />
 

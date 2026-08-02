@@ -15,14 +15,10 @@ const families = products
   .sort((a, b) => a.data.order - b.data.order);
 const range = products.sort((a, b) => a.data.order - b.data.order);
 
-const manufacturingCountries = new Set(families.map((p) => p.data.countryOfManufacture));
-
 const facts = [
   { label: 'Specialising since', value: String(company.foundingYear) },
-  { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
-  { label: 'Product appraisal', value: 'PA 1317', icon: 'wsaa' as const },
-  { label: 'Manufacturing partners', value: String(manufacturingCountries.size) },
-  { label: 'Regions supplied', value: String(company.coverage.length) },
+  { label: 'Design service life', value: '100 years' },
+  { label: 'Product appraisal', value: 'PA 1317' },
 ];
 ---
 
@@ -30,7 +26,6 @@ const facts = [
   title="About SMS | Australia's Sewer Maintenance Structure Specialists"
   description="SMS has specialised in sewer maintenance shafts, chambers and holes since 2003. Part of the Clover group, with the most complete range held as stock and in-house technical support."
   canonicalPath="/about/"
-  footerContour
 >
   <Breadcrumbs items={[{ label: 'About', href: '/about/' }]} />
   <Hero

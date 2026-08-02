@@ -136,7 +136,7 @@ installationSections:
       - "Option 1: concrete cover plate incorporating the access cover"
       - "Option 2: concrete load distribution ring with access cover"
   - heading: "Lateral drop-in connections"
-    body: "DN100, DN150 and DN200 lateral connections can be added on-site with a matched hole saw and rubber collar kit (LC5/LC6/LC7-LAT100/150/200MH with LCS100/150/200MH hole saws), without returning the unit to the factory."
+    body: "DN100 and DN150 lateral connections can be added on-site with a matched hole saw and rubber collar kit (LC5/LC6-LAT100/150MH with LCS100/150MH hole saws), without returning the unit to the factory."
   - heading: "Person entry"
     body: "Unlike the DN375 Shaft and DN600 Chamber, the DN1000 Hole is fitted with a fixed ladder to EN 14396 for safe person entry, subject to the operator's confined space entry procedures."
 standards:
@@ -170,7 +170,7 @@ faqs:
   - question: "Are all DN1000 Hole components under 25kg?"
     answer: "No — component weight varies by part. The 250mm riser and cone are 15–25kg and manual-handled easily, but the base (50–65kg) and taller risers (up to 45kg for the 1000mm riser) typically need two installers, and the concrete access cover options (180–200kg) need mechanical assistance to place — usually the excavator already on site. None require a dedicated crane for a standard installation."
   - question: "What inlet/outlet sizes does the DN1000 Hole take?"
-    answer: "The base is available in configurations for DN150, DN225, DN300 and DN375 inlets/outlets, across a full range of RRJ angles including a 4-way cross, plus optional DN100/DN150/DN200 lateral drop-in connections added on-site."
+    answer: "The base is available in configurations for DN150, DN225, DN300 and DN375 inlets/outlets, across a full range of RRJ angles including a 4-way cross, plus optional DN100/DN150 lateral drop-in connections added on-site."
   - question: "What standards does the DN1000 Hole comply with?"
     answer: "The DN1000 Hole is manufactured to WSA 137:2019, with its ladder to EN 14396, and is covered under WSAA Product Appraisal PA 1317. Access covers are rated Class D to AS 3996."
 downloads:
