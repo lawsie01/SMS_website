@@ -9,9 +9,13 @@ interface Props {
   description: string;
   canonicalPath: string; // e.g. "/products/dn1000-maintenance-hole/"
   ogImage?: string;
+  // See Footer's `contour` prop — true only on pages whose Hero already has
+  // a photo, so its own contour device stays hidden and the footer can
+  // carry it instead.
+  footerContour?: boolean;
 }
 
-const { title, description, canonicalPath, ogImage } = Astro.props;
+const { title, description, canonicalPath, ogImage, footerContour = false } = Astro.props;
 const siteUrl = 'https://sewerms.com.au';
 const canonicalURL = new URL(canonicalPath, siteUrl).toString();
 
@@ -71,6 +75,6 @@ const organizationSchema = {
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer contour={footerContour} />
   </body>
 </html>

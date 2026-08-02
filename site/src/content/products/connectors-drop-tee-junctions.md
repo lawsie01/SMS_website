@@ -8,7 +8,7 @@ cardUseCase: "Adding a lateral connection on-site after the base configuration h
 atAGlance:
   - label: "Sizes"
     value: "DN100 / DN150 / DN200"
-  - label: "Install method"
+  - label: "Install"
     value: "Hole saw + rubber collar"
 specSections:
   - heading: "Overview"

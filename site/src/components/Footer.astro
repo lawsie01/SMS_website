@@ -1,6 +1,15 @@
 ---
 import company from '../data/company.json';
 
+interface Props {
+  // Only one contour device per page (see global.css) — pass true here
+  // exclusively on pages whose Hero doesn't already show one, i.e. pages
+  // with a photo hero, where the hero's own contour sits hidden behind
+  // the image.
+  contour?: boolean;
+}
+const { contour = false } = Astro.props;
+
 const year = new Date().getFullYear();
 const productLinks = [
   { label: 'DN375 Maintenance Shaft', href: '/products/dn375-maintenance-shaft/' },
@@ -15,7 +24,7 @@ const resourceLinks = [
 ];
 ---
 
-<footer class="bg-sms-charcoal-900 text-sms-charcoal-200">
+<footer class:list={[contour ? "sms-contour" : "bg-sms-charcoal-900", "text-sms-charcoal-200"]}>
   {/* Equal-width columns give unequal-looking gaps here, because the blurb fills
       its column while the link lists leave 85-125px of slack. Sizing each column
       to its content and distributing the remainder with space-between is what

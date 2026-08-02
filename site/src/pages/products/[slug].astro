@@ -38,6 +38,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
   title={data.seoTitle ?? `${data.title} | SMS`}
   description={data.seoDescription ?? data.shortDescription}
   canonicalPath={path}
+  footerContour={Boolean(data.heroImage)}
 >
   <Breadcrumbs items={[{ label: 'Products', href: '/products/' }, { label: data.title, href: path }]} />
 
@@ -95,7 +96,7 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
                   <h3 class="font-semibold text-sms-charcoal-900 mb-2">{s.heading}</h3>
                   <p class="text-sms-charcoal-500 leading-relaxed">{s.body}</p>
                   {s.bullets && (
-                    <ul class="mt-2 list-disc list-inside text-sms-charcoal-500 space-y-1">
+                    <ul class="sms-list mt-3 text-sms-charcoal-500">
                       {s.bullets.map((b) => <li>{b}</li>)}
                     </ul>
                   )}
@@ -137,9 +138,17 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
         </div>
 
         {data.productImage && (
-          <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center", data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
-            <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
-          </div>
+          data.productImageBackground === 'dark' ? (
+            <div class="rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center bg-sms-charcoal-900">
+              <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+            </div>
+          ) : (
+            <div class="sms-bracketed">
+              <div class="sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center bg-sms-charcoal-50">
+                <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+              </div>
+            </div>
+          )
         )}
 
         {data.downloads.length > 0 && (

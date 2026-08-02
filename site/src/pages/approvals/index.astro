@@ -89,20 +89,22 @@ const faqs = [
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <section aria-labelledby="approvals-grid-heading">
       <h2 id="approvals-grid-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Standards & appraisals</h2>
-      <div class="grid sm:grid-cols-2 gap-6">
-        {approvals.map((a) => (
-          <div class="border-t border-sms-charcoal-100 pt-5">
-            {'icon' in a && a.icon ? (
-              <div class="flex items-center gap-2 mb-2">
-                <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-green-600" />
-                <p class="font-mono font-medium text-sms-green-600">{a.code}</p>
-              </div>
-            ) : (
-              <p class="font-mono font-medium text-sms-green-600 mb-2">{a.code}</p>
-            )}
-            <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
-          </div>
-        ))}
+      <div class="sms-bracketed">
+        <div class="sms-bracketed__inner grid sm:grid-cols-2 gap-6 py-2">
+          {approvals.map((a) => (
+            <div class="border-t border-sms-charcoal-100 pt-5">
+              {'icon' in a && a.icon ? (
+                <div class="flex items-center gap-2 mb-2">
+                  <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-green-600" />
+                  <p class="font-mono font-medium text-sms-green-600">{a.code}</p>
+                </div>
+              ) : (
+                <p class="font-mono font-medium text-sms-green-600 mb-2">{a.code}</p>
+              )}
+              <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
+            </div>
+          ))}
+        </div>
       </div>
       <p class="text-xs text-sms-charcoal-400 mt-6 max-w-[68ch]">
         Quality management certification (AS/NZS ISO 9001) and any current WaterMark licensing referenced on

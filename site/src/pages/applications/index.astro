@@ -111,6 +111,7 @@ const sections = [
   title="Applications | Who SMS Maintenance Structures Are Built For"
   description="How SMS AXEDO and SMS ROMOLD polypropylene maintenance structures serve water utilities, civil contractors and design engineers across Australia."
   canonicalPath="/applications/"
+  footerContour
 >
   <Breadcrumbs items={[{ label: 'Applications', href: '/applications/' }]} />
   <Hero
@@ -135,24 +136,22 @@ const sections = [
   </nav>
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-    {sections.map((s) => (
+    {sections.map((s, i) => (
+      <Fragment>
       <section id={s.id} aria-labelledby={`${s.id}-heading`} class="scroll-mt-24">
         <h2 id={`${s.id}-heading`} class="text-2xl font-bold text-sms-charcoal-900 mb-3">{s.heading}</h2>
         <p class="text-sms-charcoal-500 mb-6 max-w-[68ch]">{s.intro}</p>
-        <ul class="space-y-3 mb-8">
+        <ul class="sms-list mb-8">
           {s.points.map((p) => (
-            <li class="flex gap-3">
-              <span class="text-sms-green-600 font-bold" aria-hidden="true">&check;</span>
-              <span class="text-sms-charcoal-700">{p}</span>
-            </li>
+            <li class="text-sms-charcoal-700">{p}</li>
           ))}
         </ul>
 
         <div class="grid sm:grid-cols-2 gap-6 mb-6">
           <div class="border-t border-sms-charcoal-100 pt-5">
             <h3 class="text-sm font-bold uppercase tracking-wide text-sms-charcoal-400 mb-3">Typical project types</h3>
-            <ul class="space-y-1.5 text-sm text-sms-charcoal-700">
-              {s.projectTypes.map((pt) => <li>&bull; {pt}</li>)}
+            <ul class="sms-list text-sm text-sms-charcoal-700">
+              {s.projectTypes.map((pt) => <li>{pt}</li>)}
             </ul>
           </div>
           <div class="border-l-2 border-sms-green-600 pl-5">
@@ -163,6 +162,10 @@ const sections = [
 
         <a href={s.cta.href} class="text-sm font-semibold text-sms-green-600 hover:underline">{s.cta.label} &rarr;</a>
       </section>
+      {i < sections.length - 1 && (
+        <div class="sms-endmark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      )}
+      </Fragment>
     ))}
 
     <section id="fit-guide" aria-labelledby="fit-guide-heading" class="scroll-mt-24">

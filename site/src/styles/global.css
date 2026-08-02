@@ -61,6 +61,226 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Brand graphic devices — pure CSS, no image assets. See Rules in each
+   device's comment block below before applying a class to a new section:
+   these are texture, not content, and are capped at two visible per
+   viewport. --sms-dark-bg is a warm near-black that replaces charcoal-900
+   on sections carrying the contour device, so the ring pattern reads
+   against it instead of disappearing into pure black. */
+:root {
+  --sms-green: #2b7a33;
+  --sms-green-light: #4aa456;
+  --sms-green-pale: #6dc079;
+  --sms-ink: #1a1a19;
+  --sms-dark-bg: #14140f;
+}
+
+@layer components {
+  /* Device 1 — corrugation contour. Concentric hairline rings evoking the
+     corrugated riser in plan. Dark backgrounds only — on light backgrounds
+     the rings read as moiré noise. One per page: if the hero shows it,
+     nothing else on that page should. Skip entirely on a section with a
+     background photo — the rings have nothing to read against. */
+  .sms-contour {
+    position: relative;
+    overflow: hidden;
+    background: var(--sms-dark-bg);
+    isolation: isolate;
+  }
+  .sms-contour > * {
+    position: relative;
+    z-index: 1;
+  }
+  .sms-contour::before,
+  .sms-contour::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Top-right: neutral, wide pitch */
+  .sms-contour::before {
+    top: -180px;
+    right: -220px;
+    width: 720px;
+    height: 720px;
+    background: repeating-radial-gradient(
+      circle at 100% 0,
+      rgba(255, 255, 255, 0) 0 52px,
+      rgba(255, 255, 255, 0.1) 52px 53px
+    );
+  }
+  /* Bottom-left: green, tighter pitch */
+  .sms-contour::after {
+    bottom: -240px;
+    left: -180px;
+    width: 560px;
+    height: 560px;
+    background: repeating-radial-gradient(
+      circle at 0 100%,
+      rgba(74, 164, 86, 0) 0 40px,
+      rgba(74, 164, 86, 0.18) 40px 41px
+    );
+  }
+  @media (max-width: 768px) {
+    .sms-contour::before {
+      width: 460px;
+      height: 460px;
+      top: -120px;
+      right: -160px;
+    }
+    .sms-contour::after {
+      display: none;
+    }
+  }
+
+  /* Device 2 — registration brackets. Detached corner marks framing content
+     that should read as verified data (measured values, approvals, certified
+     specs, real photography) — never marketing copy or a CTA. Marks are
+     --sms-ink, not green: green stays reserved for the values inside. One
+     bracketed element per section, 16px clear space to the content edge. */
+  .sms-bracketed {
+    --sms-arm: 18px;
+    --sms-clear: -16px;
+    position: relative;
+    margin: 0 16px;
+  }
+  .sms-bracketed::before,
+  .sms-bracketed::after,
+  .sms-bracketed > .sms-bracketed__inner::before,
+  .sms-bracketed > .sms-bracketed__inner::after {
+    content: "";
+    position: absolute;
+    width: var(--sms-arm);
+    height: var(--sms-arm);
+    pointer-events: none;
+  }
+  .sms-bracketed::before {
+    top: var(--sms-clear);
+    left: var(--sms-clear);
+    border-left: 1.5px solid var(--sms-ink);
+    border-top: 1.5px solid var(--sms-ink);
+  }
+  .sms-bracketed::after {
+    top: var(--sms-clear);
+    right: var(--sms-clear);
+    border-right: 1.5px solid var(--sms-ink);
+    border-top: 1.5px solid var(--sms-ink);
+  }
+  .sms-bracketed > .sms-bracketed__inner {
+    position: relative;
+  }
+  .sms-bracketed > .sms-bracketed__inner::before {
+    bottom: var(--sms-clear);
+    left: var(--sms-clear);
+    border-left: 1.5px solid var(--sms-ink);
+    border-bottom: 1.5px solid var(--sms-ink);
+  }
+  .sms-bracketed > .sms-bracketed__inner::after {
+    bottom: var(--sms-clear);
+    right: var(--sms-clear);
+    border-right: 1.5px solid var(--sms-ink);
+    border-bottom: 1.5px solid var(--sms-ink);
+  }
+  @media (max-width: 640px) {
+    .sms-bracketed {
+      --sms-arm: 12px;
+      --sms-clear: -12px;
+    }
+  }
+
+  /* Baseline discipline for a stat grid inside brackets: every value shares
+     a baseline, and labels/values never wrap — ragged text defeats the point
+     of a precision device. Keep labels and values short enough to fit one
+     line at 360px (`Life`, `Depth`, `Entry`, not `Service life`, `Max install
+     depth`); if a value genuinely can't be shortened, cut the column count
+     instead of letting this rule wrap it. */
+  .sms-stat {
+    display: grid;
+    grid-template-rows: 20px auto;
+    align-content: start;
+    padding: 0 18px;
+  }
+  .sms-stat:first-child {
+    padding-left: 0;
+  }
+  .sms-stat + .sms-stat {
+    border-left: 1px solid #e6e3dc;
+  }
+  .sms-stat__label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #8e8b83;
+    white-space: nowrap;
+  }
+  .sms-stat__value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.15;
+    color: var(--sms-green);
+    white-space: nowrap;
+  }
+
+  /* Device 3a — single mark as list bullet. The squircle (border-radius: 1px,
+     not 50%) is the one shape the SMS logotype already owns, so every bullet
+     on the site quietly repeats it. Replaces tick/check icons in body lists;
+     keep real check icons only where they mean "confirmed/passed" in a
+     table. */
+  .sms-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .sms-list li {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+  }
+  .sms-list li::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 1px;
+    background: var(--sms-green);
+    flex: none;
+    margin-top: 8px;
+  }
+  .sms-list--on-dark li::before {
+    background: var(--sms-green-pale);
+  }
+
+  /* Device 3b — four-mark cluster as a section end-mark. Grey (#c3bfb5), not
+     green — it's punctuation between sections that would otherwise run
+     together, not emphasis. Use sparingly, only where the reader needs a
+     beat. */
+  .sms-endmark {
+    display: grid;
+    grid-template-columns: repeat(2, 7px);
+    grid-template-rows: repeat(2, 7px);
+    gap: 4px;
+    margin: 44px auto 0;
+    width: max-content;
+  }
+  .sms-endmark span {
+    background: #c3bfb5;
+    border-radius: 1px;
+  }
+
+  /* Device 3c — the cluster spaced into a dot field. Dark panels only, and
+     counts as the section's one device — never combined with the contour. */
+  .sms-dotfield {
+    background-color: var(--sms-dark-bg);
+    background-image: radial-gradient(circle, rgba(122, 196, 133, 0.22) 1.4px, transparent 1.6px);
+    background-size: 26px 26px;
+  }
+}
+
 /* Tailwind's own utilities live in @layer utilities, which beats any
    unlayered CSS regardless of specificity — so these element-level defaults
    have to sit in @layer base too, or they'd win over every text-size/

@@ -10,35 +10,30 @@ interface Props {
   items: Row[];
 }
 const { items } = Astro.props;
-
-// Sized to the item count so a 5-item set doesn't leave a dead trailing cell
-// in a grid built for 6.
-const lgCols: Record<number, string> = {
-  4: 'lg:grid-cols-4',
-  5: 'lg:grid-cols-5',
-  6: 'lg:grid-cols-6',
-};
-const lgColsClass = lgCols[items.length] ?? 'lg:grid-cols-6';
 ---
 
-{/* One framed set rather than six separate boxes. The corner marks are a
-    drafting registration convention — they enclose the block without adding
-    another card to the page. */}
-<div class="relative border-y border-sms-charcoal-100 py-8 px-1">
-  <span class="absolute -top-px -left-px h-2.5 w-2.5 border-t-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
-  <span class="absolute -top-px -right-px h-2.5 w-2.5 border-t-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
-  <span class="absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
-  <span class="absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
-
-  <dl class:list={["grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-7", lgColsClass]}>
-    {items.map((item) => (
-      <div>
-        <dt class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">
-          {item.icon && <Icon name={item.icon} class="w-3.5 h-3.5 shrink-0 text-sms-green-600" />}
-          <span>{item.label}</span>
-        </dt>
-        <dd class="mt-1.5 text-lg sm:text-xl font-bold tabular-nums text-sms-green-600 leading-tight">{item.value}</dd>
-      </div>
-    ))}
-  </dl>
+{/* Registration brackets (see .sms-bracketed in global.css) replace the old
+    hand-drawn corner marks. Stats sit in a single non-wrapping row divided
+    by hairlines — .sms-stat's baseline discipline needs every label/value
+    short enough to fit one line at 360px, so overflow scrolls horizontally
+    on the narrowest phones rather than wrapping. */}
+<div class="sms-bracketed inline-block max-w-full">
+  <div class="sms-bracketed__inner">
+    {/* overflow-x-auto lives on its own wrapper, not .sms-bracketed__inner —
+        setting only overflow-x there would force overflow-y to "auto" too
+        per the CSS overflow spec, clipping the bottom corner marks. */}
+    <div class="overflow-x-auto">
+      <dl class="flex w-max py-8">
+        {items.map((item) => (
+          <div class="sms-stat">
+            <dt class="sms-stat__label flex items-center gap-1.5">
+              {item.icon && <Icon name={item.icon} class="w-3 h-3 shrink-0 text-sms-green-600" />}
+              <span>{item.label}</span>
+            </dt>
+            <dd class="sms-stat__value">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
 </div>

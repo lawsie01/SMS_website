@@ -25,8 +25,8 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-sms-charcoal-900 text-white">
-  {image ? (
+<section class="sms-contour relative overflow-hidden text-white">
+  {image && (
     <div class="absolute inset-0">
       <Image
         src={image}
@@ -38,15 +38,6 @@ const {
       />
       <div class="absolute inset-0 bg-gradient-to-t from-sms-charcoal-900 via-sms-charcoal-900/70 to-sms-charcoal-900/40"></div>
     </div>
-  ) : (
-    <svg class="absolute inset-0 h-full w-full text-white/[0.06]" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <pattern id="sms-hero-corrugation" width="48" height="200" patternUnits="userSpaceOnUse">
-          <path d="M0 0 Q12 100 0 200 M24 0 Q36 100 24 200" fill="none" stroke="currentColor" stroke-width="2"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#sms-hero-corrugation)"/>
-    </svg>
   )}
   <div class:list={["relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", compact ? "py-16 sm:py-20" : "py-24 sm:py-32"]}>
     <div class="max-w-3xl">
