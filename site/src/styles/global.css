@@ -71,10 +71,11 @@ html {
     text-rendering: optimizeLegibility;
   }
 
-  /* Headings take the display face and this base scale site-wide, so
-     individual pages don't each have to remember to opt in — but a
-     component's own Tailwind text-size/font-weight utility still wins where
-     one is set, since utilities outrank @layer base. */
+  /* Headings take the display face site-wide by default; font-size is left
+     to each component's own Tailwind text-size utility rather than a
+     hardcoded default here, so compact sub-headings (e.g. an h3 used as a
+     small section label) stay whatever size their markup already sets
+     instead of being forced up to a "hero heading" size. */
   h1,
   h2,
   h3 {
@@ -83,9 +84,6 @@ html {
     letter-spacing: -0.015em;
     text-wrap: balance;
   }
-  h1 { font-size: 46px; line-height: 1.08; }
-  h2 { font-size: 30px; line-height: 1.18; letter-spacing: -0.01em; }
-  h3 { font-size: 26px; line-height: 1.15; letter-spacing: -0.01em; }
 
   /* Source Serif's fine detail closes up below 22px and reads as noise, so
      any h1–h3 carrying a Tailwind size utility of text-xl (20px) or smaller
