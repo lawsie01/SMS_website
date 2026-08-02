@@ -14,14 +14,59 @@
   "abn": "77 005 234 293",
   "abnNote": "CONFIRM current ABN with client before publishing.",
   "coverage": [
-    "Melbourne",
-    "Sydney",
-    "Brisbane",
-    "Townsville",
-    "Perth",
-    "Adelaide",
+    "Victoria",
+    "New South Wales",
+    "Queensland",
+    "Western Australia",
+    "South Australia",
     "Tasmania",
-    "Pacific Region"
+    "Northern Territory",
+    "International"
+  ],
+  "locations": [
+    {
+      "region": "Victoria",
+      "addressLine1": "320 Hume Highway",
+      "addressLine2": "Craigieburn, Victoria 3064"
+    },
+    {
+      "region": "New South Wales",
+      "addressLine1": "49-53 Newton Road",
+      "addressLine2": "Wetherill Park, New South Wales 2164"
+    },
+    {
+      "region": "Queensland (Brisbane)",
+      "addressLine1": "1801-1805 Ipswich Road (Gate B)",
+      "addressLine2": "Rocklea, Queensland 4108"
+    },
+    {
+      "region": "Queensland (Townsville)",
+      "addressLine1": "487 Woolcock Street",
+      "addressLine2": "Garbutt, Queensland 4814"
+    },
+    {
+      "region": "Western Australia",
+      "addressLine1": "10 Radich Chase",
+      "addressLine2": "Wangara, Western Australia 6065",
+      "note": "Entry via Windsor Road"
+    },
+    {
+      "region": "South Australia",
+      "addressLine1": "2-3 Matson Court",
+      "addressLine2": "Gillman, South Australia 5013"
+    },
+    {
+      "region": "Tasmania",
+      "placeholder": true
+    },
+    {
+      "region": "Northern Territory",
+      "placeholder": true
+    },
+    {
+      "region": "International",
+      "placeholder": true
+    }
   ],
   "socials": {
     "linkedin": ""

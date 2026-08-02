@@ -8,7 +8,9 @@ import CtaBand from '../components/CtaBand.astro';
 import heroImage from '../assets/images/hero-install-chamber.jpg';
 import company from '../data/company.json';
 
-const warehouseMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${company.addressLine1}, ${company.addressLine2}`)}`;
+function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.addressLine1}, ${loc.addressLine2}`)}`;
+}
 
 const products = await getCollection('products');
 const families = products
@@ -32,19 +34,6 @@ const whyPlastic = [
     title: '100-year design life',
     body: 'Engineered for a 100-year service life, backed by WSAA Product Appraisal PA 1317 to WSA 137:2019.',
   },
-];
-
-// Same coverage data as company.coverage, grouped by state so depth of
-// supply (e.g. two Queensland markets) reads at a glance instead of as
-// eight same-weighted pills mixing cities, a state and a region together.
-const coverageByRegion = [
-  { region: 'VIC', places: ['Melbourne'] },
-  { region: 'NSW', places: ['Sydney'] },
-  { region: 'QLD', places: ['Brisbane', 'Townsville'] },
-  { region: 'WA', places: ['Perth'] },
-  { region: 'SA', places: ['Adelaide'] },
-  { region: 'TAS', places: ['Statewide'] },
-  { region: 'Pacific', places: ['Pacific Region'] },
 ];
 
 const applications = [
@@ -198,32 +187,34 @@ const applications = [
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="coverage-heading">
     <h2 id="coverage-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">National supply coverage</h2>
     <p class="text-sms-charcoal-500 max-w-2xl mb-8">
-      SMS supplies AXEDO and ROMOLD maintenance structures across every major Australian market, plus the
-      Pacific region.
+      SMS operates warehouses across every mainland state, with Tasmania, the Northern Territory and
+      international supply to follow.
     </p>
-    <div class="relative border-y border-sms-charcoal-100 py-8 px-1">
-      <span class="absolute -top-px -left-px h-2.5 w-2.5 border-t-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
-      <span class="absolute -top-px -right-px h-2.5 w-2.5 border-t-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
-      <span class="absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-sms-charcoal-900" aria-hidden="true"></span>
-      <span class="absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-sms-charcoal-900" aria-hidden="true"></span>
-      <dl class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-7">
-        {coverageByRegion.map((r) => (
-          <div>
-            <a
-              href={warehouseMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block rounded-md -m-1 p-1 hover:bg-sms-green-50 transition-colors"
-              aria-label={`${r.region} — find SMS's warehouse on Google Maps`}
-            >
-              <dt class="text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{r.region}</dt>
-              <dd class="mt-1.5 text-xs font-semibold uppercase tracking-wider text-sms-charcoal-400 leading-relaxed">
-                {r.places.join(', ')}
-              </dd>
-            </a>
-          </div>
-        ))}
-      </dl>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+      {company.locations.map((loc) => (
+        <div>
+          <h3 class="font-bold text-sms-charcoal-900 mb-2 pb-1 border-b-2 border-sms-green-600 inline-block">{loc.region}</h3>
+          {loc.placeholder ? (
+            <p class="text-sm text-sms-charcoal-400 italic">Address to be confirmed</p>
+          ) : (
+            <>
+              <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+                {loc.addressLine1}<br />{loc.addressLine2}
+              </p>
+              {loc.note && <p class="text-xs text-sms-charcoal-400 mt-1">{loc.note}</p>}
+              <a
+                href={mapsUrl(loc)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
+                aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
+              >
+                Get directions &rarr;
+              </a>
+            </>
+          )}
+        </div>
+      ))}
     </div>
   </section>
 
