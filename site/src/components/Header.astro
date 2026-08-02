@@ -2,6 +2,7 @@
 import logo from '../assets/images/sms-logo.png';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import SearchModal from './SearchModal.astro';
 
 const nav = [
   { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
@@ -74,6 +75,8 @@ const accessories = products
       </nav>
 
       <div class="flex items-center gap-2 sm:gap-3">
+        <SearchModal />
+
         {/* Hidden until the visitor actually has a quote started, so it stays out
             of the way for everyone else. Populated by the script below. */}
         <a

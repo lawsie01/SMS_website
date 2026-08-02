@@ -1,0 +1,228 @@
+---
+// Client-side search over the products collection — see /search-index.json.ts
+// for what gets indexed. No backend: Fuse.js runs entirely in the browser
+// against a small JSON index fetched once on first open.
+---
+
+<button
+  type="button"
+  id="search-trigger"
+  aria-haspopup="dialog"
+  aria-controls="search-modal"
+  class="flex items-center gap-1.5 rounded-md border border-sms-charcoal-200 px-3 py-2.5 text-sm text-sms-charcoal-500 hover:border-sms-green-400 hover:text-sms-charcoal-700 transition-colors"
+  aria-label="Search products, part codes and standards"
+>
+  <svg class="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <span class="hidden sm:inline text-xs font-medium text-sms-charcoal-300">Search</span>
+  <kbd class="hidden sm:inline rounded border border-sms-charcoal-200 px-1.5 py-0.5 text-[10px] font-semibold text-sms-charcoal-400">/</kbd>
+</button>
+
+<div id="search-modal" hidden role="dialog" aria-modal="true" aria-label="Search" class="fixed inset-0 z-50">
+  <div id="search-backdrop" class="absolute inset-0 bg-sms-charcoal-900/50"></div>
+  <div class="relative mx-auto mt-16 sm:mt-24 w-[calc(100%-2rem)] max-w-xl rounded-xl bg-white shadow-2xl overflow-hidden">
+    <div class="flex items-center gap-3 border-b border-sms-charcoal-100 px-4 py-3">
+      <svg class="w-5 h-5 shrink-0 text-sms-charcoal-300" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search products, part codes, standards..."
+        autocomplete="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="search-results"
+        aria-autocomplete="list"
+        class="flex-1 min-w-0 outline-none text-base text-sms-charcoal-900 placeholder:text-sms-charcoal-300"
+      />
+      <button type="button" id="search-close" aria-label="Close search" class="shrink-0 text-sms-charcoal-400 hover:text-sms-charcoal-700">
+        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <ul id="search-results" role="listbox" aria-label="Search results" class="max-h-96 overflow-y-auto py-2"></ul>
+    <p id="search-empty" hidden class="px-4 py-10 text-center text-sm text-sms-charcoal-400">
+      No matches. Try a product name, part code (e.g. MHB1000225090) or a standard (e.g. WSA 137).
+    </p>
+    <p id="search-hint" class="px-4 py-10 text-center text-sm text-sms-charcoal-400">
+      Search across products, part codes, standards and FAQs.
+    </p>
+  </div>
+</div>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  interface SearchEntry {
+    id: string;
+    url: string;
+    title: string;
+    brand: string;
+    dnSize: string;
+    description: string;
+    partCodes: string[];
+    standardCodes: string[];
+    faqText: string;
+  }
+
+  const trigger = document.getElementById('search-trigger');
+  const modal = document.getElementById('search-modal');
+  const backdrop = document.getElementById('search-backdrop');
+  const closeBtn = document.getElementById('search-close');
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const resultsList = document.getElementById('search-results');
+  const emptyState = document.getElementById('search-empty');
+  const hintState = document.getElementById('search-hint');
+
+  let fuse: Fuse<SearchEntry> | null = null;
+  let entries: SearchEntry[] = [];
+  let loadPromise: Promise<void> | null = null;
+  let activeIndex = -1;
+
+  function normalize(s: string): string {
+    return s.toLowerCase().replace(/[\s-]/g, '');
+  }
+
+  async function ensureIndexLoaded(): Promise<void> {
+    if (loadPromise) return loadPromise;
+    loadPromise = fetch('/search-index.json')
+      .then((res) => res.json())
+      .then((data: SearchEntry[]) => {
+        entries = data;
+        fuse = new Fuse(entries, {
+          includeScore: true,
+          threshold: 0.35,
+          ignoreLocation: true,
+          keys: [
+            { name: 'title', weight: 0.4 },
+            { name: 'partCodes', weight: 0.3 },
+            { name: 'standardCodes', weight: 0.15 },
+            { name: 'dnSize', weight: 0.05 },
+            { name: 'description', weight: 0.05 },
+            { name: 'faqText', weight: 0.05 },
+          ],
+        });
+      })
+      .catch(() => {
+        entries = [];
+        fuse = null;
+      });
+    return loadPromise;
+  }
+
+  function matchedCode(entry: SearchEntry, query: string): string | null {
+    const q = normalize(query);
+    if (!q) return null;
+    const code = [...entry.partCodes, ...entry.standardCodes].find((c) => normalize(c).includes(q) || q.includes(normalize(c)));
+    return code ?? null;
+  }
+
+  function renderResults(query: string): void {
+    if (!resultsList || !emptyState || !hintState || !input) return;
+    resultsList.innerHTML = '';
+    activeIndex = -1;
+
+    if (!query.trim()) {
+      hintState.removeAttribute('hidden');
+      emptyState.setAttribute('hidden', '');
+      input.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    hintState.setAttribute('hidden', '');
+
+    const hits = fuse ? fuse.search(query).slice(0, 8) : [];
+
+    if (hits.length === 0) {
+      emptyState.removeAttribute('hidden');
+      input.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    emptyState.setAttribute('hidden', '');
+    input.setAttribute('aria-expanded', 'true');
+
+    hits.forEach((hit, i) => {
+      const entry = hit.item;
+      const code = matchedCode(entry, query);
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      li.id = `search-result-${i}`;
+      li.innerHTML = `
+        <a href="${entry.url}" class="block px-4 py-2.5 hover:bg-sms-charcoal-50" data-result-link>
+          <p class="text-sm font-semibold text-sms-charcoal-900">${entry.title}</p>
+          <p class="mt-0.5 text-xs text-sms-charcoal-400">${entry.brand}${entry.dnSize ? ` · ${entry.dnSize}` : ''}${code ? ` · Matched: <span class="font-mono text-sms-green-600">${code}</span>` : ''}</p>
+        </a>
+      `;
+      resultsList.appendChild(li);
+    });
+  }
+
+  function setActive(index: number): void {
+    if (!resultsList) return;
+    const items = [...resultsList.querySelectorAll('li')];
+    if (!items.length) return;
+    activeIndex = ((index % items.length) + items.length) % items.length;
+    items.forEach((li, i) => li.classList.toggle('bg-sms-charcoal-50', i === activeIndex));
+    input?.setAttribute('aria-activedescendant', items[activeIndex].id);
+  }
+
+  function open(): void {
+    if (!modal || !input) return;
+    modal.removeAttribute('hidden');
+    input.value = '';
+    renderResults('');
+    ensureIndexLoaded().then(() => {
+      if (input.value) renderResults(input.value);
+    });
+    setTimeout(() => input.focus(), 0);
+  }
+
+  function close(): void {
+    if (!modal) return;
+    modal.setAttribute('hidden', '');
+    trigger?.focus();
+  }
+
+  trigger?.addEventListener('click', open);
+  closeBtn?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+
+  input?.addEventListener('input', () => renderResults(input.value));
+
+  input?.addEventListener('keydown', (e) => {
+    const items = resultsList?.querySelectorAll('li') ?? [];
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (items.length) setActive(activeIndex + 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (items.length) setActive(activeIndex - 1);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const target = activeIndex >= 0 ? items[activeIndex] : items[0];
+      const link = target?.querySelector<HTMLAnchorElement>('[data-result-link]');
+      link?.click();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const isOpen = modal && !modal.hasAttribute('hidden');
+    if (isOpen && e.key === 'Escape') {
+      close();
+      return;
+    }
+    const target = e.target as HTMLElement | null;
+    const inField = target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA' || target?.isContentEditable;
+    const cmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k';
+    const slash = e.key === '/' && !inField;
+    if (!isOpen && (cmdK || slash)) {
+      e.preventDefault();
+      open();
+    }
+  });
+</script>
