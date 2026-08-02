@@ -2,9 +2,25 @@
 
 /* Self-hosted via Fontsource (no CDN dependency, no silent fallback).
    wght.css = weight axis only, unicode-range split — the browser fetches
-   just the ~36-48kB latin subset it needs. */
+   just the ~36-48kB latin subset it needs. IBM Plex Mono only ships static
+   weight files (no variable build), so it's pinned to the two weights the
+   type scale actually uses. */
+@import "@fontsource-variable/source-serif-4/wght.css";
 @import "@fontsource-variable/archivo/wght.css";
-@import "@fontsource-variable/ibm-plex-sans/wght.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/* Source Serif 4 falls back to a much narrower system serif (Georgia), which
+   causes visible reflow while the webfont loads. This metric-adjusted stand-in
+   mimics Source Serif 4's box metrics using locally-installed Georgia, so
+   layout doesn't shift once the real face swaps in. */
+@font-face {
+  font-family: "Source Serif Fallback";
+  src: local("Georgia");
+  size-adjust: 96%;
+  ascent-override: 92%;
+  descent-override: 26%;
+}
 
 @theme {
   /* Brand palette extracted directly from the SMS logo and brochures */
@@ -30,36 +46,106 @@
   --color-sms-charcoal-800: #1d1c1b;
   --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
 
-  /* Type pairing. IBM Plex Sans carries body and spec tables — it was designed
-     for technical documentation and has genuine tabular figures, which this
-     site leans on heavily. Archivo is the display face: a tighter, more
-     assertive grotesk with an industrial-signage lineage that suits civil
-     infrastructure, and gives headings contrast against the body text. */
-  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Archivo Variable", "IBM Plex Sans Variable", ui-sans-serif, sans-serif;
+  /* Type pairing 03. Source Serif 4 is the display face — headings only, and
+     never below 22px, where its fine detail closes up and reads as noise.
+     Archivo carries everything else: body copy, nav, buttons and form
+     controls, so it's the --font-sans Tailwind reaches for by default.
+     IBM Plex Mono is reserved for data — part codes, standards references,
+     dimensions — never body copy or headings. */
+  --font-sans: "Archivo Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Source Serif 4 Variable", "Source Serif Fallback", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  @apply bg-white text-sms-charcoal-900 font-sans antialiased;
-}
+/* Tailwind's own utilities live in @layer utilities, which beats any
+   unlayered CSS regardless of specificity — so these element-level defaults
+   have to sit in @layer base too, or they'd win over every text-size/
+   font-weight utility in the codebase instead of losing to it as intended. */
+@layer base {
+  body {
+    @apply bg-white text-sms-charcoal-900 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-/* Headings take the display face site-wide, so individual pages don't each
-   have to remember to opt in. */
-h1,
-h2,
-h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.015em;
-}
+  /* Headings take the display face and this base scale site-wide, so
+     individual pages don't each have to remember to opt in — but a
+     component's own Tailwind text-size/font-weight utility still wins where
+     one is set, since utilities outrank @layer base. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  h1 { font-size: 46px; line-height: 1.08; }
+  h2 { font-size: 30px; line-height: 1.18; letter-spacing: -0.01em; }
+  h3 { font-size: 26px; line-height: 1.15; letter-spacing: -0.01em; }
 
-/* Spec, configuration and comparison tables line up columns of dimensions and
-   part codes — proportional digits make those columns ragged. */
-table {
-  font-variant-numeric: tabular-nums;
+  /* Source Serif's fine detail closes up below 22px and reads as noise, so
+     any h1–h3 carrying a Tailwind size utility of text-xl (20px) or smaller
+     — small uppercase labels, the 3D viewer's compact heading, etc. — falls
+     back to Archivo instead, per the same rule that demotes h4–h6. This still
+     needs to win over the plain h1/h2/h3 rule above despite being in the same
+     layer, so it relies on the extra class for specificity, not just source
+     order. */
+  h1.text-xs, h1.text-sm, h1.text-base, h1.text-lg, h1.text-xl,
+  h2.text-xs, h2.text-sm, h2.text-base, h2.text-lg, h2.text-xl,
+  h3.text-xs, h3.text-sm, h3.text-base, h3.text-lg, h3.text-xl {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: normal;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  /* Buttons, nav, form controls and table headers stay on the text face —
+     serif on a control reads slow and hurts conversion. Tailwind's preflight
+     already makes form controls inherit body font, but this makes it
+     explicit and guarantees it survives any future component that doesn't
+     rely on that. */
+  button,
+  nav a,
+  label,
+  input,
+  select,
+  textarea,
+  th,
+  .eyebrow {
+    font-family: var(--font-sans);
+  }
+
+  /* Data, not decoration: part codes, standard references and dimensions get
+     the mono face and lock their digits to a fixed width so table/spec
+     columns don't ripple between rows. Never applied to body copy or
+     headings. */
+  .spec-code,
+  .part-number,
+  .standard-ref,
+  .file-name {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Spec, configuration and comparison tables line up columns of dimensions
+     and part codes — proportional digits make those columns ragged. */
+  table,
+  th,
+  td,
+  .stat {
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 .skip-link {

@@ -95,10 +95,10 @@ const faqs = [
             {'icon' in a && a.icon ? (
               <div class="flex items-center gap-2 mb-2">
                 <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-green-600" />
-                <p class="font-bold text-sms-green-600">{a.code}</p>
+                <p class="font-mono font-medium text-sms-green-600">{a.code}</p>
               </div>
             ) : (
-              <p class="font-bold text-sms-green-600 mb-2">{a.code}</p>
+              <p class="font-mono font-medium text-sms-green-600 mb-2">{a.code}</p>
             )}
             <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
           </div>
@@ -130,7 +130,7 @@ const faqs = [
           <tbody>
             {matrix.map((row, i) => (
               <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
-                <th scope="row" class="text-left px-4 py-3 font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
+                <th scope="row" class="text-left px-4 py-3 font-mono font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
                 <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
                 <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
                 <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>

@@ -37,7 +37,7 @@ const lgColsClass = lgCols[items.length] ?? 'lg:grid-cols-6';
           {item.icon && <Icon name={item.icon} class="w-3.5 h-3.5 shrink-0 text-sms-green-600" />}
           <span>{item.label}</span>
         </dt>
-        <dd class="mt-1.5 text-lg sm:text-xl font-bold text-sms-green-600 leading-tight">{item.value}</dd>
+        <dd class="mt-1.5 text-lg sm:text-xl font-mono font-medium tabular-nums text-sms-green-600 leading-tight">{item.value}</dd>
       </div>
     ))}
   </dl>
