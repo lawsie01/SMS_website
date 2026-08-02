@@ -68,9 +68,6 @@ html {
    on sections carrying the contour device, so the ring pattern reads
    against it instead of disappearing into pure black. */
 :root {
-  --sms-green: #2b7a33;
-  --sms-green-light: #4aa456;
-  --sms-green-pale: #6dc079;
   --sms-ink: #1a1a19;
   --sms-dark-bg: #14140f;
 }
@@ -220,7 +217,7 @@ html {
     font-weight: 600;
     font-size: 20px;
     line-height: 1.15;
-    color: var(--sms-green);
+    color: var(--color-sms-green-600);
     white-space: nowrap;
   }
 
@@ -247,12 +244,12 @@ html {
     width: 7px;
     height: 7px;
     border-radius: 1px;
-    background: var(--sms-green);
+    background: var(--color-sms-green-600);
     flex: none;
     margin-top: 8px;
   }
   .sms-list--on-dark li::before {
-    background: var(--sms-green-pale);
+    background: var(--color-sms-green-400);
   }
 
   /* Device 3b — four-mark cluster as a section end-mark. Grey (#c3bfb5), not
