@@ -7,6 +7,10 @@ import company from '../../data/company.json';
 
 const products = await getCollection('products');
 const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+
+function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.addressLine1}, ${loc.addressLine2}`)}`;
+}
 ---
 
 <BaseLayout
@@ -168,12 +172,45 @@ const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
 
       <div class="border-t border-sms-charcoal-100 pt-5">
         <h2 class="font-bold text-sms-charcoal-900 mb-4">National coverage</h2>
-        <ul class="flex flex-wrap gap-2">
+        <ul class="flex flex-wrap gap-2 mb-3">
           {company.coverage.map((c) => (
             <li class="rounded-full border border-sms-charcoal-200 px-3 py-1 text-xs font-medium text-sms-charcoal-700">{c}</li>
           ))}
         </ul>
+        <a href="#locations" class="text-sm font-semibold text-sms-green-600 hover:underline">See branch addresses &rarr;</a>
       </div>
     </div>
+  </div>
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-16">
+    <section id="locations" aria-labelledby="locations-heading" class="scroll-mt-24 border-t border-sms-charcoal-100 pt-12">
+      <h2 id="locations-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Our locations</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        {company.locations.map((loc) => (
+          <div>
+            <h3 class="font-bold text-sms-charcoal-900 mb-2 pb-1 border-b-2 border-sms-green-600 inline-block">{loc.region}</h3>
+            {loc.placeholder ? (
+              <p class="text-sm text-sms-charcoal-400 italic">Address to be confirmed</p>
+            ) : (
+              <>
+                <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+                  {loc.addressLine1}<br />{loc.addressLine2}
+                </p>
+                {loc.note && <p class="text-xs text-sms-charcoal-400 mt-1">{loc.note}</p>}
+                <a
+                  href={mapsUrl(loc)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
+                  aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
+                >
+                  Get directions &rarr;
+                </a>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
   </div>
 </BaseLayout>

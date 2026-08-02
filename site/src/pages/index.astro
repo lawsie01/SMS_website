@@ -8,10 +8,6 @@ import CtaBand from '../components/CtaBand.astro';
 import heroImage from '../assets/images/hero-install-chamber.jpg';
 import company from '../data/company.json';
 
-function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.addressLine1}, ${loc.addressLine2}`)}`;
-}
-
 const products = await getCollection('products');
 const families = products
   .filter((p) => p.data.category !== 'accessory')
@@ -187,36 +183,16 @@ const applications = [
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="coverage-heading">
     <h2 id="coverage-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">National supply coverage</h2>
-    <p class="text-sms-charcoal-500 max-w-2xl mb-8">
+    <p class="text-sms-charcoal-500 max-w-2xl mb-6">
       SMS operates warehouses across every mainland state, with Tasmania, the Northern Territory and
       international supply to follow.
     </p>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-      {company.locations.map((loc) => (
-        <div>
-          <h3 class="font-bold text-sms-charcoal-900 mb-2 pb-1 border-b-2 border-sms-green-600 inline-block">{loc.region}</h3>
-          {loc.placeholder ? (
-            <p class="text-sm text-sms-charcoal-400 italic">Address to be confirmed</p>
-          ) : (
-            <>
-              <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-                {loc.addressLine1}<br />{loc.addressLine2}
-              </p>
-              {loc.note && <p class="text-xs text-sms-charcoal-400 mt-1">{loc.note}</p>}
-              <a
-                href={mapsUrl(loc)}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
-                aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
-              >
-                Get directions &rarr;
-              </a>
-            </>
-          )}
-        </div>
+    <ul class="flex flex-wrap gap-2 mb-6">
+      {company.coverage.map((c) => (
+        <li class="rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700">{c}</li>
       ))}
-    </div>
+    </ul>
+    <a href="/contact/#locations" class="text-sm font-semibold text-sms-green-600 hover:underline">Find your nearest branch &rarr;</a>
   </section>
 
   <CtaBand />
