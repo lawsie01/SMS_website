@@ -171,9 +171,8 @@ const facts = [
         here to help you get it right the first time.
       </p>
       <ul class="space-y-2 text-sms-charcoal-700">
-        {company.contacts.map((c) => (
-          <li><span class="font-semibold">{c.name}</span> — {c.role}</li>
-        ))}
+        <li><a href={`tel:${company.phoneHref}`} class="font-semibold text-sms-green-600 hover:underline">{company.phone}</a></li>
+        <li><a href={`mailto:${company.email}`} class="font-semibold text-sms-green-600 hover:underline">{company.email}</a></li>
       </ul>
       <p class="mt-4">
         <a href="/contact/" class="text-sm font-semibold text-sms-green-600 hover:underline">Get in touch &rarr;</a>
