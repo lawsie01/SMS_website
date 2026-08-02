@@ -27,7 +27,11 @@ faqs:
     answer: "SMS maintenance shaft, chamber and hole bases already ship in a range of RRJ angle configurations (typically 30°–270° plus a 4-way cross). A separate bend fitting is only needed when the required deflection falls outside those standard base angles."
   - question: "What material are SMS bends made from?"
     answer: "Bends across the SMS range are PP or PVC to match the connecting pipe material, jointed with the same rubber ring joint (RRJ) system used throughout the maintenance structure range."
-downloads: []
+downloads:
+  - label: "Bends Datasheet"
+    file: ""
+    fileType: "PDF"
+    restricted: false
 seoTitle: "Sewer Pipe Bends | SMS Polypropylene & PVC Sweep Bends Australia"
 seoDescription: "PP and PVC sweep bends for angled connections into SMS AXEDO and SMS ROMOLD maintenance shafts, chambers and holes."
 ---

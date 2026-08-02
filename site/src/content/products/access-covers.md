@@ -33,7 +33,11 @@ faqs:
     answer: "Class D (trafficable) to AS 3996 across the standard Top Hat, concrete cover plate and concrete load distribution ring options."
   - question: "Is a vegetation ring available?"
     answer: "Yes, as an option on the standard Top Hat access cover, for locations where the surrounding surface finish is turf or garden bed rather than a hard trafficable surface."
-downloads: []
+downloads:
+  - label: "Access Covers Datasheet"
+    file: ""
+    fileType: "PDF"
+    restricted: false
 seoTitle: "Class D Access Covers | SMS Sewer Maintenance Structure Covers Australia"
 seoDescription: "Class D trafficable access cover options to AS 3996 for SMS AXEDO and SMS ROMOLD polypropylene maintenance structures."
 ---

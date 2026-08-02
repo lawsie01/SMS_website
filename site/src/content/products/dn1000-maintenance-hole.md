@@ -182,6 +182,10 @@ downloads:
     file: ""
     fileType: "PDF"
     restricted: true
+  - label: "DN1000 Maintenance Hole CAD/BIM model"
+    file: ""
+    fileType: "DWG/RVT/IFC"
+    restricted: true
 seoTitle: "DN1000 Maintenance Hole | SMS ROMOLD Polypropylene Manhole Australia"
 seoDescription: "SMS ROMOLD DN1000 polypropylene maintenance hole — WSAA PA 1317 appraised, Class D rated, person-entry with fixed ladder, installs to 6m depth. Full specs and part codes."
 ---

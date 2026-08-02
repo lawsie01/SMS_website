@@ -25,7 +25,11 @@ faqs:
     answer: "Yes. Any base socket not connected to a pipe should be sealed with an SMS push-in plug at the time of installation to keep the structure watertight and prevent infiltration or exfiltration."
   - question: "Can a plugged inlet be connected later?"
     answer: "Yes — the plug can be removed and the socket connected to a pipe when required, or a new lateral connection can be added on-site elsewhere on the structure using the drop-in connector system."
-downloads: []
+downloads:
+  - label: "Caps and Plugs Datasheet"
+    file: ""
+    fileType: "PDF"
+    restricted: false
 seoTitle: "Sewer Maintenance Structure Caps & Plugs | SMS Polypropylene Fittings"
 seoDescription: "Push-in polypropylene plugs for sealing unused inlet/outlet sockets on SMS AXEDO and SMS ROMOLD maintenance structures."
 ---

@@ -18,7 +18,11 @@ specSections:
 faqs:
   - question: "What is a pipe marker used for?"
     answer: "A pipe marker is buried alongside sewer pipework to allow future electronic locating of the asset, particularly on runs where a maintenance shaft, chamber or hole isn't present at that exact point."
-downloads: []
+downloads:
+  - label: "Pipe Marker Datasheet"
+    file: ""
+    fileType: "PDF"
+    restricted: false
 seoTitle: "Electronic Pipe Marker | SMS Sewer Asset Locating"
 seoDescription: "Electronic pipe marker for locating buried sewer pipework and fittings, from SMS."
 ---

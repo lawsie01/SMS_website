@@ -122,6 +122,10 @@ downloads:
     file: ""
     fileType: "PDF"
     restricted: true
+  - label: "DN375 Maintenance Shaft CAD/BIM model"
+    file: ""
+    fileType: "DWG/RVT/IFC"
+    restricted: true
 seoTitle: "DN375 Maintenance Shaft | SMS AXEDO Polypropylene Sewer Shaft Australia"
 seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft — WSAA PA 1317 appraised, Class D rated, 100-year design life, manual install to 4m depth. Full specs and configurations."
 ---

@@ -43,15 +43,25 @@ const assetToParam = (label: string) =>
       </a>
       <div class="grid sm:grid-cols-2 gap-4">
         {withDownloads.map((p) =>
-          p.data.downloads.filter((d) => !d.restricted).map((d) => (
-            <a href={d.file} download class="flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all">
-              <span>
-                <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
-                <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title} &middot; {d.fileType}</span>
-              </span>
-              <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Download &rarr;</span>
-            </a>
-          ))
+          p.data.downloads.filter((d) => !d.restricted).map((d) =>
+            d.file ? (
+              <a href={d.file} download class="flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all">
+                <span>
+                  <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
+                  <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title} &middot; {d.fileType}</span>
+                </span>
+                <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Download &rarr;</span>
+              </a>
+            ) : (
+              <div class="flex items-center gap-3 rounded-lg border border-dashed border-sms-charcoal-200 p-5" aria-disabled="true">
+                <span>
+                  <span class="block font-semibold text-sms-charcoal-400 text-sm">{d.label}</span>
+                  <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title} &middot; {d.fileType}</span>
+                </span>
+                <span class="text-sm text-sms-charcoal-300 font-medium ml-auto shrink-0">Coming soon</span>
+              </div>
+            )
+          )
         )}
       </div>
     </section>

@@ -143,6 +143,10 @@ downloads:
     file: ""
     fileType: "PDF"
     restricted: true
+  - label: "DN600 Maintenance Chamber CAD/BIM model"
+    file: ""
+    fileType: "DWG/RVT/IFC"
+    restricted: true
 seoTitle: "DN600 Maintenance Chamber | SMS AXEDO Polypropylene Sewer Chamber Australia"
 seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber — WSAA PA 1317 appraised, Class D rated, installs to 6m depth by hand. Full specs, configurations and standards."
 ---

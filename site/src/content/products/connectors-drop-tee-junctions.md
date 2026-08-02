@@ -29,7 +29,11 @@ faqs:
     answer: "Yes. SMS structures support on-site lateral drop-in connections using a hole saw and rubber collar kit — no need to return the unit to the factory or install a new base configuration."
   - question: "What sizes are available for drop-in lateral connections?"
     answer: "DN100 and DN150 across the DN375 Shaft and DN600 Chamber, and DN100, DN150 and DN200 on the larger DN1000 Hole."
-downloads: []
+downloads:
+  - label: "Connectors & Drop Tee Junctions Datasheet"
+    file: ""
+    fileType: "PDF"
+    restricted: false
 seoTitle: "Sewer Connectors & Drop Tee Junctions | SMS Maintenance Structure Fittings"
 seoDescription: "On-site lateral drop-in connection kits for SMS AXEDO and SMS ROMOLD maintenance shafts, chambers and holes — DN100 to DN200."
 ---
