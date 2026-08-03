@@ -6,7 +6,6 @@ import TrustStrip from '../components/TrustStrip.astro';
 import ProductCard from '../components/ProductCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import heroImage from '../assets/images/hero-install-chamber.jpg';
-import company from '../data/company.json';
 
 const products = await getCollection('products');
 const families = products
@@ -62,7 +61,7 @@ const applications = [
     image={heroImage}
     imageAlt="SMS technician hand-installing a polypropylene maintenance structure base into a sewer trench, excavator in background"
   >
-    <Fragment slot="title">Sewer Access Systems, engineered to <span class="text-sms-green-400">outlast concrete</span>.</Fragment>
+    <Fragment slot="title">Sewer Access Systems, engineered to <span class="text-sms-green-400">outlast concrete.</span></Fragment>
   </Hero>
 
   <TrustStrip />
@@ -180,20 +179,6 @@ const applications = [
         ))}
       </ul>
     </div>
-  </section>
-
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="coverage-heading">
-    <h2 id="coverage-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">National supply coverage</h2>
-    <p class="text-sms-charcoal-500 max-w-2xl mb-6">
-      SMS operates warehouses across every mainland state, with Tasmania, the Northern Territory and
-      international supply to follow.
-    </p>
-    <ul class="flex flex-wrap gap-2 mb-6">
-      {company.coverage.map((c) => (
-        <li class="rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700">{c}</li>
-      ))}
-    </ul>
-    <a href="/contact/#locations" class="text-sm font-semibold text-sms-green-600 hover:underline">Find your nearest branch &rarr;</a>
   </section>
 
   <CtaBand />
