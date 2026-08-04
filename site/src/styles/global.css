@@ -4,23 +4,13 @@
    wght.css = weight axis only, unicode-range split — the browser fetches
    just the ~36-48kB latin subset it needs. IBM Plex Mono only ships static
    weight files (no variable build), so it's pinned to the two weights the
-   type scale actually uses. */
-@import "@fontsource-variable/source-serif-4/wght.css";
+   type scale actually uses. Inter's own metrics sit close enough to the
+   system sans stack it falls back to that it doesn't need the
+   metric-adjusted fallback @font-face Source Serif 4 used to require here. */
+@import "@fontsource-variable/inter/wght.css";
 @import "@fontsource-variable/archivo/wght.css";
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
-
-/* Source Serif 4 falls back to a much narrower system serif (Georgia), which
-   causes visible reflow while the webfont loads. This metric-adjusted stand-in
-   mimics Source Serif 4's box metrics using locally-installed Georgia, so
-   layout doesn't shift once the real face swaps in. */
-@font-face {
-  font-family: "Source Serif Fallback";
-  src: local("Georgia");
-  size-adjust: 96%;
-  ascent-override: 92%;
-  descent-override: 26%;
-}
 
 @theme {
   /* Brand palette extracted directly from the SMS logo and brochures */
@@ -46,14 +36,14 @@
   --color-sms-charcoal-800: #1d1c1b;
   --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
 
-  /* Type pairing 03. Source Serif 4 is the display face — headings only, and
-     never below 22px, where its fine detail closes up and reads as noise.
+  /* Type pairing 04. Inter is the display face — headings only, set heavy
+     (800) and tight (-0.025em) for a bold, modern headline treatment.
      Archivo carries everything else: body copy, nav, buttons and form
      controls, so it's the --font-sans Tailwind reaches for by default.
      IBM Plex Mono is reserved for data — part codes, standards references,
      dimensions — never body copy or headings. */
   --font-sans: "Archivo Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Source Serif 4 Variable", "Source Serif Fallback", Georgia, "Times New Roman", serif;
+  --font-display: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
@@ -292,29 +282,18 @@ html {
      to each component's own Tailwind text-size utility rather than a
      hardcoded default here, so compact sub-headings (e.g. an h3 used as a
      small section label) stay whatever size their markup already sets
-     instead of being forced up to a "hero heading" size. */
+     instead of being forced up to a "hero heading" size. Weight 800 and
+     -0.025em tracking are the spec for the new Inter display treatment;
+     unlike Source Serif 4, Inter has no small-size legibility penalty, so
+     there's no separate fallback rule needed for compact headings anymore. */
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
     text-wrap: balance;
-  }
-
-  /* Source Serif's fine detail closes up below 22px and reads as noise, so
-     any h1–h3 carrying a Tailwind size utility of text-xl (20px) or smaller
-     — small uppercase labels, the 3D viewer's compact heading, etc. — falls
-     back to Archivo instead, per the same rule that demotes h4–h6. This still
-     needs to win over the plain h1/h2/h3 rule above despite being in the same
-     layer, so it relies on the extra class for specificity, not just source
-     order. */
-  h1.text-xs, h1.text-sm, h1.text-base, h1.text-lg, h1.text-xl,
-  h2.text-xs, h2.text-sm, h2.text-base, h2.text-lg, h2.text-xl,
-  h3.text-xs, h3.text-sm, h3.text-base, h3.text-lg, h3.text-xl {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: normal;
   }
 
   h4,
