@@ -47,7 +47,8 @@ const accessories = products
           <div
             id="products-nav-panel"
             hidden
-            class="absolute left-0 top-full mt-2 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg"
+            data-closed
+            class="nav-panel absolute left-0 top-full mt-2 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top-left"
           >
             <p class="px-4 pt-1 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">Maintenance structures</p>
             {productFamilies.map((p) => (
@@ -120,7 +121,7 @@ const accessories = products
       </div>
     </div>
 
-    <nav id="mobile-nav" hidden class="lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
+    <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
       <ul>
         <li>
           <button
@@ -135,7 +136,7 @@ const accessories = products
               <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <ul id="mobile-products-panel" hidden class="pl-4 pb-2 space-y-1">
+          <ul id="mobile-products-panel" hidden data-closed class="mobile-panel pl-4 pb-2 space-y-1">
             {productFamilies.map((p) => (
               <li>
                 <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
@@ -171,6 +172,35 @@ const accessories = products
     </nav>
   </div>
 </header>
+
+<style>
+  /* Anchored overlay: scale reads as "emerging from the trigger", not just
+     fading in place — origin-top-left keeps that anchor honest since the
+     panel is left-aligned under the toggle. */
+  .nav-panel {
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
+  }
+  .nav-panel[data-closed] {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  /* In-flow disclosures (push content below them, no anchor point to read
+     from) — a plain fade+lift is enough; a scale here would just look like
+     a shrink, not an emergence. */
+  .mobile-panel {
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
+  }
+  .mobile-panel[data-closed] {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-panel,
+    .mobile-panel {
+      transition: none;
+    }
+  }
+</style>
 
 <script>
   // ---- scroll elevation ---------------------------------------------------
@@ -220,6 +250,30 @@ const accessories = products
     if (e.key === STORAGE_KEY) paintBadge();
   });
 
+  // ---- disclosure reveal --------------------------------------------------
+  // `hidden` alone snaps the panel in and out with no animatable in-between
+  // state (display:none has nothing to transition from). Opening removes it
+  // immediately, then waits a frame so the closed CSS state has actually
+  // painted before clearing data-closed — otherwise the browser coalesces
+  // both changes into one frame and nothing animates. Closing does the
+  // reverse: flip data-closed to start the transition, then only add hidden
+  // back once transitionend confirms it's actually finished (falling back to
+  // an immediate hide under reduced motion, since transitionend never fires
+  // when the stylesheet has already zeroed the transition out).
+  function revealPanel(panel: HTMLElement, open: boolean): void {
+    if (open) {
+      panel.removeAttribute('hidden');
+      requestAnimationFrame(() => panel.removeAttribute('data-closed'));
+      return;
+    }
+    panel.setAttribute('data-closed', '');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      panel.setAttribute('hidden', '');
+    } else {
+      panel.addEventListener('transitionend', () => panel.setAttribute('hidden', ''), { once: true });
+    }
+  }
+
   // ---- desktop Products dropdown ------------------------------------------
   const productsToggle = document.getElementById('products-nav-toggle');
   const productsPanel = document.getElementById('products-nav-panel');
@@ -229,8 +283,7 @@ const accessories = products
     if (!productsToggle || !productsPanel || !productsChevron) return;
     productsToggle.setAttribute('aria-expanded', String(open));
     productsChevron.style.transform = open ? 'rotate(180deg)' : '';
-    if (open) productsPanel.removeAttribute('hidden');
-    else productsPanel.setAttribute('hidden', '');
+    revealPanel(productsPanel, open);
   }
 
   if (productsToggle && productsPanel) {
@@ -264,15 +317,9 @@ const accessories = products
     if (!toggle || !panel || !iconOpen || !iconClose) return;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    if (open) {
-      panel.removeAttribute('hidden');
-      iconOpen.classList.add('hidden');
-      iconClose.classList.remove('hidden');
-    } else {
-      panel.setAttribute('hidden', '');
-      iconClose.classList.add('hidden');
-      iconOpen.classList.remove('hidden');
-    }
+    revealPanel(panel, open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
   }
 
   if (toggle && panel) {
@@ -307,8 +354,7 @@ const accessories = products
     if (!mobileProductsToggle || !mobileProductsPanel || !mobileProductsChevron) return;
     mobileProductsToggle.setAttribute('aria-expanded', String(open));
     mobileProductsChevron.style.transform = open ? 'rotate(180deg)' : '';
-    if (open) mobileProductsPanel.removeAttribute('hidden');
-    else mobileProductsPanel.setAttribute('hidden', '');
+    revealPanel(mobileProductsPanel, open);
   }
 
   mobileProductsToggle?.addEventListener('click', () => {
