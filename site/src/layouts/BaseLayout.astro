@@ -9,9 +9,10 @@ interface Props {
   description: string;
   canonicalPath: string; // e.g. "/products/dn1000-maintenance-hole/"
   ogImage?: string;
+  transparentHeader?: boolean; // only for pages whose Hero carries a background image tall enough to sit behind it
 }
 
-const { title, description, canonicalPath, ogImage } = Astro.props;
+const { title, description, canonicalPath, ogImage, transparentHeader = false } = Astro.props;
 const siteUrl = 'https://sewerms.com.au';
 const canonicalURL = new URL(canonicalPath, siteUrl).toString();
 
@@ -67,7 +68,7 @@ const organizationSchema = {
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <Header />
+    <Header transparent={transparentHeader} />
     <main id="main-content">
       <slot />
     </main>

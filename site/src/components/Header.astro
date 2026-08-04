@@ -4,6 +4,11 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import SearchModal from './SearchModal.astro';
 
+interface Props {
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
 const nav = [
   { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
   { label: 'Applications', href: '/applications/' },
@@ -22,11 +27,16 @@ const accessories = products
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<header id="site-header" class="border-b border-sms-charcoal-100 bg-white sticky top-0 z-40 transition-shadow duration-200">
+<header
+  id="site-header"
+  class={transparent
+    ? "site-header--transparent fixed inset-x-0 top-0 z-40 transition-colors duration-300"
+    : "border-b border-sms-charcoal-100 bg-white sticky top-0 z-40 transition-shadow duration-200"}
+>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between gap-4">
       <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">
-        <Image src={logo} alt="SMS" width={110} height={54} />
+        <Image src={logo} alt="SMS" width={110} height={54} class={transparent ? "site-header__logo" : undefined} />
       </a>
 
       <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-sms-charcoal-700" aria-label="Main">
@@ -121,7 +131,7 @@ const accessories = products
       </div>
     </div>
 
-    <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
+    <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 bg-white py-2" aria-label="Main">
       <ul>
         <li>
           <button
@@ -200,16 +210,101 @@ const accessories = products
       transition: none;
     }
   }
+
+  /* Transparent mode bleeds the bar over a hero image instead of sitting on
+     its own solid strip, so it needs its own scrim (independent of the
+     hero's own gradient, which is deliberately lightest right at the top —
+     see Product3DViewer's rake-light comment for the same "the natural
+     lighting/gradient is weakest exactly where this element needs it most"
+     shape of problem). Tailwind's utilities layer beats unlayered CSS
+     regardless of specificity (see the base-layer comment in global.css),
+     so every override below needs !important to actually win over the
+     text-sms-charcoal-700-style utility classes already on these elements. */
+  .site-header--transparent {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.15) 70%, transparent);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header--transparent nav {
+    color: #fff !important;
+  }
+  .site-header--transparent nav a:hover,
+  .site-header--transparent nav button:hover {
+    color: var(--color-sms-green-400) !important;
+  }
+  /* #search-trigger is rendered by the child SearchModal component, not by
+     this file, so it never carries this component's own Astro scope
+     attribute — :global() is required here or the selector silently
+     matches nothing (confirmed: without it, the button's color/border
+     stayed exactly at their default charcoal values, no error, no visual
+     hint anything was wrong). #nav-toggle IS Header.astro's own markup and
+     scopes normally, but shares the rule for identical treatment. */
+  .site-header--transparent :global(#search-trigger),
+  .site-header--transparent #nav-toggle {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+  /* The Products dropdown, mobile nav and search modal are still solid
+     white popups nested inside the bar, not part of the transparent
+     treatment — reset them back to their normal dark-on-white colors. */
+  .site-header--transparent .bg-white,
+  .site-header--transparent .bg-white * {
+    color: initial !important;
+    border-color: initial !important;
+  }
+  .site-header--transparent .site-header__logo {
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s;
+  }
+  /* Solidifies once scrolled past the hero, so nav stays usable further
+     down the page instead of permanently bleeding into whatever content
+     follows it. */
+  .site-header--transparent.is-scrolled {
+    background: #fff;
+    border-bottom-color: var(--color-sms-charcoal-100);
+  }
+  .site-header--transparent.is-scrolled nav {
+    color: var(--color-sms-charcoal-700) !important;
+  }
+  .site-header--transparent.is-scrolled nav a:hover,
+  .site-header--transparent.is-scrolled nav button:hover {
+    color: var(--color-sms-green-600) !important;
+  }
+  .site-header--transparent.is-scrolled :global(#search-trigger) {
+    color: var(--color-sms-charcoal-500) !important;
+    border-color: var(--color-sms-charcoal-200) !important;
+  }
+  .site-header--transparent.is-scrolled #nav-toggle {
+    color: var(--color-sms-charcoal-700) !important;
+    border-color: var(--color-sms-charcoal-200) !important;
+  }
+  .site-header--transparent.is-scrolled .site-header__logo {
+    filter: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-header--transparent,
+    .site-header--transparent .site-header__logo {
+      transition: none;
+    }
+  }
 </style>
 
 <script>
   // ---- scroll elevation ---------------------------------------------------
   // A hairline border reads fine at the top of the page, but once content is
   // scrolling underneath a sticky header it needs a little more separation
-  // to still read as "above" the page rather than part of it.
+  // to still read as "above" the page rather than part of it. Transparent
+  // headers get a much bigger threshold — they're meant to bleed over the
+  // hero image, not solidify the instant the page moves a few pixels — and
+  // also flip to a solid bar via is-scrolled once past it, since a
+  // permanently transparent bar would go illegible over whatever content
+  // follows the hero.
   const siteHeader = document.getElementById('site-header');
+  const isTransparentHeader = siteHeader?.classList.contains('site-header--transparent') ?? false;
+  const scrollThreshold = isTransparentHeader ? 48 : 4;
   function paintElevation(): void {
-    siteHeader?.classList.toggle('shadow-sm', window.scrollY > 4);
+    const scrolled = window.scrollY > scrollThreshold;
+    siteHeader?.classList.toggle('shadow-sm', scrolled);
+    if (isTransparentHeader) siteHeader?.classList.toggle('is-scrolled', scrolled);
   }
   paintElevation();
   window.addEventListener('scroll', paintElevation, { passive: true });
