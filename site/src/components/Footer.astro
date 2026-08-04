@@ -1,5 +1,7 @@
 ---
 import company from '../data/company.json';
+import monoLogo from '../assets/images/sms-logo-mono-white.png';
+import { Image } from 'astro:assets';
 
 const year = new Date().getFullYear();
 const productLinks = [
@@ -22,7 +24,19 @@ const resourceLinks = [
       actually reads as evenly spaced. */}
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 xl:flex xl:justify-between xl:gap-x-10">
     <div class="xl:max-w-[20rem]">
-      <p class="text-white font-semibold text-lg mb-2">SMS</p>
+      {/* h-6 + mb-3 matches the line-height + margin-bottom of the "Products"/
+          "Resources"/"Contact" headings this sits beside, and items-end pins the
+          mark to the bottom of that box — the same row-bottom the column
+          headings' own text sits on — rather than the top, where a shorter mark
+          would otherwise float above their baseline. The source PNG's own
+          canvas has more empty padding below the mark than above it (68px vs
+          19px), which at this display size undershoots the text's own leading
+          by ~4px — mb-1 makes up the difference so the visible ink lines up,
+          not just the two elements' invisible boxes. Verified by comparing
+          rendered pixel bounds, not eyeballed. */}
+      <div class="h-6 mb-3 flex items-end">
+        <Image src={monoLogo} alt="SMS" height={22} width={Math.round((22 * monoLogo.width) / monoLogo.height)} class="mb-1" />
+      </div>
       <p class="text-sm leading-relaxed">
         Australia's WSAA-appraised polypropylene sewer maintenance structures. Part of the
         Clover group.
