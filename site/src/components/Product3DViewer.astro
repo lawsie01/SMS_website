@@ -8,6 +8,8 @@ const { product, title } = Astro.props;
 // Real CAD-derived assets, added as they become available. Products without
 // an entry here still get the procedural placeholder geometry below.
 const MODEL_URLS: Partial<Record<Props['product'], string>> = {
+  shaft: '/models/dn375-maintenance-shaft.glb',
+  chamber: '/models/dn600-maintenance-chamber.glb',
   hole: '/models/dn1000-maintenance-hole.glb',
 };
 const modelUrl = MODEL_URLS[product];
@@ -21,7 +23,7 @@ const modelUrl = MODEL_URLS[product];
     </div>
 
     <div
-      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-700 bg-gradient-to-b from-sms-charcoal-800 to-sms-charcoal-900 overflow-hidden"
+      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-gradient-to-b from-sms-charcoal-50 to-sms-charcoal-100 overflow-hidden"
       data-product={product}
       data-model-url={modelUrl}
       style="height: 480px;"
@@ -240,7 +242,7 @@ const modelUrl = MODEL_URLS[product];
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.5;
+    renderer.toneMappingExposure = 1.35;
     container.appendChild(renderer.domElement);
 
     const loading = container.querySelector<HTMLElement>('.viewer-loading');
@@ -248,14 +250,20 @@ const modelUrl = MODEL_URLS[product];
       loading?.remove();
     }
 
-    scene.add(new THREE.AmbientLight(0xffffff, 1.1));
-    const key = new THREE.DirectionalLight(0xffffff, 2.2);
+    // Tuned against the darkest real material in the range (near-black
+    // corrugated risers, roughness ~0.2): the rim light reads as a crisp
+    // brand-green edge highlight there, not a full color cast, while ambient
+    // + fill stay strong enough to hold ridge detail in shadow. Same values
+    // for all three viewers is the point — one lighting rig, so a product's
+    // apparent finish comes from its own material, not from re-lighting it.
+    scene.add(new THREE.AmbientLight(0xffffff, 1.3));
+    const key = new THREE.DirectionalLight(0xffffff, 2.0);
     key.position.set(4, 6, 4);
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0xffffff, 1.1);
+    const fill = new THREE.DirectionalLight(0xffffff, 1.3);
     fill.position.set(-3, 2, 4);
     scene.add(fill);
-    const rim = new THREE.DirectionalLight(0x63b447, 0.9);
+    const rim = new THREE.DirectionalLight(0x63b447, 0.3);
     rim.position.set(-4, 3, -4);
     scene.add(rim);
 
