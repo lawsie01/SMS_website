@@ -267,6 +267,20 @@ const modelUrl = MODEL_URLS[product];
     const fill = new THREE.DirectionalLight(0xffffff, 0.9);
     fill.position.set(-3, 2, 4);
     scene.add(fill);
+    // Molded/embossed detail (part numbers, brand marks on the access cover)
+    // is shallow relief — it only reads when light rakes across it at a low
+    // angle, casting a shadow into the recess. The key light's fairly steep
+    // elevation is nearly coincident with a top-down camera, which is
+    // exactly the angle that flattens relief text into invisible noise. Two
+    // near-horizontal lights from different azimuths catch stroke edges
+    // regardless of which way a given letter runs, without changing the
+    // overall look of the standard 3/4 view they're too dim to dominate.
+    const rake1 = new THREE.DirectionalLight(0xffffff, 1.6);
+    rake1.position.set(7, 0.6, -2);
+    scene.add(rake1);
+    const rake2 = new THREE.DirectionalLight(0xffffff, 1.1);
+    rake2.position.set(-2, 0.5, 7);
+    scene.add(rake2);
     const rim = new THREE.DirectionalLight(0x63b447, 0.3);
     rim.position.set(-4, 3, -4);
     scene.add(rim);
