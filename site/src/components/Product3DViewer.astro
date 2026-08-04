@@ -251,16 +251,20 @@ const modelUrl = MODEL_URLS[product];
     }
 
     // Tuned against the darkest real material in the range (near-black
-    // corrugated risers, roughness ~0.2): the rim light reads as a crisp
-    // brand-green edge highlight there, not a full color cast, while ambient
-    // + fill stay strong enough to hold ridge detail in shadow. Same values
-    // for all three viewers is the point — one lighting rig, so a product's
-    // apparent finish comes from its own material, not from re-lighting it.
-    scene.add(new THREE.AmbientLight(0xffffff, 1.3));
-    const key = new THREE.DirectionalLight(0xffffff, 2.0);
+    // matte corrugated risers): ambient light has no notion of occlusion, so
+    // it lifts every fragment's floor brightness uniformly — kept low here
+    // specifically so a near-black albedo still reads as black instead of
+    // being flattened toward mid-grey. Shape and ridge detail instead comes
+    // from the directional key/fill falloff, which does vary with surface
+    // angle. The rim reads as a crisp brand-green edge highlight, not a
+    // color cast. Same values for all three viewers is the point — one
+    // lighting rig, so a product's apparent finish comes from its own
+    // material, not from re-lighting it.
+    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+    const key = new THREE.DirectionalLight(0xffffff, 2.4);
     key.position.set(4, 6, 4);
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0xffffff, 1.3);
+    const fill = new THREE.DirectionalLight(0xffffff, 0.9);
     fill.position.set(-3, 2, 4);
     scene.add(fill);
     const rim = new THREE.DirectionalLight(0x63b447, 0.3);
@@ -305,10 +309,39 @@ const modelUrl = MODEL_URLS[product];
       controls.update();
     }
 
+    // Every real asset is molded polypropylene, never metal, but the source
+    // materials disagree: several omit metallicFactor entirely, which per the
+    // glTF spec defaults to fully metallic — combined with their low
+    // authored roughness that's a mirror, not a matte plastic surface, and
+    // it's exactly what turned the rim light into a hard green glint on the
+    // chamber. Clamping metalness down and roughness up here (rather than
+    // editing the source files) normalizes all three to the same matte
+    // finish regardless of what each export happened to omit. The pipe
+    // stub material (named mat_4/mat_4.001 in every one of the three files)
+    // gets an explicit light grey on top, since the chamber's copy also
+    // omitted its base color and defaulted to metallic white.
+    function normalizeMaterials(root: THREE.Object3D) {
+      root.traverse((node) => {
+        if (!(node instanceof THREE.Mesh)) return;
+        const materials = Array.isArray(node.material) ? node.material : [node.material];
+        for (const material of materials) {
+          if (!(material instanceof THREE.MeshStandardMaterial)) continue;
+          material.metalness = Math.min(material.metalness, 0.1);
+          material.roughness = Math.max(material.roughness, 0.6);
+          if (material.name.startsWith('mat_4')) {
+            material.color.set(0xc7c5bf);
+            material.metalness = 0.05;
+            material.roughness = 0.55;
+          }
+        }
+      });
+    }
+
     if (modelUrl) {
       getGltfLoader().load(
         modelUrl,
         (gltf) => {
+          normalizeMaterials(gltf.scene);
           frameObject(gltf.scene);
           scene.add(gltf.scene);
           clearLoading();
