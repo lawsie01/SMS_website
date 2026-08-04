@@ -4,6 +4,13 @@ interface Props {
   title: string;
 }
 const { product, title } = Astro.props;
+
+// Real CAD-derived assets, added as they become available. Products without
+// an entry here still get the procedural placeholder geometry below.
+const MODEL_URLS: Partial<Record<Props['product'], string>> = {
+  hole: '/models/dn1000-maintenance-hole.glb',
+};
+const modelUrl = MODEL_URLS[product];
 ---
 
 <section aria-labelledby="viewer-heading" class="sms-dotfield">
@@ -16,6 +23,7 @@ const { product, title } = Astro.props;
     <div
       class="product-3d-viewer relative rounded-xl border border-sms-charcoal-700 bg-gradient-to-b from-sms-charcoal-800 to-sms-charcoal-900 overflow-hidden"
       data-product={product}
+      data-model-url={modelUrl}
       style="height: 480px;"
     >
       <div class="viewer-loading absolute inset-0 flex items-center justify-center text-sms-charcoal-400 text-sm">
@@ -28,17 +36,25 @@ const { product, title } = Astro.props;
       </noscript>
     </div>
 
-    <p class="mt-3 text-xs text-sms-charcoal-400 max-w-2xl">
-      Placeholder geometry for concept purposes — approximates the real product's proportions and
-      construction (corrugated riser, access cover, RRJ inlet/outlet sockets) but is not derived from
-      the actual CAD model. Swap in the real .glb/.gltf asset when available.
-    </p>
+    {modelUrl ? (
+      <p class="mt-3 text-xs text-sms-charcoal-400 max-w-2xl">
+        Actual CAD-derived model of the SMS {title}.
+      </p>
+    ) : (
+      <p class="mt-3 text-xs text-sms-charcoal-400 max-w-2xl">
+        Placeholder geometry for concept purposes — approximates the real product's proportions and
+        construction (corrugated riser, access cover, RRJ inlet/outlet sockets) but is not derived from
+        the actual CAD model. Swap in the real .glb/.gltf asset when available.
+      </p>
+    )}
   </div>
 </section>
 
 <script>
   import * as THREE from 'three';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
   type ProductKey = 'shaft' | 'chamber' | 'hole';
 
@@ -193,9 +209,28 @@ const { product, title } = Astro.props;
     return mesh;
   }
 
+  function buildProceduralGroup(config: ProductConfig): THREE.Group {
+    const group = new THREE.Group();
+    group.add(buildBody(config));
+    group.add(buildCap(config));
+    group.add(buildStubs(config));
+    group.add(buildBase(config));
+    return group;
+  }
+
+  let gltfLoader: GLTFLoader | null = null;
+  function getGltfLoader(): GLTFLoader {
+    if (!gltfLoader) {
+      gltfLoader = new GLTFLoader();
+      gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+    }
+    return gltfLoader;
+  }
+
   function initViewer(container: HTMLElement) {
     const productKey = (container.dataset.product as ProductKey) ?? 'hole';
     const config = CONFIGS[productKey];
+    const modelUrl = container.dataset.modelUrl || null;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 100);
@@ -208,8 +243,10 @@ const { product, title } = Astro.props;
     renderer.toneMappingExposure = 1.5;
     container.appendChild(renderer.domElement);
 
-    const loading = container.querySelector('.viewer-loading');
-    if (loading) loading.remove();
+    const loading = container.querySelector<HTMLElement>('.viewer-loading');
+    function clearLoading() {
+      loading?.remove();
+    }
 
     scene.add(new THREE.AmbientLight(0xffffff, 1.1));
     const key = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -221,13 +258,6 @@ const { product, title } = Astro.props;
     const rim = new THREE.DirectionalLight(0x63b447, 0.9);
     rim.position.set(-4, 3, -4);
     scene.add(rim);
-
-    const productGroup = new THREE.Group();
-    productGroup.add(buildBody(config));
-    productGroup.add(buildCap(config));
-    productGroup.add(buildStubs(config));
-    productGroup.add(buildBase(config));
-    scene.add(productGroup);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 0, 0);
@@ -248,6 +278,44 @@ const { product, title } = Astro.props;
     wantsLessMotion.addEventListener('change', (e) => {
       if (e.matches) controls.autoRotate = false;
     });
+
+    // Frames the camera/controls around whatever's actually in the scene, so a
+    // real asset's true dimensions (unknown until it loads) drive the shot
+    // instead of the procedural placeholder's hand-tuned cameraDistance.
+    function frameObject(object: THREE.Object3D) {
+      const box = new THREE.Box3().setFromObject(object);
+      const sphere = box.getBoundingSphere(new THREE.Sphere());
+      object.position.sub(sphere.center);
+      const distance = sphere.radius * 2.6;
+      camera.position.set(distance * 0.7, distance * 0.35, distance * 0.9);
+      camera.near = Math.max(distance / 100, 0.01);
+      camera.far = distance * 20;
+      camera.updateProjectionMatrix();
+      controls.target.set(0, 0, 0);
+      controls.minDistance = sphere.radius * 1.1;
+      controls.maxDistance = sphere.radius * 6;
+      controls.update();
+    }
+
+    if (modelUrl) {
+      getGltfLoader().load(
+        modelUrl,
+        (gltf) => {
+          frameObject(gltf.scene);
+          scene.add(gltf.scene);
+          clearLoading();
+        },
+        undefined,
+        (error) => {
+          console.error(`3D viewer: failed to load ${modelUrl}, falling back to placeholder geometry.`, error);
+          scene.add(buildProceduralGroup(config));
+          clearLoading();
+        },
+      );
+    } else {
+      scene.add(buildProceduralGroup(config));
+      clearLoading();
+    }
 
     function resize() {
       const { clientWidth, clientHeight } = container;
