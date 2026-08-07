@@ -23,6 +23,13 @@ const {
   secondaryCta,
   compact = false,
 } = Astro.props;
+
+// Every current primaryCta ends up at /contact/ (optionally with
+// ?product=<id> on product pages) — guarded on the href itself, rather than
+// assuming that's still true, in case Hero is ever given a primaryCta that
+// points somewhere else entirely.
+const isEnquiryCta = primaryCta.href === '/contact/' || primaryCta.href.startsWith('/contact/?');
+const enquiryProduct = isEnquiryCta ? new URL(primaryCta.href, 'https://sewerms.com.au').searchParams.get('product') : null;
 ---
 
 <section class="sms-contour relative overflow-hidden text-white">
@@ -49,6 +56,8 @@ const {
       <div class="mt-8 flex flex-wrap gap-4">
         <a
           href={primaryCta.href}
+          data-enquiry-cta={isEnquiryCta ? true : undefined}
+          data-enquiry-product={enquiryProduct ?? undefined}
           class:list={[
             "inline-flex items-center rounded-md px-6 py-3 text-base font-semibold transition-colors",
             image

@@ -20,6 +20,8 @@ const {
     <div class="flex flex-wrap justify-center gap-4 shrink-0">
       <a
         href={productContext ? `/contact/?product=${productContext}` : '/contact/'}
+        data-enquiry-cta
+        data-enquiry-product={productContext ?? undefined}
         class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-800 transition-colors"
       >
         Enquire now

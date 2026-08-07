@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import EnquiryModal from '../components/EnquiryModal.astro';
 import '../styles/global.css';
 import company from '../data/company.json';
 
@@ -72,5 +73,6 @@ const organizationSchema = {
       <slot />
     </main>
     <Footer />
+    <EnquiryModal />
   </body>
 </html>
