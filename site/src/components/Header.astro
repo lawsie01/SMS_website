@@ -4,14 +4,41 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import SearchModal from './SearchModal.astro';
 
-const nav = [
-  { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
-  { label: 'Applications', href: '/applications/' },
+// Utility strip (bar 1) — secondary, reference-only links. Scrolls away with
+// the page; only the main bar below stays sticky.
+const utilityLinks = [
   { label: 'Approvals', href: '/approvals/' },
   { label: 'Technical Resources', href: '/technical-resources/' },
-  { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];
+
+// Main nav (bar 2) — every top-level item is a click-triggered dropdown
+// parent. Products gets a full-width mega panel because it's the one item
+// with genuinely categorised content; the other three get a compact small
+// menu built from real on-page section anchors rather than invented
+// sub-pages, so every link lands somewhere that already exists.
+const whyPlasticMenu = [
+  { label: 'Factor-by-factor comparison', href: '/why-plastic-vs-concrete/#table-heading' },
+  { label: 'The real cost difference', href: '/why-plastic-vs-concrete/#tco-heading' },
+  { label: 'When concrete still makes sense', href: '/why-plastic-vs-concrete/#when-concrete-heading' },
+];
+const whyPlasticCta = { label: 'View full comparison', href: '/why-plastic-vs-concrete/' };
+
+const applicationsMenu = [
+  { label: 'Water utilities & asset owners', href: '/applications/#utilities' },
+  { label: 'Civil contractors & plumbers', href: '/applications/#contractors' },
+  { label: 'Design engineers & specifiers', href: '/applications/#engineers' },
+];
+const applicationsCta = { label: 'Which product fits?', href: '/applications/#fit-guide' };
+
+const aboutMenu = [
+  { label: 'The complete range', href: '/about/#range-heading' },
+  { label: 'Technical & R&D capability', href: '/about/#technical-heading' },
+  { label: 'Manufacturing partners', href: '/about/#manufacturing-heading' },
+  { label: 'The Clover group', href: '/about/#clover-heading' },
+  { label: 'Where we supply', href: '/about/#coverage-heading' },
+];
+const aboutCta = { label: 'Get in touch with the team', href: '/about/#team-heading' };
 
 const products = await getCollection('products');
 const productFamilies = products
@@ -22,162 +49,299 @@ const accessories = products
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<header id="site-header" class="border-b border-sms-charcoal-100 bg-white sticky top-0 z-40 transition-shadow duration-200">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-20 items-center justify-between gap-4">
-      <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">
-        <Image src={logo} alt="SMS" width={110} height={54} />
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-sms-charcoal-700" aria-label="Main">
-        <div class="relative">
-          <button
-            type="button"
-            id="products-nav-toggle"
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="products-nav-panel"
-            class="flex items-center gap-1 hover:text-sms-green-600 transition-colors"
-          >
-            Products
-            <svg id="products-nav-chevron" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div
-            id="products-nav-panel"
-            hidden
-            data-closed
-            class="nav-panel absolute left-0 top-full mt-2 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top-left"
-          >
-            <p class="px-4 pt-1 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">Maintenance structures</p>
-            {productFamilies.map((p) => (
-              <a href={`/products/${p.id}/`} class="block px-4 py-2 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">
-                {p.data.title}
-              </a>
-            ))}
-            <div class="my-1.5 border-t border-sms-charcoal-100"></div>
-            <p class="px-4 pt-1 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400">Fittings & accessories</p>
-            {accessories.map((p) => (
-              <a href={`/products/${p.id}/`} class="block px-4 py-2 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">
-                {p.data.title}
-              </a>
-            ))}
-            <div class="my-1.5 border-t border-sms-charcoal-100"></div>
-            <a href="/products/" class="block px-4 py-2 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">
-              View all products &rarr;
-            </a>
-          </div>
-        </div>
-        {nav.map((item) => (
-          <a href={item.href} class="hover:text-sms-green-600 transition-colors">
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <div class="flex items-center gap-2 sm:gap-3">
-        <SearchModal />
-
-        {/* Hidden until the visitor actually has a quote started, so it stays out
-            of the way for everyone else. Populated by the script below. */}
-        <a
-          href="/quote/"
-          id="quote-badge-link"
-          hidden
-          class="items-center gap-2 rounded-md border border-sms-green-600 px-3 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50 transition-colors"
-        >
-          <span>Quote</span>
-          <span
-            id="quote-badge-count"
-            class="inline-flex min-w-5 h-5 items-center justify-center rounded-full bg-sms-green-600 px-1.5 text-xs font-bold text-white"
-          >0</span>
-        </a>
-
-        <a
-          href="/contact/"
-          data-enquiry-cta
-          class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
-        >
-          Enquire Now
-        </a>
-
-        {/* Six items in a wrapped row made the sticky bar two rows tall and left
-            20px tap targets. Collapsed behind a disclosure instead. */}
-        <button
-          type="button"
-          id="nav-toggle"
-          class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-md border border-sms-charcoal-200 text-sms-charcoal-700 hover:border-sms-green-400 transition-colors"
-          aria-expanded="false"
-          aria-controls="mobile-nav"
-          aria-label="Open menu"
-        >
-          <svg id="nav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <svg id="nav-icon-close" class="hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
+<header id="site-header" class="bg-white">
+  {/* Bar 1 — utility strip. Not sticky — it scrolls away with the page, so
+      only bar 2 below takes up permanent header real estate once scrolled.
+      Desktop/tablet only: on narrow viewports these three links move into
+      the mobile disclosure instead of wrapping a thin bar into two lines. */}
+  <div class="hidden lg:block bg-sms-charcoal-900 text-sms-charcoal-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end gap-6 text-xs font-medium">
+      {utilityLinks.map((item, i) => (
+        <>
+          {i > 0 && <span class="w-px h-3 bg-sms-charcoal-600" aria-hidden="true"></span>}
+          <a href={item.href} class="hover:text-sms-green-400 transition-colors">{item.label}</a>
+        </>
+      ))}
     </div>
+  </div>
 
-    <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
-      <ul>
-        <li>
+  {/* Bar 2 — main nav. This is the sticky element, not the header as a
+      whole — the shadow only kicks in on scroll (see script below); at rest,
+      against the top of the page, the border alone is enough separation. */}
+  <div id="main-bar" class="sticky top-0 z-40 bg-white border-b border-sms-charcoal-100 transition-shadow duration-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-20 items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">
+          <Image src={logo} alt="SMS" width={110} height={54} />
+        </a>
+
+        <nav class="hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-700" aria-label="Main">
+          {/* Products — full-width mega panel */}
+          <div class="nav-parent relative">
+            <button
+              type="button"
+              data-nav-toggle="products"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="products-nav-panel"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+            >
+              Products
+              <svg data-nav-chevron="products" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div
+              id="products-nav-panel"
+              hidden
+              data-closed
+              class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[min(90vw,56rem)] rounded-md border border-sms-charcoal-100 bg-white shadow-lg origin-top"
+            >
+              <div class="grid grid-cols-3 gap-10 p-8">
+                <div>
+                  <p class="text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400 mb-4">Maintenance structures</p>
+                  <ul class="space-y-3">
+                    {productFamilies.map((p) => (
+                      <li>
+                        <a href={`/products/${p.id}/`} class="block group">
+                          <span class="font-semibold text-sms-charcoal-900 group-hover:text-sms-green-600 transition-colors">{p.data.title}</span>
+                          {p.data.cardUseCase && <span class="block text-sm text-sms-charcoal-500 mt-0.5">{p.data.cardUseCase}</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p class="text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400 mb-4">Fittings &amp; accessories</p>
+                  <ul class="space-y-2.5 text-sm">
+                    {accessories.map((p) => (
+                      <li><a href={`/products/${p.id}/`} class="text-sms-charcoal-700 hover:text-sms-green-600 transition-colors">{p.data.title}</a></li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="rounded-lg bg-sms-charcoal-50 p-6 flex flex-col justify-between">
+                  <div>
+                    <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
+                    <p class="text-sm text-sms-charcoal-500">Compare depth ratings, load class and install method across the full range.</p>
+                  </div>
+                  <a href="/products/" class="mt-4 text-sm font-semibold text-sms-green-600 hover:underline">View all products &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Plastic vs Concrete — small menu */}
+          <div class="nav-parent relative">
+            <button
+              type="button"
+              data-nav-toggle="plastic"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="plastic-nav-panel"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+            >
+              Why Plastic vs Concrete
+              <svg data-nav-chevron="plastic" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="plastic-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
+              {whyPlasticMenu.map((item) => (
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+              ))}
+              <div class="my-1.5 border-t border-sms-charcoal-100"></div>
+              <a href={whyPlasticCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{whyPlasticCta.label} &rarr;</a>
+            </div>
+          </div>
+
+          {/* Applications — small menu */}
+          <div class="nav-parent relative">
+            <button
+              type="button"
+              data-nav-toggle="applications"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="applications-nav-panel"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+            >
+              Applications
+              <svg data-nav-chevron="applications" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="applications-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
+              {applicationsMenu.map((item) => (
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+              ))}
+              <div class="my-1.5 border-t border-sms-charcoal-100"></div>
+              <a href={applicationsCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{applicationsCta.label} &rarr;</a>
+            </div>
+          </div>
+
+          {/* About — small menu */}
+          <div class="nav-parent relative">
+            <button
+              type="button"
+              data-nav-toggle="about"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="about-nav-panel"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+            >
+              About
+              <svg data-nav-chevron="about" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="about-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
+              {aboutMenu.map((item) => (
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+              ))}
+              <div class="my-1.5 border-t border-sms-charcoal-100"></div>
+              <a href={aboutCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{aboutCta.label} &rarr;</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <SearchModal />
+
+          {/* Hidden until the visitor actually has a quote started, so it stays out
+              of the way for everyone else. Populated by the script below. */}
+          <a
+            href="/quote/"
+            id="quote-badge-link"
+            hidden
+            class="items-center gap-2 rounded-md border border-sms-green-600 px-3 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50 transition-colors"
+          >
+            <span>Quote</span>
+            <span
+              id="quote-badge-count"
+              class="inline-flex min-w-5 h-5 items-center justify-center rounded-full bg-sms-green-600 px-1.5 text-xs font-bold text-white"
+            >0</span>
+          </a>
+
+          <a
+            href="/contact/"
+            data-enquiry-cta
+            class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
+          >
+            Enquire Now
+          </a>
+
+          {/* Six items in a wrapped row made the sticky bar two rows tall and left
+              20px tap targets. Collapsed behind a disclosure instead. */}
           <button
             type="button"
-            id="mobile-products-toggle"
+            id="nav-toggle"
+            class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-md border border-sms-charcoal-200 text-sms-charcoal-700 hover:border-sms-green-400 transition-colors"
             aria-expanded="false"
-            aria-controls="mobile-products-panel"
-            class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors"
+            aria-controls="mobile-nav"
+            aria-label="Open menu"
           >
-            <span>Products</span>
-            <svg id="mobile-products-chevron" class="w-4 h-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg id="nav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg id="nav-icon-close" class="hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </button>
-          <ul id="mobile-products-panel" hidden data-closed class="mobile-panel pl-4 pb-2 space-y-1">
-            {productFamilies.map((p) => (
+        </div>
+      </div>
+
+      <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
+        <ul>
+          <li>
+            <button
+              type="button"
+              id="mobile-products-toggle"
+              aria-expanded="false"
+              aria-controls="mobile-products-panel"
+              class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors"
+            >
+              <span>Products</span>
+              <svg id="mobile-products-chevron" class="w-4 h-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <ul id="mobile-products-panel" hidden data-closed class="mobile-panel pl-4 pb-2 space-y-1">
+              {productFamilies.map((p) => (
+                <li>
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                    {p.data.title}
+                  </a>
+                </li>
+              ))}
+              {accessories.map((p) => (
+                <li>
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                    {p.data.title}
+                  </a>
+                </li>
+              ))}
               <li>
-                <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
-                  {p.data.title}
+                <a href="/products/" class="block py-2 text-sm font-semibold text-sms-green-600">
+                  View all products &rarr;
                 </a>
               </li>
-            ))}
-            {accessories.map((p) => (
-              <li>
-                <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
-                  {p.data.title}
-                </a>
-              </li>
-            ))}
+            </ul>
+          </li>
+          {[
+            { label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' },
+            { label: 'Applications', href: '/applications/' },
+            { label: 'About', href: '/about/' },
+          ].map((item) => (
             <li>
-              <a href="/products/" class="block py-2 text-sm font-semibold text-sms-green-600">
-                View all products &rarr;
+              <a href={item.href} class="block py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors">
+                {item.label}
               </a>
             </li>
-          </ul>
-        </li>
-        {nav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="block py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors"
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+          ))}
+        </ul>
+        {/* Utility-strip links, folded in here since bar 1 is hidden below lg.
+            Visually demoted (smaller, lighter, divider above) so the primary
+            items above still read as the main menu. */}
+        <ul class="mt-2 pt-2 border-t border-sms-charcoal-100 space-y-0.5">
+          {utilityLinks.map((item) => (
+            <li>
+              <a href={item.href} class="block py-2 text-sm text-sms-charcoal-500 hover:text-sms-green-600 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
 <style>
+  /* Green underline — hover/open state only (mirrors the reference's
+     "Services" treatment), not a permanent current-page marker. Positioned
+     to sit just under the label text regardless of the trigger's own
+     padding, so it reads as one consistent rule across all four items. */
+  .nav-trigger {
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-trigger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -21px;
+    height: 2px;
+    background: var(--color-sms-green-600);
+    transform: scaleX(0);
+    transition: transform 150ms ease-out;
+  }
+  .nav-trigger:hover::after,
+  .nav-parent[data-open] .nav-trigger::after {
+    transform: scaleX(1);
+  }
+
   /* Anchored overlay: scale reads as "emerging from the trigger", not just
-     fading in place — origin-top-left keeps that anchor honest since the
-     panel is left-aligned under the toggle. */
+     fading in place. */
   .nav-panel {
     transition: opacity 150ms ease-out, transform 150ms ease-out;
   }
@@ -197,7 +361,8 @@ const accessories = products
   }
   @media (prefers-reduced-motion: reduce) {
     .nav-panel,
-    .mobile-panel {
+    .mobile-panel,
+    .nav-trigger::after {
       transition: none;
     }
   }
@@ -206,11 +371,11 @@ const accessories = products
 <script>
   // ---- scroll elevation ---------------------------------------------------
   // A hairline border reads fine at the top of the page, but once content is
-  // scrolling underneath a sticky header it needs a little more separation
-  // to still read as "above" the page rather than part of it.
-  const siteHeader = document.getElementById('site-header');
+  // scrolling underneath the sticky bar it needs a little more separation to
+  // still read as "above" the page rather than part of it.
+  const mainBar = document.getElementById('main-bar');
   function paintElevation(): void {
-    siteHeader?.classList.toggle('shadow-sm', window.scrollY > 4);
+    mainBar?.classList.toggle('shadow-md', window.scrollY > 4);
   }
   paintElevation();
   window.addEventListener('scroll', paintElevation, { passive: true });
@@ -275,38 +440,66 @@ const accessories = products
     }
   }
 
-  // ---- desktop Products dropdown ------------------------------------------
-  const productsToggle = document.getElementById('products-nav-toggle');
-  const productsPanel = document.getElementById('products-nav-panel');
-  const productsChevron = document.getElementById('products-nav-chevron');
+  // ---- desktop nav dropdowns -----------------------------------------------
+  // All four top-level items (Products, Why Plastic vs Concrete,
+  // Applications, About) share the same click-to-toggle, mutually-exclusive
+  // dropdown behaviour — only the panel content/width differs (mega panel vs
+  // small menu), which is just markup, not logic. One generic handler for
+  // all four rather than four near-identical copies.
+  const navKeys = ['products', 'plastic', 'applications', 'about'] as const;
+  const navEntries = navKeys.map((key) => ({
+    key,
+    toggle: document.querySelector<HTMLButtonElement>(`[data-nav-toggle="${key}"]`),
+    panel: document.getElementById(`${key}-nav-panel`),
+    chevron: document.querySelector<SVGElement>(`[data-nav-chevron="${key}"]`),
+  })).filter((e) => e.toggle && e.panel && e.chevron);
 
-  function setProductsOpen(open: boolean): void {
-    if (!productsToggle || !productsPanel || !productsChevron) return;
-    productsToggle.setAttribute('aria-expanded', String(open));
-    productsChevron.style.transform = open ? 'rotate(180deg)' : '';
-    revealPanel(productsPanel, open);
+  function setNavOpen(key: string, open: boolean): void {
+    for (const entry of navEntries) {
+      if (entry.key !== key) continue;
+      entry.toggle!.setAttribute('aria-expanded', String(open));
+      entry.toggle!.closest('.nav-parent')?.toggleAttribute('data-open', open);
+      entry.chevron!.style.transform = open ? 'rotate(180deg)' : '';
+      revealPanel(entry.panel!, open);
+    }
   }
 
-  if (productsToggle && productsPanel) {
-    productsToggle.addEventListener('click', () => {
-      setProductsOpen(productsToggle.getAttribute('aria-expanded') !== 'true');
+  function closeAllNav(except?: string): void {
+    for (const entry of navEntries) {
+      if (entry.key === except) continue;
+      if (entry.toggle!.getAttribute('aria-expanded') === 'true') setNavOpen(entry.key, false);
+    }
+  }
+
+  for (const entry of navEntries) {
+    entry.toggle!.addEventListener('click', () => {
+      const nowOpen = entry.toggle!.getAttribute('aria-expanded') !== 'true';
+      closeAllNav(entry.key);
+      setNavOpen(entry.key, nowOpen);
     });
-    document.addEventListener('click', (e) => {
+  }
+
+  document.addEventListener('click', (e) => {
+    for (const entry of navEntries) {
       if (
-        productsToggle.getAttribute('aria-expanded') === 'true' &&
-        !productsPanel.contains(e.target as Node) &&
-        !productsToggle.contains(e.target as Node)
+        entry.toggle!.getAttribute('aria-expanded') === 'true' &&
+        !entry.panel!.contains(e.target as Node) &&
+        !entry.toggle!.contains(e.target as Node)
       ) {
-        setProductsOpen(false);
+        setNavOpen(entry.key, false);
       }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && productsToggle.getAttribute('aria-expanded') === 'true') {
-        setProductsOpen(false);
-        productsToggle.focus();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    for (const entry of navEntries) {
+      if (entry.toggle!.getAttribute('aria-expanded') === 'true') {
+        setNavOpen(entry.key, false);
+        entry.toggle!.focus();
       }
-    });
-  }
+    }
+  });
 
   // ---- mobile nav disclosure --------------------------------------------
   const toggle = document.getElementById('nav-toggle');
@@ -341,7 +534,7 @@ const accessories = products
         setNav(false);
         setMobileProductsOpen(false);
       } else {
-        setProductsOpen(false);
+        closeAllNav();
       }
     });
   }
