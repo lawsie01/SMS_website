@@ -25,7 +25,7 @@ const faqSchema = {
 
 <section aria-labelledby="faq-heading">
   <h2 id="faq-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">{heading}</h2>
-  <div class="divide-y divide-sms-charcoal-100 border-t border-b border-sms-charcoal-100">
+  <div class="faq-accordion divide-y divide-sms-charcoal-100 border-t border-b border-sms-charcoal-100">
     {items.map((item) => (
       <details class="group faq-item py-1">
         <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-sms-charcoal-900 marker:content-none hover:text-sms-green-600">
@@ -42,65 +42,90 @@ const faqSchema = {
 </section>
 
 <script>
-  // Native <details> toggles content visibility with no animatable
-  // intermediate state (Chromium doesn't render the closed content at all,
-  // so a CSS transition has nothing continuous to interpolate from). WAAPI
-  // animating the <details> element's own height, then committing the
-  // `open` attribute when the animation finishes, is the reliable
-  // cross-browser way to get a smooth reveal here.
-  function initFaqAnimations(): void {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Exclusive accordion: opening one question animate-closes any other
+  // question already open in the same FAQ list, so only one is ever
+  // expanded at a time. Native <details> has no animatable intermediate
+  // state (Chromium doesn't render the closed content at all, so a CSS
+  // transition has nothing continuous to interpolate from), so WAAPI
+  // animates the element's own height and commits `open` when it
+  // finishes; state per item lives in a Map (not a closure var) so a
+  // click on one item can drive the close animation of another.
+  function initFaqAccordions(): void {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    document.querySelectorAll<HTMLDetailsElement>('.faq-item').forEach((details) => {
-      if (details.dataset.animInit) return;
-      details.dataset.animInit = 'true';
+    document.querySelectorAll<HTMLElement>('.faq-accordion').forEach((container) => {
+      if (container.dataset.accordionInit) return;
+      container.dataset.accordionInit = 'true';
 
-      const summary = details.querySelector('summary');
-      const panel = details.querySelector<HTMLElement>('.faq-panel');
-      if (!summary || !panel) return;
+      const items = Array.from(container.querySelectorAll<HTMLDetailsElement>(':scope > .faq-item'));
+      const state = new Map<HTMLDetailsElement, { animation: Animation | null; isClosing: boolean }>(
+        items.map((d) => [d, { animation: null, isClosing: false }]),
+      );
 
-      let animation: Animation | null = null;
-      let isClosing = false;
-
-      function run(startHeight: number, endHeight: number, opening: boolean): void {
-        animation?.cancel();
-        animation = details.animate(
-          { height: [`${startHeight}px`, `${endHeight}px`] },
-          { duration: 220, easing: 'ease-out' },
-        );
-        animation.onfinish = () => {
+      function run(details: HTMLDetailsElement, startHeight: number, endHeight: number, opening: boolean): void {
+        const s = state.get(details)!;
+        s.animation?.cancel();
+        if (reduceMotion) {
           details.open = opening;
           details.style.height = '';
           details.style.overflow = '';
-          isClosing = false;
-          animation = null;
+          s.isClosing = false;
+          return;
+        }
+        s.animation = details.animate(
+          { height: [`${startHeight}px`, `${endHeight}px`] },
+          { duration: 220, easing: 'ease-out' },
+        );
+        s.animation.onfinish = () => {
+          details.open = opening;
+          details.style.height = '';
+          details.style.overflow = '';
+          s.isClosing = false;
+          s.animation = null;
         };
       }
 
-      summary.addEventListener('click', (e) => {
-        e.preventDefault();
+      function closeItem(details: HTMLDetailsElement): void {
+        const s = state.get(details);
+        const summary = details.querySelector<HTMLElement>('summary');
+        if (!s || !summary || !details.open || s.isClosing) return;
         details.style.overflow = 'hidden';
         const startHeight = details.getBoundingClientRect().height;
+        s.isClosing = true;
+        run(details, startHeight, summary.getBoundingClientRect().height, false);
+      }
 
-        if (!details.open || isClosing) {
-          details.style.height = `${startHeight}px`;
-          details.open = true;
-          requestAnimationFrame(() => {
-            const endHeight = summary.getBoundingClientRect().height + panel.getBoundingClientRect().height;
-            run(startHeight, endHeight, true);
-          });
-        } else {
-          isClosing = true;
-          run(startHeight, summary.getBoundingClientRect().height, false);
-        }
+      items.forEach((details) => {
+        const summary = details.querySelector<HTMLElement>('summary');
+        const panel = details.querySelector<HTMLElement>('.faq-panel');
+        if (!summary || !panel) return;
+
+        summary.addEventListener('click', (e) => {
+          e.preventDefault();
+          const s = state.get(details)!;
+
+          if (!details.open || s.isClosing) {
+            items.forEach((other) => other !== details && closeItem(other));
+            details.style.overflow = 'hidden';
+            const startHeight = details.getBoundingClientRect().height;
+            details.style.height = `${startHeight}px`;
+            details.open = true;
+            requestAnimationFrame(() => {
+              const endHeight = summary.getBoundingClientRect().height + panel.getBoundingClientRect().height;
+              run(details, startHeight, endHeight, true);
+            });
+          } else {
+            closeItem(details);
+          }
+        });
       });
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFaqAnimations);
+    document.addEventListener('DOMContentLoaded', initFaqAccordions);
   } else {
-    initFaqAnimations();
+    initFaqAccordions();
   }
-  document.addEventListener('astro:page-load', initFaqAnimations);
+  document.addEventListener('astro:page-load', initFaqAccordions);
 </script>

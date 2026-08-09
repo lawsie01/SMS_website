@@ -95,7 +95,6 @@ configDiagramCaption: "Base configurations viewed in plan, looking down — the 
 configGroupsIntro: "The base part code encodes the inlet/outlet size and RRJ angle from the diagram above: MHB1000<size><angle>. All 32 configurations are listed below, grouped by inlet/outlet size — expand a size to find its part code."
 configGroups:
   - heading: "DN150 inlet/outlet"
-    summary: "8 configurations"
     rows:
       - code: "MHB1000150090"
         configuration: "RRJ 90°"
@@ -114,7 +113,6 @@ configGroups:
       - code: "MHB10001504WC"
         configuration: "RRJ Cross (4-Way)"
   - heading: "DN225 inlet/outlet"
-    summary: "8 configurations"
     rows:
       - code: "MHB1000225090"
         configuration: "RRJ 90°"
@@ -133,7 +131,6 @@ configGroups:
       - code: "MHB10002254WC"
         configuration: "RRJ Cross (4-Way)"
   - heading: "DN300 inlet/outlet"
-    summary: "8 configurations"
     rows:
       - code: "MHB1000300090"
         configuration: "RRJ 90°"
@@ -152,7 +149,6 @@ configGroups:
       - code: "MHB10003004WC"
         configuration: "RRJ Cross (4-Way)"
   - heading: "DN375 inlet/outlet"
-    summary: "8 configurations"
     rows:
       - code: "MHB1000375090"
         configuration: "RRJ 90°"

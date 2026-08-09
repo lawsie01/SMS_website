@@ -47,7 +47,6 @@ const configRow = z.object({
 // and findable, without a 32-row table dominating the section by default.
 const configGroup = z.object({
   heading: z.string(),
-  summary: z.string().optional(), // short sub-label shown next to the heading, e.g. "8 configurations"
   rows: z.array(configRow),
 });
 
