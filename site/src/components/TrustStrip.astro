@@ -1,5 +1,4 @@
 ---
-import company from '../data/company.json';
 import Icon, { type IconName } from './Icon.astro';
 
 const items: { label: string; sub: string; icon: IconName }[] = [
@@ -7,17 +6,16 @@ const items: { label: string; sub: string; icon: IconName }[] = [
   { label: 'WSA 137:2019', sub: 'Industry standard compliant', icon: 'shield' },
   { label: 'AS 3996 Class D', sub: 'Trafficable access covers', icon: 'load' },
   { label: '100-year design life', sub: 'PP structure service life', icon: 'service-life' },
-  { label: `Specialists since ${company.foundingYear}`, sub: 'Sewer structures only', icon: 'focus' },
 ];
 ---
 
 {/* Static credential strip, not a clickable card grid — icons plus a single
-    hairline rail (only at the 5-col breakpoint, where 5 items sit in one row
-    with no wrap) borrow the same registration-mark visual language as
+    hairline rail (only at the 4-col breakpoint, where all 4 items sit in one
+    row with no wrap) borrow the same registration-mark visual language as
     AtAGlance without giving these facts a card affordance they shouldn't have. */}
 <section class="border-y border-sms-charcoal-100 bg-sms-charcoal-50" aria-label="Approvals and credentials">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-6 lg:divide-x divide-sms-charcoal-200">
+    <ul class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 sm:divide-x divide-sms-charcoal-200">
       {items.map((item) => (
         <li class="flex flex-col items-center text-center px-2 lg:px-5">
           <Icon name={item.icon} class="w-6 h-6 text-sms-green-600 mb-2" />
