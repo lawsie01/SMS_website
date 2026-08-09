@@ -9,7 +9,6 @@ import applicationsImage from '../../assets/images/brand-lookup-manhole.jpg';
 const jumpNav = [
   { id: 'utilities', label: 'Water utilities' },
   { id: 'contractors', label: 'Contractors & plumbers' },
-  { id: 'engineers', label: 'Design engineers' },
   { id: 'fit-guide', label: 'Which product fits?' },
 ];
 
@@ -51,10 +50,6 @@ const faqs = [
     answer: 'Yes — this is one of the main reasons contractors specify the range for remote and program works. Base, riser and access cover elements are supplied separately and light enough for 1–2 installers to place by hand using the excavator already on site, so a standard installation doesn\'t need a crane mobilised separately.',
   },
   {
-    question: 'Do design engineers need to request CAD files before they can specify a product?',
-    answer: 'No — every product page publishes full HTML spec tables (dimensions, tolerances, weights, load ratings, configuration/part codes) that are crawlable and copy-pasteable for early-stage design and documentation. CAD/BIM models and full engineering drawings are available on request for detailed design once a product is selected.',
-  },
-  {
     question: 'What if my project needs a configuration outside the standard part-code tables?',
     answer: 'Base-socket angle tolerance (±2° to ±7.5° depending on product) and the published RRJ configuration tables cover most alignment and inlet/outlet changes with a standard part code. For anything outside that range, contact SMS directly with your project specifics.',
   },
@@ -90,26 +85,12 @@ const sections = [
     bestFit: 'The DN375 Shaft and DN600 Chamber cover most reticulation-depth connections by hand with the excavator already on site; the DN1000 Hole is the one to reach for once a job needs person entry.',
     cta: { label: 'Installation & depth guidance', href: '/technical-resources/' },
   },
-  {
-    id: 'engineers',
-    heading: 'Design engineers & specifiers',
-    intro: 'Specifiers need real dimensional and configuration data to select and document the right product — not a PDF to download before they can check a single figure.',
-    points: [
-      'Full HTML spec tables on every product page: dimensions, tolerances, weights, load ratings and standards — crawlable and copy-pasteable, not locked in an image or PDF.',
-      'Complete configuration/part-code tables per product family, covering inlet/outlet size and RRJ angle combinations.',
-      'Installation depth ranges and base-socket angle/gradient tolerances published for depth and alignment checks during design.',
-      'CAD/BIM models and full engineering drawings available on request for detailed design beyond the published spec tables.',
-    ],
-    projectTypes: ['Gravity network hydraulic design', 'Confined-space-avoidance design briefs', 'Asset standardisation specifications', 'Tender documentation & BOQs'],
-    bestFit: 'Base-socket angle tolerance (±2° to ±7.5° depending on product) and the RRJ configuration tables let most alignment changes be handled with a standard part code, not a custom fitting.',
-    cta: { label: 'Browse the product range', href: '/products/' },
-  },
 ];
 ---
 
 <BaseLayout
   title="Applications | Who SMS Maintenance Structures Are Built For"
-  description="How SMS AXEDO and SMS ROMOLD polypropylene maintenance structures serve water utilities, civil contractors and design engineers across Australia."
+  description="How SMS AXEDO and SMS ROMOLD polypropylene maintenance structures serve water utilities and civil contractors across Australia."
   canonicalPath="/applications/"
 >
   <Breadcrumbs items={[{ label: 'Applications', href: '/applications/' }]} />
