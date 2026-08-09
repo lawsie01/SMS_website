@@ -1,0 +1,116 @@
+---
+interface Row {
+  code: string;
+  configuration: string;
+  size?: string;
+  notes?: string;
+}
+interface Group {
+  heading: string;
+  summary?: string;
+  rows: Row[];
+}
+interface Props {
+  groups: Group[];
+  intro?: string;
+}
+const { groups, intro } = Astro.props;
+---
+
+<div>
+  {intro && <p class="text-sms-charcoal-500 mb-4">{intro}</p>}
+  <div class="divide-y divide-sms-charcoal-100 border-t border-b border-sms-charcoal-100">
+    {groups.map((group, i) => (
+      <details class="group config-item" open={i === 0}>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold text-sms-charcoal-900 marker:content-none hover:text-sms-green-600">
+          <span>
+            {group.heading}
+            {group.summary && <span class="ml-2 font-normal text-sm text-sms-charcoal-400">{group.summary}</span>}
+          </span>
+          <span class="shrink-0 text-sms-green-600 transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+        </summary>
+        <div class="config-panel overflow-hidden">
+          <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100 mb-5">
+            <table class="w-full border-collapse text-sm">
+              <thead>
+                <tr class="bg-sms-charcoal-900 text-white">
+                  <th scope="col" class="text-left px-3 py-2.5 font-semibold">Part code</th>
+                  <th scope="col" class="text-left px-3 py-2.5 font-semibold">Configuration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {group.rows.map((row, j) => (
+                  <tr class:list={[j % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
+                    <td class="px-3 py-2 font-mono text-xs text-sms-charcoal-900">{row.code}</td>
+                    <td class="px-3 py-2 text-sms-charcoal-900">{row.configuration}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Same reveal treatment as FaqAccordion: native <details> has no
+  // animatable intermediate state, so WAAPI-animate the element's own
+  // height and commit the `open` attribute when it finishes.
+  function initConfigAccordionAnimations(): void {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll<HTMLDetailsElement>('.config-item').forEach((details) => {
+      if (details.dataset.animInit) return;
+      details.dataset.animInit = 'true';
+
+      const summary = details.querySelector('summary');
+      const panel = details.querySelector<HTMLElement>('.config-panel');
+      if (!summary || !panel) return;
+
+      let animation: Animation | null = null;
+      let isClosing = false;
+
+      function run(startHeight: number, endHeight: number, opening: boolean): void {
+        animation?.cancel();
+        animation = details.animate(
+          { height: [`${startHeight}px`, `${endHeight}px`] },
+          { duration: 220, easing: 'ease-out' },
+        );
+        animation.onfinish = () => {
+          details.open = opening;
+          details.style.height = '';
+          details.style.overflow = '';
+          isClosing = false;
+          animation = null;
+        };
+      }
+
+      summary.addEventListener('click', (e) => {
+        e.preventDefault();
+        details.style.overflow = 'hidden';
+        const startHeight = details.getBoundingClientRect().height;
+
+        if (!details.open || isClosing) {
+          details.style.height = `${startHeight}px`;
+          details.open = true;
+          requestAnimationFrame(() => {
+            const endHeight = summary.getBoundingClientRect().height + panel.getBoundingClientRect().height;
+            run(startHeight, endHeight, true);
+          });
+        } else {
+          isClosing = true;
+          run(startHeight, summary.getBoundingClientRect().height, false);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConfigAccordionAnimations);
+  } else {
+    initConfigAccordionAnimations();
+  }
+  document.addEventListener('astro:page-load', initConfigAccordionAnimations);
+</script>

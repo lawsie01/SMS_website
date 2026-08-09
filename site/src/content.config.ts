@@ -41,6 +41,16 @@ const configRow = z.object({
   notes: z.string().optional(),
 });
 
+// A size-grouped bank of part codes for an accordion — e.g. all 8 RRJ angle
+// codes for one inlet/outlet size, so every code in a large matrix (like the
+// DN1000 Hole's 32 base configurations) is individually present in the page
+// and findable, without a 32-row table dominating the section by default.
+const configGroup = z.object({
+  heading: z.string(),
+  summary: z.string().optional(), // short sub-label shown next to the heading, e.g. "8 configurations"
+  rows: z.array(configRow),
+});
+
 const faqItem = z.object({
   question: z.string(),
   answer: z.string(),
@@ -88,6 +98,11 @@ const products = defineCollection({
       configDiagram: image().optional(),
       configDiagramAlt: z.string().optional(),
       configDiagramCaption: z.string().optional(),
+      configGroupsIntro: z.string().optional(),
+      configGroups: z.array(configGroup).default([]),
+      assemblyDiagram: image().optional(),
+      assemblyDiagramAlt: z.string().optional(),
+      assemblyDiagramCaption: z.string().optional(),
       installationSections: z.array(installSection).default([]),
       standards: z.array(standard).default([]),
       faqs: z.array(faqItem).default([]),
