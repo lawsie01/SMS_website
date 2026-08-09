@@ -30,17 +30,22 @@ const rows = [
   {
     factor: 'Component weight & handling',
     plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component — handled by 1–2 installers using the excavator already on site for the dig',
-    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes, requiring purpose-mobilised crane or excavator lifting',
+    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes — usually lifted with the excavator already on site, but expensive to transport and awkward to handle, especially on remote or access-restricted sites',
   },
   {
     factor: 'Typical install method',
     plastic: 'Modular base/riser/cover assembly, on-site height trimming, hand-placed',
-    concrete: 'Crane-lifted precast sections or in-situ pour/cure, generally slower and more labour-intensive per structure',
+    concrete: 'In-situ: formwork, reinforcement and several days of cure time before the trench can be backfilled. Precast: sections manufactured off-site and trucked in against the supplier\'s lead time',
+  },
+  {
+    factor: 'Skilled trade required',
+    plastic: '1–2 general installers — no specialist trade needed',
+    concrete: 'In-situ pours need a qualified pit-builder/formwork crew — a limited trade that\'s often difficult to book on program',
   },
   {
     factor: 'Infiltration/exfiltration performance',
     plastic: 'Rubber ring joint (RRJ) sockets and EPDM/SBR seals engineered for a watertight system',
-    concrete: 'Joints between precast sections are a common infiltration/exfiltration point without additional sealing measures',
+    concrete: 'Precast section joints are a common source of leaks without additional sealing measures; in-situ pours can also crack as the pour cures',
   },
   {
     factor: 'Load rating available',
@@ -64,12 +69,12 @@ const faqs = [
     answer: 'Sewer gas generates hydrogen sulphide, which bacteria convert to sulphuric acid on the exposed surface above the waterline — this is the dominant cause of concrete sewer structure degradation. Polypropylene resists pH 1–13 and is not attacked by H2S/H2SO4, so it doesn\'t need a protective lining to achieve its rated service life.',
   },
   {
-    question: 'Do plastic maintenance structures need a crane to install?',
-    answer: 'No. SMS structures are supplied as separate base, riser and access cover elements, each light enough for 1–2 installers to place by hand using the excavator already on site for the trench — unlike precast concrete sections, which generally need a crane or excavator specifically mobilised to lift them.',
+    question: 'Why is an SMS structure faster to install than a concrete manhole?',
+    answer: 'There\'s no cure time and no specialist trade to book. SMS structures are supplied as separate base, riser and access cover elements, light enough for 1–2 installers to place by hand using the excavator already on site — the trench can be backfilled the same day. An in-situ concrete pour needs formwork, reinforcement and several days for the concrete to set before backfill, plus a qualified pit-builder crew — a limited trade that\'s often difficult to book on program. Precast sections skip the cure time but carry their own manufacturing lead times.',
   },
   {
     question: 'How does installation time compare to concrete?',
-    answer: 'Modular assembly, on-site height trimming and hand-placed components mean a polypropylene structure is typically installed significantly faster than an equivalent precast concrete manhole, which needs crane mobilisation and more time per lift. Exact time savings depend on depth, access and site conditions — talk to SMS about your specific project.',
+    answer: 'Modular assembly, on-site height trimming and hand-placed components mean a polypropylene structure is typically installed significantly faster than an equivalent concrete manhole. In-situ pours need days of cure time before the trench can be backfilled; precast sections carry their own lead times and handling costs on top of the install itself. Exact time savings depend on depth, access and site conditions — talk to SMS about your specific project.',
   },
   {
     question: 'Is WSAA appraisal the same as an Australian Standard?',
@@ -106,7 +111,7 @@ const faqs = [
             <tr class="bg-sms-charcoal-900 text-white">
               <th scope="col" class="text-left px-4 py-3 font-semibold">Factor</th>
               <th scope="col" class="text-left px-4 py-3 font-semibold">SMS polypropylene structure</th>
-              <th scope="col" class="text-left px-4 py-3 font-semibold">Precast concrete manhole</th>
+              <th scope="col" class="text-left px-4 py-3 font-semibold">Concrete manhole (in-situ or precast)</th>
             </tr>
           </thead>
           <tbody>
@@ -130,15 +135,15 @@ const faqs = [
         <div class="border-t border-sms-charcoal-100 pt-5">
           <h3 class="font-bold text-sms-charcoal-900 mb-2">Plant &amp; labour</h3>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-            No separate crane or lifting rig to mobilise — the excavator already on site for the
-            trench does the job, and a smaller install crew can handle a standard structure by hand.
+            No specialist pit-builder or formwork crew to book — a smaller general install crew
+            handles a standard structure by hand, using the excavator already on site.
           </p>
         </div>
         <div class="border-t border-sms-charcoal-100 pt-5">
           <h3 class="font-bold text-sms-charcoal-900 mb-2">Program time</h3>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-            Modular assembly and on-site height trimming avoid the cure time, custom formwork or
-            precast lead times that can hold up a concrete install.
+            Modular assembly and on-site height trimming mean no days-long cure time, no custom
+            formwork and no precast lead times to wait on — the trench can be backfilled the same day.
           </p>
         </div>
         <div class="border-t border-sms-charcoal-100 pt-5">

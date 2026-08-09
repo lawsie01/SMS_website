@@ -159,5 +159,5 @@ seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft — WSAA PA 131
 The SMS AXEDO DN375 Maintenance Shaft is a modular polypropylene maintenance access structure for gravity
 sewer reticulation, engineered as a lightweight, corrosion-resistant alternative to small precast concrete
 maintenance holes. Supplied as separate base, riser and access-cover elements, it is assembled and installed
-by hand using the excavator already on site for the dig — no crane or specialised lifting equipment
-required — cutting typical installation time compared with a concrete equivalent.
+by hand using the excavator already on site for the dig — no cure time and no specialist formwork
+trade required — cutting typical installation time compared with a concrete equivalent.
