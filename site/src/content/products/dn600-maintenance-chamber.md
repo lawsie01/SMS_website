@@ -4,7 +4,7 @@ brand: "AXEDO"
 dnSize: "DN600"
 category: "maintenance-chamber"
 order: 2
-shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated Class D and installed to 6m depth by hand, no crane required."
+shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated Class D and installed to 6m depth by hand."
 cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
 productImage: "../../assets/images/product-dn600-chamber-clover.jpg"
 productImageAlt: "SMS AXEDO DN600 polypropylene maintenance chamber with corrugated riser and access cover"
