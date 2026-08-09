@@ -9,7 +9,8 @@ export type IconName =
   | 'feather'
   | 'joint'
   | 'shield'
-  | 'wsaa';
+  | 'wsaa'
+  | 'focus';
 
 interface Props {
   name: IconName;
@@ -92,5 +93,13 @@ const { name, class: className } = Astro.props;
     <circle cx="24" cy="20" r="12" stroke="currentColor"/>
     <path d="M18 20l4 4 8-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M17 30l-4 12 7-4 4 5 4-5 7 4-4-12" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>
+)}
+
+{name === 'focus' && (
+  <svg class={className} viewBox="0 0 48 48" fill="none" stroke-width="3" aria-hidden="true">
+    <circle cx="24" cy="24" r="16" stroke="currentColor"/>
+    <circle cx="24" cy="24" r="8" stroke="currentColor"/>
+    <circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none"/>
   </svg>
 )}
