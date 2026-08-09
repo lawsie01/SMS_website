@@ -176,7 +176,12 @@ assemblyDiagramCaption: "Exploded assembly, top to bottom — the access cover, 
 configurations:
   - code: "MH10000250"
     configuration: "Riser, 250mm height"
-    notes: "Also available in 500mm, 750mm and 1000mm heights (MH10000500 / MH10000750 / MH10001000)"
+  - code: "MH10000500"
+    configuration: "Riser, 500mm height"
+  - code: "MH10000750"
+    configuration: "Riser, 750mm height"
+  - code: "MH10001000"
+    configuration: "Riser, 1000mm height"
   - code: "MHRC600"
     configuration: "Cone, 1000mm to 600mm reduction"
   - code: "MHG0625 / MHG1000"
