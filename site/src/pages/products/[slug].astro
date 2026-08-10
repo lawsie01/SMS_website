@@ -33,6 +33,10 @@ const data = product.data;
 const path = `/products/${product.id}/`;
 const isFamily = data.category !== 'accessory';
 const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
+// The sidebar gets the more detailed shot (e.g. a cutaway) when the product
+// has one; every card thumbnail elsewhere on the site still uses productImage.
+const sidebarImage = data.productImageDetail ?? data.productImage;
+const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : data.productImageAlt;
 ---
 
 <BaseLayout
@@ -115,6 +119,22 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
               </div>
             )}
 
+            {data.configPhotos.length > 0 && (
+              <div class="mb-12">
+                <h3 class="font-semibold text-sms-charcoal-900 mb-3">As installed</h3>
+                <div class="grid sm:grid-cols-2 gap-6">
+                  {data.configPhotos.map((photo) => (
+                    <figure>
+                      <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                        <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                      </div>
+                      {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {data.assemblyDiagram && (
               <figure class="mb-6 max-w-md rounded-lg border border-sms-charcoal-100 bg-white p-4 sm:p-6">
                 <Image
@@ -129,6 +149,20 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
                 )}
               </figure>
             )}
+
+            {data.componentPhotos.length > 0 && (
+              <div class="mb-8 grid sm:grid-cols-2 gap-6 max-w-2xl">
+                {data.componentPhotos.map((photo) => (
+                  <figure>
+                    <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                      <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                    </div>
+                    {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            )}
+
             {data.configurations.length > 0 && (
               <div>
                 {data.configGroups.length > 0 && (
@@ -154,6 +188,18 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
                     <ul class="sms-list mt-3 text-sms-charcoal-500">
                       {s.bullets.map((b) => <li>{b}</li>)}
                     </ul>
+                  )}
+                  {s.images.length > 0 && (
+                    <div class:list={["mt-4 grid gap-4", s.images.length > 1 ? "sm:grid-cols-2" : "max-w-sm"]}>
+                      {s.images.map((photo) => (
+                        <figure>
+                          <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                            <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                          </div>
+                          {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
+                        </figure>
+                      ))}
+                    </div>
                   )}
                 </div>
               ))}
@@ -192,15 +238,15 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
           </a>
         </div>
 
-        {data.productImage && (
+        {sidebarImage && (
           data.productImageBackground === 'dark' ? (
-            <div class="rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center bg-sms-charcoal-900">
-              <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+            <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-900", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
+              <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
             </div>
           ) : (
             <div class="sms-bracketed">
-              <div class="sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 aspect-square flex items-center justify-center bg-sms-charcoal-50">
-                <Image src={data.productImage} alt={data.productImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+              <div class:list={["sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-50", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
+                <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
               </div>
             </div>
           )
