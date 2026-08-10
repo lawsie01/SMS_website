@@ -111,6 +111,14 @@ const products = defineCollection({
       // (used for every card thumbnail sitewide) when omitted.
       productImageDetail: image().optional(),
       productImageDetailAlt: z.string().optional(),
+      // A cutaway/detail shot is very often a different asset type (real
+      // photography) to the card thumbnail (a 3D render) — needs its own
+      // background colour rather than inheriting productImageBackground,
+      // or a real-white detail photo shows the same seam bug against a
+      // container tinted for a render. Defaults to productImageBackground's
+      // own default rather than assuming white, since most products don't
+      // set a productImageDetail at all.
+      productImageDetailBackground: z.enum(['dark', 'light', 'white']).default('light'),
       countryOfManufacture: z.string().optional(),
       manufacturerNote: z.string().optional(),
       atAGlance: z.array(atAGlanceRow).default([]),

@@ -35,12 +35,14 @@ const isFamily = data.category !== 'accessory';
 const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
 // The sidebar gets the more detailed shot (e.g. a cutaway) when the product
 // has one; every card thumbnail elsewhere on the site still uses productImage.
+// The detail shot is frequently a different asset type (real photography vs.
+// a 3D render) to productImage, so its background is read from its own
+// field, not productImage's — using the wrong one leaves a visible seam
+// around the image (see --color-render-bg).
 const sidebarImage = data.productImageDetail ?? data.productImage;
 const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : data.productImageAlt;
-// 'light' matches the exact backdrop baked into the "-clover" 3D renders;
-// 'white' is real photography shot on true white — picking the wrong one
-// leaves a visible seam around the image (see --color-render-bg).
-const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'bg-render-bg';
+const sidebarBackground = data.productImageDetail ? data.productImageDetailBackground : data.productImageBackground;
+const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-bg';
 ---
 
 <BaseLayout
