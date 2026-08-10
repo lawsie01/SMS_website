@@ -184,11 +184,18 @@ html {
   }
 
   /* Baseline discipline for a stat grid inside brackets: every value shares
-     a baseline, and labels/values never wrap — ragged text defeats the point
-     of a precision device. Keep labels and values short enough to fit one
-     line at 360px (`Life`, `Depth`, `Entry`, not `Service life`, `Max install
-     depth`); if a value genuinely can't be shortened, cut the column count
-     instead of letting this rule wrap it. */
+     a baseline, and labels/values never wrap within themselves — ragged text
+     defeats the point of a precision device. Keep labels and values short
+     enough to fit one line at 360px (`Life`, `Depth`, `Entry`, not `Service
+     life`, `Max install depth`); if a value genuinely can't be shortened, cut
+     the column count instead of letting this rule wrap it.
+
+     The row itself, however, DOES wrap below 640px: a single non-wrapping
+     row with 5-6 items is wider than a 360px phone, and a bare
+     overflow-x-auto scroller gives no visual cue that content is cut off —
+     it just looks like the rest of the stats are missing. Below sm, the
+     items lay out as a 2-column grid instead (see .sms-stat-grid in
+     AtAGlance.astro); at sm and up they return to the single-row layout. */
   .sms-stat {
     display: grid;
     grid-template-rows: 20px auto;
@@ -200,6 +207,27 @@ html {
   }
   .sms-stat + .sms-stat {
     border-left: 1px solid #e6e3dc;
+  }
+  /* Below sm, .sms-stat-grid switches the row to a 2-column grid (see
+     AtAGlance.astro) — the single-row divider rules above don't fit a
+     wrapped layout, so scope a 2D version to the same breakpoint. */
+  @media (max-width: 639px) {
+    .sms-stat-grid .sms-stat {
+      padding: 12px 18px;
+      border-left: none;
+    }
+    .sms-stat-grid .sms-stat:nth-child(-n+2) {
+      padding-top: 0;
+    }
+    .sms-stat-grid .sms-stat:nth-child(n+3) {
+      border-top: 1px solid #e6e3dc;
+    }
+    .sms-stat-grid .sms-stat:nth-child(2n+1) {
+      padding-left: 0;
+    }
+    .sms-stat-grid .sms-stat:nth-child(2n) {
+      border-left: 1px solid #e6e3dc;
+    }
   }
   .sms-stat__label {
     font-family: var(--font-mono);

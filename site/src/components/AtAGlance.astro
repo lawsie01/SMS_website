@@ -14,16 +14,19 @@ const { items } = Astro.props;
 
 {/* Registration brackets (see .sms-bracketed in global.css) replace the old
     hand-drawn corner marks. Stats sit in a single non-wrapping row divided
-    by hairlines — .sms-stat's baseline discipline needs every label/value
-    short enough to fit one line at 360px, so overflow scrolls horizontally
-    on the narrowest phones rather than wrapping. */}
+    by hairlines on larger screens; below 640px a bare overflow-x-auto row
+    of 5-6 items gave no visual cue that it scrolled — it just looked like
+    the rest of the stats were missing off the edge of the phone screen —
+    so on mobile the row folds into a 2-column grid instead (.sms-stat-grid,
+    see global.css), no scrolling required. */}
 <div class="sms-bracketed inline-block max-w-full">
   <div class="sms-bracketed__inner">
     {/* overflow-x-auto lives on its own wrapper, not .sms-bracketed__inner —
         setting only overflow-x there would force overflow-y to "auto" too
-        per the CSS overflow spec, clipping the bottom corner marks. */}
+        per the CSS overflow spec, clipping the bottom corner marks. Only
+        matters at sm+ now that mobile wraps instead of scrolling. */}
     <div class="overflow-x-auto">
-      <dl class="flex w-max py-8">
+      <dl class="sms-stat-grid grid grid-cols-2 py-6 sm:flex sm:w-max sm:py-8">
         {items.map((item) => (
           <div class="sms-stat">
             <dt class="sms-stat__label flex items-center gap-1.5">
