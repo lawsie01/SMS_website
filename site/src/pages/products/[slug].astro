@@ -37,6 +37,10 @@ const viewerKey = VIEWER_KEY_BY_SLUG[product.id];
 // has one; every card thumbnail elsewhere on the site still uses productImage.
 const sidebarImage = data.productImageDetail ?? data.productImage;
 const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : data.productImageAlt;
+// 'light' matches the exact backdrop baked into the "-clover" 3D renders;
+// 'white' is real photography shot on true white — picking the wrong one
+// leaves a visible seam around the image (see --color-render-bg).
+const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'bg-render-bg';
 ---
 
 <BaseLayout
@@ -125,7 +129,7 @@ const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : d
                 <div class="grid sm:grid-cols-2 gap-6">
                   {data.configPhotos.map((photo) => (
                     <figure>
-                      <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                      <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
                         <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                       </div>
                       {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
@@ -154,7 +158,7 @@ const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : d
               <div class="mb-8 grid sm:grid-cols-2 gap-6 max-w-2xl">
                 {data.componentPhotos.map((photo) => (
                   <figure>
-                    <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                    <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
                       <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                     </div>
                     {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
@@ -193,7 +197,7 @@ const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : d
                     <div class:list={["mt-4 grid gap-4", s.images.length > 1 ? "sm:grid-cols-2" : "max-w-sm"]}>
                       {s.images.map((photo) => (
                         <figure>
-                          <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-sms-charcoal-50">
+                          <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
                             <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                           </div>
                           {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
@@ -245,7 +249,7 @@ const sidebarImageAlt = data.productImageDetail ? data.productImageDetailAlt : d
             </div>
           ) : (
             <div class="sms-bracketed">
-              <div class:list={["sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-50", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
+              <div class:list={["sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center", sidebarBgClass, data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
                 <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
               </div>
             </div>

@@ -10,17 +10,21 @@ interface Props {
   useCase: string;
   image?: ImageMetadata;
   imageAlt?: string;
-  imageBackground?: 'dark' | 'light';
+  imageBackground?: 'dark' | 'light' | 'white';
 }
 
 const { href, title, dnSize, brand, useCase, image, imageAlt = '', imageBackground = 'light' } = Astro.props;
+// 'light' matches the exact backdrop baked into the "-clover" 3D renders;
+// 'white' is for real photography shot on true white — using the wrong one
+// leaves a visible seam around the image (see --color-render-bg).
+const bgClass = imageBackground === 'dark' ? 'bg-sms-charcoal-900' : imageBackground === 'white' ? 'bg-white' : 'bg-render-bg';
 ---
 
 <a
   href={href}
   class="group flex flex-col rounded-xl border border-sms-charcoal-100 bg-white overflow-hidden shadow-sm hover:shadow-lg hover:border-sms-green-300 transition-all"
 >
-  <div class:list={["aspect-4/3 flex items-center justify-center overflow-hidden", imageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
+  <div class:list={["aspect-4/3 flex items-center justify-center overflow-hidden", bgClass]}>
     {image ? (
       <Image src={image} alt={imageAlt} class="h-full w-full object-contain p-4" widths={[320, 480, 640]} sizes="(min-width: 1024px) 320px, 50vw" />
     ) : (

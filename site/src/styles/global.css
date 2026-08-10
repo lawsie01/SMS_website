@@ -36,6 +36,13 @@
   --color-sms-charcoal-800: #1d1c1b;
   --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
 
+  /* Exact backdrop colour baked into the "-clover" 3D-rendered product shots
+     (sampled from the images themselves, not a design choice) — the product
+     image container must match this precisely or the render's edge shows as
+     a visible seam against a different light grey/white. Real photography
+     (not renders) is shot on true white and uses bg-white instead. */
+  --color-render-bg: #f1f5f8;
+
   /* Type pairing 04. Inter is the display face — headings only, set heavy
      (800) and tight (-0.025em) for a bold, modern headline treatment.
      Archivo carries everything else: body copy, nav, buttons and form

@@ -59,7 +59,7 @@ const steps = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
         {families.map((p) => (
           <div data-product-card data-slug={p.id} class="rounded-xl border border-sms-charcoal-100 p-5 transition-shadow">
-            <div class:list={["aspect-4/3 rounded-lg flex items-center justify-center overflow-hidden mb-4", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
+            <div class:list={["aspect-4/3 rounded-lg flex items-center justify-center overflow-hidden mb-4", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : p.data.productImageBackground === 'white' ? 'bg-white' : 'bg-render-bg']}>
               {p.data.productImage ? (
                 <Image src={p.data.productImage} alt={p.data.productImageAlt ?? ''} class="h-full w-full object-contain p-3" widths={[240, 320]} sizes="240px" />
               ) : (
@@ -105,7 +105,7 @@ const steps = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {accessories.map((p) => (
           <div data-product-card data-slug={p.id} class="rounded-xl border border-sms-charcoal-100 p-5 transition-shadow">
-            <div class:list={["aspect-4/3 rounded-lg flex items-center justify-center overflow-hidden mb-4", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : 'bg-sms-charcoal-50']}>
+            <div class:list={["aspect-4/3 rounded-lg flex items-center justify-center overflow-hidden mb-4", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : p.data.productImageBackground === 'white' ? 'bg-white' : 'bg-render-bg']}>
               {p.data.productImage ? (
                 <Image src={p.data.productImage} alt={p.data.productImageAlt ?? ''} class="h-full w-full object-contain p-3" widths={[240, 320]} sizes="240px" />
               ) : (

@@ -100,7 +100,12 @@ const products = defineCollection({
       heroImageAlt: z.string().optional(),
       productImage: image().optional(),
       productImageAlt: z.string().optional(),
-      productImageBackground: z.enum(['dark', 'light']).default('light'),
+      // 'light' = the exact backdrop colour baked into the "-clover" 3D
+      // renders (see --color-render-bg); 'white' = real photography shot on
+      // true white. Picking the wrong one leaves a visible seam around the
+      // image — match whatever colour is actually in the image file's own
+      // background, not a stylistic preference.
+      productImageBackground: z.enum(['dark', 'light', 'white']).default('light'),
       // Larger, more detailed shot for the product page's own sidebar — e.g.
       // a cutaway revealing an internal feature — falls back to productImage
       // (used for every card thumbnail sitewide) when omitted.
