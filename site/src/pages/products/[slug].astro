@@ -129,8 +129,13 @@ const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'b
                 <div class="grid sm:grid-cols-2 gap-6">
                   {data.configPhotos.map((photo) => (
                     <figure>
-                      <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
-                        <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                      {/* Fixed aspect-square box + object-contain: source photos are
+                          cropped tight to content but still vary in their own aspect
+                          ratio, so a plain w-full/h-auto tile would render each photo
+                          at a different height. This guarantees every tile in the
+                          gallery is the same size, with the photo centred inside. */}
+                      <div class="aspect-square rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
+                        <Image src={photo.image} alt={photo.alt} class="max-h-full max-w-full w-full h-full object-contain p-4" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                       </div>
                       {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
                     </figure>
@@ -158,8 +163,8 @@ const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'b
               <div class="mb-8 grid sm:grid-cols-2 gap-6 max-w-2xl">
                 {data.componentPhotos.map((photo) => (
                   <figure>
-                    <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
-                      <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                    <div class="aspect-square rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
+                      <Image src={photo.image} alt={photo.alt} class="max-h-full max-w-full w-full h-full object-contain p-4" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                     </div>
                     {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
                   </figure>
@@ -197,8 +202,8 @@ const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'b
                     <div class:list={["mt-4 grid gap-4", s.images.length > 1 ? "sm:grid-cols-2" : "max-w-sm"]}>
                       {s.images.map((photo) => (
                         <figure>
-                          <div class="rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white">
-                            <Image src={photo.image} alt={photo.alt} class="w-full h-auto" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
+                          <div class="aspect-square rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
+                            <Image src={photo.image} alt={photo.alt} class="max-h-full max-w-full w-full h-full object-contain p-4" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                           </div>
                           {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
                         </figure>
