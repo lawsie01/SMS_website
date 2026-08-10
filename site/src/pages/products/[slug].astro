@@ -56,7 +56,7 @@ const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'b
     subtitle={data.shortDescription}
     image={data.heroImage}
     imageAlt={data.heroImageAlt}
-    primaryCta={{ label: `Enquire about the ${data.title}`, href: `/contact/?product=${product.id}` }}
+    primaryCta={{ label: 'Request Pricing', href: `/contact/?product=${product.id}` }}
     compact
   />
 
@@ -237,13 +237,13 @@ const sidebarBgClass = data.productImageBackground === 'white' ? 'bg-white' : 'b
         <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
           <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
           <p class="text-sm text-sms-charcoal-500 mb-4">
-            Request a quote and let us know which products you need — we'll confirm configuration, lead time and price.
+            Let us know which products you need and we'll confirm configuration, lead time and price.
           </p>
           <a
             href={`/contact/?product=${product.id}`}
             class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors"
           >
-            Request a quote &rarr;
+            Get Pricing &amp; Lead Time &rarr;
           </a>
         </div>
 
