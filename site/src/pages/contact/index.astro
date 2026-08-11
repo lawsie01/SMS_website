@@ -193,25 +193,19 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
         {company.locations.map((loc) => (
           <div>
             <h3 class="font-bold text-sms-charcoal-900 mb-2 pb-1 border-b-2 border-sms-green-600 inline-block">{loc.region}</h3>
-            {loc.placeholder ? (
-              <p class="text-sm text-sms-charcoal-400 italic">Address to be confirmed</p>
-            ) : (
-              <>
-                <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-                  {loc.addressLine1}<br />{loc.addressLine2}
-                </p>
-                {loc.note && <p class="text-xs text-sms-charcoal-400 mt-1">{loc.note}</p>}
-                <a
-                  href={mapsUrl(loc)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
-                  aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
-                >
-                  Get directions &rarr;
-                </a>
-              </>
-            )}
+            <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+              {loc.addressLine1}<br />{loc.addressLine2}
+            </p>
+            {loc.note && <p class="text-xs text-sms-charcoal-400 mt-1">{loc.note}</p>}
+            <a
+              href={mapsUrl(loc)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
+              aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
+            >
+              Get directions &rarr;
+            </a>
           </div>
         ))}
       </div>

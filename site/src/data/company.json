@@ -55,14 +55,6 @@
       "region": "Tasmania",
       "addressLine1": "114 Victoria Street",
       "addressLine2": "George Town, Tasmania 7253"
-    },
-    {
-      "region": "Northern Territory",
-      "placeholder": true
-    },
-    {
-      "region": "International",
-      "placeholder": true
     }
   ],
   "socials": {
