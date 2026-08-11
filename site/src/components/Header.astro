@@ -211,21 +211,6 @@ const productFamilies = products
         <div class="flex items-center gap-2 sm:gap-3">
           <SearchModal />
 
-          {/* Hidden until the visitor actually has a quote started, so it stays out
-              of the way for everyone else. Populated by the script below. */}
-          <a
-            href="/quote/"
-            id="quote-badge-link"
-            hidden
-            class="items-center gap-2 rounded-md border border-sms-green-600 px-3 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50 transition-colors"
-          >
-            <span>Quote</span>
-            <span
-              id="quote-badge-count"
-              class="inline-flex min-w-5 h-5 items-center justify-center rounded-full bg-sms-green-600 px-1.5 text-xs font-bold text-white"
-            >0</span>
-          </a>
-
           <a
             href="/contact/"
             data-enquiry-cta
@@ -386,42 +371,6 @@ const productFamilies = products
   }
   paintElevation();
   window.addEventListener('scroll', paintElevation, { passive: true });
-
-  // ---- quote badge -------------------------------------------------------
-  const STORAGE_KEY = 'sms-quote-items';
-
-  function quoteCount(): number {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const items = raw ? JSON.parse(raw) : [];
-      return Array.isArray(items) ? items.length : 0;
-    } catch {
-      return 0;
-    }
-  }
-
-  function paintBadge(): void {
-    const link = document.getElementById('quote-badge-link');
-    const count = document.getElementById('quote-badge-count');
-    if (!link || !count) return;
-    const n = quoteCount();
-    if (n > 0) {
-      count.textContent = String(n);
-      link.removeAttribute('hidden');
-      link.classList.add('inline-flex');
-      link.setAttribute('aria-label', `Your quote, ${n} ${n === 1 ? 'item' : 'items'}`);
-    } else {
-      link.setAttribute('hidden', '');
-      link.classList.remove('inline-flex');
-    }
-  }
-
-  paintBadge();
-  // Same page (the quote builder dispatches this), and other tabs.
-  window.addEventListener('sms-quote-change', paintBadge);
-  window.addEventListener('storage', (e) => {
-    if (e.key === STORAGE_KEY) paintBadge();
-  });
 
   // ---- disclosure reveal --------------------------------------------------
   // `hidden` alone snaps the panel in and out with no animatable in-between
