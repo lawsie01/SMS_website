@@ -43,9 +43,13 @@ const products = await getCollection('products');
 const productFamilies = products
   .filter((p) => p.data.category !== 'accessory')
   .sort((a, b) => a.data.order - b.data.order);
-const accessories = products
-  .filter((p) => p.data.category === 'accessory')
-  .sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — nav column and mobile
+// list below are commented out rather than deleted; the actual page-build
+// exclusion lives in [slug].astro's getStaticPaths, so re-enabling both
+// together is the only thing needed to bring this back.
+// const accessories = products
+//   .filter((p) => p.data.category === 'accessory')
+//   .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <header id="site-header" class="bg-white">
@@ -96,7 +100,7 @@ const accessories = products
               data-closed
               class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[min(90vw,56rem)] rounded-md border border-sms-charcoal-100 bg-white shadow-lg origin-top"
             >
-              <div class="grid grid-cols-3 gap-10 p-8">
+              <div class="grid grid-cols-2 gap-10 p-8">
                 <div>
                   <p class="text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400 mb-4">Maintenance structures</p>
                   <ul class="space-y-3">
@@ -110,6 +114,7 @@ const accessories = products
                     ))}
                   </ul>
                 </div>
+                {/* Fittings & accessories column — not ready for launch, see note above.
                 <div>
                   <p class="text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400 mb-4">Fittings &amp; accessories</p>
                   <ul class="space-y-2.5 text-sm">
@@ -118,6 +123,7 @@ const accessories = products
                     ))}
                   </ul>
                 </div>
+                */}
                 <div class="rounded-lg bg-sms-charcoal-50 p-6 flex flex-col justify-between">
                   <div>
                     <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
@@ -271,6 +277,7 @@ const accessories = products
                   </a>
                 </li>
               ))}
+              {/* Fittings & accessories — not ready for launch, see note above.
               {accessories.map((p) => (
                 <li>
                   <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
@@ -278,6 +285,7 @@ const accessories = products
                   </a>
                 </li>
               ))}
+              */}
               <li>
                 <a href="/products/" class="block py-2 text-sm font-semibold text-sms-green-600">
                   View all products &rarr;

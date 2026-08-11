@@ -15,7 +15,11 @@
 import { getCollection } from 'astro:content';
 
 const products = await getCollection('products');
-const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — excluded from this
+// enquiry picker so a visitor can't ask about a product with no live page.
+const sortedProducts = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <div id="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-title" hidden data-closed class="fixed inset-0 z-50 overflow-y-auto">

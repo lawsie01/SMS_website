@@ -5,8 +5,12 @@ export const prerender = true;
 
 export const GET: APIRoute = async () => {
   const products = await getCollection('products');
+  // Fittings & accessories aren't ready for launch — excluded so search
+  // never surfaces a result for a page that [slug].astro's getStaticPaths
+  // won't build. Re-enable together with that filter.
+  const searchable = products.filter((p) => p.data.category !== 'accessory');
 
-  const entries = products.map((p) => ({
+  const entries = searchable.map((p) => ({
     id: p.id,
     url: `/products/${p.id}/`,
     title: p.data.title,

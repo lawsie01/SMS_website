@@ -10,9 +10,13 @@ const products = await getCollection('products');
 const families = products
   .filter((p) => p.data.category !== 'accessory')
   .sort((a, b) => a.data.order - b.data.order);
-const accessories = products
-  .filter((p) => p.data.category === 'accessory')
-  .sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — see the "Fittings &
+// accessories" section below (currently commented out) and getStaticPaths
+// in [slug].astro, which is what actually keeps their pages from being
+// built. Re-enable both together.
+// const accessories = products
+//   .filter((p) => p.data.category === 'accessory')
+//   .sort((a, b) => a.data.order - b.data.order);
 
 const whyPolypropylene = [
   {
@@ -36,14 +40,14 @@ const whyPolypropylene = [
 
 <BaseLayout
   title="Products | SMS Polypropylene Sewer Maintenance Structures"
-  description="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes, plus fittings and accessories. WSAA PA 1317 appraised, Class D rated."
+  description="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes. WSAA PA 1317 appraised, Class D rated."
   canonicalPath="/products/"
 >
   <Breadcrumbs items={[{ label: 'Products', href: '/products/' }]} />
   <Hero
     eyebrow="Product range"
     title="Polypropylene maintenance structures, DN375 to DN1000"
-    subtitle="Three WSAA-appraised product families covering reticulation to trunk sewer access, plus the fittings and accessories to complete every installation — held as stock and ready to dispatch."
+    subtitle="Three WSAA-appraised product families covering reticulation to trunk sewer access — held as stock and ready to dispatch."
     secondaryCta={{ label: 'Request a quote', href: '/contact/' }}
     compact
   />
@@ -87,6 +91,10 @@ const whyPolypropylene = [
       </div>
     </section>
 
+    {/* Fittings & accessories — not ready for launch. Section kept here,
+        commented out, so it drops back in unchanged once the `accessories`
+        const above and the [slug].astro getStaticPaths filter are both
+        re-enabled.
     <section aria-labelledby="accessories-heading">
       <h2 id="accessories-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-8">Fittings & accessories</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -103,6 +111,7 @@ const whyPolypropylene = [
         ))}
       </div>
     </section>
+    */}
   </div>
 
   <CtaBand />

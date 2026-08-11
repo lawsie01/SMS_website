@@ -6,8 +6,11 @@ import Hero from '../../components/Hero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 
 const products = await getCollection('products');
+// Fittings & accessories aren't ready for launch — excluded so this list
+// doesn't link to a product page that [slug].astro's getStaticPaths won't
+// build. Re-enable together with that filter.
 const withDownloads = products
-  .filter((p) => p.data.downloads.length > 0)
+  .filter((p) => p.data.category !== 'accessory' && p.data.downloads.length > 0)
   .sort((a, b) => a.data.order - b.data.order);
 const withRestricted = withDownloads.filter((p) => p.data.downloads.some((d) => d.restricted));
 

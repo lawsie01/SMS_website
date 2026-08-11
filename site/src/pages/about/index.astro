@@ -13,7 +13,12 @@ const products = await getCollection('products');
 const families = products
   .filter((p) => p.data.category !== 'accessory' && p.data.countryOfManufacture)
   .sort((a, b) => a.data.order - b.data.order);
-const range = products.sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — excluded so this pill
+// list doesn't link to a page that [slug].astro's getStaticPaths won't
+// build. Re-enable together with that filter.
+const range = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
 
 const facts = [
   { label: 'Specialising since', value: String(company.foundingYear) },
@@ -65,10 +70,9 @@ const facts = [
       <div class="max-w-[68ch] space-y-4 mb-8">
         <p class="text-sms-charcoal-500 leading-relaxed">
           Specialisation is our advantage. Because sewer maintenance structures are all we do, we carry a
-          depth of range that broader suppliers can't — shafts, chambers and maintenance holes through to
-          access covers, bends, junctions, drop tees, caps and plugs — all held as stock and ready to
-          dispatch. Custom-angled shafts are assembled to order on the day, with no fabrication and no
-          waiting on the workshop.
+          depth of range that broader suppliers can't — shafts, chambers and maintenance holes across every
+          size a gravity sewer network needs, all held as stock and ready to dispatch. Custom-angled shafts
+          are assembled to order on the day, with no fabrication and no waiting on the workshop.
         </p>
         <p class="text-sms-charcoal-500 leading-relaxed">
           In a project-based industry, availability is everything. Our commitment to holding genuine stock

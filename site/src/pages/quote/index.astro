@@ -10,9 +10,12 @@ const products = await getCollection('products');
 const families = products
   .filter((p) => p.data.category !== 'accessory')
   .sort((a, b) => a.data.order - b.data.order);
-const accessories = products
-  .filter((p) => p.data.category === 'accessory')
-  .sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — see the commented-out
+// section below and [slug].astro's getStaticPaths, which is what actually
+// keeps their product pages from being built. Re-enable both together.
+// const accessories = products
+//   .filter((p) => p.data.category === 'accessory')
+//   .sort((a, b) => a.data.order - b.data.order);
 
 const steps = [
   { n: '1', title: 'Add products to your quote', body: 'Pick a quantity (and configuration, where relevant) for each product you need and add it to your quote list below.' },
@@ -101,6 +104,7 @@ const steps = [
         ))}
       </div>
 
+      {/* Fittings & accessories — not ready for launch, see note above.
       <h3 class="text-sm font-bold uppercase tracking-wide text-sms-charcoal-400 mb-4">Fittings & accessories</h3>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {accessories.map((p) => (
@@ -146,6 +150,7 @@ const steps = [
           </div>
         ))}
       </div>
+      */}
     </section>
 
     <section aria-labelledby="list-heading" class="mb-16 scroll-mt-24" id="quote-list">

@@ -6,7 +6,11 @@ import Hero from '../../components/Hero.astro';
 import company from '../../data/company.json';
 
 const products = await getCollection('products');
-const sortedProducts = products.sort((a, b) => a.data.order - b.data.order);
+// Fittings & accessories aren't ready for launch — excluded from this
+// enquiry picker so a visitor can't ask about a product with no live page.
+const sortedProducts = products
+  .filter((p) => p.data.category !== 'accessory')
+  .sort((a, b) => a.data.order - b.data.order);
 
 function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.addressLine1}, ${loc.addressLine2}`)}`;

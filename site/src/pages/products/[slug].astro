@@ -21,7 +21,12 @@ const VIEWER_KEY_BY_SLUG: Record<string, 'shaft' | 'chamber' | 'hole'> = {
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
-  return products.map((product) => ({
+  // Fittings & accessories aren't ready for launch — excluded here so no
+  // page gets built (and nothing 404s from a stale nav/search/sitemap link).
+  // The content files and this route's rendering logic are untouched;
+  // dropping this filter re-enables them with no other changes needed.
+  const launchable = products.filter((p) => p.data.category !== 'accessory');
+  return launchable.map((product) => ({
     params: { slug: product.id },
     props: { product },
   }));
