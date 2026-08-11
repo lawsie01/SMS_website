@@ -19,8 +19,8 @@ const canonicalURL = new URL(canonicalPath, siteUrl).toString();
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'SMS (Sewer Maintenance Shaft Pty Ltd)',
-  alternateName: ['Sewer Maintenance Shaft', company.brandExpansion, 'SMS AXEDO', 'SMS ROMOLD'],
+  name: `${company.tradingName} (${company.brandExpansion})`,
+  alternateName: [company.legalName, 'SMS AXEDO', 'SMS ROMOLD'],
   foundingDate: String(company.foundingYear),
   url: siteUrl,
   logo: `${siteUrl}/images/sms-logo.png`,
@@ -59,7 +59,7 @@ const organizationSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="en_AU" />
-    <meta property="og:site_name" content="SMS - Sewer Maintenance Shaft" />
+    <meta property="og:site_name" content={`${company.tradingName} - ${company.brandExpansion}`} />
     {ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl).toString()} />}
     <meta name="twitter:card" content="summary_large_image" />
 

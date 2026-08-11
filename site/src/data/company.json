@@ -1,8 +1,7 @@
 {
-  "legalName": "Sewer Maintenance Shaft Pty Ltd",
+  "legalName": "Sewer Maintenance Solutions (SMS)",
   "tradingName": "SMS",
-  "brandExpansion": "Sewer Maintenance Structures",
-  "brandExpansionNote": "CONFIRM which name is correct where. Client-supplied About copy expands SMS as 'Sewer Maintenance Structures'; the registered entity on prior materials is 'Sewer Maintenance Shaft Pty Ltd'. Both are currently used — legalName for the footer copyright and schema legalName, brandExpansion in body copy.",
+  "brandExpansion": "Sewer Maintenance Solutions",
   "foundingYear": 2003,
   "parentCompany": "Clover",
   "phone": "1300 482 228",
@@ -11,8 +10,7 @@
   "addressLine1": "320 Hume Highway",
   "addressLine2": "Craigieburn VIC 3064",
   "addressCountry": "Australia",
-  "abn": "77 005 234 293",
-  "abnNote": "CONFIRM current ABN with client before publishing.",
+  "abn": "71 672 987 067",
   "coverage": [
     "Victoria",
     "New South Wales",

@@ -1,4 +1,6 @@
 ---
+import company from '../data/company.json';
+
 interface Props {
   name: string;
   description: string;
@@ -21,7 +23,7 @@ const productSchema = {
   },
   manufacturer: {
     '@type': 'Organization',
-    name: 'SMS (Sewer Maintenance Shaft Pty Ltd)',
+    name: `${company.tradingName} (${company.brandExpansion})`,
   },
   ...(sku ? { sku } : {}),
   ...(image ? { image: new URL(image, siteUrl).toString() } : {}),

@@ -1,6 +1,6 @@
 # SMS Website
 
-The SMS (Sewer Maintenance Shaft Pty Ltd) marketing and product website — built with
+The SMS (Sewer Maintenance Solutions) marketing and product website — built with
 [Astro](https://astro.build) as a static site, styled with Tailwind CSS, with all product data,
 spec tables and FAQs stored as structured content files rather than hard-coded in components.
 
@@ -217,9 +217,11 @@ collection, since it's page-specific narrative content rather than per-product d
   the WSAA certificate are wired up as public downloads in `public/downloads/`.
 - **A few facts are flagged for client confirmation** rather than asserted outright, because they
   couldn't be verified from the supplied brochures/drawings alone — search `CONFIRM` in
-  `src/data/company.json` and `reference-materials/EXTRACTED_SPECS_NOTES.md` for the full list
-  (exact street address/ABN, whether WaterMark/ISO 9001 certification still applies to the current
-  range, and the two sales contacts whose exact titles couldn't be independently verified).
+  `reference-materials/EXTRACTED_SPECS_NOTES.md` for the full list (exact street address, whether
+  WaterMark/ISO 9001 certification still applies to the current range, and the two sales contacts
+  whose exact titles couldn't be independently verified). Legal name and ABN in
+  `src/data/company.json` are confirmed as of August 2026 (Sewer Maintenance Solutions (SMS), ABN
+  71 672 987 067).
 - **Brand colours were extracted directly from the SMS logo**, not guessed — see
   `src/styles/global.css` (`--color-sms-green-400: #63b447`, `--color-sms-green-900: #191717`). If
   the client provides an official brand guideline later, update the `@theme` block in that one file.

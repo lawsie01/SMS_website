@@ -7,7 +7,7 @@ import company from '../../data/company.json';
 
 <BaseLayout
   title="Privacy Policy | SMS"
-  description="How Sewer Maintenance Shafts Pty Ltd (SMS) collects, uses, stores and discloses personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
+  description={`How ${company.legalName} collects, uses, stores and discloses personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles.`}
   canonicalPath="/disclaimer/"
 >
   <Breadcrumbs items={[{ label: 'Disclaimer', href: '/disclaimer/' }]} />
@@ -15,7 +15,7 @@ import company from '../../data/company.json';
 
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
     <p class="text-sms-charcoal-700 leading-relaxed mb-2">
-      Sewer Maintenance Shafts Pty Ltd (ABN 71 672 987 067) (SMS, we, us, our) is committed to
+      {company.legalName} (ABN {company.abn}) (we, us, our) is committed to
       protecting the privacy of visitors to this website. This policy explains how we collect,
       use, store and disclose personal information in accordance with the Privacy Act 1988 (Cth)
       and the Australian Privacy Principles.
@@ -114,10 +114,10 @@ import company from '../../data/company.json';
           using the details below. We will respond within a reasonable timeframe.
         </p>
         <p class="text-sms-charcoal-700">
-          Sewer Maintenance Shafts Pty Ltd<br />
+          {company.legalName}<br />
           {company.addressLine1}<br />
           {company.addressLine2}<br />
-          ABN 71 672 987 067
+          ABN {company.abn}
         </p>
         <p>
           If you are not satisfied with our response, you may lodge a complaint with the Office of
