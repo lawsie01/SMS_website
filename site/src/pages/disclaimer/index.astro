@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Hero from '../../components/Hero.astro';
+import company from '../../data/company.json';
+---
+
+<BaseLayout
+  title="Privacy Policy | SMS"
+  description="How Sewer Maintenance Shafts Pty Ltd (SMS) collects, uses, stores and discloses personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
+  canonicalPath="/disclaimer/"
+>
+  <Breadcrumbs items={[{ label: 'Disclaimer', href: '/disclaimer/' }]} />
+  <Hero eyebrow="Legal" title="Privacy Policy" compact />
+
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
+    <p class="text-sms-charcoal-700 leading-relaxed mb-2">
+      Sewer Maintenance Shafts Pty Ltd (ABN 71 672 987 067) (SMS, we, us, our) is committed to
+      protecting the privacy of visitors to this website. This policy explains how we collect,
+      use, store and disclose personal information in accordance with the Privacy Act 1988 (Cth)
+      and the Australian Privacy Principles.
+    </p>
+    <p class="text-sm text-sms-charcoal-400 mb-12">Last updated: August 2026</p>
+
+    <section aria-labelledby="personal-info-heading" class="mb-10">
+      <h2 id="personal-info-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">Personal information</h2>
+      <div class="space-y-4 text-sms-charcoal-500 leading-relaxed">
+        <p>You may interact with us anonymously or under a pseudonym where this is lawful and practicable.</p>
+        <p>
+          We may collect personal information that you choose to provide to us, such as your
+          name, email address or postal address, for example when you make an enquiry or request
+          a quote.
+        </p>
+        <p>
+          We may also collect non-personal information such as browser type, operating system and
+          the pages you visit, to help us manage and improve our website. Where this information
+          is combined with other data in a way that could identify you, we will treat it as
+          personal information and handle it in line with this policy.
+        </p>
+        <p>
+          We use cookies and similar technologies to operate and manage our website, including to
+          understand how visitors use the site. We do not use these technologies to collect or
+          store personal information unless you have opted in to a feature that requires it.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="uses-sharing-heading" class="mb-10">
+      <h2 id="uses-sharing-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">Uses and sharing</h2>
+      <div class="space-y-4 text-sms-charcoal-500 leading-relaxed">
+        <p>
+          We use personal information you provide only for the purpose you provided it, or for a
+          directly related purpose you would reasonably expect.
+        </p>
+        <p>
+          We will not use your personal information to market to you unless we have your implied
+          or express consent, and you can opt out of marketing communications at any time.
+        </p>
+        <p>
+          We do not share your personal information with other organisations unless you give
+          express consent, or the sharing is otherwise required or permitted by law.
+        </p>
+        <p>
+          Where we provide personal information to organisations that perform services on our
+          behalf, such as information technology providers, hosting providers, mail houses or
+          other contractors, we require those organisations to protect your personal information
+          to the same standard we do.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="overseas-heading" class="mb-10">
+      <h2 id="overseas-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">Overseas disclosure</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed">
+        Some of the service providers we use, including website hosting, email and data storage
+        providers, may store or process information on servers located outside Australia. Where
+        this occurs, we take reasonable steps to ensure those providers handle personal
+        information in a manner consistent with the Australian Privacy Principles.
+      </p>
+    </section>
+
+    <section aria-labelledby="security-heading" class="mb-10">
+      <h2 id="security-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">Data security</h2>
+      <p class="text-sms-charcoal-500 leading-relaxed">
+        We take reasonable steps to protect the personal information we hold from misuse,
+        interference, loss, and unauthorised access, modification or disclosure. This includes
+        the use of technical and administrative safeguards appropriate to the sensitivity of the
+        information collected.
+      </p>
+    </section>
+
+    <section aria-labelledby="rights-heading" class="mb-10">
+      <h2 id="rights-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">Your rights and choices</h2>
+      <div class="space-y-4 text-sms-charcoal-500 leading-relaxed">
+        <p>
+          You have the right to request access to the personal information we hold about you, and
+          to ask us to correct or update it. This right is subject to certain exceptions permitted
+          by law. If we refuse a request for access or correction, we will provide you with
+          reasons for the refusal.
+        </p>
+        <p>
+          You may withdraw any previous consent you gave to receive marketing communications from
+          us at any time by contacting us using the details below.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="text-xl font-bold text-sms-charcoal-900 mb-4">How to contact our team</h2>
+      <div class="space-y-4 text-sms-charcoal-500 leading-relaxed">
+        <p>
+          We are committed to working with you to reach a fair resolution of any complaint or
+          concern about privacy. To make a complaint or provide feedback, please contact our team
+          using the details below. We will respond within a reasonable timeframe.
+        </p>
+        <p class="text-sms-charcoal-700">
+          Sewer Maintenance Shafts Pty Ltd<br />
+          {company.addressLine1}<br />
+          {company.addressLine2}<br />
+          ABN 71 672 987 067
+        </p>
+        <p>
+          If you are not satisfied with our response, you may lodge a complaint with the Office of
+          the Australian Information Commissioner (OAIC):
+        </p>
+        <p class="text-sms-charcoal-700">
+          Website: <a href="https://www.oaic.gov.au" class="text-sms-green-600 font-medium hover:underline">www.oaic.gov.au</a><br />
+          Phone: <a href="tel:1300363992" class="text-sms-green-600 font-medium hover:underline">1300 363 992</a><br />
+          Post: GPO Box 5218, Sydney NSW 2001
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -69,7 +69,10 @@ const resourceLinks = [
   </div>
   <div class="border-t border-sms-charcoal-700">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sms-charcoal-300">
-      <p>&copy; {year} Sewer Maintenance Shaft Pty Ltd. All rights reserved.</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+        <p>&copy; {year} Sewer Maintenance Shaft Pty Ltd. All rights reserved.</p>
+        <a href="/disclaimer/" class="hover:text-sms-green-400">Privacy Policy</a>
+      </div>
       {company.socials.linkedin && (
         <a
           href={company.socials.linkedin}
