@@ -148,9 +148,9 @@ standards:
     description: "Applicable WSAA product specifications for maintenance chambers, access covers and PVC-U pipework"
 faqs:
   - question: "What is the maximum installation depth of the DN600 Maintenance Chamber?"
-    answer: "Standard installation is rated to a maximum depth of 6m. In high water table or groundwater conditions, maximum installation depth reduces to 5m."
+    answer: "6m standard. That drops to 5m in a high water table or groundwater conditions."
   - question: "Is the DN600 Chamber rated for Class D traffic loads?"
-    answer: "Yes. Fitted with either the standard Top Hat access cover or the concrete cover plate option, the DN600 Chamber is rated Class D (trafficable) to AS 3996."
+    answer: "Yes, on either cover option. Both the standard Top Hat and the concrete cover plate are rated Class D (trafficable) to AS 3996."
   - question: "What size inlet and outlet connections does the DN600 Chamber take?"
     answer: "The chamber base is available in standard RRJ configurations for DN150 and DN225 inlets/outlets, across straight, 60°/120°/150°/210°/240° angled (plus 90°/270° for DN225 only) and 4-way cross arrangements. Additional DN100/DN150 lateral drop-in connections can be added on-site."
   - question: "How much does the DN600 Chamber weigh per component?"
@@ -176,7 +176,6 @@ seoTitle: "DN600 Maintenance Chamber | SMS AXEDO Polypropylene Sewer Chamber Aus
 seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber. WSAA PA 1317 appraised, Class D rated, installs to 6m depth by hand. Full specs, configurations and standards."
 ---
 
-The SMS AXEDO DN600 Maintenance Chamber pairs a polypropylene base with a corrugated PP riser to give
-water utilities and contractors a deeper-reach maintenance access point without the weight, extra
-lifting equipment or corrosion exposure of a precast concrete chamber. Standard installation reaches
-6m, with every component still light enough for manual handling.
+The DN600 Chamber is a polypropylene base with a corrugated PP riser, for reticulation and trunk sewer
+access down to 6m. The base is 15kg and the riser runs about 20kg per metre, so it goes in without the
+lifting gear a precast concrete chamber needs. Cut the riser to length on site, on a corrugation valley.

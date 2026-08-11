@@ -34,5 +34,5 @@ seoTitle: "Sewer Maintenance Structure Caps & Plugs | SMS Polypropylene Fittings
 seoDescription: "Push-in polypropylene plugs for sealing unused inlet/outlet sockets on SMS AXEDO and SMS ROMOLD maintenance structures."
 ---
 
-Caps and plugs seal any base socket not connected to a pipe at the time of installation, keeping the
-SMS maintenance structure watertight until that inlet is needed.
+Plugs seal any base socket you are not connecting a pipe to on the day, so the structure is watertight from
+installation. Pull one out later if you need that inlet.

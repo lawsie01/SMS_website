@@ -4,7 +4,7 @@ brand: "AXEDO"
 dnSize: "DN375"
 category: "maintenance-shaft"
 order: 1
-shortDescription: "Modular polypropylene maintenance shaft for gravity sewer reticulation, rated Class D and installed by hand in a fraction of the time of a concrete pit."
+shortDescription: "Modular polypropylene maintenance shaft for gravity sewer reticulation. Class D rated, installs by hand to 4m."
 cardUseCase: "Reticulation mains, property connections and infill maintenance access up to 4m deep."
 productImage: "../../assets/images/product-dn375-shaft-clover.jpg"
 productImageAlt: "SMS AXEDO DN375 polypropylene maintenance shaft assembly showing base, riser and access cap"
@@ -128,11 +128,11 @@ standards:
     description: "Applicable WSAA product specifications for maintenance shafts, access covers and PVC-U pipework"
 faqs:
   - question: "What is the maximum installation depth of the DN375 Maintenance Shaft?"
-    answer: "The DN375 Shaft is rated for standard installation to a maximum depth of 4m. Riser height is cut to size on-site to suit the exact required depth."
+    answer: "4m for a standard installation. Riser height is cut to size on site to suit the exact depth you need."
   - question: "Is the DN375 Shaft rated for Class D traffic loads?"
     answer: "Yes. Fitted with the standard Top Hat or concrete cover plate access cover, the DN375 Shaft is rated Class D (trafficable) to AS 3996."
   - question: "How many installers does the DN375 Shaft need on site?"
-    answer: "Just one or two. The base, riser and access cover are supplied as separate lightweight PP/PVC components designed for manual handling and assembly, using the excavator already on site for the dig."
+    answer: "One or two. Base, riser and access cover are separate PP/PVC components, all light enough for manual handling, and the excavator already on site for the dig covers the rest."
   - question: "What standards does the DN375 Shaft comply with?"
     answer: "The DN375 Shaft is manufactured to WSA 137:2019 and is covered under WSAA Product Appraisal PA 1317, with access covers rated Class D to AS 3996 and seals to AS 1646."
   - question: "Can extra inlet or outlet connections be added after the shaft is installed?"
@@ -156,8 +156,7 @@ seoTitle: "DN375 Maintenance Shaft | SMS AXEDO Polypropylene Sewer Shaft Austral
 seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft. WSAA PA 1317 appraised, Class D rated, 100-year design life, manual install to 4m depth. Full specs and configurations."
 ---
 
-The SMS AXEDO DN375 Maintenance Shaft is a modular polypropylene maintenance access structure for gravity
-sewer reticulation, engineered as a lightweight, corrosion-resistant alternative to small precast concrete
-maintenance holes. Supplied as separate base, riser and access-cover elements, it is assembled and installed
-by hand using the excavator already on site for the dig. There is no cure time and no specialist
-formwork trade required, cutting typical installation time compared with a concrete equivalent.
+The DN375 Shaft is the standard choice for gravity sewer reticulation access down to 4m, in place of a small
+precast concrete maintenance hole. Base, riser and access cover come as separate elements and go together by
+hand, using the excavator already there for the dig. No cure time, and no pit-builder to book. Riser height
+is cut to suit the actual cover-to-invert depth on site.

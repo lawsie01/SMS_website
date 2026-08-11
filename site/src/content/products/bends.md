@@ -36,6 +36,5 @@ seoTitle: "Sewer Pipe Bends | SMS Polypropylene & PVC Sweep Bends Australia"
 seoDescription: "PP and PVC sweep bends for angled connections into SMS AXEDO and SMS ROMOLD maintenance shafts, chambers and holes."
 ---
 
-Bends provide angled pipe connections into the SMS maintenance shaft, chamber and hole range for
-alignments outside the standard base configuration angles. Contact SMS with your required deflection
-angle and connecting pipe size to confirm the correct part.
+Bends handle angled pipe connections into the range where the alignment falls outside the standard base
+configuration angles. Tell us the deflection angle and the connecting pipe size and we'll confirm the part.

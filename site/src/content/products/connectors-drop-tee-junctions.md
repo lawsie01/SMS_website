@@ -38,5 +38,5 @@ seoTitle: "Sewer Connectors & Drop Tee Junctions | SMS Maintenance Structure Fit
 seoDescription: "On-site lateral drop-in connection kits for SMS AXEDO and SMS ROMOLD maintenance shafts, chambers and holes. DN100 and DN150."
 ---
 
-Connectors and drop tee junction kits let installers add a lateral inlet connection to an SMS maintenance
-structure on-site, using a matched hole saw and rubber collar seal, without factory rework.
+These kits add a lateral inlet to a structure that is already on site, using a matched hole saw and a rubber
+collar seal. Nothing goes back to the factory and you don't need a different base configuration.

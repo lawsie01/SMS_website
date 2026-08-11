@@ -258,11 +258,11 @@ faqs:
   - question: "Can someone physically enter the DN1000 Maintenance Hole?"
     answer: "Yes. It is fitted with a fixed ladder to EN 14396 and a 600mm clear opening, designed for person entry under the operator's confined space procedures. The smaller DN375 Shaft and DN600 Chamber are not person-entry structures."
   - question: "Is the DN1000 Hole rated for Class D traffic loads?"
-    answer: "Yes, across all three available access cover options: the standard Top Hat cover, the concrete cover plate, and the concrete load distribution ring."
+    answer: "Yes, on all three cover options: the standard Top Hat, the concrete cover plate and the concrete load distribution ring."
   - question: "Are all DN1000 Hole components under 25kg?"
     answer: "No. Component weight varies by part. The 250mm riser and cone are 15–25kg and manual-handled easily, but the base (50–65kg) and taller risers (up to 45kg for the 1000mm riser) typically need two installers. The concrete access cover options (180–200kg) need mechanical assistance to place, usually the excavator already on site for the dig."
   - question: "What inlet/outlet sizes does the DN1000 Hole take?"
-    answer: "The base is available in configurations for DN150, DN225, DN300 and DN375 inlets/outlets, across a full range of RRJ angles including a 4-way cross, plus optional DN100/DN150 lateral drop-in connections added on-site."
+    answer: "DN150, DN225, DN300 and DN375, across the full range of RRJ angles including a 4-way cross. DN100 and DN150 laterals can be drilled in on site on top of that."
   - question: "What standards does the DN1000 Hole comply with?"
     answer: "The DN1000 Hole is manufactured to WSA 137:2019, with its ladder to EN 14396, and is covered under WSAA Product Appraisal PA 1317. Access covers are rated Class D to AS 3996."
 downloads:
@@ -282,8 +282,7 @@ seoTitle: "DN1000 Maintenance Hole | SMS ROMOLD Polypropylene Manhole Australia"
 seoDescription: "SMS ROMOLD DN1000 polypropylene maintenance hole. WSAA PA 1317 appraised, Class D rated, person-entry with fixed ladder, installs to 6m depth. Full specs and part codes."
 ---
 
-The SMS ROMOLD DN1000 Maintenance Hole is the person-entry option in the SMS range, built for trunk
-sewer and deeper reticulation applications where a technician needs to physically access the structure.
-A fixed ladder, 600mm clear opening and a full range of RRJ base configurations make it a direct
-polypropylene alternative to a precast concrete manhole, without the corrosion exposure or handling
-weight of concrete.
+The DN1000 Hole is the person-entry option in the range, for trunk sewer and deeper reticulation access
+down to 6m. Fixed ladder to EN 14396, 600mm clear opening, and RRJ base configurations from DN150 through
+DN375. It goes in where you'd otherwise use a precast concrete manhole, without the corrosion exposure and
+without most of the lifting.

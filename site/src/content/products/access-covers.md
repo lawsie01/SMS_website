@@ -42,5 +42,5 @@ seoTitle: "Class D Access Covers | SMS Sewer Maintenance Structure Covers Austra
 seoDescription: "Class D trafficable access cover options to AS 3996 for SMS AXEDO and SMS ROMOLD polypropylene maintenance structures."
 ---
 
-Access covers complete an SMS maintenance shaft, chamber or hole installation, engineered to carry
-Class D traffic loads independently of the polypropylene structure below.
+The access cover carries the Class D traffic load, not the polypropylene structure underneath it. Load goes
+through the cover into the surrounding bedding, so the plastic is never in the load path.
