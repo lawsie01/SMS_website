@@ -24,17 +24,17 @@ const bgClass = imageBackground === 'dark' ? 'bg-sms-charcoal-900' : imageBackgr
   href={href}
   class="group flex flex-col rounded-xl border border-sms-charcoal-100 bg-white overflow-hidden shadow-sm hover:shadow-lg hover:border-sms-green-300 transition-all"
 >
-  <div class:list={["aspect-4/3 flex items-center justify-center overflow-hidden", bgClass]}>
+  <div class:list={["aspect-square flex items-center justify-center overflow-hidden", bgClass]}>
     {image ? (
-      <Image src={image} alt={imageAlt} class="h-full w-full object-contain p-4" widths={[320, 480, 640]} sizes="(min-width: 1024px) 320px, 50vw" />
+      <Image src={image} alt={imageAlt} class="h-full w-full object-contain p-2" widths={[320, 480, 640]} sizes="(min-width: 1024px) 320px, 50vw" />
     ) : (
       <span class:list={["text-sm", imageBackground === 'dark' ? 'text-white/40' : 'text-sms-charcoal-300']}>Product render</span>
     )}
   </div>
-  <div class="p-6 flex flex-col grow">
+  <div class="p-7 flex flex-col grow">
     <p class="text-xs font-semibold tracking-wide uppercase text-sms-green-600">{brand}{dnSize ? ` · ${dnSize}` : ''}</p>
     <h3 class="mt-1 text-lg font-bold text-sms-charcoal-900">{title}</h3>
     <p class="mt-2 text-sm text-sms-charcoal-400 grow">{useCase}</p>
-    <span class="mt-4 text-sm font-semibold text-sms-green-600 group-hover:text-sms-green-700">View specs &rarr;</span>
+    <span class="mt-5 text-sm font-semibold text-sms-green-600 group-hover:text-sms-green-700">View specs &rarr;</span>
   </div>
 </a>
