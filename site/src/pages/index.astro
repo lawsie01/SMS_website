@@ -30,12 +30,12 @@ const whyPlastic = [
 const applications = [
   {
     audience: 'Water utilities & asset owners',
-    body: 'WSAA-appraised structures, documented standards compliance and a 100-year design life for whole-of-life cost planning.',
+    body: 'WSAA Product Appraisal PA 1317 to WSA 137:2019 gives a defensible asset register entry from day one — a 100-year design life with no H2S corrosion risk keeps it off the renewals program.',
     href: '/applications/#utilities',
   },
   {
     audience: 'Civil contractors & plumbers',
-    body: 'Lightweight, manually-handled components and on-site configurability cut install time and plant hire versus concrete.',
+    body: 'Base, riser and cover arrive as separate components light enough to place by hand — no specialist formwork crew, no cure time, backfill the same day.',
     href: '/applications/#contractors',
   },
 ];
@@ -59,10 +59,14 @@ const applications = [
   <TrustStrip />
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="products-heading">
-    <div class="flex items-end justify-between gap-4 mb-8">
+    <div class="flex items-end justify-between gap-4 mb-4">
       <h2 id="products-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">The SMS range</h2>
       <a href="/products/" class="text-sm font-semibold text-sms-green-600 hover:underline shrink-0">All products &rarr;</a>
     </div>
+    <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
+      Three DN families spanning reticulation to trunk sewer access — AXEDO shafts and chambers, ROMOLD
+      maintenance holes — every one WSAA-appraised to WSA 137:2019.
+    </p>
     <div id="range-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {families.map((p, i) => (
         <div class="range-tile" style={`transition-delay: ${i * 120}ms`}>
@@ -125,10 +129,14 @@ const applications = [
 
   <section class="bg-sms-charcoal-50 py-16" aria-labelledby="why-plastic-heading">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-4 mb-8">
+      <div class="flex items-end justify-between gap-4 mb-4">
         <h2 id="why-plastic-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">Why plastic vs concrete</h2>
         <a href="/why-plastic-vs-concrete/" class="text-sm font-semibold text-sms-green-600 hover:underline shrink-0">Full comparison &rarr;</a>
       </div>
+      <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
+        Sewer gas corrodes concrete from the inside — it's the leading cause of structure failure, and
+        polypropylene simply doesn't react to it. Here's what that means in practice.
+      </p>
       <div class="grid sm:grid-cols-3 gap-6">
         {whyPlastic.map((item) => (
           <div class="border-t border-sms-charcoal-100 pt-5">
@@ -141,7 +149,11 @@ const applications = [
   </section>
 
   <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="applications-heading">
-    <h2 id="applications-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-8">Built for utilities and contractors</h2>
+    <h2 id="applications-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">Built for utilities and contractors</h2>
+    <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
+      The same structure earns its place differently depending on who's specifying it. Here's the case
+      for each.
+    </p>
     <div class="grid sm:grid-cols-2 gap-8">
       {applications.map((item) => (
         <a href={item.href} class="block rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md transition-all">
