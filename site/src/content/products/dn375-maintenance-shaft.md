@@ -12,7 +12,7 @@ productImageBackground: "light"
 heroImage: "../../assets/images/hero-install-chamber.jpg"
 heroImageAlt: "SMS technician hand-installing a polypropylene maintenance structure base into a trench"
 countryOfManufacture: "Netherlands"
-manufacturerNote: "Engineered and supplied under the SMS/DYKA product range (Dyka BV, Netherlands). Confirm with SMS if a Germany/Nyloplast-sourced variant applies to your project — current engineering drawings for the DN375 Shaft are issued under the SMS/DYKA title block."
+manufacturerNote: "Engineered and supplied under the SMS/DYKA product range (Dyka BV, Netherlands). Confirm with SMS if a Germany/Nyloplast-sourced variant applies to your project. Current engineering drawings for the DN375 Shaft are issued under the SMS/DYKA title block."
 atAGlance:
   - label: "Life"
     value: "100 yrs"
@@ -61,11 +61,11 @@ specSections:
         value: "225mm clear opening"
 configDiagram: "../../assets/images/dn375-base-configurations-diagram.png"
 configDiagramAlt: "Plan-view diagrams of the two SMS DN375 Maintenance Shaft base configurations: RRJ 180° straight and RRJ Junction (4-way, 45°), each showing the inlet socket angle relative to the downstream outlet"
-configDiagramCaption: "Base configurations viewed in plan, looking down — the arrow marks the downstream (outlet) direction."
+configDiagramCaption: "Base configurations viewed in plan, looking down. The arrow marks the downstream (outlet) direction."
 assemblyDiagram: "../../assets/images/dn375-exploded-assembly-diagram.png"
 assemblyDiagramAlt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft assembly showing, top to bottom: MS TH access cover (ACCMHTHCSDMS), DN375 EPDM/SBR seal, DN375 PVC riser and the MS base"
-assemblyDiagramCaption: "Exploded assembly, top to bottom, for the direct DN375 riser path. Reducer variants stepping down to a DN300 or DN225 riser are also available — see the table below."
-configurationsIntro: "The codes below are confirmed standard configurations — contact SMS for the full configuration matrix across all inlet angles. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items without a distinct SMS part code."
+assemblyDiagramCaption: "Exploded assembly, top to bottom, for the direct DN375 riser path. Reducer variants stepping down to a DN300 or DN225 riser are also available. See the table below."
+configurationsIntro: "The codes below are confirmed standard configurations. Contact SMS for the full configuration matrix across all inlet angles. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items without a distinct SMS part code."
 configurations:
   - code: "MS8"
     configuration: "RRJ 180° Straight"
@@ -104,8 +104,8 @@ installationSections:
   - heading: "Access cover options"
     body: "Two access cover arrangements are available:"
     bullets:
-      - "Standard Top Hat access cover (with optional vegetation ring) — Class D, 300mm clear opening"
-      - "Option 1: concrete cover plate, 300mm clear opening — distributes traffic load to surrounding bedding rather than the PP structure"
+      - "Standard Top Hat access cover (with optional vegetation ring), Class D, 300mm clear opening"
+      - "Option 1: concrete cover plate, 300mm clear opening, distributes traffic load to surrounding bedding rather than the PP structure"
       - "Option 2: concrete cover plate, 225mm clear opening"
   - heading: "Lateral drop-in connections"
     body: "DN100 and DN150 lateral connections can be added on-site using an electric hand drill with a hole saw, plus a rubber collar and straight connector kit, without returning the shaft to the factory."
@@ -119,11 +119,11 @@ standards:
   - code: "AS/NZS 2566"
     description: "Buried flexible pipelines"
   - code: "AS 3996"
-    description: "Access covers and grates — Class D trafficable rating"
+    description: "Access covers and grates, Class D trafficable rating"
   - code: "AS 1646"
     description: "Elastomeric seals for waterworks purposes"
   - code: "WSAA PA 1317"
-    description: "WSAA Product Appraisal — PP Sewer Maintenance Shafts, Chambers and Holes"
+    description: "WSAA Product Appraisal for PP Sewer Maintenance Shafts, Chambers and Holes"
   - code: "WSA PS-341 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for maintenance shafts, access covers and PVC-U pipework"
 faqs:
@@ -153,11 +153,11 @@ downloads:
     fileType: "DWG/RVT/IFC"
     restricted: true
 seoTitle: "DN375 Maintenance Shaft | SMS AXEDO Polypropylene Sewer Shaft Australia"
-seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft — WSAA PA 1317 appraised, Class D rated, 100-year design life, manual install to 4m depth. Full specs and configurations."
+seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft. WSAA PA 1317 appraised, Class D rated, 100-year design life, manual install to 4m depth. Full specs and configurations."
 ---
 
 The SMS AXEDO DN375 Maintenance Shaft is a modular polypropylene maintenance access structure for gravity
 sewer reticulation, engineered as a lightweight, corrosion-resistant alternative to small precast concrete
 maintenance holes. Supplied as separate base, riser and access-cover elements, it is assembled and installed
-by hand using the excavator already on site for the dig — no cure time and no specialist formwork
-trade required — cutting typical installation time compared with a concrete equivalent.
+by hand using the excavator already on site for the dig. There is no cure time and no specialist
+formwork trade required, cutting typical installation time compared with a concrete equivalent.

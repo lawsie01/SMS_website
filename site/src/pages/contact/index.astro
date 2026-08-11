@@ -26,7 +26,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
   <Hero
     eyebrow="Contact"
     title="Talk to SMS about your project"
-    subtitle="Send us your project details or call our team directly — we'll confirm the right products and lead time for your project."
+    subtitle="Send us your project details or call our team directly. We'll confirm the right products and lead time for your project."
     compact
   />
 
@@ -79,7 +79,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
             aria-labelledby="product-label product-summary"
             class="w-full flex items-center justify-between gap-2 rounded-md border border-sms-charcoal-200 px-3 py-2 text-sm text-left text-sms-charcoal-700 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"
           >
-            <span id="product-summary">Select product(s) — optional</span>
+            <span id="product-summary">Select product(s) (optional)</span>
             <svg id="product-chevron" class="w-4 h-4 shrink-0 text-sms-charcoal-400 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -128,7 +128,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
         function refreshSummary(): void {
           if (!summary) return;
           const checked = [...checkboxes].filter((c) => c.checked);
-          if (checked.length === 0) summary.textContent = 'Select product(s) — optional';
+          if (checked.length === 0) summary.textContent = 'Select product(s) (optional)';
           else if (checked.length === 1) summary.textContent = checked[0].dataset.productTitle ?? checked[0].value;
           else summary.textContent = `${checked.length} products selected`;
         }

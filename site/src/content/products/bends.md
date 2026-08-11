@@ -21,7 +21,7 @@ specSections:
         value: "Rubber ring joint (RRJ), consistent with the connecting maintenance structure"
 installationSections:
   - heading: "Selection"
-    body: "Bend selection depends on the required deflection angle and the connecting pipe's DN size. Where a maintenance structure's own RRJ base configuration (e.g. 30°/60°/90°/120°) already provides the needed angle, a separate bend fitting typically isn't required — bends are for angles outside the base's own configuration options."
+    body: "Bend selection depends on the required deflection angle and the connecting pipe's DN size. Where a maintenance structure's own RRJ base configuration (e.g. 30°/60°/90°/120°) already provides the needed angle, a separate bend fitting typically isn't required. Bends are for angles outside the base's own configuration options."
 faqs:
   - question: "When do I need a separate bend instead of an angled base configuration?"
     answer: "SMS maintenance shaft, chamber and hole bases already ship in a range of RRJ angle configurations (typically 30°–270° plus a 4-way cross). A separate bend fitting is only needed when the required deflection falls outside those standard base angles."

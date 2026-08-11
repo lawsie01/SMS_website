@@ -86,7 +86,7 @@ const sortedProducts = products
               aria-labelledby="enquiry-product-label enquiry-product-summary"
               class="w-full flex items-center justify-between gap-2 rounded-md border border-sms-charcoal-200 px-3 py-2 text-sm text-left text-sms-charcoal-700 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"
             >
-              <span id="enquiry-product-summary">Select product(s) — optional</span>
+              <span id="enquiry-product-summary">Select product(s) (optional)</span>
               <svg id="enquiry-product-chevron" class="w-4 h-4 shrink-0 text-sms-charcoal-400 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -126,7 +126,7 @@ const sortedProducts = products
                 <path d="M3.5 13v1.5A2.5 2.5 0 006 17h8a2.5 2.5 0 002.5-2.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="text-sm font-semibold text-sms-charcoal-700">Drop site plans or photos here</span>
-              <span class="text-xs text-sms-charcoal-400">or <button type="button" id="enquiry-file-browse" class="text-sms-green-600 font-semibold underline">browse files</button> — PDF, JPG, PNG or DWG, up to 15MB each</span>
+              <span class="text-xs text-sms-charcoal-400">or <button type="button" id="enquiry-file-browse" class="text-sms-green-600 font-semibold underline">browse files</button>. PDF, JPG, PNG or DWG, up to 15MB each</span>
             </div>
             <input id="enquiry-file-input" name="attachment" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg" class="sr-only" />
             <ul id="enquiry-file-list" class="mt-2.5 space-y-1.5"></ul>
@@ -134,7 +134,7 @@ const sortedProducts = products
           </div>
 
           <p id="enquiry-submit-error" hidden class="text-sm text-red-700">
-            Something went wrong sending that — please try again, or call <a href="tel:1300482228" class="font-semibold underline">1300 482 228</a>.
+            Something went wrong sending that. Please try again, or call <a href="tel:1300482228" class="font-semibold underline">1300 482 228</a>.
           </p>
 
           <button type="submit" id="enquiry-submit-btn" class="w-full inline-flex items-center justify-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors disabled:bg-sms-charcoal-200 disabled:cursor-not-allowed">
@@ -151,7 +151,7 @@ const sortedProducts = products
         </div>
         <h2 class="text-lg font-bold text-sms-charcoal-900 mb-2">Enquiry received</h2>
         <p class="text-sm text-sms-charcoal-500 leading-relaxed max-w-[32ch] mx-auto mb-6">
-          Thanks — an SMS team member will follow up within 2 business days. Need it sooner? Call 1300 482 228.
+          Thanks. An SMS team member will follow up within 2 business days. Need it sooner? Call 1300 482 228.
         </p>
         <button type="button" id="enquiry-success-close" class="inline-flex items-center rounded-md border border-sms-charcoal-200 px-5 py-2.5 text-sm font-semibold text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-green-600 transition-colors">
           Close
@@ -285,7 +285,7 @@ const sortedProducts = products
   }
   function refreshProductSummary(): void {
     const checked = productCheckboxes().filter((c) => c.checked);
-    if (checked.length === 0) productSummary.textContent = 'Select product(s) — optional';
+    if (checked.length === 0) productSummary.textContent = 'Select product(s) (optional)';
     else if (checked.length === 1) productSummary.textContent = checked[0].dataset.productTitle || checked[0].value;
     else productSummary.textContent = `${checked.length} products selected`;
   }

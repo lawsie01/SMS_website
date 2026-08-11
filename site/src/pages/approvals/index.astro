@@ -14,11 +14,11 @@ const approvals = [
   },
   {
     code: 'WSA 137:2019',
-    body: 'Industry standard for unplasticised PVC, polypropylene and polyethylene maintenance shafts, chambers and holes for sewerage — the core standard the SMS range is manufactured and appraised against.',
+    body: 'Industry standard for unplasticised PVC, polypropylene and polyethylene maintenance shafts, chambers and holes for sewerage. The core standard the SMS range is manufactured and appraised against.',
   },
   {
     code: 'AS 3996',
-    body: 'Access covers and grates. All SMS access cover arrangements (Top Hat, concrete cover plate, concrete load distribution ring) are rated Class D — trafficable — to this standard.',
+    body: 'Access covers and grates. All SMS access cover arrangements (Top Hat, concrete cover plate, concrete load distribution ring) are rated Class D, trafficable, to this standard.',
   },
   {
     code: 'EN 13598-2',
@@ -26,11 +26,11 @@ const approvals = [
   },
   {
     code: 'AS 1646',
-    body: 'Elastomeric seals for waterworks purposes — governs the EPDM/SBR seals used throughout the SMS range.',
+    body: 'Elastomeric seals for waterworks purposes. Governs the EPDM/SBR seals used throughout the SMS range.',
   },
   {
     code: 'AS/NZS 2566',
-    body: 'Buried flexible pipelines — referenced for installation practice (bedding, backfill, compaction) around SMS structures.',
+    body: 'Buried flexible pipelines. Referenced for installation practice (bedding, backfill, compaction) around SMS structures.',
   },
   {
     code: 'AS/NZS 5065',
@@ -38,7 +38,7 @@ const approvals = [
   },
   {
     code: 'EN 14396',
-    body: 'Fixed ladders for manholes — applies to the DN1000 Maintenance Hole\'s person-entry ladder.',
+    body: 'Fixed ladders for manholes. Applies to the DN1000 Maintenance Hole\'s person-entry ladder.',
   },
 ];
 
@@ -82,7 +82,7 @@ const faqs = [
   <Hero
     eyebrow="Approvals & standards"
     title="Backed by WSAA"
-    subtitle="Every claim on this page is backed by a named standard or appraisal — not marketing language. Full certificates are available in the Technical Resources hub."
+    subtitle="Every claim on this page is backed by a named standard or appraisal, not marketing language. Full certificates are available in the Technical Resources hub."
     compact
   />
 
@@ -108,7 +108,7 @@ const faqs = [
       </div>
       <p class="text-xs text-sms-charcoal-400 mt-6 max-w-[68ch]">
         Quality management certification (AS/NZS ISO 9001) and any current WaterMark licensing referenced on
-        prior SMS materials are being reconfirmed for the current AXEDO/ROMOLD range — contact SMS for the
+        prior SMS materials are being reconfirmed for the current AXEDO/ROMOLD range. Contact SMS for the
         latest certificate if this is required for your project's documentation.
       </p>
     </section>
@@ -116,7 +116,7 @@ const faqs = [
     <section aria-labelledby="matrix-heading">
       <h2 id="matrix-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Compliance at a glance, by product</h2>
       <p class="text-sm text-sms-charcoal-500 mb-6 max-w-[68ch]">
-        Not every standard applies to every product — this is the same data published on each
+        Not every standard applies to every product. This is the same data published on each
         product's own Standards &amp; Approvals section, side by side for quick reference.
       </p>
       <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100">
@@ -133,9 +133,9 @@ const faqs = [
             {matrix.map((row, i) => (
               <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <th scope="row" class="text-left px-4 py-3 font-mono font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300">&mdash;</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
               </tr>
             ))}
           </tbody>
@@ -147,7 +147,7 @@ const faqs = [
       <h2 id="process-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">What a WSAA Product Appraisal actually checks</h2>
       <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch]">
         A WSAA Product Appraisal is an independent review process run by the Water Services
-        Association of Australia — it isn't SMS grading its own homework. The appraisal assesses a
+        Association of Australia. It isn't SMS grading its own homework. The appraisal assesses a
         product against the relevant WSA specification (WSA 137:2019 for maintenance shafts,
         chambers and holes), covering material properties, structural performance and manufacturing
         quality control, and results in a formal certificate with a defined validity period that

@@ -276,7 +276,7 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
                 <li>
                   {d.restricted ? (
                     <span class="text-sm text-sms-charcoal-400">
-                      {d.label} — <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
+                      {d.label}: <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
                     </span>
                   ) : d.file ? (
                     <a href={d.file} class="text-sm text-sms-green-600 font-medium hover:underline" download>
@@ -284,7 +284,7 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
                     </a>
                   ) : (
                     <span class="text-sm text-sms-charcoal-400">
-                      {d.label} ({d.fileType}) — coming soon
+                      {d.label} ({d.fileType}): coming soon
                     </span>
                   )}
                 </li>

@@ -14,7 +14,7 @@ specSections:
       - label: "Purpose"
         value: "Buried electronic marker used to record the location of sewer pipework and fittings for future locating, particularly between maintenance access points"
       - label: "Data on file"
-        value: "Full technical specification for the current Pipe Marker range was not included in the brochures supplied for this rebuild — contact SMS for the current data sheet"
+        value: "Full technical specification for the current Pipe Marker range was not included in the brochures supplied for this rebuild. Contact SMS for the current data sheet"
 faqs:
   - question: "What is a pipe marker used for?"
     answer: "A pipe marker is buried alongside sewer pipework to allow future electronic locating of the asset, particularly on runs where a maintenance shaft, chamber or hole isn't present at that exact point."

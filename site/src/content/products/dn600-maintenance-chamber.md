@@ -65,8 +65,8 @@ specSections:
         value: "200kg"
 configDiagram: "../../assets/images/dn600-base-configurations-diagram.png"
 configDiagramAlt: "Plan-view diagrams of the five SMS DN600 Maintenance Chamber base configurations: RRJ 90°/270° (DN225 only), RRJ 120°/240°, RRJ 150°/210°, RRJ 180° straight and Cross (4-way), each showing the inlet socket angle relative to the downstream outlet"
-configDiagramCaption: "Base configurations viewed in plan, looking down — the arrow marks the downstream (outlet) direction. The angle in brackets is the pipeline's deflection from straight-through. RRJ 90°/270° is only available with a DN225 inlet/outlet."
-configGroupsIntro: "The base part code is AXEDO <size>/<angle>. All 9 configurations are listed below, grouped by inlet/outlet size — expand a size to find its part code."
+configDiagramCaption: "Base configurations viewed in plan, looking down. The arrow marks the downstream (outlet) direction, and the angle in brackets is the pipeline's deflection from straight-through. RRJ 90°/270° is only available with a DN225 inlet/outlet."
+configGroupsIntro: "The base part code is AXEDO <size>/<angle>. All 9 configurations are listed below, grouped by inlet/outlet size. Expand a size to find its part code."
 configGroups:
   - heading: "DN150 inlet/outlet"
     rows:
@@ -92,8 +92,8 @@ configGroups:
         configuration: "RRJ 90° / 270° (90° deflection)"
 assemblyDiagram: "../../assets/images/dn600-exploded-assembly-diagram.png"
 assemblyDiagramAlt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber assembly showing, top to bottom: MC TH access cover (ACCMHTHCSDMC), DN600 EPDM/SBR seal (ARH0600), DN600 corrugated riser (PPPB0600), a second EPDM/SBR seal and the MC base"
-assemblyDiagramCaption: "Exploded assembly, top to bottom — the access cover and corrugated riser stack onto the base with an EPDM/SBR seal at each joint. The concrete cover-plate option (with cap assembly and shroud) is a separate arrangement — see Other components below."
-configurationsIntro: "The access cover, riser and seal shown in the assembly diagram above are each their own part code — full list below."
+assemblyDiagramCaption: "Exploded assembly, top to bottom. The access cover and corrugated riser stack onto the base with an EPDM/SBR seal at each joint. The concrete cover-plate option, with cap assembly and shroud, is a separate arrangement. See Other components below."
+configurationsIntro: "The access cover, riser and seal shown in the assembly diagram above are each their own part code. Full list below."
 configurations:
   - code: "PPPB0600"
     configuration: "DN600 corrugated riser, cut to suit installation depth"
@@ -125,10 +125,10 @@ installationSections:
   - heading: "Access cover options"
     body: "Two access cover arrangements are available, both Class D rated:"
     bullets:
-      - "Standard Top Hat access cover (with optional vegetation ring) — distributes traffic load to the surrounding foundation, not the PP riser"
-      - "Option: concrete cover plate with cap assembly and shroud — used where a larger load-spreading footprint is specified"
+      - "Standard Top Hat access cover (with optional vegetation ring); distributes traffic load to the surrounding foundation, not the PP riser"
+      - "Option: concrete cover plate with cap assembly and shroud, used where a larger load-spreading footprint is specified"
   - heading: "Lateral drop-in connections"
-    body: "DN100 and DN150 lateral connections can be added on-site with a hole saw (127mm/5\" for DN100, 178mm/7\" for DN150), rubber collar and straight connector — no need to return the unit to the factory."
+    body: "DN100 and DN150 lateral connections can be added on-site with a hole saw (127mm/5\" for DN100, 178mm/7\" for DN150), rubber collar and straight connector. No need to return the unit to the factory."
 standards:
   - code: "WSA 137:2019"
     description: "Industry standard for PVC-U, PP and PE maintenance shafts, chambers and holes for sewerage"
@@ -139,11 +139,11 @@ standards:
   - code: "AS/NZS 5065"
     description: "PE and PP pipes and fittings for drainage and sewerage applications"
   - code: "AS 3996"
-    description: "Access covers and grates — Class D trafficable rating"
+    description: "Access covers and grates, Class D trafficable rating"
   - code: "AS 1646"
     description: "Elastomeric seals for waterworks purposes"
   - code: "WSAA PA 1317"
-    description: "WSAA Product Appraisal — PP Sewer Maintenance Shafts, Chambers and Holes"
+    description: "WSAA Product Appraisal for PP Sewer Maintenance Shafts, Chambers and Holes"
   - code: "WSA PS-337 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for maintenance chambers, access covers and PVC-U pipework"
 faqs:
@@ -154,7 +154,7 @@ faqs:
   - question: "What size inlet and outlet connections does the DN600 Chamber take?"
     answer: "The chamber base is available in standard RRJ configurations for DN150 and DN225 inlets/outlets, across straight, 60°/120°/150°/210°/240° angled (plus 90°/270° for DN225 only) and 4-way cross arrangements. Additional DN100/DN150 lateral drop-in connections can be added on-site."
   - question: "How much does the DN600 Chamber weigh per component?"
-    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre — light enough to install and adjust by hand, with no lifting equipment beyond the excavator already on site."
+    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre. Both are light enough to install and adjust by hand, with no lifting equipment beyond the excavator already on site."
   - question: "What angle tolerance does the DN600 Chamber base allow at pipe connections?"
     answer: "The base sockets accommodate up to ±7.5° of horizontal angle change and ±7.5° of gradient change (simultaneous changes reduce the maximum achievable value in each direction)."
   - question: "What standards does the DN600 Chamber comply with?"
@@ -173,7 +173,7 @@ downloads:
     fileType: "DWG/RVT/IFC"
     restricted: true
 seoTitle: "DN600 Maintenance Chamber | SMS AXEDO Polypropylene Sewer Chamber Australia"
-seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber — WSAA PA 1317 appraised, Class D rated, installs to 6m depth by hand. Full specs, configurations and standards."
+seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber. WSAA PA 1317 appraised, Class D rated, installs to 6m depth by hand. Full specs, configurations and standards."
 ---
 
 The SMS AXEDO DN600 Maintenance Chamber pairs a polypropylene base with a corrugated PP riser to give
