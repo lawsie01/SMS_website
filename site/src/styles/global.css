@@ -13,32 +13,28 @@
 @import "@fontsource/ibm-plex-mono/500.css";
 
 @theme {
-  /* Brand palette. Green is #38E33A; 400-600 are the brand green itself, the
-     steps above are tints for hover fills and the steps below are darker
-     shades used only so hover states still register a change. */
-  --color-sms-green-50: #edfaee;
-  --color-sms-green-100: #d2f1d3;
-  --color-sms-green-200: #a9e4aa;
-  --color-sms-green-300: #6bea6d;
-  --color-sms-green-400: #38e33a; /* primary brand green */
-  --color-sms-green-500: #38e33a;
-  --color-sms-green-600: #38e33a;
-  --color-sms-green-700: #1abc1c; /* hover only */
-  --color-sms-green-800: #159416;
-  --color-sms-green-900: #0f6b10;
+  /* Brand palette extracted directly from the SMS logo and brochures */
+  --color-sms-green-50: #eef8ea;
+  --color-sms-green-100: #d6f0cb;
+  --color-sms-green-200: #b1e29c;
+  --color-sms-green-300: #8ad46e;
+  --color-sms-green-400: #63b447; /* primary brand green (logo clover) */
+  --color-sms-green-500: #4f9938;
+  --color-sms-green-600: #3f7a2d;
+  --color-sms-green-700: #315f24;
+  --color-sms-green-800: #26491c;
+  --color-sms-green-900: #1b3414;
 
-  /* Ink is #1F1925. The lighter steps carry the same hue so muted body copy,
-     rules and borders stay in one family rather than drifting neutral grey. */
-  --color-sms-charcoal-50: #f4f4f5;
-  --color-sms-charcoal-100: #e2e1e4;
-  --color-sms-charcoal-200: #b9b6bc;
-  --color-sms-charcoal-300: #8e8596;
-  --color-sms-charcoal-400: #5c5167;
-  --color-sms-charcoal-500: #372f3f;
-  --color-sms-charcoal-600: #2a2331;
-  --color-sms-charcoal-700: #251f2c;
-  --color-sms-charcoal-800: #221c28;
-  --color-sms-charcoal-900: #1f1925; /* primary ink */
+  --color-sms-charcoal-50: #f4f4f4;
+  --color-sms-charcoal-100: #e2e2e1;
+  --color-sms-charcoal-200: #b9b8b7;
+  --color-sms-charcoal-300: #8f8d8c;
+  --color-sms-charcoal-400: #5c5a59;
+  --color-sms-charcoal-500: #383635;
+  --color-sms-charcoal-600: #2a2828;
+  --color-sms-charcoal-700: #232121;
+  --color-sms-charcoal-800: #1d1c1b;
+  --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
 
   /* Exact backdrop colour baked into the "-clover" 3D-rendered product shots
      (sampled from the images themselves, not a design choice) — the product
@@ -65,12 +61,12 @@ html {
 /* Brand graphic devices — pure CSS, no image assets. See Rules in each
    device's comment block below before applying a class to a new section:
    these are texture, not content, and are capped at two visible per
-   viewport. --sms-dark-bg is a near-black one step below the ink, used on
-   sections carrying the contour device so the ring pattern reads against it
-   instead of disappearing into the flat ink. */
+   viewport. --sms-dark-bg is a warm near-black that replaces charcoal-900
+   on sections carrying the contour device, so the ring pattern reads
+   against it instead of disappearing into pure black. */
 :root {
-  --sms-ink: #1f1925;
-  --sms-dark-bg: #17121c;
+  --sms-ink: #1a1a19;
+  --sms-dark-bg: #14140f;
 }
 
 @layer components {
@@ -116,8 +112,8 @@ html {
     height: 560px;
     background: repeating-radial-gradient(
       circle at 0 100%,
-      rgba(56, 227, 58, 0) 0 40px,
-      rgba(56, 227, 58, 0.18) 40px 41px
+      rgba(74, 164, 86, 0) 0 40px,
+      rgba(74, 164, 86, 0.18) 40px 41px
     );
   }
   @media (max-width: 768px) {
@@ -210,7 +206,7 @@ html {
     padding-left: 0;
   }
   .sms-stat + .sms-stat {
-    border-left: 1px solid var(--color-sms-charcoal-100);
+    border-left: 1px solid #e6e3dc;
   }
   /* Below sm, .sms-stat-grid switches the row to a 2-column grid (see
      AtAGlance.astro) — the single-row divider rules above don't fit a
@@ -224,13 +220,13 @@ html {
       padding-top: 0;
     }
     .sms-stat-grid .sms-stat:nth-child(n+3) {
-      border-top: 1px solid var(--color-sms-charcoal-100);
+      border-top: 1px solid #e6e3dc;
     }
     .sms-stat-grid .sms-stat:nth-child(2n+1) {
       padding-left: 0;
     }
     .sms-stat-grid .sms-stat:nth-child(2n) {
-      border-left: 1px solid var(--color-sms-charcoal-100);
+      border-left: 1px solid #e6e3dc;
     }
   }
   .sms-stat__label {
@@ -238,7 +234,7 @@ html {
     font-size: 9.5px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: var(--color-sms-charcoal-300);
+    color: #8e8b83;
     white-space: nowrap;
   }
   .sms-stat__value {
@@ -294,7 +290,7 @@ html {
     width: max-content;
   }
   .sms-endmark span {
-    background: var(--color-sms-charcoal-200);
+    background: #c3bfb5;
     border-radius: 1px;
   }
 
@@ -302,7 +298,7 @@ html {
      counts as the section's one device — never combined with the contour. */
   .sms-dotfield {
     background-color: var(--sms-dark-bg);
-    background-image: radial-gradient(circle, rgba(56, 227, 58, 0.22) 1.4px, transparent 1.6px);
+    background-image: radial-gradient(circle, rgba(122, 196, 133, 0.22) 1.4px, transparent 1.6px);
     background-size: 26px 26px;
   }
 }
@@ -382,5 +378,5 @@ html {
 }
 
 .skip-link {
-  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-sms-charcoal-900 focus:px-4 focus:py-2 focus:rounded-md;
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md;
 }
