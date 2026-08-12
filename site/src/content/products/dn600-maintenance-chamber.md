@@ -94,17 +94,38 @@ assemblyRenders:
   - image: "../../assets/images/dn600-assembly-lateral.png"
     alt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber with Top Hat access cover, EPDM/SBR seals, corrugated riser, base and an optional lateral connection"
     caption: "DN600 chamber with the Top Hat access cover."
+    callouts:
+      - { n: 1, x: 23, y: 8 }
+      - { n: 2, x: 35, y: 22 }
+      - { n: 3, x: 40, y: 50 }
+      - { n: 5, x: 2, y: 41 }
+      - { n: 4, x: 22, y: 90 }
+assemblyLegend:
+  - n: 1
+    label: "Top Hat access cover"
+    code: "ACCMHTHCSDMC"
+  - n: 2
+    label: "DN600 EPDM/SBR seal"
+    code: "ARH0600"
+  - n: 3
+    label: "DN600 corrugated riser"
+    code: "PPPB0600"
+  - n: 4
+    label: "Base"
+  - n: 5
+    label: "Lateral connection"
+    code: "optional"
 assemblyRendersIntro: "The chamber exploded, shown with a lateral connection. The lateral is optional and is not part of the base: DN100 and DN150 connections are drilled in on site with a hole saw, rubber collar and straight connector."
-assemblyDiagram: "../../assets/images/dn600-exploded-assembly-diagram.png"
-assemblyDiagramAlt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber assembly showing, top to bottom: MC TH access cover (ACCMHTHCSDMC), DN600 EPDM/SBR seal (ARH0600), DN600 corrugated riser (PPPB0600), a second EPDM/SBR seal and the MC base"
-assemblyDiagramCaption: "Exploded assembly, top to bottom. The access cover and corrugated riser stack onto the base with an EPDM/SBR seal at each joint. The concrete cover-plate option, with cap assembly and shroud, is a separate arrangement. See Other components below."
-configurationsIntro: "The access cover, riser and seal shown in the assembly diagram above are each their own part code. Full list below."
+configurationsIntro: "Every part in the assembly above is its own code. The # column matches the numbered indicators on the render."
 configurations:
   - code: "PPPB0600"
+    ref: 3
     configuration: "DN600 corrugated riser, cut to suit installation depth"
   - code: "ARH0600"
+    ref: 2
     configuration: "DN600 EPDM/SBR seal"
   - code: "ACCMHTHCSDMC"
+    ref: 1
     configuration: "Standard Top Hat access cover"
     notes: "Class D, 300mm clear opening"
   - code: "ACCMHTHCIFD"

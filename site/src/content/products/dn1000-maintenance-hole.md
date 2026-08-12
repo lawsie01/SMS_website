@@ -92,7 +92,7 @@ specSections:
         value: "200kg"
       - label: "Concrete load distribution ring option"
         value: "180kg"
-configurationsIntro: "The access cover, cone, riser and seals shown in the assembly diagram above are each their own part code. Full list below."
+configurationsIntro: "Every part in the assembly above is its own code. The # column matches the numbered indicators on the render."
 configDiagram: "../../assets/images/dn1000-base-configurations-diagram.png"
 configDiagramAlt: "Plan-view diagrams of the eight SMS DN1000 Maintenance Hole base configurations: RRJ 90°, 120°, 150°, 180° straight, 210°, 240°, 270° and Cross (4-way), each showing the inlet socket angle relative to the downstream outlet"
 configDiagramCaption: "Base configurations viewed in plan, looking down. The arrow marks the downstream (outlet) direction, and the angle in brackets is the pipeline's deflection from straight-through."
@@ -181,13 +181,46 @@ assemblyRenders:
   - image: "../../assets/images/dn1000-assembly-lateral-external.png"
     alt: "Exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an external lateral connection passing straight through the riser wall"
     caption: "External connection, straight through the riser wall."
+    callouts:
+      - { n: 1, x: 28, y: 5 }
+      - { n: 2, x: 37, y: 14 }
+      - { n: 3, x: 31, y: 27 }
+      - { n: 6, x: 2, y: 46 }
+      - { n: 4, x: 25, y: 53 }
+      - { n: 5, x: 25, y: 92 }
   - image: "../../assets/images/dn1000-assembly-lateral-internal-drop.png"
     alt: "Cutaway exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an internal drop: the lateral enters the riser, turns down through a bend and runs to invert level on a bracketed drop pipe"
     caption: "Internal drop, taking the lateral down to invert level."
+    callouts:
+      - { n: 1, x: 28, y: 5 }
+      - { n: 2, x: 37, y: 14 }
+      - { n: 3, x: 31, y: 27 }
+      - { n: 6, x: 2, y: 45 }
+      - { n: 4, x: 30, y: 53 }
+      - { n: 7, x: 40, y: 68 }
+      - { n: 5, x: 25, y: 92 }
+assemblyLegend:
+  - n: 1
+    label: "Top Hat access cover"
+    code: "ACCMHTHCSDMH"
+  - n: 2
+    label: "EPDM seal"
+    code: "MHG0625 / MHG1000"
+  - n: 3
+    label: "Cone"
+    code: "MHRC600"
+  - n: 4
+    label: "Riser"
+    code: "MH10000250-1000"
+  - n: 5
+    label: "Base"
+  - n: 6
+    label: "Lateral connection"
+    code: "optional"
+  - n: 7
+    label: "Internal drop"
+    code: "optional"
 assemblyRendersIntro: "Two ways to bring a lateral in, both optional and both added on site. The external connection passes straight through the riser wall. The internal drop turns the lateral down inside the structure and carries it to invert level on a bracketed pipe, which is what an incoming line sitting well above the outlet needs."
-assemblyDiagram: "../../assets/images/dn1000-exploded-assembly-diagram.png"
-assemblyDiagramAlt: "Exploded view of the SMS DN1000 Maintenance Hole assembly showing, top to bottom: MH TH access cover (ACCMHTHCSDMH), EPDM seal (MHG0625), MH cone (MHRC600), MH riser sections (MH10000250/500/750/1000), a second EPDM seal (MHG1000) and the MH base"
-assemblyDiagramCaption: "Exploded assembly, top to bottom. The access cover, cone and riser(s) stack onto the base with an EPDM seal at each joint. Riser heights combine in 250mm increments to reach the required installation depth."
 componentPhotos:
   - image: "../../assets/images/dn1000-cone-component.jpg"
     alt: "SMS ROMOLD DN1000 cone, reducing from the 1000mm base to the 600mm access cover"
@@ -197,18 +230,25 @@ componentPhotos:
     caption: "MH Riser, 250mm height shown."
 configurations:
   - code: "MH10000250"
+    ref: 4
     configuration: "Riser, 250mm height"
   - code: "MH10000500"
+    ref: 4
     configuration: "Riser, 500mm height"
   - code: "MH10000750"
+    ref: 4
     configuration: "Riser, 750mm height"
   - code: "MH10001000"
+    ref: 4
     configuration: "Riser, 1000mm height"
   - code: "MHRC600"
+    ref: 3
     configuration: "Cone, 1000mm to 600mm reduction"
   - code: "MHG0625 / MHG1000"
+    ref: 2
     configuration: "Element seals for the 600mm cone/cover joint and the 1000mm base/riser/cone joint"
   - code: "ACCMHTHCSDMH"
+    ref: 1
     configuration: "Standard Top Hat access cover"
     notes: "Class D, 600mm clear opening"
   - code: "ACCMHTHCIFDMH"

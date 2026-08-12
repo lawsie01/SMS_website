@@ -32,6 +32,29 @@ const specSection = z.object({
 // only exposes inside the collection's own schema factory — so both are
 // factories themselves, called with that same `image` inside products'
 // schema below, rather than plain top-level z.object() like their siblings.
+// A numbered indicator on an assembly render. x/y are percentages of the
+// image box: y positions the badge in the left gutter, x is where its lead
+// line stops, on the left edge of the part being called out.
+const callout = z.object({
+  n: z.number().int().positive(),
+  x: z.number().min(0).max(100),
+  y: z.number().min(0).max(100),
+});
+
+const legendItem = z.object({
+  n: z.number().int().positive(),
+  label: z.string(),
+  code: z.string().optional(),
+});
+
+const assemblyRender = (image: ImageFunction) =>
+  z.object({
+    image: image(),
+    alt: z.string(),
+    caption: z.string().optional(),
+    callouts: z.array(callout).default([]),
+  });
+
 const photoItem = (image: ImageFunction) =>
   z.object({
     image: image(),
@@ -48,6 +71,8 @@ const installSection = (image: ImageFunction) =>
   });
 
 const configRow = z.object({
+  // Number of the matching indicator on the assembly render above.
+  ref: z.number().int().positive().optional(),
   code: z.string(),
   configuration: z.string(),
   size: z.string().optional(),
@@ -137,11 +162,11 @@ const products = defineCollection({
       // includes the lateral connection, which is an optional on-site
       // addition rather than part of the base — assemblyRendersIntro says so
       // once for the whole set instead of repeating it in every caption.
-      assemblyRenders: z.array(photoItem(image)).default([]),
+      assemblyRenders: z.array(assemblyRender(image)).default([]),
       assemblyRendersIntro: z.string().optional(),
-      assemblyDiagram: image().optional(),
-      assemblyDiagramAlt: z.string().optional(),
-      assemblyDiagramCaption: z.string().optional(),
+      // Shared across every render for the product, so the same part carries
+      // the same number in all views and in the components table below.
+      assemblyLegend: z.array(legendItem).default([]),
       // Same idea for the "Other components" table — real photos of the
       // individual parts (cone, riser, ...) rather than only the schematic.
       componentPhotos: z.array(photoItem(image)).default([]),

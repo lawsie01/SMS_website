@@ -1,5 +1,7 @@
 ---
 interface Row {
+  /** Matching indicator number on the assembly render above, when the part appears in it. */
+  ref?: number;
   code: string;
   configuration: string;
   size?: string;
@@ -11,6 +13,7 @@ interface Props {
 }
 const { rows, intro } = Astro.props;
 const hasSize = rows.some((r) => r.size);
+const hasRef = rows.some((r) => r.ref !== undefined);
 const hasNotes = rows.some((r) => r.notes);
 ---
 
@@ -20,6 +23,7 @@ const hasNotes = rows.some((r) => r.notes);
     <table class="w-full border-collapse text-sm">
       <thead>
         <tr class="bg-sms-charcoal-900 text-white">
+          {hasRef && <th scope="col" class="text-left px-3 py-2.5 font-semibold w-10"><span class="sr-only">Assembly indicator</span>#</th>}
           <th scope="col" class="text-left px-3 py-2.5 font-semibold">Part code</th>
           <th scope="col" class="text-left px-3 py-2.5 font-semibold">Configuration</th>
           {hasSize && <th scope="col" class="text-left px-3 py-2.5 font-semibold">Inlet/outlet size</th>}
@@ -29,6 +33,13 @@ const hasNotes = rows.some((r) => r.notes);
       <tbody>
         {rows.map((row, i) => (
           <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
+            {hasRef && (
+              <td class="px-3 py-2">
+                {row.ref !== undefined && (
+                  <span class="inline-flex items-center justify-center rounded-full bg-sms-charcoal-900 text-white font-semibold w-5 h-5 text-[0.6875rem]">{row.ref}</span>
+                )}
+              </td>
+            )}
             <td class="px-3 py-2 font-mono text-xs text-sms-charcoal-900">{row.code}</td>
             <td class="px-3 py-2 text-sms-charcoal-900">{row.configuration}</td>
             {hasSize && <td class="px-3 py-2 text-sms-charcoal-900">{row.size ?? 'N/A'}</td>}
