@@ -15,15 +15,15 @@ const MODEL_URLS: Partial<Record<Props['product'], string>> = {
 const modelUrl = MODEL_URLS[product];
 ---
 
-<section aria-labelledby="viewer-heading" class="sms-dotfield">
+<section aria-labelledby="viewer-heading" class="bg-sms-charcoal-50">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-      <h2 id="viewer-heading" class="text-xl font-bold text-white">Explore the {title} in 3D</h2>
-      <p class="text-xs text-sms-charcoal-200">Drag to rotate &middot; scroll or pinch to zoom</p>
+      <h2 id="viewer-heading" class="text-xl font-bold text-sms-charcoal-900">Explore the {title} in 3D</h2>
+      <p class="text-xs text-sms-charcoal-500">Drag to rotate &middot; scroll or pinch to zoom</p>
     </div>
 
     <div
-      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-gradient-to-b from-sms-charcoal-50 to-sms-charcoal-100 overflow-hidden"
+      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-white overflow-hidden"
       data-product={product}
       data-model-url={modelUrl}
       style="height: 480px;"
@@ -39,11 +39,11 @@ const modelUrl = MODEL_URLS[product];
     </div>
 
     {modelUrl ? (
-      <p class="mt-3 text-xs text-sms-charcoal-200 max-w-2xl">
+      <p class="mt-3 text-xs text-sms-charcoal-500 max-w-2xl">
         Actual CAD-derived model of the SMS {title}.
       </p>
     ) : (
-      <p class="mt-3 text-xs text-sms-charcoal-200 max-w-2xl">
+      <p class="mt-3 text-xs text-sms-charcoal-500 max-w-2xl">
         Placeholder geometry for concept purposes. Approximates the real product's proportions and
         construction (corrugated riser, access cover, RRJ inlet/outlet sockets) but is not derived from
         the actual CAD model. Swap in the real .glb/.gltf asset when available.

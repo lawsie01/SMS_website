@@ -57,12 +57,12 @@ const productFamilies = products
       only bar 2 below takes up permanent header real estate once scrolled.
       Desktop/tablet only: on narrow viewports these three links move into
       the mobile disclosure instead of wrapping a thin bar into two lines. */}
-  <div class="hidden lg:block bg-sms-slate-500 text-white">
+  <div class="hidden lg:block bg-sms-charcoal-50 text-sms-charcoal-500 border-b border-sms-charcoal-100">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end gap-6 text-xs font-medium">
       {utilityLinks.map((item, i) => (
         <>
-          {i > 0 && <span class="w-px h-3 bg-white/40" aria-hidden="true"></span>}
-          <a href={item.href} class="hover:underline transition-colors">{item.label}</a>
+          {i > 0 && <span class="w-px h-3 bg-sms-charcoal-200" aria-hidden="true"></span>}
+          <a href={item.href} class="hover:text-sms-charcoal-900 transition-colors">{item.label}</a>
         </>
       ))}
     </div>
