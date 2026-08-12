@@ -90,6 +90,11 @@ configGroups:
         configuration: "RRJ 60° / 120° / 240° (60° deflection)"
       - code: "AXEDO 225/90"
         configuration: "RRJ 90° / 270° (90° deflection)"
+assemblyRenders:
+  - image: "../../assets/images/dn600-assembly-lateral.png"
+    alt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber with Top Hat access cover, EPDM/SBR seals, corrugated riser, base and an optional lateral connection"
+    caption: "DN600 chamber with the Top Hat access cover."
+assemblyRendersIntro: "The chamber exploded, shown with a lateral connection. The lateral is optional and is not part of the base: DN100 and DN150 connections are drilled in on site with a hole saw, rubber collar and straight connector."
 assemblyDiagram: "../../assets/images/dn600-exploded-assembly-diagram.png"
 assemblyDiagramAlt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber assembly showing, top to bottom: MC TH access cover (ACCMHTHCSDMC), DN600 EPDM/SBR seal (ARH0600), DN600 corrugated riser (PPPB0600), a second EPDM/SBR seal and the MC base"
 assemblyDiagramCaption: "Exploded assembly, top to bottom. The access cover and corrugated riser stack onto the base with an EPDM/SBR seal at each joint. The concrete cover-plate option, with cap assembly and shroud, is a separate arrangement. See Other components below."

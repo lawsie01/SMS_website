@@ -133,6 +133,12 @@ const products = defineCollection({
       // Real product photos placed alongside the schematic config diagram —
       // photographic proof next to the plan-view icons, not a replacement.
       configPhotos: z.array(photoItem(image)).default([]),
+      // Manufacturer assembly renders. Every render in the supplied set
+      // includes the lateral connection, which is an optional on-site
+      // addition rather than part of the base — assemblyRendersIntro says so
+      // once for the whole set instead of repeating it in every caption.
+      assemblyRenders: z.array(photoItem(image)).default([]),
+      assemblyRendersIntro: z.string().optional(),
       assemblyDiagram: image().optional(),
       assemblyDiagramAlt: z.string().optional(),
       assemblyDiagramCaption: z.string().optional(),
