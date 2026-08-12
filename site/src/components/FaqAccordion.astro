@@ -28,9 +28,9 @@ const faqSchema = {
   <div class="faq-accordion divide-y divide-sms-charcoal-100 border-t border-b border-sms-charcoal-100">
     {items.map((item) => (
       <details class="group faq-item py-1">
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-sms-charcoal-900 marker:content-none hover:text-sms-green-600">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-sms-charcoal-900 marker:content-none hover:text-sms-charcoal-900">
           <span>{item.question}</span>
-          <span class="shrink-0 text-sms-green-600 transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+          <span class="shrink-0 text-sms-charcoal-900 transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
         </summary>
         <div class="faq-panel overflow-hidden">
           <p class="pb-4 pr-8 text-sms-charcoal-500 leading-relaxed max-w-[68ch]">{item.answer}</p>

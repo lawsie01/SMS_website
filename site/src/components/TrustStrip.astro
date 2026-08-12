@@ -18,7 +18,7 @@ const items: { label: string; sub: string; icon: IconName }[] = [
     <ul class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 sm:divide-x divide-sms-charcoal-200">
       {items.map((item) => (
         <li class="flex flex-col items-center text-center px-2 lg:px-5">
-          <Icon name={item.icon} class="w-6 h-6 text-sms-green-600 mb-2" />
+          <Icon name={item.icon} class="w-6 h-6 text-sms-charcoal-900 mb-2" />
           <p class="font-bold text-sms-charcoal-900 text-sm sm:text-base leading-tight">{item.label}</p>
           <p class="text-xs text-sms-charcoal-400 mt-1">{item.sub}</p>
         </li>

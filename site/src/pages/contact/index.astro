@@ -105,7 +105,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
           <textarea id="message" name="message" required rows="5" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" placeholder="Install depth, inlet sizes, load rating, timeframe, location..."></textarea>
         </div>
 
-        <button type="submit" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-white hover:bg-sms-green-700 transition-colors">
+        <button type="submit" class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
           Send enquiry
         </button>
       </form>
@@ -168,8 +168,8 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
       <div class="border-t border-sms-charcoal-100 pt-5">
         <h2 class="font-bold text-sms-charcoal-900 mb-4">Direct contact</h2>
         <ul class="space-y-3 text-sm">
-          <li><a href={`tel:${company.phoneHref}`} class="text-sms-green-600 font-semibold">{company.phone}</a></li>
-          <li><a href={`mailto:${company.email}`} class="text-sms-green-600 font-semibold">{company.email}</a></li>
+          <li><a href={`tel:${company.phoneHref}`} class="sms-link font-semibold">{company.phone}</a></li>
+          <li><a href={`mailto:${company.email}`} class="sms-link font-semibold">{company.email}</a></li>
           <li class="text-sms-charcoal-500">{company.addressLine1}, {company.addressLine2}</li>
         </ul>
       </div>
@@ -181,7 +181,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
             <li class="rounded-full border border-sms-charcoal-200 px-3 py-1 text-xs font-medium text-sms-charcoal-700">{c}</li>
           ))}
         </ul>
-        <a href="#locations" class="text-sm font-semibold text-sms-green-600 hover:underline">See branch addresses &rarr;</a>
+        <a href="#locations" class="sms-link text-sm font-semibold">See branch addresses &rarr;</a>
       </div>
     </div>
   </div>
@@ -201,7 +201,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
               href={mapsUrl(loc)}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block mt-2 text-sm font-semibold text-sms-green-600 hover:underline"
+              class="inline-block mt-2 sms-link text-sm font-semibold"
               aria-label={`Get directions to SMS's ${loc.region} location on Google Maps`}
             >
               Get directions &rarr;

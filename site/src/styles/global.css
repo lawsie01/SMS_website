@@ -13,28 +13,43 @@
 @import "@fontsource/ibm-plex-mono/500.css";
 
 @theme {
-  /* Brand palette extracted directly from the SMS logo and brochures */
-  --color-sms-green-50: #eef8ea;
-  --color-sms-green-100: #d6f0cb;
-  --color-sms-green-200: #b1e29c;
-  --color-sms-green-300: #8ad46e;
-  --color-sms-green-400: #63b447; /* primary brand green (logo clover) */
-  --color-sms-green-500: #4f9938;
-  --color-sms-green-600: #3f7a2d;
-  --color-sms-green-700: #315f24;
-  --color-sms-green-800: #26491c;
-  --color-sms-green-900: #1b3414;
+  /* SMS palette, shared with the Clover group system. Weighting is roughly
+     white 40%, light grey 30%, dark grey 20%, green 5%, mid grey 5%.
 
-  --color-sms-charcoal-50: #f4f4f4;
-  --color-sms-charcoal-100: #e2e2e1;
-  --color-sms-charcoal-200: #b9b8b7;
-  --color-sms-charcoal-300: #8f8d8c;
-  --color-sms-charcoal-400: #5c5a59;
-  --color-sms-charcoal-500: #383635;
-  --color-sms-charcoal-600: #2a2828;
-  --color-sms-charcoal-700: #232121;
-  --color-sms-charcoal-800: #1d1c1b;
-  --color-sms-charcoal-900: #191717; /* primary brand charcoal (logo text) */
+     Green is an ACCENT, not a UI colour: the logo leaf, the rule under a
+     link, small marks and arrows, and fills on dark. #38E33A is 1.7:1 on
+     white, so it is never text or an icon on a light background. Anything
+     that has to be read on white takes the dark grey. */
+  --color-sms-green-50: #edfaee;
+  --color-sms-green-100: #d2f1d3;
+  --color-sms-green-200: #a9e4aa;
+  --color-sms-green-300: #6bea6d;
+  --color-sms-green-400: #38e33a; /* SMS Green */
+  --color-sms-green-500: #38e33a;
+  --color-sms-green-600: #38e33a;
+  --color-sms-green-700: #1abc1c; /* hover only */
+  --color-sms-green-800: #159416;
+  --color-sms-green-900: #0f6b10;
+
+  /* Ink. 50 is SMS Light Grey, the alternating section background. */
+  --color-sms-charcoal-50: #f7f7f7;  /* SMS Light Grey */
+  --color-sms-charcoal-100: #e8e7ea;
+  --color-sms-charcoal-200: #c5c1c9;
+  --color-sms-charcoal-300: #948d9c;
+  --color-sms-charcoal-400: #5f5768;
+  --color-sms-charcoal-500: #3a323f;
+  --color-sms-charcoal-600: #2b2431;
+  --color-sms-charcoal-700: #261f2c;
+  --color-sms-charcoal-800: #221c28;
+  --color-sms-charcoal-900: #1f1925; /* SMS Dark Grey */
+
+  /* SMS Mid Grey. Held to the utility bar, field fills on dark panels and
+     muted labels — it is a 5% colour, not a second body-text grey. */
+  --color-sms-slate-300: #97a1a9;
+  --color-sms-slate-400: #6c7883;
+  --color-sms-slate-500: #505d68; /* SMS Mid Grey */
+  --color-sms-slate-600: #414c55;
+  --color-sms-slate-700: #343d45;
 
   /* Exact backdrop colour baked into the "-clover" 3D-rendered product shots
      (sampled from the images themselves, not a design choice) — the product
@@ -65,8 +80,8 @@ html {
    on sections carrying the contour device, so the ring pattern reads
    against it instead of disappearing into pure black. */
 :root {
-  --sms-ink: #1a1a19;
-  --sms-dark-bg: #14140f;
+  --sms-ink: #1f1925;
+  --sms-dark-bg: #1f1925;
 }
 
 @layer components {
@@ -112,8 +127,8 @@ html {
     height: 560px;
     background: repeating-radial-gradient(
       circle at 0 100%,
-      rgba(74, 164, 86, 0) 0 40px,
-      rgba(74, 164, 86, 0.18) 40px 41px
+      rgba(56, 227, 58, 0) 0 40px,
+      rgba(56, 227, 58, 0.18) 40px 41px
     );
   }
   @media (max-width: 768px) {
@@ -206,7 +221,7 @@ html {
     padding-left: 0;
   }
   .sms-stat + .sms-stat {
-    border-left: 1px solid #e6e3dc;
+    border-left: 1px solid var(--color-sms-charcoal-100);
   }
   /* Below sm, .sms-stat-grid switches the row to a 2-column grid (see
      AtAGlance.astro) — the single-row divider rules above don't fit a
@@ -220,13 +235,13 @@ html {
       padding-top: 0;
     }
     .sms-stat-grid .sms-stat:nth-child(n+3) {
-      border-top: 1px solid #e6e3dc;
+      border-top: 1px solid var(--color-sms-charcoal-100);
     }
     .sms-stat-grid .sms-stat:nth-child(2n+1) {
       padding-left: 0;
     }
     .sms-stat-grid .sms-stat:nth-child(2n) {
-      border-left: 1px solid #e6e3dc;
+      border-left: 1px solid var(--color-sms-charcoal-100);
     }
   }
   .sms-stat__label {
@@ -234,7 +249,7 @@ html {
     font-size: 9.5px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: #8e8b83;
+    color: var(--color-sms-slate-500);
     white-space: nowrap;
   }
   .sms-stat__value {
@@ -242,7 +257,7 @@ html {
     font-weight: 600;
     font-size: 20px;
     line-height: 1.15;
-    color: var(--color-sms-green-600);
+    color: var(--color-sms-charcoal-900);
     white-space: nowrap;
   }
 
@@ -277,6 +292,27 @@ html {
     background: var(--color-sms-green-400);
   }
 
+  /* Link device — an ink label with a green rule under it, matching the
+     Clover group treatment. Green carries the "this is a link" signal
+     without ever being the text colour, which is what keeps a 1.7:1 accent
+     usable. */
+  .sms-link {
+    color: var(--color-sms-charcoal-900);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-sms-green-400);
+    padding-bottom: 1px;
+    transition: border-color 0.15s ease-out, color 0.15s ease-out;
+  }
+  .sms-link:hover {
+    border-bottom-color: var(--color-sms-charcoal-900);
+  }
+  .sms-link--on-dark {
+    color: #ffffff;
+  }
+  .sms-link--on-dark:hover {
+    border-bottom-color: #ffffff;
+  }
+
   /* Device 3b — four-mark cluster as a section end-mark. Grey (#c3bfb5), not
      green — it's punctuation between sections that would otherwise run
      together, not emphasis. Use sparingly, only where the reader needs a
@@ -290,7 +326,7 @@ html {
     width: max-content;
   }
   .sms-endmark span {
-    background: #c3bfb5;
+    background: var(--color-sms-charcoal-200);
     border-radius: 1px;
   }
 
@@ -298,7 +334,7 @@ html {
      counts as the section's one device — never combined with the contour. */
   .sms-dotfield {
     background-color: var(--sms-dark-bg);
-    background-image: radial-gradient(circle, rgba(122, 196, 133, 0.22) 1.4px, transparent 1.6px);
+    background-image: radial-gradient(circle, rgba(56, 227, 58, 0.22) 1.4px, transparent 1.6px);
     background-size: 26px 26px;
   }
 }
@@ -378,5 +414,5 @@ html {
 }
 
 .skip-link {
-  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md;
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-sms-charcoal-900 focus:px-4 focus:py-2 focus:rounded-md;
 }

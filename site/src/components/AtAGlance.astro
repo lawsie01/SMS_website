@@ -30,7 +30,7 @@ const { items } = Astro.props;
         {items.map((item) => (
           <div class="sms-stat">
             <dt class="sms-stat__label flex items-center gap-1.5">
-              {item.icon && <Icon name={item.icon} class="w-3 h-3 shrink-0 text-sms-green-600" />}
+              {item.icon && <Icon name={item.icon} class="w-3 h-3 shrink-0 text-sms-charcoal-900" />}
               <span>{item.label}</span>
             </dt>
             <dd class="sms-stat__value">{item.value}</dd>

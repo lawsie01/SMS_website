@@ -95,11 +95,11 @@ const faqs = [
             <div class="border-t border-sms-charcoal-100 pt-5">
               {'icon' in a && a.icon ? (
                 <div class="flex items-center gap-2 mb-2">
-                  <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-green-600" />
-                  <p class="font-mono font-medium text-sms-green-600">{a.code}</p>
+                  <Icon name={a.icon} class="w-5 h-5 shrink-0 text-sms-charcoal-900" />
+                  <p class="font-mono font-medium text-sms-charcoal-900">{a.code}</p>
                 </div>
               ) : (
-                <p class="font-mono font-medium text-sms-green-600 mb-2">{a.code}</p>
+                <p class="font-mono font-medium text-sms-charcoal-900 mb-2">{a.code}</p>
               )}
               <p class="text-sm text-sms-charcoal-500 leading-relaxed">{a.body}</p>
             </div>
@@ -133,9 +133,9 @@ const faqs = [
             {matrix.map((row, i) => (
               <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <th scope="row" class="text-left px-4 py-3 font-mono font-medium text-sms-charcoal-900 border-l border-sms-charcoal-100">{row.code}</th>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
-                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-green-600 font-bold">&check;</span> : <span class="text-sms-charcoal-300 text-xs">N/A</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.shaft ? <span class="text-sms-charcoal-900 font-bold">&check;</span> : <span class="text-sms-slate-500 text-xs">N/A</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.chamber ? <span class="text-sms-charcoal-900 font-bold">&check;</span> : <span class="text-sms-slate-500 text-xs">N/A</span>}</td>
+                <td class="text-center px-4 py-3 border-l border-sms-charcoal-100">{row.hole ? <span class="text-sms-charcoal-900 font-bold">&check;</span> : <span class="text-sms-slate-500 text-xs">N/A</span>}</td>
               </tr>
             ))}
           </tbody>
@@ -151,7 +151,7 @@ const faqs = [
         maintenance shafts, chambers and holes is WSA 137:2019. It covers material properties, structural
         performance and manufacturing quality control. What comes out is a formal certificate with a set
         validity period that a water utility can rely on when it accepts a product onto the network.
-        Download the current PA 1317 certificate from the <a href="/technical-resources/" class="text-sms-green-600 font-medium hover:underline">Technical Resources hub</a>.
+        Download the current PA 1317 certificate from the <a href="/technical-resources/" class="sms-link font-medium">Technical Resources hub</a>.
       </p>
     </section>
 

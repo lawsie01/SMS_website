@@ -153,7 +153,7 @@
       li.innerHTML = `
         <a href="${entry.url}" class="block px-4 py-2.5 hover:bg-sms-charcoal-50" data-result-link>
           <p class="text-sm font-semibold text-sms-charcoal-900">${entry.title}</p>
-          <p class="mt-0.5 text-xs text-sms-charcoal-400">${entry.brand}${entry.dnSize ? ` · ${entry.dnSize}` : ''}${code ? ` · Matched: <span class="font-mono text-sms-green-600">${code}</span>` : ''}</p>
+          <p class="mt-0.5 text-xs text-sms-charcoal-400">${entry.brand}${entry.dnSize ? ` · ${entry.dnSize}` : ''}${code ? ` · Matched: <span class="font-mono text-sms-charcoal-900">${code}</span>` : ''}</p>
         </a>
       `;
       resultsList.appendChild(li);

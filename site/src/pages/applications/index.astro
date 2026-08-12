@@ -101,7 +101,7 @@ const sections = [
       {jumpNav.map((item) => (
         <a
           href={`#${item.id}`}
-          class="inline-flex items-center rounded-full border border-sms-charcoal-200 bg-white px-4 py-1.5 text-sm font-medium text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-green-600 transition-colors"
+          class="inline-flex items-center rounded-full border border-sms-charcoal-200 bg-white px-4 py-1.5 text-sm font-medium text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-charcoal-900 transition-colors"
         >
           {item.label}
         </a>
@@ -129,12 +129,12 @@ const sections = [
             </ul>
           </div>
           <div class="border-l-2 border-sms-green-600 pl-5">
-            <h3 class="text-sm font-bold uppercase tracking-wide text-sms-green-600 mb-3">Where to start looking</h3>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-sms-charcoal-900 mb-3">Where to start looking</h3>
             <p class="text-sm text-sms-charcoal-700 leading-relaxed">{s.bestFit}</p>
           </div>
         </div>
 
-        <a href={s.cta.href} class="text-sm font-semibold text-sms-green-600 hover:underline">{s.cta.label} &rarr;</a>
+        <a href={s.cta.href} class="sms-link text-sm font-semibold">{s.cta.label} &rarr;</a>
       </section>
       {i < sections.length - 1 && (
         <div class="sms-endmark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -161,7 +161,7 @@ const sections = [
               <tr class:list={[i % 2 === 1 && 'bg-sms-charcoal-50', 'hover:bg-sms-green-50 transition-colors']}>
                 <td class="px-4 py-3 text-sms-charcoal-700 align-top">{row.scenario}</td>
                 <td class="px-4 py-3 align-top border-l border-sms-charcoal-100">
-                  <a href={row.href} class="font-semibold text-sms-green-600 hover:underline">{row.product}</a>
+                  <a href={row.href} class="sms-link font-semibold">{row.product}</a>
                 </td>
               </tr>
             ))}

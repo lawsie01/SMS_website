@@ -42,7 +42,7 @@ const assetToParam = (label: string) =>
       <p class="text-sm text-sms-charcoal-500 mb-6 max-w-[68ch]">No form required. These are free to download for anyone.</p>
       <a href={certificate.file} download class="flex items-center gap-3 rounded-lg border border-sms-charcoal-100 p-5 hover:border-sms-green-300 hover:shadow-md transition-all mb-4">
         <span class="font-semibold text-sms-charcoal-900">{certificate.label}</span>
-        <span class="text-sm text-sms-green-600 font-medium ml-auto">Download PDF &rarr;</span>
+        <span class="sms-link text-sm font-medium ml-auto">Download PDF &rarr;</span>
       </a>
       <div class="grid sm:grid-cols-2 gap-4">
         {withDownloads.map((p) =>
@@ -53,7 +53,7 @@ const assetToParam = (label: string) =>
                   <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
                   <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title} &middot; {d.fileType}</span>
                 </span>
-                <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Download &rarr;</span>
+                <span class="sms-link text-sm font-medium ml-auto shrink-0">Download &rarr;</span>
               </a>
             ) : (
               <div class="flex items-center gap-3 rounded-lg border border-dashed border-sms-charcoal-200 p-5" aria-disabled="true">
@@ -86,12 +86,12 @@ const assetToParam = (label: string) =>
                 <span class="block font-semibold text-sms-charcoal-900 text-sm">{d.label}</span>
                 <span class="block text-xs text-sms-charcoal-400 mt-1">{p.data.title}</span>
               </span>
-              <span class="text-sm text-sms-green-600 font-medium ml-auto shrink-0">Request &rarr;</span>
+              <span class="sms-link text-sm font-medium ml-auto shrink-0">Request &rarr;</span>
             </a>
           ))
         )}
       </div>
-      <a href="/technical-resources/request-access/" class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors">
+      <a href="/technical-resources/request-access/" class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
         Request CAD/BIM or drawings &rarr;
       </a>
     </section>

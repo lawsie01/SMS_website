@@ -57,12 +57,12 @@ const productFamilies = products
       only bar 2 below takes up permanent header real estate once scrolled.
       Desktop/tablet only: on narrow viewports these three links move into
       the mobile disclosure instead of wrapping a thin bar into two lines. */}
-  <div class="hidden lg:block bg-sms-charcoal-900 text-sms-charcoal-200">
+  <div class="hidden lg:block bg-sms-slate-500 text-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-end gap-6 text-xs font-medium">
       {utilityLinks.map((item, i) => (
         <>
-          {i > 0 && <span class="w-px h-3 bg-sms-charcoal-600" aria-hidden="true"></span>}
-          <a href={item.href} class="hover:text-sms-green-400 transition-colors">{item.label}</a>
+          {i > 0 && <span class="w-px h-3 bg-white/40" aria-hidden="true"></span>}
+          <a href={item.href} class="hover:underline transition-colors">{item.label}</a>
         </>
       ))}
     </div>
@@ -87,7 +87,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="products-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
             >
               Products
               <svg data-nav-chevron="products" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -107,7 +107,7 @@ const productFamilies = products
                     {productFamilies.map((p) => (
                       <li>
                         <a href={`/products/${p.id}/`} class="block group">
-                          <span class="font-semibold text-sms-charcoal-900 group-hover:text-sms-green-600 transition-colors">{p.data.title}</span>
+                          <span class="font-semibold text-sms-charcoal-900 transition-colors">{p.data.title}</span>
                           {p.data.cardUseCase && <span class="block text-sm text-sms-charcoal-500 mt-0.5">{p.data.cardUseCase}</span>}
                         </a>
                       </li>
@@ -119,7 +119,7 @@ const productFamilies = products
                   <p class="text-[11px] font-semibold uppercase tracking-wider text-sms-charcoal-400 mb-4">Fittings &amp; accessories</p>
                   <ul class="space-y-2.5 text-sm">
                     {accessories.map((p) => (
-                      <li><a href={`/products/${p.id}/`} class="text-sms-charcoal-700 hover:text-sms-green-600 transition-colors">{p.data.title}</a></li>
+                      <li><a href={`/products/${p.id}/`} class="text-sms-charcoal-700 hover:text-sms-charcoal-900 transition-colors">{p.data.title}</a></li>
                     ))}
                   </ul>
                 </div>
@@ -129,7 +129,7 @@ const productFamilies = products
                     <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
                     <p class="text-sm text-sms-charcoal-500">Compare depth ratings, load class and install method across the full range.</p>
                   </div>
-                  <a href="/products/" class="mt-4 text-sm font-semibold text-sms-green-600 hover:underline">View all products &rarr;</a>
+                  <a href="/products/" class="mt-4 sms-link text-sm font-semibold">View all products &rarr;</a>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="plastic-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
             >
               Why Plastic vs Concrete
               <svg data-nav-chevron="plastic" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -152,10 +152,10 @@ const productFamilies = products
             </button>
             <div id="plastic-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
               {whyPlasticMenu.map((item) => (
-                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-charcoal-900">{item.label}</a>
               ))}
               <div class="my-1.5 border-t border-sms-charcoal-100"></div>
-              <a href={whyPlasticCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{whyPlasticCta.label} &rarr;</a>
+              <a href={whyPlasticCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-charcoal-900 hover:bg-sms-charcoal-50">{whyPlasticCta.label} &rarr;</a>
             </div>
           </div>
 
@@ -167,7 +167,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="applications-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
             >
               Applications
               <svg data-nav-chevron="applications" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -176,10 +176,10 @@ const productFamilies = products
             </button>
             <div id="applications-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
               {applicationsMenu.map((item) => (
-                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-charcoal-900">{item.label}</a>
               ))}
               <div class="my-1.5 border-t border-sms-charcoal-100"></div>
-              <a href={applicationsCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{applicationsCta.label} &rarr;</a>
+              <a href={applicationsCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-charcoal-900 hover:bg-sms-charcoal-50">{applicationsCta.label} &rarr;</a>
             </div>
           </div>
 
@@ -191,7 +191,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="about-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-green-600 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
             >
               About
               <svg data-nav-chevron="about" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -200,10 +200,10 @@ const productFamilies = products
             </button>
             <div id="about-nav-panel" hidden data-closed class="nav-panel absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-md border border-sms-charcoal-100 bg-white py-2 shadow-lg origin-top">
               {aboutMenu.map((item) => (
-                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-green-600">{item.label}</a>
+                <a href={item.href} class="block px-4 py-2.5 text-sm text-sms-charcoal-700 hover:bg-sms-charcoal-50 hover:text-sms-charcoal-900">{item.label}</a>
               ))}
               <div class="my-1.5 border-t border-sms-charcoal-100"></div>
-              <a href={aboutCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-green-600 hover:bg-sms-green-50">{aboutCta.label} &rarr;</a>
+              <a href={aboutCta.href} class="block px-4 py-2.5 text-sm font-semibold text-sms-charcoal-900 hover:bg-sms-charcoal-50">{aboutCta.label} &rarr;</a>
             </div>
           </div>
         </nav>
@@ -214,7 +214,7 @@ const productFamilies = products
           <a
             href="/contact/"
             data-enquiry-cta
-            class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-green-700 transition-colors"
+            class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-charcoal-700 transition-colors"
           >
             Enquire Now
           </a>
@@ -247,7 +247,7 @@ const productFamilies = products
               id="mobile-products-toggle"
               aria-expanded="false"
               aria-controls="mobile-products-panel"
-              class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors"
+              class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-charcoal-900 transition-colors"
             >
               <span>Products</span>
               <svg id="mobile-products-chevron" class="w-4 h-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -257,7 +257,7 @@ const productFamilies = products
             <ul id="mobile-products-panel" hidden data-closed class="mobile-panel pl-4 pb-2 space-y-1">
               {productFamilies.map((p) => (
                 <li>
-                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-charcoal-900 transition-colors">
                     {p.data.title}
                   </a>
                 </li>
@@ -265,14 +265,14 @@ const productFamilies = products
               {/* Fittings & accessories — not ready for launch, see note above.
               {accessories.map((p) => (
                 <li>
-                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-green-600 transition-colors">
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-charcoal-900 transition-colors">
                     {p.data.title}
                   </a>
                 </li>
               ))}
               */}
               <li>
-                <a href="/products/" class="block py-2 text-sm font-semibold text-sms-green-600">
+                <a href="/products/" class="block py-2 text-sm font-semibold text-sms-charcoal-900">
                   View all products &rarr;
                 </a>
               </li>
@@ -284,7 +284,7 @@ const productFamilies = products
             { label: 'About', href: '/about/' },
           ].map((item) => (
             <li>
-              <a href={item.href} class="block py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-green-600 transition-colors">
+              <a href={item.href} class="block py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-charcoal-900 transition-colors">
                 {item.label}
               </a>
             </li>
@@ -296,7 +296,7 @@ const productFamilies = products
         <ul class="mt-2 pt-2 border-t border-sms-charcoal-100 space-y-0.5">
           {utilityLinks.map((item) => (
             <li>
-              <a href={item.href} class="block py-2 text-sm text-sms-charcoal-500 hover:text-sms-green-600 transition-colors">
+              <a href={item.href} class="block py-2 text-sm text-sms-charcoal-500 hover:text-sms-charcoal-900 transition-colors">
                 {item.label}
               </a>
             </li>

@@ -55,7 +55,7 @@ const facts = [
         immune to sewer gas corrosion. They're accepted by water authorities across Australia. Councils,
         utilities, civil contractors and hydraulic consultants all buy them, usually for different
         reasons.{' '}
-        <a href="/applications/" class="text-sms-green-600 font-medium hover:underline">See which case applies to you</a>.
+        <a href="/applications/" class="sms-link font-medium">See which case applies to you</a>.
       </p>
     </section>
 
@@ -82,7 +82,7 @@ const facts = [
           <li>
             <a
               href={`/products/${p.id}/`}
-              class="inline-flex items-center rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-green-600 transition-colors"
+              class="inline-flex items-center rounded-full border border-sms-charcoal-200 px-4 py-2 text-sm font-medium text-sms-charcoal-700 hover:border-sms-green-400 hover:text-sms-charcoal-900 transition-colors"
             >
               {p.data.title}
             </a>
@@ -101,7 +101,7 @@ const facts = [
       <p class="text-sms-charcoal-500 leading-relaxed">
         The range is appraised and certified to WSA 137 and the relevant Australian standards. If a project
         needs something the catalogue doesn't cover, ask us before you design around it. Full{' '}
-        <a href="/approvals/" class="text-sms-green-600 font-medium hover:underline">approvals &amp; standards</a> breakdown.
+        <a href="/approvals/" class="sms-link font-medium">approvals &amp; standards</a> breakdown.
       </p>
     </section>
 
@@ -120,8 +120,8 @@ const facts = [
               </div>
             )}
             <div class="p-5">
-              <span class="font-semibold text-sms-charcoal-900 group-hover:text-sms-green-600 transition-colors">{p.data.title}</span>
-              <span class="block text-sm text-sms-green-600 font-medium mt-1">{p.data.countryOfManufacture}</span>
+              <span class="font-semibold text-sms-charcoal-900 transition-colors">{p.data.title}</span>
+              <span class="block sms-link text-sm font-medium mt-1">{p.data.countryOfManufacture}</span>
               {p.data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{p.data.manufacturerNote}</p>}
             </div>
           </a>
@@ -159,11 +159,11 @@ const facts = [
         through and we'll check the configuration against it.
       </p>
       <ul class="space-y-2 text-sms-charcoal-700">
-        <li><a href={`tel:${company.phoneHref}`} class="font-semibold text-sms-green-600 hover:underline">{company.phone}</a></li>
-        <li><a href={`mailto:${company.email}`} class="font-semibold text-sms-green-600 hover:underline">{company.email}</a></li>
+        <li><a href={`tel:${company.phoneHref}`} class="sms-link font-semibold">{company.phone}</a></li>
+        <li><a href={`mailto:${company.email}`} class="sms-link font-semibold">{company.email}</a></li>
       </ul>
       <p class="mt-4">
-        <a href="/contact/" class="text-sm font-semibold text-sms-green-600 hover:underline">Get in touch &rarr;</a>
+        <a href="/contact/" class="sms-link text-sm font-semibold">Get in touch &rarr;</a>
       </p>
     </section>
   </div>

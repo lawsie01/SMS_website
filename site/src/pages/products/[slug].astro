@@ -229,7 +229,7 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
             <ul class="grid sm:grid-cols-2 gap-4">
               {data.standards.map((s) => (
                 <li class="border-t border-sms-charcoal-100 pt-5">
-                  <p class="font-mono font-medium text-sms-green-600">{s.code}</p>
+                  <p class="font-mono font-medium text-sms-charcoal-900">{s.code}</p>
                   <p class="text-sm text-sms-charcoal-500 mt-1">{s.description}</p>
                 </li>
               ))}
@@ -248,7 +248,7 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
           </p>
           <a
             href={`/contact/?product=${product.id}`}
-            class="inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-green-700 transition-colors"
+            class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
           >
             Get Pricing &amp; Lead Time &rarr;
           </a>
@@ -276,10 +276,10 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
                 <li>
                   {d.restricted ? (
                     <span class="text-sm text-sms-charcoal-400">
-                      {d.label}: <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="text-sms-green-600 font-medium hover:underline">request access</a>
+                      {d.label}: <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="sms-link font-medium">request access</a>
                     </span>
                   ) : d.file ? (
-                    <a href={d.file} class="text-sm text-sms-green-600 font-medium hover:underline" download>
+                    <a href={d.file} class="text-sm sms-link font-medium" download>
                       {d.label} ({d.fileType})
                     </a>
                   ) : (
