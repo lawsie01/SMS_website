@@ -67,84 +67,112 @@ assemblyRenders:
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft with a DN375 riser, Top Hat access cover, EPDM seals, base and an optional lateral connection"
     caption: "DN375 riser with the Top Hat access cover."
     callouts:
-      - { n: 1, x: 10, y: 7 }
-      - { n: 2, x: 26, y: 18 }
-      - { n: 3, x: 28, y: 33 }
-      - { n: 6, x: 2, y: 50 }
-      - { n: 5, x: 12, y: 93 }
+      - { n: 1, x: 25.4, y: 9.5 }
+      - { n: 2, x: 25.4, y: 17.0 }
+      - { n: 5, x: 35.4, y: 22.2 }
+      - { n: 6, x: 36.4, y: 34.9 }
+      - { n: 5, x: 36.4, y: 45.5 }
+      - { n: 10, x: 19.0, y: 52.5 }
+      - { n: 6, x: 36.4, y: 60.0 }
+      - { n: 6, x: 36.4, y: 72.1 }
+      - { n: 9, x: 19.0, y: 88.0 }
   - image: "../../assets/images/dn375-assembly-riser-dn300.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN300 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN300 riser with a screw access cap."
     callouts:
-      - { n: 1, x: 26, y: 5 }
-      - { n: 3, x: 42, y: 16 }
-      - { n: 6, x: 2, y: 51 }
-      - { n: 4, x: 38, y: 80 }
-      - { n: 5, x: 16, y: 93 }
+      - { n: 1, x: 34.3, y: 9.9 }
+      - { n: 4, x: 44.5, y: 19.7 }
+      - { n: 3, x: 46.9, y: 28.6 }
+      - { n: 6, x: 47.3, y: 37.9 }
+      - { n: 10, x: 16.3, y: 49.5 }
+      - { n: 6, x: 47.3, y: 55.5 }
+      - { n: 6, x: 47.3, y: 65.3 }
+      - { n: 7, x: 42.4, y: 77.0 }
+      - { n: 9, x: 25.9, y: 88.4 }
   - image: "../../assets/images/dn375-assembly-riser-dn225.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN225 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN225 riser with a screw access cap."
     callouts:
-      - { n: 1, x: 20, y: 5 }
-      - { n: 3, x: 38, y: 16 }
-      - { n: 6, x: 2, y: 47 }
-      - { n: 4, x: 40, y: 76 }
-      - { n: 5, x: 10, y: 92 }
+      - { n: 1, x: 32.4, y: 9.9 }
+      - { n: 4, x: 42.9, y: 19.8 }
+      - { n: 3, x: 47.1, y: 28.4 }
+      - { n: 6, x: 47.6, y: 35.6 }
+      - { n: 10, x: 20.3, y: 46.0 }
+      - { n: 6, x: 47.6, y: 51.5 }
+      - { n: 6, x: 47.6, y: 59.3 }
+      - { n: 8, x: 47.6, y: 72.2 }
+      - { n: 7, x: 45.3, y: 81.9 }
+      - { n: 9, x: 22.0, y: 89.0 }
 assemblyLegend:
   - n: 1
-    label: "Access cover"
-    code: "Top Hat or screw cap"
+    label: "Concrete cover plate"
+    code: "AC6-CLD-375-CS"
   - n: 2
-    label: "EPDM seal"
+    label: "Top Hat access cover"
+    code: "ACCMHTHCSDMS"
   - n: 3
+    label: "Screw access cap"
+    code: "LC1-300 / LC2-225"
+  - n: 4
+    label: "Shroud"
+    code: "PVCS1 / PVCS2"
+  - n: 5
+    label: "Seal"
+  - n: 6
     label: "Riser"
     code: "DN375, DN300 or DN225"
-  - n: 4
-    label: "Reducer"
-    code: "R1 or R2"
-  - n: 5
+  - n: 7
+    label: "Reducer R1"
+    code: "DN375-DN300"
+  - n: 8
+    label: "Reducer R2"
+    code: "DN300-DN225"
+  - n: 9
     label: "Base"
-  - n: 6
+  - n: 10
     label: "Lateral connection"
     code: "optional"
 assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
 configurationsIntro: "The codes below are confirmed standard configurations, with the # column matching the numbered indicators on the assembly renders above. Contact SMS for the full configuration matrix across all inlet angles. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items without a distinct SMS part code."
 configurations:
   - code: "MS8"
-    ref: 5
+    ref: 9
     configuration: "RRJ 180° Straight"
     size: "DN150"
   - code: "MS9"
-    ref: 5
+    ref: 9
     configuration: "RRJ Junction (4-Way, 45°)"
     size: "DN150"
   - code: "MS14"
-    ref: 5
+    ref: 9
     configuration: "RRJ 180° Straight"
     size: "DN225"
   - code: "R1"
-    ref: 4
+    ref: 7
     configuration: "DN375–DN300 reducer"
   - code: "R2"
-    ref: 4
+    ref: 8
     configuration: "DN300–DN225 reducer"
   - code: "LC1-300"
-    ref: 1
+    ref: 3
     configuration: "DN300 PVC screw access cap"
   - code: "LC2-225"
-    ref: 1
+    ref: 3
     configuration: "DN225 PVC screw access cap"
   - code: "PVCS1"
+    ref: 4
     configuration: "Shroud"
     notes: "Used with the DN300 screw access cap"
   - code: "PVCS2"
+    ref: 4
     configuration: "Shroud"
     notes: "Used with the DN225 screw access cap"
   - code: "ACCMHTHCSDMS"
-    ref: 1
+    ref: 2
     configuration: "Standard Top Hat access cover"
     notes: "Class D, 300mm clear opening"
   - code: "AC6-CLD-375-CS"
+    ref: 1
     configuration: "Concrete cover plate"
     notes: "Class D; 300mm or 225mm clear opening"
 installationSections:

@@ -182,42 +182,53 @@ assemblyRenders:
     alt: "Exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an external lateral connection passing straight through the riser wall"
     caption: "External connection, straight through the riser wall."
     callouts:
-      - { n: 1, x: 28, y: 5 }
-      - { n: 2, x: 37, y: 14 }
-      - { n: 3, x: 31, y: 27 }
-      - { n: 6, x: 2, y: 46 }
-      - { n: 4, x: 25, y: 53 }
-      - { n: 5, x: 25, y: 92 }
+      - { n: 1, x: 34.6, y: 10.2 }
+      - { n: 2, x: 41.3, y: 18.4 }
+      - { n: 3, x: 36.8, y: 29.2 }
+      - { n: 4, x: 36.0, y: 40.7 }
+      - { n: 7, x: 15.5, y: 45.5 }
+      - { n: 5, x: 32.5, y: 53.0 }
+      - { n: 4, x: 36.0, y: 59.8 }
+      - { n: 5, x: 32.5, y: 67.7 }
+      - { n: 4, x: 36.0, y: 76.6 }
+      - { n: 6, x: 32.9, y: 87.2 }
   - image: "../../assets/images/dn1000-assembly-lateral-internal-drop.png"
     alt: "Cutaway exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an internal drop: the lateral enters the riser, turns down through a bend and runs to invert level on a bracketed drop pipe"
     caption: "Internal drop, taking the lateral down to invert level."
     callouts:
-      - { n: 1, x: 28, y: 5 }
-      - { n: 2, x: 37, y: 14 }
-      - { n: 3, x: 31, y: 27 }
-      - { n: 6, x: 2, y: 45 }
-      - { n: 4, x: 30, y: 53 }
-      - { n: 7, x: 40, y: 68 }
-      - { n: 5, x: 25, y: 92 }
+      - { n: 1, x: 34.2, y: 10.2 }
+      - { n: 2, x: 41.1, y: 18.4 }
+      - { n: 3, x: 36.3, y: 29.2 }
+      - { n: 4, x: 36.0, y: 40.7 }
+      - { n: 7, x: 15.5, y: 45.5 }
+      - { n: 5, x: 32.7, y: 53.0 }
+      - { n: 4, x: 36.0, y: 59.8 }
+      - { n: 8, x: 41.0, y: 63.5 }
+      - { n: 5, x: 32.7, y: 70.5 }
+      - { n: 4, x: 36.0, y: 76.6 }
+      - { n: 6, x: 32.7, y: 87.2 }
 assemblyLegend:
   - n: 1
     label: "Top Hat access cover"
     code: "ACCMHTHCSDMH"
   - n: 2
-    label: "EPDM seal"
-    code: "MHG0625 / MHG1000"
+    label: "EPDM seal, cover to cone"
+    code: "MHG0625"
   - n: 3
     label: "Cone"
     code: "MHRC600"
   - n: 4
+    label: "EPDM seal, 1000mm joints"
+    code: "MHG1000"
+  - n: 5
     label: "Riser"
     code: "MH10000250-1000"
-  - n: 5
-    label: "Base"
   - n: 6
+    label: "Base"
+  - n: 7
     label: "Lateral connection"
     code: "optional"
-  - n: 7
+  - n: 8
     label: "Internal drop"
     code: "optional"
 assemblyRendersIntro: "Two ways to bring a lateral in, both optional and both added on site. The external connection passes straight through the riser wall. The internal drop turns the lateral down inside the structure and carries it to invert level on a bracketed pipe, which is what an incoming line sitting well above the outlet needs."
@@ -230,13 +241,13 @@ componentPhotos:
     caption: "MH Riser, 250mm height shown."
 configurations:
   - code: "MH10000250"
-    ref: 4
+    ref: 5
     configuration: "Riser, 250mm height"
   - code: "MH10000500"
-    ref: 4
+    ref: 5
     configuration: "Riser, 500mm height"
   - code: "MH10000750"
-    ref: 4
+    ref: 5
     configuration: "Riser, 750mm height"
   - code: "MH10001000"
     ref: 4
@@ -244,9 +255,12 @@ configurations:
   - code: "MHRC600"
     ref: 3
     configuration: "Cone, 1000mm to 600mm reduction"
-  - code: "MHG0625 / MHG1000"
+  - code: "MHG0625"
     ref: 2
-    configuration: "Element seals for the 600mm cone/cover joint and the 1000mm base/riser/cone joint"
+    configuration: "Element seal, cone to access cover"
+  - code: "MHG1000"
+    ref: 4
+    configuration: "Element seal, base, riser and cone joints"
   - code: "ACCMHTHCSDMH"
     ref: 1
     configuration: "Standard Top Hat access cover"
