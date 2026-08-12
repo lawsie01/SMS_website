@@ -55,9 +55,9 @@ specSections:
         value: "Class D (trafficable) to AS 3996"
   - heading: "Access cover clear opening"
     rows:
-      - label: "Standard Top Hat / Option 1 cover plate"
+      - label: "Standard Top Hat / Option 1 concrete surround"
         value: "300mm clear opening"
-      - label: "Option 2 cover plate"
+      - label: "Option 2 concrete surround"
         value: "225mm clear opening"
 configDiagram: "../../assets/images/dn375-base-configurations-diagram.png"
 configDiagramAlt: "Plan-view diagrams of the two SMS DN375 Maintenance Shaft base configurations: RRJ 180° straight and RRJ Junction (4-way, 45°), each showing the inlet socket angle relative to the downstream outlet"
@@ -67,97 +67,100 @@ assemblyRenders:
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft with a DN375 riser, Top Hat access cover, EPDM seals, base and an optional lateral connection"
     caption: "DN375 riser with the Top Hat access cover."
     callouts:
-      - { n: 1, x: 25.4, y: 9.5 }
-      - { n: 2, x: 25.4, y: 17.0 }
-      - { n: 5, x: 35.4, y: 22.2 }
-      - { n: 6, x: 36.4, y: 34.9 }
-      - { n: 5, x: 36.4, y: 45.5 }
-      - { n: 10, x: 19.0, y: 52.5 }
-      - { n: 6, x: 36.4, y: 60.0 }
-      - { n: 6, x: 36.4, y: 72.1 }
-      - { n: 9, x: 19.0, y: 88.0 }
+      - { n: 1, x: 26.7, y: 9.5 }
+      - { n: 2, x: 28.5, y: 17.0 }
+      - { n: 6, x: 35.4, y: 22.2 }
+      - { n: 7, x: 36.4, y: 34.9 }
+      - { n: 6, x: 36.4, y: 45.5 }
+      - { n: 11, x: 19.0, y: 52.5 }
+      - { n: 7, x: 36.4, y: 60.0 }
+      - { n: 7, x: 36.4, y: 72.1 }
+      - { n: 10, x: 20.4, y: 88.0 }
   - image: "../../assets/images/dn375-assembly-riser-dn300.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN300 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN300 riser with a screw access cap."
     callouts:
-      - { n: 1, x: 34.3, y: 9.9 }
+      - { n: 3, x: 35.5, y: 9.9 }
       - { n: 4, x: 44.5, y: 19.7 }
-      - { n: 3, x: 46.9, y: 28.6 }
-      - { n: 6, x: 47.3, y: 37.9 }
-      - { n: 10, x: 16.3, y: 49.5 }
-      - { n: 6, x: 47.3, y: 55.5 }
-      - { n: 6, x: 47.3, y: 65.3 }
-      - { n: 7, x: 42.4, y: 77.0 }
-      - { n: 9, x: 25.9, y: 88.4 }
+      - { n: 5, x: 46.9, y: 28.6 }
+      - { n: 7, x: 47.3, y: 37.9 }
+      - { n: 11, x: 16.3, y: 49.5 }
+      - { n: 7, x: 47.3, y: 55.5 }
+      - { n: 7, x: 47.3, y: 65.3 }
+      - { n: 8, x: 43.5, y: 77.0 }
+      - { n: 10, x: 27.4, y: 88.4 }
   - image: "../../assets/images/dn375-assembly-riser-dn225.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN225 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN225 riser with a screw access cap."
     callouts:
-      - { n: 1, x: 32.4, y: 9.9 }
+      - { n: 3, x: 33.7, y: 9.9 }
       - { n: 4, x: 42.9, y: 19.8 }
-      - { n: 3, x: 47.1, y: 28.4 }
-      - { n: 6, x: 47.6, y: 35.6 }
-      - { n: 10, x: 20.3, y: 46.0 }
-      - { n: 6, x: 47.6, y: 51.5 }
-      - { n: 6, x: 47.6, y: 59.3 }
-      - { n: 8, x: 47.6, y: 72.2 }
-      - { n: 7, x: 45.3, y: 81.9 }
-      - { n: 9, x: 22.0, y: 89.0 }
+      - { n: 5, x: 47.1, y: 28.4 }
+      - { n: 7, x: 47.6, y: 35.6 }
+      - { n: 11, x: 20.3, y: 46.0 }
+      - { n: 7, x: 47.6, y: 51.5 }
+      - { n: 7, x: 47.6, y: 59.3 }
+      - { n: 9, x: 47.6, y: 72.2 }
+      - { n: 8, x: 45.3, y: 81.9 }
+      - { n: 10, x: 22.0, y: 89.0 }
 assemblyLegend:
   - n: 1
-    label: "Concrete cover plate"
-    code: "AC6-CLD-375-CS"
+    label: "Concrete vegetation ring"
+    code: "optional"
   - n: 2
     label: "Top Hat access cover"
     code: "ACCMHTHCSDMS"
   - n: 3
-    label: "Screw access cap"
-    code: "LC1-300 / LC2-225"
+    label: "Access cover with concrete surround"
+    code: "AC6-CLD-375-CS"
   - n: 4
     label: "Shroud"
     code: "PVCS1 / PVCS2"
   - n: 5
-    label: "Seal"
+    label: "Screw access cap"
+    code: "LC1-300 / LC2-225"
   - n: 6
+    label: "Seal"
+  - n: 7
     label: "Riser"
     code: "DN375, DN300 or DN225"
-  - n: 7
+  - n: 8
     label: "Reducer R1"
     code: "DN375-DN300"
-  - n: 8
+  - n: 9
     label: "Reducer R2"
     code: "DN300-DN225"
-  - n: 9
-    label: "Base"
   - n: 10
+    label: "Base"
+  - n: 11
     label: "Lateral connection"
     code: "optional"
-assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
+assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
 configurationsIntro: "The codes below are confirmed standard configurations, with the # column matching the numbered indicators on the assembly renders above. Contact SMS for the full configuration matrix across all inlet angles. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items without a distinct SMS part code."
 configurations:
   - code: "MS8"
-    ref: 9
+    ref: 10
     configuration: "RRJ 180° Straight"
     size: "DN150"
   - code: "MS9"
-    ref: 9
+    ref: 10
     configuration: "RRJ Junction (4-Way, 45°)"
     size: "DN150"
   - code: "MS14"
-    ref: 9
+    ref: 10
     configuration: "RRJ 180° Straight"
     size: "DN225"
   - code: "R1"
-    ref: 7
+    ref: 8
     configuration: "DN375–DN300 reducer"
   - code: "R2"
-    ref: 8
+    ref: 9
     configuration: "DN300–DN225 reducer"
   - code: "LC1-300"
-    ref: 3
+    ref: 5
     configuration: "DN300 PVC screw access cap"
   - code: "LC2-225"
-    ref: 3
+    ref: 5
     configuration: "DN225 PVC screw access cap"
   - code: "PVCS1"
     ref: 4
@@ -172,8 +175,8 @@ configurations:
     configuration: "Standard Top Hat access cover"
     notes: "Class D, 300mm clear opening"
   - code: "AC6-CLD-375-CS"
-    ref: 1
-    configuration: "Concrete cover plate"
+    ref: 3
+    configuration: "Access cover with concrete surround"
     notes: "Class D; 300mm or 225mm clear opening"
 installationSections:
   - heading: "Installation depth"
@@ -183,9 +186,9 @@ installationSections:
   - heading: "Access cover options"
     body: "Two access cover arrangements are available:"
     bullets:
-      - "Standard Top Hat access cover (with optional vegetation ring), Class D, 300mm clear opening"
-      - "Option 1: concrete cover plate, 300mm clear opening, distributes traffic load to surrounding bedding rather than the PP structure"
-      - "Option 2: concrete cover plate, 225mm clear opening"
+      - "Standard Top Hat access cover, Class D, 300mm clear opening. A concrete vegetation ring drops over it as an option"
+      - "Option 1: access cover with concrete surround, 300mm clear opening, distributes traffic load to surrounding bedding rather than the PP structure"
+      - "Option 2: access cover with concrete surround, 225mm clear opening"
   - heading: "Lateral drop-in connections"
     body: "DN100 and DN150 lateral connections can be added on-site using an electric hand drill with a hole saw, plus a rubber collar and straight connector kit, without returning the shaft to the factory."
   - heading: "Bends & reducers"
@@ -209,7 +212,7 @@ faqs:
   - question: "What is the maximum installation depth of the DN375 Maintenance Shaft?"
     answer: "4m for a standard installation. Riser height is cut to size on site to suit the exact depth you need."
   - question: "Is the DN375 Shaft rated for Class D traffic loads?"
-    answer: "Yes. Fitted with the standard Top Hat or concrete cover plate access cover, the DN375 Shaft is rated Class D (trafficable) to AS 3996."
+    answer: "Yes. Fitted with either the standard Top Hat or the access cover with concrete surround, the DN375 Shaft is rated Class D (trafficable) to AS 3996."
   - question: "How many installers does the DN375 Shaft need on site?"
     answer: "One or two. Base, riser and access cover are separate PP/PVC components, all light enough for manual handling, and the excavator already on site for the dig covers the rest."
   - question: "What standards does the DN375 Shaft comply with?"

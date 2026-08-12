@@ -160,12 +160,13 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {data.assemblyRenders.map((r) => (
                     <figure class="flex h-full flex-col">
-                      {/* pl-9 reserves the gutter the numbered badges sit in, so
-                          the lead lines have somewhere to run to without
-                          overlapping the drawing. Every callout coordinate is a
-                          percentage of the inner image box, which keeps them
-                          locked to the part at any tile width. */}
-                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-4 pr-3 pl-9">
+                      {/* Symmetric px-14 keeps the drawing centred in the tile
+                          while still leaving room for the badges, which sit
+                          2.25rem left of the image box and so fall inside that
+                          padding rather than against the tile edge. Every
+                          callout coordinate is a percentage of the image box,
+                          which keeps it locked to the part at any tile width. */}
+                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-4 px-14">
                         <div class="relative">
                           <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[280, 560]} sizes="280px" />
                           {r.callouts.map((c) => (

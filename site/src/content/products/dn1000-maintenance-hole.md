@@ -182,31 +182,31 @@ assemblyRenders:
     alt: "Exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an external lateral connection passing straight through the riser wall"
     caption: "External connection, straight through the riser wall."
     callouts:
-      - { n: 1, x: 34.6, y: 10.2 }
+      - { n: 1, x: 36.7, y: 10.2 }
       - { n: 2, x: 41.3, y: 18.4 }
-      - { n: 3, x: 36.8, y: 29.2 }
-      - { n: 4, x: 36.0, y: 40.7 }
+      - { n: 3, x: 40.2, y: 29.2 }
+      - { n: 4, x: 38.4, y: 40.7 }
       - { n: 7, x: 15.5, y: 45.5 }
-      - { n: 5, x: 32.5, y: 53.0 }
-      - { n: 4, x: 36.0, y: 59.8 }
-      - { n: 5, x: 32.5, y: 67.7 }
-      - { n: 4, x: 36.0, y: 76.6 }
-      - { n: 6, x: 32.9, y: 87.2 }
+      - { n: 5, x: 35.9, y: 53.0 }
+      - { n: 4, x: 37.8, y: 59.8 }
+      - { n: 5, x: 35.9, y: 67.7 }
+      - { n: 4, x: 38.4, y: 76.6 }
+      - { n: 6, x: 40.2, y: 87.2 }
   - image: "../../assets/images/dn1000-assembly-lateral-internal-drop.png"
     alt: "Cutaway exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an internal drop: the lateral enters the riser, turns down through a bend and runs to invert level on a bracketed drop pipe"
     caption: "Internal drop, taking the lateral down to invert level."
     callouts:
-      - { n: 1, x: 34.2, y: 10.2 }
+      - { n: 1, x: 36.5, y: 10.2 }
       - { n: 2, x: 41.1, y: 18.4 }
-      - { n: 3, x: 36.3, y: 29.2 }
-      - { n: 4, x: 36.0, y: 40.7 }
+      - { n: 3, x: 39.7, y: 29.2 }
+      - { n: 4, x: 38.0, y: 40.7 }
       - { n: 7, x: 15.5, y: 45.5 }
-      - { n: 5, x: 32.7, y: 53.0 }
-      - { n: 4, x: 36.0, y: 59.8 }
-      - { n: 8, x: 41.0, y: 63.5 }
-      - { n: 5, x: 32.7, y: 70.5 }
-      - { n: 4, x: 36.0, y: 76.6 }
-      - { n: 6, x: 32.7, y: 87.2 }
+      - { n: 5, x: 35.6, y: 53.0 }
+      - { n: 4, x: 37.4, y: 59.8 }
+      - { n: 8, x: 53.0, y: 65.4 }
+      - { n: 5, x: 35.6, y: 71.4 }
+      - { n: 4, x: 38.2, y: 76.6 }
+      - { n: 6, x: 39.9, y: 87.2 }
 assemblyLegend:
   - n: 1
     label: "Top Hat access cover"

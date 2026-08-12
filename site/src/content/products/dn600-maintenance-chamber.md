@@ -95,12 +95,12 @@ assemblyRenders:
     alt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber with Top Hat access cover, EPDM/SBR seals, corrugated riser, base and an optional lateral connection"
     caption: "DN600 chamber with the Top Hat access cover."
     callouts:
-      - { n: 1, x: 28.6, y: 12.9 }
+      - { n: 1, x: 35.3, y: 12.9 }
       - { n: 2, x: 37.6, y: 25.1 }
-      - { n: 5, x: 9.9, y: 42.0 }
+      - { n: 5, x: 11.1, y: 42.0 }
       - { n: 3, x: 42.0, y: 52.0 }
       - { n: 2, x: 37.5, y: 73.1 }
-      - { n: 4, x: 27.3, y: 85.4 }
+      - { n: 4, x: 28.7, y: 85.4 }
 assemblyLegend:
   - n: 1
     label: "Top Hat access cover"
