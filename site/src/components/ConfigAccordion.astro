@@ -1,6 +1,7 @@
 ---
 interface Row {
-  code: string;
+  /** Optional to match the shared content schema; every base row here has one. */
+  code?: string;
   configuration: string;
   size?: string;
   notes?: string;

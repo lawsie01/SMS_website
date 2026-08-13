@@ -188,20 +188,6 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
                     </figure>
                   ))}
                 </div>
-
-                {data.assemblyLegend.length > 0 && (
-                  <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
-                    {data.assemblyLegend.map((item) => (
-                      <li class="flex items-baseline gap-2.5 text-sm text-sms-charcoal-700">
-                        <span class="shrink-0 mt-0.5 inline-flex items-center justify-center rounded-full bg-sms-charcoal-900 text-white font-semibold w-5 h-5 text-[0.6875rem]">{item.n}</span>
-                        <span>
-                          {item.label}
-                          {item.code && <span class="font-mono text-xs text-sms-charcoal-400"> {item.code}</span>}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
             )}
 
@@ -222,7 +208,7 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
             {data.configurations.length > 0 && (
               <div>
                 {data.configGroups.length > 0 && (
-                  <h3 class="font-semibold text-sms-charcoal-900 mb-3">Other components</h3>
+                  <h3 class="font-semibold text-sms-charcoal-900 mb-3">Parts in the assembly</h3>
                 )}
                 <ConfigTable rows={data.configurations} intro={data.configurationsIntro} />
               </div>

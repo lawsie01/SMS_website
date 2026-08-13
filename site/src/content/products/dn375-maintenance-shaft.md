@@ -103,73 +103,12 @@ assemblyRenders:
       - { n: 9, x: 47.6, y: 72.2 }
       - { n: 8, x: 45.3, y: 81.9 }
       - { n: 10, x: 22.0, y: 89.0 }
-assemblyLegend:
-  - n: 1
-    label: "Concrete vegetation ring"
-    code: "optional"
-  - n: 2
-    label: "Top Hat access cover"
-    code: "ACCMHTHCSDMS"
-  - n: 3
-    label: "Access cover with concrete surround"
-    code: "AC6-CLD-375-CS"
-  - n: 4
-    label: "Shroud"
-    code: "PVCS1 / PVCS2"
-  - n: 5
-    label: "Screw access cap"
-    code: "LC1-300 / LC2-225"
-  - n: 6
-    label: "Seal"
-  - n: 7
-    label: "Riser"
-    code: "DN375, DN300 or DN225"
-  - n: 8
-    label: "Reducer R1"
-    code: "DN375-DN300"
-  - n: 9
-    label: "Reducer R2"
-    code: "DN300-DN225"
-  - n: 10
-    label: "Base"
-  - n: 11
-    label: "Lateral connection"
-    code: "optional"
 assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
-configurationsIntro: "The codes below are confirmed standard configurations, with the # column matching the numbered indicators on the assembly renders above. Contact SMS for the full configuration matrix across all inlet angles. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items without a distinct SMS part code."
+configurationsIntro: "Every numbered part on the renders above is listed below, in the same order, top of the structure down to the base. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items that SMS does not code separately. Base codes are the confirmed standard configurations; contact SMS for the full matrix across all inlet angles."
 configurations:
-  - code: "MS8"
-    ref: 10
-    configuration: "RRJ 180° Straight"
-    size: "DN150"
-  - code: "MS9"
-    ref: 10
-    configuration: "RRJ Junction (4-Way, 45°)"
-    size: "DN150"
-  - code: "MS14"
-    ref: 10
-    configuration: "RRJ 180° Straight"
-    size: "DN225"
-  - code: "R1"
-    ref: 8
-    configuration: "DN375–DN300 reducer"
-  - code: "R2"
-    ref: 9
-    configuration: "DN300–DN225 reducer"
-  - code: "LC1-300"
-    ref: 5
-    configuration: "DN300 PVC screw access cap"
-  - code: "LC2-225"
-    ref: 5
-    configuration: "DN225 PVC screw access cap"
-  - code: "PVCS1"
-    ref: 4
-    configuration: "Shroud"
-    notes: "Used with the DN300 screw access cap"
-  - code: "PVCS2"
-    ref: 4
-    configuration: "Shroud"
-    notes: "Used with the DN225 screw access cap"
+  - ref: 1
+    configuration: "Concrete vegetation ring"
+    notes: "Optional accessory for the Top Hat access cover"
   - code: "ACCMHTHCSDMS"
     ref: 2
     configuration: "Standard Top Hat access cover"
@@ -178,6 +117,46 @@ configurations:
     ref: 3
     configuration: "Access cover with concrete surround"
     notes: "Class D; 300mm or 225mm clear opening"
+  - code: "PVCS1"
+    ref: 4
+    configuration: "Shroud"
+    notes: "Used with the DN300 screw access cap"
+  - code: "PVCS2"
+    ref: 4
+    configuration: "Shroud"
+    notes: "Used with the DN225 screw access cap"
+  - code: "LC1-300"
+    ref: 5
+    configuration: "DN300 PVC screw access cap"
+  - code: "LC2-225"
+    ref: 5
+    configuration: "DN225 PVC screw access cap"
+  - ref: 6
+    configuration: "Seal"
+  - ref: 7
+    configuration: "Riser, DN375, DN300 or DN225"
+    notes: "Cut to length on site"
+  - code: "R1"
+    ref: 8
+    configuration: "DN375–DN300 reducer"
+  - code: "R2"
+    ref: 9
+    configuration: "DN300–DN225 reducer"
+  - code: "MS8"
+    ref: 10
+    configuration: "Base, RRJ 180° Straight"
+    size: "DN150"
+  - code: "MS9"
+    ref: 10
+    configuration: "Base, RRJ Junction (4-Way, 45°)"
+    size: "DN150"
+  - code: "MS14"
+    ref: 10
+    configuration: "Base, RRJ 180° Straight"
+    size: "DN225"
+  - ref: 11
+    configuration: "Lateral connection"
+    notes: "Optional; DN100 or DN150, drilled in on site"
 installationSections:
   - heading: "Installation depth"
     body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required, cut on the corrugation/rib line and deburred."

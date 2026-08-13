@@ -101,34 +101,26 @@ assemblyRenders:
       - { n: 3, x: 42.0, y: 52.0 }
       - { n: 2, x: 37.5, y: 73.1 }
       - { n: 4, x: 28.7, y: 85.4 }
-assemblyLegend:
-  - n: 1
-    label: "Top Hat access cover"
-    code: "ACCMHTHCSDMC"
-  - n: 2
-    label: "DN600 EPDM/SBR seal"
-    code: "ARH0600"
-  - n: 3
-    label: "DN600 corrugated riser"
-    code: "PPPB0600"
-  - n: 4
-    label: "Base"
-  - n: 5
-    label: "Lateral connection"
-    code: "optional"
 assemblyRendersIntro: "The chamber exploded, shown with a lateral connection. The lateral is optional and is not part of the base: DN100 and DN150 connections are drilled in on site with a hole saw, rubber collar and straight connector."
-configurationsIntro: "Every part in the assembly above is its own code. The # column matches the numbered indicators on the render."
+configurationsIntro: "Every numbered part on the render above is listed below, in the same order, top of the chamber down to the base. Cover options that are not shown on the render follow underneath."
 configurations:
-  - code: "PPPB0600"
-    ref: 3
-    configuration: "DN600 corrugated riser, cut to suit installation depth"
-  - code: "ARH0600"
-    ref: 2
-    configuration: "DN600 EPDM/SBR seal"
   - code: "ACCMHTHCSDMC"
     ref: 1
     configuration: "Standard Top Hat access cover"
     notes: "Class D, 300mm clear opening"
+  - code: "ARH0600"
+    ref: 2
+    configuration: "DN600 EPDM/SBR seal"
+  - code: "PPPB0600"
+    ref: 3
+    configuration: "DN600 corrugated riser, cut to suit installation depth"
+  - code: "AXEDO <size>/<angle>"
+    ref: 4
+    configuration: "Base"
+    notes: "Full code list under Base part codes above"
+  - ref: 5
+    configuration: "Lateral connection"
+    notes: "Optional; DN100 or DN150, drilled in on site"
   - code: "ACCMHTHCIFD"
     configuration: "Top Hat access cover with concrete infill lid"
     notes: "Class D"

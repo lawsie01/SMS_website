@@ -2,7 +2,8 @@
 interface Row {
   /** Matching indicator number on the assembly render above, when the part appears in it. */
   ref?: number;
-  code: string;
+  /** Absent on parts SMS does not code separately, such as riser pipe and seals. */
+  code?: string;
   configuration: string;
   size?: string;
   notes?: string;
@@ -40,7 +41,9 @@ const hasNotes = rows.some((r) => r.notes);
                 )}
               </td>
             )}
-            <td class="px-3 py-2 font-mono text-xs text-sms-charcoal-900">{row.code}</td>
+            <td class="px-3 py-2 font-mono text-xs text-sms-charcoal-900">
+              {row.code ?? <span class="font-sans text-sms-charcoal-400">No code</span>}
+            </td>
             <td class="px-3 py-2 text-sms-charcoal-900">{row.configuration}</td>
             {hasSize && <td class="px-3 py-2 text-sms-charcoal-900">{row.size ?? 'N/A'}</td>}
             {hasNotes && <td class="px-3 py-2 text-sms-charcoal-500">{row.notes ?? 'N/A'}</td>}

@@ -41,12 +41,6 @@ const callout = z.object({
   y: z.number().min(0).max(100),
 });
 
-const legendItem = z.object({
-  n: z.number().int().positive(),
-  label: z.string(),
-  code: z.string().optional(),
-});
-
 const assemblyRender = (image: ImageFunction) =>
   z.object({
     image: image(),
@@ -73,7 +67,9 @@ const installSection = (image: ImageFunction) =>
 const configRow = z.object({
   // Number of the matching indicator on the assembly render above.
   ref: z.number().int().positive().optional(),
-  code: z.string(),
+  // Omitted for parts SMS does not code separately, such as riser pipe and
+  // seals, which still need a row so every indicator on the render resolves.
+  code: z.string().optional(),
   configuration: z.string(),
   size: z.string().optional(),
   notes: z.string().optional(),
@@ -164,11 +160,8 @@ const products = defineCollection({
       // once for the whole set instead of repeating it in every caption.
       assemblyRenders: z.array(assemblyRender(image)).default([]),
       assemblyRendersIntro: z.string().optional(),
-      // Shared across every render for the product, so the same part carries
-      // the same number in all views and in the components table below.
-      assemblyLegend: z.array(legendItem).default([]),
-      // Same idea for the "Other components" table — real photos of the
-      // individual parts (cone, riser, ...) rather than only the schematic.
+      // Real photos of the individual parts (cone, riser, ...) to sit beside
+      // the parts table, rather than only the schematic renders.
       componentPhotos: z.array(photoItem(image)).default([]),
       installationSections: z.array(installSection(image)).default([]),
       standards: z.array(standard).default([]),
