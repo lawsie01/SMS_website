@@ -51,6 +51,19 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
 // One gallery of real photographs, base configurations first then individual
 // components, rendered above the assembly drawings.
 const photos = [...data.configPhotos, ...data.componentPhotos];
+// Assembly drawings fill the content column whatever their number, so a
+// two-drawing product gets two half-width tiles rather than two thirds of a
+// three-up row. Written out in full because Tailwind scans for whole class
+// names and will not generate a class assembled from a variable.
+// Two across at every size above mobile. Three across fits the DN375's three
+// riser options on one row, but at this column width that leaves each drawing
+// about 170px wide, which is too small to read the numbered parts. Two across
+// nearly doubles it and costs a wrapped third tile.
+const assemblyCols = data.assemblyRenders.length > 1 ? 'sm:grid-cols-2' : 'max-w-sm';
+const assemblySizes =
+  data.assemblyRenders.length > 1
+    ? '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw'
+    : '(min-width: 640px) 320px, 90vw';
 ---
 
 <BaseLayout
@@ -165,18 +178,21 @@ const photos = [...data.configPhotos, ...data.componentPhotos];
                 {data.assemblyRendersIntro && (
                   <p class="text-sm text-sms-charcoal-500 leading-relaxed mb-5 max-w-[68ch]">{data.assemblyRendersIntro}</p>
                 )}
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* Column count follows the number of drawings, so two
+                    drawings fill the same width as the part table below
+                    rather than leaving a third of the row empty. */}
+                <div class:list={["grid gap-5", assemblyCols]}>
                   {data.assemblyRenders.map((r) => (
                     <figure class="flex h-full flex-col">
-                      {/* Symmetric px-14 keeps the drawing centred in the tile
-                          while still leaving room for the badges, which sit
-                          2.25rem left of the image box and so fall inside that
-                          padding rather than against the tile edge. Every
-                          callout coordinate is a percentage of the image box,
-                          which keeps it locked to the part at any tile width. */}
-                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-4 px-14">
+                      {/* Symmetric px-10 keeps the drawing centred in the tile
+                          while still clearing the badges, which sit 2.25rem
+                          (36px) left of the image box and so fall inside that
+                          40px of padding rather than against the tile edge.
+                          Every callout coordinate is a percentage of the image
+                          box, which keeps it locked to the part at any width. */}
+                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-5 px-10">
                         <div class="relative">
-                          <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[280, 560]} sizes="280px" />
+                          <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[320, 640, 960]} sizes={assemblySizes} />
                           {r.callouts.map((c) => (
                             <>
                               <span

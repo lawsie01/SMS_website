@@ -18,7 +18,7 @@ const approvals = [
   },
   {
     code: 'AS 3996',
-    body: 'Access covers and grates. All SMS access cover arrangements (Top Hat, concrete cover plate, concrete load distribution ring) are rated Class D, trafficable, to this standard.',
+    body: 'Access covers and grates. All SMS access cover arrangements (Top Hat, concrete cover plate, concrete load distribution ring) are rated to Class D maximum, trafficable, to this standard.',
   },
   {
     code: 'EN 13598-2',
@@ -37,6 +37,10 @@ const approvals = [
     body: 'Polyethylene and polypropylene pipes and fittings for drainage and sewerage applications.',
   },
   {
+    code: 'Local water authority requirements',
+    body: 'Individual water authorities maintain their own accepted-products lists, standard drawings and installation requirements. These sit on top of the standards above and vary between authorities, so confirm acceptance with the relevant authority for the network you are building into.',
+  },
+  {
     code: 'EN 14396',
     body: 'Fixed ladders for manholes. Applies to the DN1000 Maintenance Hole\'s person-entry ladder.',
   },
@@ -49,7 +53,7 @@ const matrix = [
   { code: 'AS 3996 (Class D covers)', shaft: true, chamber: true, hole: true },
   { code: 'AS 1646 (seals)', shaft: true, chamber: true, hole: true },
   { code: 'AS/NZS 2566 (buried pipelines)', shaft: true, chamber: true, hole: true },
-  { code: 'AS/NZS 5065 (PP/PE pipes)', shaft: false, chamber: true, hole: true },
+  { code: 'AS/NZS 5065 (PP/PE pipes)', shaft: false, chamber: true, hole: false },
   { code: 'EN 14396 (fixed ladders)', shaft: false, chamber: false, hole: true },
 ];
 
@@ -60,11 +64,11 @@ const faqs = [
   },
   {
     question: 'What load class are SMS access covers rated to?',
-    answer: 'Class D (trafficable) to AS 3996, across the standard Top Hat, concrete cover plate and concrete load distribution ring options, on all three SMS product families.',
+    answer: 'Class D maximum (trafficable) to AS 3996, across the standard Top Hat, concrete cover plate and concrete load distribution ring options, on all three SMS product families.',
   },
   {
     question: 'Does the SMS range meet European as well as Australian standards?',
-    answer: 'Yes. In addition to WSA 137:2019 and the referenced Australian Standards (AS 3996, AS 1646, AS/NZS 2566, AS/NZS 5065), the range is manufactured to EN 13598-2, and the DN1000 Hole\'s ladder to EN 14396.',
+    answer: 'Yes. In addition to WSA 137:2019 and the referenced Australian Standards (AS 3996, AS 1646, AS/NZS 2566, AS/NZS 5065), the range is manufactured to EN 13598-2, and the DN1000 Hole\'s ladder to EN 14396. AS/NZS 5065 applies to the DN600 Chamber, whose riser is PP pipe; it does not apply to the DN1000 Hole.',
   },
   {
     question: 'Where can I see the current WSAA appraisal certificate?',
@@ -75,7 +79,7 @@ const faqs = [
 
 <BaseLayout
   title="Approvals & Standards | SMS WSAA PA 1317, WSA 137, AS 3996"
-  description="SMS polypropylene sewer maintenance structures are appraised under WSAA PA 1317 to WSA 137:2019, with access covers rated Class D to AS 3996 and construction to EN 13598-2."
+  description="SMS polypropylene sewer maintenance structures are appraised under WSAA PA 1317 to WSA 137:2019, with access covers rated to Class D maximum to AS 3996 and construction to EN 13598-2."
   canonicalPath="/approvals/"
 >
   <Breadcrumbs items={[{ label: 'Approvals', href: '/approvals/' }]} />

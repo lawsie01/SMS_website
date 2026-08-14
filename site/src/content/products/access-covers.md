@@ -3,10 +3,10 @@ title: "Access Covers"
 brand: "SMS"
 category: "accessory"
 order: 7
-shortDescription: "Class D trafficable access cover options for the SMS maintenance shaft, chamber and hole range, installed independently of the polypropylene structure below."
+shortDescription: "Class D maximum trafficable access cover options for the SMS maintenance shaft, chamber and hole range, installed independently of the polypropylene structure below."
 cardUseCase: "Selecting the right access cover arrangement for trafficable or non-trafficable surface locations."
 atAGlance:
-  - label: "Load rating"
+  - label: "Max load"
     value: "Class D"
   - label: "Standard"
     value: "AS 3996"
@@ -15,8 +15,8 @@ specSections:
     rows:
       - label: "Purpose"
         value: "Access cover arrangements sit above the polypropylene structure and are engineered to distribute surface loads to the surrounding bedding/foundation, not down onto the PP riser or base"
-      - label: "Load rating"
-        value: "Class D (trafficable) to AS 3996 across all standard options"
+      - label: "Max load"
+        value: "Class D maximum (trafficable) to AS 3996 across all standard options"
       - label: "Available arrangements"
         value: "Standard Top Hat access cover (with optional vegetation ring); concrete cover plate; concrete load distribution ring (DN1000 Hole only)"
   - heading: "Confirm before publishing"
@@ -30,7 +30,7 @@ faqs:
   - question: "Do access covers sit directly on the polypropylene structure?"
     answer: "No. Every SMS access cover arrangement is engineered to transfer surface and traffic loads to the surrounding bedding/foundation, with a maintained clearance gap so no load passes directly onto the PP riser, cone or base."
   - question: "What load rating do SMS access covers carry?"
-    answer: "Class D (trafficable) to AS 3996 across the standard Top Hat, concrete cover plate and concrete load distribution ring options."
+    answer: "Class D maximum (trafficable) to AS 3996 across the standard Top Hat, concrete cover plate and concrete load distribution ring options."
   - question: "Is a vegetation ring available?"
     answer: "Yes, as an option on the standard Top Hat access cover, for locations where the surrounding surface finish is turf or garden bed rather than a hard trafficable surface."
 downloads:
@@ -39,7 +39,7 @@ downloads:
     fileType: "PDF"
     restricted: false
 seoTitle: "Class D Access Covers | SMS Sewer Maintenance Structure Covers Australia"
-seoDescription: "Class D trafficable access cover options to AS 3996 for SMS AXEDO and SMS ROMOLD polypropylene maintenance structures."
+seoDescription: "Class D maximum trafficable access cover options to AS 3996 for SMS AXEDO and SMS ROMOLD polypropylene maintenance structures."
 ---
 
 The access cover carries the Class D traffic load, not the polypropylene structure underneath it. Load goes
