@@ -227,9 +227,9 @@ componentPhotos:
   - image: "../../assets/images/dn1000-cone-component.jpg"
     alt: "SMS ROMOLD DN1000 cone, reducing from the 1000mm base to the 600mm access cover"
     caption: "MH Cone (MHRC600)."
-  - image: "../../assets/images/dn1000-riser-component.jpg"
-    alt: "SMS ROMOLD DN1000 riser section"
-    caption: "MH Riser, 250mm height shown."
+  - image: "../../assets/images/dn1000-riser-ladder-component.jpg"
+    alt: "SMS ROMOLD DN1000 riser section with a ladder rung fixed inside it"
+    caption: "MH Riser, showing the fixed ladder rung."
 configurations:
   - code: "MCCVR"
     ref: 1

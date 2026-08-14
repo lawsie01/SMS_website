@@ -27,6 +27,15 @@ const whyPlastic = [
   },
 ];
 
+const standards = [
+  { code: 'WSAA PA 1317', covers: 'Product appraisal' },
+  { code: 'WSA 137:2019', covers: 'PP maintenance shafts, chambers and holes' },
+  { code: 'AS 3996', covers: 'Class D maximum access covers' },
+  { code: 'AS 1646', covers: 'Elastomeric seals' },
+  { code: 'EN 13598-2', covers: 'Manholes and inspection chambers' },
+  { code: 'AS/NZS 5065', covers: 'PP and PE pipes and fittings' },
+];
+
 const applications = [
   {
     audience: 'Water utilities & asset owners',
@@ -174,11 +183,18 @@ const applications = [
           View approvals & standards &rarr;
         </a>
       </div>
-      <ul class="grid grid-cols-2 gap-4">
-        {['WSAA PA 1317', 'WSA 137:2019', 'AS 3996 Class D', 'EN 13598-2', 'AS 1646', 'AS/NZS 5065'].map((s) => (
-          <li class="rounded-lg border border-sms-charcoal-200 bg-white p-4 text-center font-semibold text-sms-charcoal-900">{s}</li>
+      {/* Six bordered tiles read as six buttons, and none of them go anywhere.
+          One panel of hairline-separated rows says the same thing as a record
+          instead: the code in mono, matching how part codes are set across the
+          site, and what it covers beside it. */}
+      <dl class="rounded-lg border border-sms-charcoal-100 bg-white divide-y divide-sms-charcoal-100">
+        {standards.map((s) => (
+          <div class="flex items-baseline justify-between gap-6 px-5 py-3.5">
+            <dt class="font-mono text-sm font-medium text-sms-charcoal-900 shrink-0">{s.code}</dt>
+            <dd class="text-sm text-sms-charcoal-500 text-right">{s.covers}</dd>
+          </div>
         ))}
-      </ul>
+      </dl>
     </div>
   </section>
 
