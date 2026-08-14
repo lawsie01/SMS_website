@@ -15,6 +15,7 @@ productImageDetailBackground: "white"
 heroImage: "../../assets/images/brand-lookup-manhole.jpg"
 heroImageAlt: "View looking up through an installed ROMOLD polypropylene maintenance hole and fixed ladder"
 countryOfManufacture: "Germany"
+manufacturer: "Romold GmbH"
 manufacturerNote: "Designed, engineered and manufactured by Romold GmbH, Germany."
 atAGlance:
   - label: "Life"

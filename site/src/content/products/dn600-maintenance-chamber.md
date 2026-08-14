@@ -12,6 +12,7 @@ productImageBackground: "light"
 heroImage: "../../assets/images/install-trench-row.jpg"
 heroImageAlt: "Row of polypropylene maintenance structures installed along a sewer trench"
 countryOfManufacture: "Netherlands"
+manufacturer: "Dyka BV"
 manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Netherlands, under the SMS/DYKA product range."
 atAGlance:
   - label: "Life"

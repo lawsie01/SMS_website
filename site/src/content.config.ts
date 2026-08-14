@@ -141,6 +141,9 @@ const products = defineCollection({
       // set a productImageDetail at all.
       productImageDetailBackground: z.enum(['dark', 'light', 'white']).default('light'),
       countryOfManufacture: z.string().optional(),
+      // Named separately from manufacturerNote so the About page can list
+      // it as one of a uniform set of facts across every product.
+      manufacturer: z.string().optional(),
       manufacturerNote: z.string().optional(),
       atAGlance: z.array(atAGlanceRow).default([]),
       specSections: z.array(specSection).default([]),
