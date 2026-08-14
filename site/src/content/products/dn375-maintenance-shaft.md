@@ -29,9 +29,6 @@ atAGlance:
   - label: "Load"
     value: "Class D"
     icon: "load"
-  - label: "Install"
-    value: "Manual"
-    icon: "feather"
 specSections:
   - heading: "Product overview"
     rows:
