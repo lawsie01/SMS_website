@@ -433,6 +433,15 @@ const productFamilies = products
       closeAllNav(entry.key);
       setNavOpen(entry.key, nowOpen);
     });
+
+    // Picking something from the panel closes it. A cross-page link would take
+    // the panel with it when the new document loads, but the Applications menu
+    // links to anchors on a page the reader may already be on, and re-selecting
+    // the current page navigates nowhere at all — in both cases the panel would
+    // otherwise stay open over the content the reader just asked to see.
+    entry.panel!.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a[href]')) setNavOpen(entry.key, false);
+    });
   }
 
   document.addEventListener('click', (e) => {
@@ -509,5 +518,14 @@ const productFamilies = products
 
   mobileProductsToggle?.addEventListener('click', () => {
     setMobileProductsOpen(mobileProductsToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Same rule on mobile: choosing a destination closes the sheet, including the
+  // nested Products list inside it. Scoped to links so the Products disclosure
+  // button itself still just expands.
+  panel?.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('a[href]')) return;
+    setNav(false);
+    setMobileProductsOpen(false);
   });
 </script>

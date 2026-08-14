@@ -51,14 +51,12 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
 // One gallery of real photographs, base configurations first then individual
 // components, rendered above the assembly drawings.
 const photos = [...data.configPhotos, ...data.componentPhotos];
-// Assembly drawings fill the content column whatever their number, so a
-// two-drawing product gets two half-width tiles rather than two thirds of a
-// three-up row. Written out in full because Tailwind scans for whole class
-// names and will not generate a class assembled from a variable.
-// Two across at every size above mobile. Three across fits the DN375's three
-// riser options on one row, but at this column width that leaves each drawing
-// about 170px wide, which is too small to read the numbered parts. Two across
-// nearly doubles it and costs a wrapped third tile.
+// Two assembly drawings across at every size above mobile. Three across fits
+// the DN375's three riser options on one row, but at this column width that
+// leaves each drawing about 170px wide, too small to read the numbered parts.
+// Two across nearly doubles it and costs a wrapped third tile. Written out in
+// full because Tailwind scans for whole class names and will not generate one
+// assembled from a variable.
 const assemblyCols = data.assemblyRenders.length > 1 ? 'sm:grid-cols-2' : 'max-w-sm';
 const assemblySizes =
   data.assemblyRenders.length > 1
@@ -184,13 +182,15 @@ const assemblySizes =
                 <div class:list={["grid gap-5", assemblyCols]}>
                   {data.assemblyRenders.map((r) => (
                     <figure class="flex h-full flex-col">
-                      {/* Symmetric px-10 keeps the drawing centred in the tile
-                          while still clearing the badges, which sit 2.25rem
-                          (36px) left of the image box and so fall inside that
-                          40px of padding rather than against the tile edge.
+                      {/* Asymmetric on purpose. The badges sit 2.25rem (36px)
+                          left of the image box, so the left padding carries
+                          both the badge column and its own margin while the
+                          right only needs a margin. Splitting it evenly leaves
+                          the drawing looking pushed left, because the badges
+                          hang outside the box the drawing is centred in.
                           Every callout coordinate is a percentage of the image
                           box, which keeps it locked to the part at any width. */}
-                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-5 px-10">
+                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-5 pl-16 pr-6">
                         <div class="relative">
                           <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[320, 640, 960]} sizes={assemblySizes} />
                           {r.callouts.map((c) => (

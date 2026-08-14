@@ -64,42 +64,42 @@ assemblyRenders:
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft with a DN375 riser, Top Hat access cover, EPDM seals, base and an optional lateral connection"
     caption: "DN375 riser with the Top Hat access cover."
     callouts:
-      - { n: 1, x: 26.7, y: 9.5 }
-      - { n: 2, x: 28.5, y: 17.0 }
-      - { n: 6, x: 35.4, y: 22.2 }
-      - { n: 7, x: 36.4, y: 34.9 }
-      - { n: 6, x: 36.4, y: 45.5 }
-      - { n: 11, x: 19.0, y: 52.5 }
-      - { n: 7, x: 36.4, y: 60.0 }
-      - { n: 7, x: 36.4, y: 72.1 }
-      - { n: 10, x: 20.4, y: 88.0 }
+      - { n: 1, x: 17.2, y: 9.5 }
+      - { n: 2, x: 19.8, y: 17.0 }
+      - { n: 6, x: 29.5, y: 22.2 }
+      - { n: 7, x: 30.9, y: 34.9 }
+      - { n: 6, x: 30.9, y: 45.5 }
+      - { n: 11, x: 6.4, y: 52.5 }
+      - { n: 7, x: 30.9, y: 60.0 }
+      - { n: 7, x: 30.9, y: 72.1 }
+      - { n: 10, x: 8.4, y: 88.0 }
   - image: "../../assets/images/dn375-assembly-riser-dn300.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN300 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN300 riser with a screw access cap."
     callouts:
-      - { n: 3, x: 35.5, y: 9.9 }
-      - { n: 4, x: 44.5, y: 19.7 }
-      - { n: 5, x: 46.9, y: 28.6 }
-      - { n: 7, x: 47.3, y: 37.9 }
-      - { n: 11, x: 16.3, y: 49.5 }
-      - { n: 7, x: 47.3, y: 55.5 }
-      - { n: 7, x: 47.3, y: 65.3 }
-      - { n: 8, x: 43.5, y: 77.0 }
-      - { n: 10, x: 27.4, y: 88.4 }
+      - { n: 3, x: 29.6, y: 9.9 }
+      - { n: 4, x: 42.3, y: 19.7 }
+      - { n: 5, x: 45.6, y: 28.6 }
+      - { n: 7, x: 46.2, y: 37.9 }
+      - { n: 11, x: 2.6, y: 49.5 }
+      - { n: 7, x: 46.2, y: 55.5 }
+      - { n: 7, x: 46.2, y: 65.3 }
+      - { n: 8, x: 40.9, y: 77.0 }
+      - { n: 10, x: 18.2, y: 88.4 }
   - image: "../../assets/images/dn375-assembly-riser-dn225.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN225 riser with a PVC screw access cap and an optional lateral connection"
     caption: "Reduced to a DN225 riser with a screw access cap."
     callouts:
-      - { n: 3, x: 33.7, y: 9.9 }
-      - { n: 4, x: 42.9, y: 19.8 }
-      - { n: 5, x: 47.1, y: 28.4 }
-      - { n: 7, x: 47.6, y: 35.6 }
-      - { n: 11, x: 20.3, y: 46.0 }
-      - { n: 7, x: 47.6, y: 51.5 }
-      - { n: 7, x: 47.6, y: 59.3 }
-      - { n: 9, x: 47.6, y: 72.2 }
-      - { n: 8, x: 45.3, y: 81.9 }
-      - { n: 10, x: 22.0, y: 89.0 }
+      - { n: 3, x: 27.1, y: 9.9 }
+      - { n: 4, x: 40.0, y: 19.8 }
+      - { n: 5, x: 45.9, y: 28.4 }
+      - { n: 7, x: 46.6, y: 35.6 }
+      - { n: 11, x: 8.2, y: 46.0 }
+      - { n: 7, x: 46.6, y: 51.5 }
+      - { n: 7, x: 46.6, y: 59.3 }
+      - { n: 9, x: 46.6, y: 72.2 }
+      - { n: 8, x: 43.4, y: 81.9 }
+      - { n: 10, x: 10.6, y: 89.0 }
 assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
 configurationsIntro: "Every numbered part on the renders above is listed below, in the same order, top of the structure down to the base. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items that SMS does not code separately. Base codes are the confirmed standard configurations; contact SMS for the full matrix across all inlet angles."
 configurations:

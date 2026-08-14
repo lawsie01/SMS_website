@@ -182,41 +182,44 @@ assemblyRenders:
     alt: "Exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an external lateral connection passing straight through the riser wall"
     caption: "External connection, straight through the riser wall."
     callouts:
-      - { n: 1, x: 36.5, y: 8.0 }
-      - { n: 2, x: 36.3, y: 13.2 }
-      - { n: 3, x: 41.3, y: 18.4 }
-      - { n: 4, x: 40.2, y: 29.2 }
-      - { n: 5, x: 38.4, y: 40.7 }
-      - { n: 8, x: 15.5, y: 45.5 }
-      - { n: 6, x: 35.9, y: 53.0 }
-      - { n: 5, x: 37.8, y: 59.8 }
-      - { n: 6, x: 35.9, y: 67.7 }
-      - { n: 5, x: 38.4, y: 76.6 }
-      - { n: 7, x: 40.2, y: 87.2 }
+      - { n: 1, x: 31.6, y: 8.0 }
+      - { n: 2, x: 31.3, y: 13.2 }
+      - { n: 3, x: 38.1, y: 18.4 }
+      - { n: 4, x: 36.6, y: 29.2 }
+      - { n: 5, x: 34.2, y: 40.7 }
+      - { n: 8, x: 3.0, y: 45.5 }
+      - { n: 6, x: 30.8, y: 53.0 }
+      - { n: 5, x: 33.4, y: 59.8 }
+      - { n: 6, x: 30.8, y: 67.7 }
+      - { n: 5, x: 34.2, y: 76.6 }
+      - { n: 7, x: 36.6, y: 87.2 }
   - image: "../../assets/images/dn1000-assembly-lateral-internal-drop.png"
     alt: "Cutaway exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an internal drop: the lateral enters the riser, turns down through a bend and runs to invert level on a bracketed drop pipe"
     caption: "Internal drop, taking the lateral down to invert level."
     callouts:
-      - { n: 1, x: 36.3, y: 8.0 }
-      - { n: 2, x: 36.1, y: 13.2 }
-      - { n: 3, x: 41.1, y: 18.4 }
-      - { n: 4, x: 39.7, y: 29.2 }
-      - { n: 5, x: 38.0, y: 40.7 }
-      - { n: 8, x: 15.5, y: 45.5 }
-      - { n: 6, x: 35.6, y: 53.0 }
-      - { n: 5, x: 37.4, y: 59.8 }
-      - { n: 9, x: 53.0, y: 65.4 }
-      - { n: 6, x: 35.6, y: 71.4 }
-      - { n: 5, x: 38.2, y: 76.6 }
-      - { n: 7, x: 39.9, y: 87.2 }
+      - { n: 1, x: 31.3, y: 8.0 }
+      - { n: 2, x: 31.0, y: 13.2 }
+      - { n: 3, x: 37.9, y: 18.4 }
+      - { n: 4, x: 36.0, y: 29.2 }
+      - { n: 5, x: 33.6, y: 40.7 }
+      - { n: 8, x: 3.0, y: 45.5 }
+      - { n: 6, x: 30.4, y: 53.0 }
+      - { n: 5, x: 32.8, y: 59.8 }
+      - { n: 9, x: 54.1, y: 65.4 }
+      - { n: 6, x: 30.4, y: 71.4 }
+      - { n: 5, x: 33.9, y: 76.6 }
+      - { n: 7, x: 36.2, y: 87.2 }
 assemblyRendersIntro: "Two ways to bring a lateral in, both optional and both added on site. The external connection passes straight through the riser wall. The internal drop turns the lateral down inside the structure and carries it to invert level on a bracketed pipe, which is what an incoming line sitting well above the outlet needs."
 componentPhotos:
   - image: "../../assets/images/dn1000-tophat-component.jpg"
-    alt: "SMS Top Hat access cover for the DN1000 Maintenance Hole, shown on its own"
-    caption: "Top Hat access cover (ACCMHTHCSDMH)."
+    alt: "Placeholder tile for a Top Hat access cover image, still to be supplied"
+    caption: "Top Hat access cover (ACCMHTHCSDMH). Image to come."
   - image: "../../assets/images/dn1000-vegetation-ring-component.jpg"
-    alt: "The Top Hat access cover seated in its optional concrete vegetation ring"
-    caption: "Optional concrete vegetation ring (MCCVR), cover seated in it."
+    alt: "Placeholder tile for a concrete vegetation ring image, still to be supplied"
+    caption: "Optional concrete vegetation ring (MCCVR). Image to come."
+  - image: "../../assets/images/dn1000-internal-drop-component.jpg"
+    alt: "Placeholder tile for an internal drop assembly image, still to be supplied"
+    caption: "Internal drop assembly. Image to come."
   - image: "../../assets/images/dn1000-lateral-component.jpg"
     alt: "Lateral connection parts: a straight connector and the rubber collar it seats in"
     caption: "Lateral connection: straight connector and rubber collar."
