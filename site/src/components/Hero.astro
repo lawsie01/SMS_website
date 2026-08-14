@@ -32,7 +32,13 @@ const isEnquiryCta = primaryCta.href === '/contact/' || primaryCta.href.startsWi
 const enquiryProduct = isEnquiryCta ? new URL(primaryCta.href, 'https://sewerms.com.au').searchParams.get('product') : null;
 ---
 
-<section class="sms-contour relative overflow-hidden text-white">
+{/* The contour rings are a dark-background device. On a hero carrying a
+    background photo they have nothing to read against and just add noise over
+    the image, so they only apply when there is no photo. A photo hero still
+    needs the dark ground the rings used to bring with them: white text and a
+    green CTA sit on it, and if the photo fails to load they would otherwise
+    land on the page's white. */}
+<section class:list={["relative overflow-hidden text-white", image ? "bg-sms-charcoal-900" : "sms-contour"]}>
   {image && (
     <div class="absolute inset-0">
       <Image

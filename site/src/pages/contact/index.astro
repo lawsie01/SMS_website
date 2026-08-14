@@ -194,7 +194,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
         {company.locations.map((loc) => (
           <div>
-            <h3 class="font-bold text-sms-charcoal-900 mb-2 pb-1 border-b-2 border-sms-green-600 inline-block">{loc.region}</h3>
+            <h3 class="font-bold text-sms-charcoal-900 mb-2">{loc.region}</h3>
             <p class="text-sm text-sms-charcoal-500 leading-relaxed">
               {loc.addressLine1}<br />{loc.addressLine2}
             </p>
