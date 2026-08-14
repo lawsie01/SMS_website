@@ -6,7 +6,6 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import LinkedInBadge from '../../components/LinkedInBadge.astro';
 import company from '../../data/company.json';
 import heroImage from '../../assets/images/hero-install-chamber.jpg';
 
@@ -181,9 +180,7 @@ const facts = [
       <ul class="space-y-2 text-sms-charcoal-700">
         <li><a href={`tel:${company.phoneHref}`} class="sms-link font-semibold">{company.phone}</a></li>
         <li><a href={`mailto:${company.email}`} class="sms-link font-semibold">{company.email}</a></li>
-        <li class="text-sms-charcoal-500">{company.addressLine1}, {company.addressLine2}</li>
       </ul>
-      <LinkedInBadge class="mt-4" />
       <p class="mt-4">
         <a href="/contact/" class="sms-link text-sm font-semibold">Get in touch &rarr;</a>
       </p>

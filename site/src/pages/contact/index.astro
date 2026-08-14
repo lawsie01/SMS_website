@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
-import LinkedInBadge from '../../components/LinkedInBadge.astro';
 import company from '../../data/company.json';
 
 const products = await getCollection('products');
@@ -173,7 +172,6 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
           <li><a href={`mailto:${company.email}`} class="sms-link font-semibold">{company.email}</a></li>
           <li class="text-sms-charcoal-500">{company.addressLine1}, {company.addressLine2}</li>
         </ul>
-        <LinkedInBadge class="mt-4" />
       </div>
 
       <div class="border-t border-sms-charcoal-100 pt-5">
