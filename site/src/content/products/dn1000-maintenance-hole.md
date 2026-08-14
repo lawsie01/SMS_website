@@ -314,7 +314,7 @@ standards:
   - code: "WSA PS-315 / PS-340 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for ladders, PP maintenance holes, access covers and PVC-U pipework"
   - code: "Local water authority requirements"
-    description: "Individual water authorities maintain their own accepted-products lists, standard drawings and installation requirements. These sit on top of the standards above and vary between authorities, so confirm acceptance with the relevant authority for the network you are building into."
+    description: "Many water authorities maintain their own accepted-products lists, standard drawings and installation requirements. Confirm with relevant authority prior to use."
 faqs:
   - question: "What is the maximum installation depth of the DN1000 Maintenance Hole?"
     answer: "Standard installation is rated to a maximum depth of 6m, and this doesn't reduce in groundwater conditions, though the trench must be wider to compensate. Separately, the structure carries its own buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up in 250mm riser increments plus a trimmable cone. Minimum installation depth is still being confirmed."

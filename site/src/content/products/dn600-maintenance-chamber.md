@@ -4,7 +4,7 @@ brand: "AXEDO"
 dnSize: "DN600"
 category: "maintenance-chamber"
 order: 2
-shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum and installed to 6m depth by hand."
+shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum, to 6m depth."
 cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
 productImage: "../../assets/images/product-dn600-chamber-clover.jpg"
 productImageAlt: "SMS AXEDO DN600 polypropylene maintenance chamber with corrugated riser and access cover"
@@ -163,7 +163,7 @@ standards:
   - code: "WSA PS-337 / PS-290 / PS-230"
     description: "Applicable WSAA product specifications for maintenance chambers, access covers and PVC-U pipework"
   - code: "Local water authority requirements"
-    description: "Individual water authorities maintain their own accepted-products lists, standard drawings and installation requirements. These sit on top of the standards above and vary between authorities, so confirm acceptance with the relevant authority for the network you are building into."
+    description: "Many water authorities maintain their own accepted-products lists, standard drawings and installation requirements. Confirm with relevant authority prior to use."
 faqs:
   - question: "What is the maximum installation depth of the DN600 Maintenance Chamber?"
     answer: "6m standard. That drops to 5m in a high water table or groundwater conditions."
