@@ -29,9 +29,6 @@ atAGlance:
   - label: "Load"
     value: "Class D"
     icon: "load"
-  - label: "Weight"
-    value: "20kg/m"
-    icon: "feather"
 specSections:
   - heading: "Product overview"
     rows:
