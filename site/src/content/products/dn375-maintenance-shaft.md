@@ -12,7 +12,8 @@ productImageBackground: "light"
 heroImage: "../../assets/images/hero-install-chamber.jpg"
 heroImageAlt: "SMS technician hand-installing a polypropylene maintenance structure base into a trench"
 countryOfManufacture: "Germany"
-manufacturerNote: "Designed, engineered and manufactured in Germany."
+manufacturer: "Dyka BV"
+manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Germany, under the AXEDO brand."
 atAGlance:
   - label: "Life"
     value: "100 yrs"
@@ -101,6 +102,25 @@ assemblyRenders:
       - { n: 8, x: 43.4, y: 81.9 }
       - { n: 10, x: 10.6, y: 89.0 }
 assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
+componentPhotos:
+  - image: "../../assets/images/dn375-base-component.jpg"
+    alt: "Placeholder tile for a DN375 base image, still to be supplied"
+    caption: "Base (MS8 / MS9 / MS14). Image to come."
+  - image: "../../assets/images/dn375-riser-component.jpg"
+    alt: "Placeholder tile for a DN375 riser image, still to be supplied"
+    caption: "Riser, DN375, DN300 or DN225. Image to come."
+  - image: "../../assets/images/dn375-tophat-component.jpg"
+    alt: "Placeholder tile for a Top Hat access cover image, still to be supplied"
+    caption: "Top Hat access cover (ACCMHTHCSDMS). Image to come."
+  - image: "../../assets/images/dn375-surround-cover-component.jpg"
+    alt: "Placeholder tile for an access cover with concrete surround image, still to be supplied"
+    caption: "Access cover with concrete surround (AC6-CLD-375-CS). Image to come."
+  - image: "../../assets/images/dn375-screw-cap-component.jpg"
+    alt: "Placeholder tile for a screw access cap and shroud image, still to be supplied"
+    caption: "Screw access cap and shroud (LC1-300 / PVCS1). Image to come."
+  - image: "../../assets/images/dn375-reducer-component.jpg"
+    alt: "Placeholder tile for a reducer image, still to be supplied"
+    caption: "Reducers R1 and R2. Image to come."
 configurationsIntro: "Every numbered part on the renders above is listed below, in the same order, top of the structure down to the base. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items that SMS does not code separately. Base codes are the confirmed standard configurations; contact SMS for the full matrix across all inlet angles."
 configurations:
   - ref: 1

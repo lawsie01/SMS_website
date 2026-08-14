@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import LinkedInBadge from '../../components/LinkedInBadge.astro';
 import company from '../../data/company.json';
 import heroImage from '../../assets/images/hero-install-chamber.jpg';
 
@@ -108,8 +109,8 @@ const facts = [
     <section aria-labelledby="manufacturing-heading" class="scroll-mt-24">
       <h2 id="manufacturing-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Our manufacturing partners</h2>
       <p class="text-sms-charcoal-500 leading-relaxed mb-6 max-w-[68ch]">
-        Each product family is made by a European specialist under an exclusive supply arrangement,
-        rather than one production line covering the whole range.
+        Two European specialists build the range between them under exclusive supply arrangements.
+        Dyka BV makes the shaft and the chamber under the AXEDO brand, Romold the maintenance hole.
       </p>
       <div class="grid sm:grid-cols-3 gap-6">
         {families.map((p) => (
@@ -119,7 +120,7 @@ const facts = [
                 <Image src={p.data.productImage} alt={p.data.productImageAlt ?? ''} class="h-full w-full object-contain p-4" widths={[320, 480]} sizes="(min-width: 640px) 320px, 50vw" />
               </div>
             )}
-            {/* The same four facts on every card, in the same order, rather
+            {/* The same five facts on every card, in the same order, rather
                 than a sentence of manufacturer prose whose shape changed from
                 product to product. Read straight off the product data, so a
                 spec change upstream carries through here. Depth comes from the
@@ -128,6 +129,7 @@ const facts = [
               <span class="block font-semibold text-sms-charcoal-900 transition-colors">{p.data.title}</span>
               <dl class="mt-3 text-sm">
                 {[
+                  ['Brand', p.data.brand],
                   ['Manufacturer', p.data.manufacturer],
                   ['Made in', p.data.countryOfManufacture],
                   ['Diameter', p.data.dnSize],
@@ -179,7 +181,9 @@ const facts = [
       <ul class="space-y-2 text-sms-charcoal-700">
         <li><a href={`tel:${company.phoneHref}`} class="sms-link font-semibold">{company.phone}</a></li>
         <li><a href={`mailto:${company.email}`} class="sms-link font-semibold">{company.email}</a></li>
+        <li class="text-sms-charcoal-500">{company.addressLine1}, {company.addressLine2}</li>
       </ul>
+      <LinkedInBadge class="mt-4" />
       <p class="mt-4">
         <a href="/contact/" class="sms-link text-sm font-semibold">Get in touch &rarr;</a>
       </p>
