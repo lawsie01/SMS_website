@@ -52,7 +52,15 @@ const productFamilies = products
 //   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<header id="site-header" class="bg-white">
+{/* Sticky lives here, on the header, not on #main-bar. A sticky element can
+    only travel within its own containing block, and #main-bar's containing
+    block is this header — all 126px of it — so pinning it there let the nav
+    scroll off the screen after 45px and never come back. Offsetting the whole
+    header by the utility strip's height (h-11 plus its 1px border) scrolls
+    that strip away and leaves the main bar pinned at the top, which is what
+    the two-bar layout was always meant to do. Below lg the strip is hidden,
+    so the offset goes to zero. */}
+<header id="site-header" class="sticky top-0 lg:-top-[45px] z-40 bg-white">
   {/* Bar 1 — utility strip. Not sticky — it scrolls away with the page, so
       only bar 2 below takes up permanent header real estate once scrolled.
       Desktop/tablet only: on narrow viewports these three links move into
@@ -71,7 +79,7 @@ const productFamilies = products
   {/* Bar 2 — main nav. This is the sticky element, not the header as a
       whole — the shadow only kicks in on scroll (see script below); at rest,
       against the top of the page, the border alone is enough separation. */}
-  <div id="main-bar" class="sticky top-0 z-40 bg-white border-b border-sms-charcoal-100 transition-shadow duration-200">
+  <div id="main-bar" class="bg-white border-b border-sms-charcoal-100 transition-shadow duration-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-20 items-center justify-between gap-4">
         <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">

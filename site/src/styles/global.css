@@ -71,6 +71,13 @@
 
 html {
   scroll-behavior: smooth;
+  /* Clears the sticky nav bar (h-20 plus its border) when a link jumps to an
+     in-page anchor, so the target heading doesn't land underneath it. The
+     scroll-mt-24 on individual sections only helps where the id sits on the
+     section itself — on several pages the id is on the h2 inside it, which
+     the section's own scroll margin does nothing for. This covers every
+     anchor on the site regardless of where the id was put. */
+  scroll-padding-top: 6rem;
 }
 
 /* Brand graphic devices — pure CSS, no image assets. See Rules in each
