@@ -65,37 +65,30 @@ const applications = [
 
   <TrustStrip />
 
-  {/* Four sections in a row were built to the same recipe — left h2, one lede,
-      a grid — which made the middle of the page read as one section repeated.
-      The range is the strongest content here, so it takes the charcoal ground
-      and runs on from the hero as a single dark block. The floating trust card
-      lands on the seam between the two. Everything below stays light. */}
-  <section class="bg-sms-charcoal-900 pt-4 pb-16" aria-labelledby="products-heading">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-4 mb-4">
-        <h2 id="products-heading" class="text-2xl sm:text-3xl font-bold text-white">The SMS range</h2>
-        <a href="/products/" class="sms-link sms-link--on-dark text-sm font-semibold shrink-0">All products &rarr;</a>
-      </div>
-      <p class="text-sms-charcoal-100 leading-relaxed max-w-[68ch] mb-8">
-        DN375, DN600 and DN1000. That covers reticulation through to trunk sewer access, and all three are
-        appraised under WSA 137:2019.
-      </p>
-      <div id="range-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {families.map((p, i) => (
-          <div class="range-tile" style={`transition-delay: ${i * 60}ms`}>
-            <ProductCard
-              href={`/products/${p.id}/`}
-              title={p.data.title}
-              dnSize={p.data.dnSize}
-              brand={p.data.brand}
-              useCase={p.data.cardUseCase}
-              image={p.data.productImage}
-              imageAlt={p.data.productImageAlt}
-              imageBackground={p.data.productImageBackground}
-            />
-          </div>
-        ))}
-      </div>
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-16" aria-labelledby="products-heading">
+    <div class="flex items-end justify-between gap-4 mb-4">
+      <h2 id="products-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">The SMS range</h2>
+      <a href="/products/" class="sms-link text-sm font-semibold shrink-0">All products &rarr;</a>
+    </div>
+    <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
+      DN375, DN600 and DN1000. That covers reticulation through to trunk sewer access, and all three are
+      appraised under WSA 137:2019.
+    </p>
+    <div id="range-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {families.map((p, i) => (
+        <div class="range-tile" style={`transition-delay: ${i * 60}ms`}>
+          <ProductCard
+            href={`/products/${p.id}/`}
+            title={p.data.title}
+            dnSize={p.data.dnSize}
+            brand={p.data.brand}
+            useCase={p.data.cardUseCase}
+            image={p.data.productImage}
+            imageAlt={p.data.productImageAlt}
+            imageBackground={p.data.productImageBackground}
+          />
+        </div>
+      ))}
     </div>
   </section>
 

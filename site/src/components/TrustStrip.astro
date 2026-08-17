@@ -20,11 +20,11 @@ const items: { label: string; sub: string; icon: IconName }[] = [
     link, so the shadow reads as elevation rather than an invitation to
     click.
 
-    The ground is charcoal because the strip now sits between the hero and the
-    range section, both of which are charcoal — a transparent section here
-    would put a white band across the seam. The negative margin still does the
-    overlapping; the colour just stops the join showing. */}
-<section class="relative z-10 -mt-10 sm:-mt-14 bg-sms-charcoal-900" aria-label="Approvals and credentials">
+    The section stays transparent. The card has to straddle the edge between
+    the hero's dark ground and the page's light one for the overlap to read as
+    floating — give the section its own fill and the card is just a panel
+    inside a band. */}
+<section class="relative z-10 -mt-10 sm:-mt-14 mb-4" aria-label="Approvals and credentials">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <ul class="grid grid-cols-2 sm:grid-cols-4 gap-y-6 sm:divide-x divide-sms-charcoal-200 rounded-xl border border-sms-charcoal-100 bg-white px-4 py-8 shadow-lg sm:px-6">
       {items.map((item) => (

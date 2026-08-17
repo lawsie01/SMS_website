@@ -7,12 +7,16 @@ import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import installImage from '../../assets/images/install-trench-row.jpg';
 
+// Labels follow the same one-word discipline the product pages use (Life,
+// Depth, Entry, Max load). The strip lays out as a single non-wrapping row
+// at sm and up, so six long labels pushed it 25px past the 960px column and
+// put a scrollbar under it on desktop. See .sms-stat in global.css.
 const glance = [
-  { label: 'Design service life', value: '100 years', icon: 'service-life' as const },
-  { label: 'Standard install', value: 'By hand', icon: 'feather' as const },
-  { label: 'Max traffic load', value: 'Class D', icon: 'load' as const },
-  { label: 'Chemical resistance', value: 'pH 1–13', icon: 'chemical' as const },
-  { label: 'Joint system', value: 'Sealed RRJ', icon: 'joint' as const },
+  { label: 'Life', value: '100 yrs', icon: 'service-life' as const },
+  { label: 'Install', value: 'By hand', icon: 'feather' as const },
+  { label: 'Max load', value: 'Class D', icon: 'load' as const },
+  { label: 'Chemical', value: 'pH 1–13', icon: 'chemical' as const },
+  { label: 'Joint', value: 'Sealed RRJ', icon: 'joint' as const },
   { label: 'Appraisal', value: 'WSA 137', icon: 'wsaa' as const },
 ];
 
