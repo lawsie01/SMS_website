@@ -5,6 +5,7 @@ import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import DarkBand from '../../components/DarkBand.astro';
 import installImage from '../../assets/images/install-trench-row.jpg';
 
 // Labels follow the same one-word discipline the product pages use (Life,
@@ -133,33 +134,38 @@ const faqs = [
       </div>
     </section>
 
-    <section aria-labelledby="tco-heading" class="scroll-mt-24">
-      <h2 id="tco-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">What it costs beyond the unit price</h2>
+  </div>
+
+  {/* The page's one dark band. The whole-of-life argument is the part a
+      specifier is actually weighing, so it gets the weight. */}
+  <DarkBand labelledby="tco-heading">
+      <h2 id="tco-heading" class="text-2xl font-bold text-white mb-6">What it costs beyond the unit price</h2>
       <div class="grid sm:grid-cols-3 gap-6">
-        <div class="border-t border-sms-charcoal-100 pt-5">
-          <h3 class="font-bold text-sms-charcoal-900 mb-2">Plant &amp; labour</h3>
-          <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+        <div class="border-t border-white/25 pt-5">
+          <h3 class="font-bold text-white mb-2">Plant &amp; labour</h3>
+          <p class="text-sm text-sms-charcoal-100 leading-relaxed">
             No pit-builder or formwork crew to book. A standard structure goes in by hand with a general
             crew and the excavator already there for the dig.
           </p>
         </div>
-        <div class="border-t border-sms-charcoal-100 pt-5">
-          <h3 class="font-bold text-sms-charcoal-900 mb-2">Program time</h3>
-          <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+        <div class="border-t border-white/25 pt-5">
+          <h3 class="font-bold text-white mb-2">Program time</h3>
+          <p class="text-sm text-sms-charcoal-100 leading-relaxed">
             Riser height is trimmed on site, so there is no cure time, no custom formwork and no precast
             lead time to wait on. Backfill the same day.
           </p>
         </div>
-        <div class="border-t border-sms-charcoal-100 pt-5">
-          <h3 class="font-bold text-sms-charcoal-900 mb-2">Whole-of-life</h3>
-          <p class="text-sm text-sms-charcoal-500 leading-relaxed">
+        <div class="border-t border-white/25 pt-5">
+          <h3 class="font-bold text-white mb-2">Whole-of-life</h3>
+          <p class="text-sm text-sms-charcoal-100 leading-relaxed">
             A 100-year design life with no corrosion-driven relining cycle. That lands in the maintenance
             budget, well after the install cost is forgotten.
           </p>
         </div>
       </div>
-    </section>
+  </DarkBand>
 
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <section aria-labelledby="when-concrete-heading" class="scroll-mt-24">
       <h2 id="when-concrete-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">Where concrete still makes sense</h2>
       <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch]">

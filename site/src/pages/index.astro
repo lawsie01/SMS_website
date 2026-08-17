@@ -134,21 +134,24 @@ const applications = [
     }
   </script>
 
-  <section class="bg-sms-charcoal-50 py-16" aria-labelledby="why-plastic-heading">
+  {/* The one dark band on this page. See DarkBand.astro for the placement
+      rules — it sits between two white sections and well clear of the hero
+      and the closing CTA, both of which are charcoal. */}
+  <section class="bg-sms-charcoal-900 py-16" aria-labelledby="why-plastic-heading">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between gap-4 mb-4">
-        <h2 id="why-plastic-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900">Why plastic vs concrete</h2>
-        <a href="/why-plastic-vs-concrete/" class="sms-link text-sm font-semibold shrink-0">Full comparison &rarr;</a>
+        <h2 id="why-plastic-heading" class="text-2xl sm:text-3xl font-bold text-white">Why plastic vs concrete</h2>
+        <a href="/why-plastic-vs-concrete/" class="sms-link sms-link--on-dark text-sm font-semibold shrink-0">Full comparison &rarr;</a>
       </div>
-      <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
+      <p class="text-sms-charcoal-100 leading-relaxed max-w-[68ch] mb-8">
         Sewer gas corrodes concrete from the inside out. It's the main reason these structures fail, and
         polypropylene doesn't react to it at all. What that means on site:
       </p>
       <div class="grid sm:grid-cols-3 gap-6">
         {whyPlastic.map((item) => (
-          <div class="border-t border-sms-charcoal-100 pt-5">
-            <h3 class="font-bold text-sms-charcoal-900 mb-2">{item.title}</h3>
-            <p class="text-sm text-sms-charcoal-500 leading-relaxed">{item.body}</p>
+          <div class="border-t border-white/25 pt-5">
+            <h3 class="font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-sm text-sms-charcoal-100 leading-relaxed">{item.body}</p>
           </div>
         ))}
       </div>

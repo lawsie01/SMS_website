@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import DarkBand from '../../components/DarkBand.astro';
 import Icon from '../../components/Icon.astro';
 
 const approvals = [
@@ -141,18 +142,23 @@ const faqs = [
       </div>
     </section>
 
-    <section aria-labelledby="process-heading">
-      <h2 id="process-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">What a WSAA Product Appraisal actually checks</h2>
-      <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch]">
+  </div>
+
+  {/* The page's one dark band. Everything above it is a list of codes; this
+      is the part that explains what those codes are worth. */}
+  <DarkBand labelledby="process-heading">
+      <h2 id="process-heading" class="text-2xl font-bold text-white mb-4">What a WSAA Product Appraisal actually checks</h2>
+      <p class="text-sms-charcoal-100 leading-relaxed max-w-[68ch]">
         It's an independent review run by the Water Services Association of Australia, not SMS grading
         its own homework. The appraisal tests a product against the relevant WSA specification, which for
         maintenance shafts, chambers and holes is WSA 137:2019. It covers material properties, structural
         performance and manufacturing quality control. What comes out is a formal certificate with a set
         validity period that a water utility can rely on when it accepts a product onto the network.
-        Download the current PA 1317 certificate from the <a href="/technical-resources/" class="sms-link font-medium">Technical Resources hub</a>.
+        Download the current PA 1317 certificate from the <a href="/technical-resources/" class="sms-link sms-link--on-dark font-medium">Technical Resources hub</a>.
       </p>
-    </section>
+  </DarkBand>
 
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <FaqAccordion items={faqs} />
   </div>
 

@@ -1,0 +1,32 @@
+---
+/*
+  One full-bleed charcoal section per page, used to break a run of sections
+  that would otherwise read as one uniform column.
+
+  Placement rules, because this only works if it stays rare:
+    - One per page. A second one turns the break back into a rhythm.
+    - Never directly above or below another dark band. The hero and the
+      closing CTA are both charcoal, so the band belongs in the middle of the
+      page with a light section on each side.
+    - Give it a section that carries an argument or a decision, not a list of
+      links. The weight has to be earned by the content.
+
+  Inner pages lay their sections out inside a shared max-w-5xl column, so a
+  page using this has to close that column, drop the band in, and reopen it.
+  The band supplies its own container at the same width, so the content stays
+  on the page's measure and only the ground runs edge to edge.
+*/
+interface Props {
+  /** id of the heading inside the slot, for aria-labelledby */
+  labelledby: string;
+  /** optional anchor target, when the section is linked to from elsewhere */
+  id?: string;
+}
+const { labelledby, id } = Astro.props;
+---
+
+<section id={id} aria-labelledby={labelledby} class="bg-sms-charcoal-900 scroll-mt-24">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
+    <slot />
+  </div>
+</section>

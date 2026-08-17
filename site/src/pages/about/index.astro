@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import DarkBand from '../../components/DarkBand.astro';
 import company from '../../data/company.json';
 import heroImage from '../../assets/images/hero-install-chamber.jpg';
 
@@ -147,17 +148,23 @@ const facts = [
       </div>
     </section>
 
-    <section aria-labelledby="clover-heading" class="border-l-2 border-sms-green-600 pl-6 sm:pl-8 scroll-mt-24">
-      <h2 id="clover-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">Part of the {company.parentCompany} group</h2>
+  </div>
+
+  {/* The page's one dark band, replacing the green left rule this section
+      used to carry. It is the only section here about the parent company
+      rather than the product, so it earns being set apart. */}
+  <DarkBand labelledby="clover-heading">
+      <h2 id="clover-heading" class="text-2xl font-bold text-white mb-4">Part of the {company.parentCompany} group</h2>
       <div class="max-w-[68ch] space-y-4">
-        <p class="text-sms-charcoal-700 leading-relaxed">
+        <p class="text-sms-charcoal-100 leading-relaxed">
           Being part of {company.parentCompany} gives SMS the group's warehousing and freight network. That's
           what makes the stock position above possible, and it's why product can get to a regional site
           without a specialist freight run.
         </p>
       </div>
-    </section>
+  </DarkBand>
 
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <section aria-labelledby="coverage-heading" class="scroll-mt-24">
       <h2 id="coverage-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-4">Where we supply</h2>
       <p class="text-sms-charcoal-500 leading-relaxed mb-4 max-w-[68ch]">

@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import DarkBand from '../../components/DarkBand.astro';
 import applicationsImage from '../../assets/images/brand-lookup-manhole.jpg';
 
 const jumpNav = [
@@ -145,13 +146,17 @@ const sections = [
       </Fragment>
     ))}
 
-    <section id="fit-guide" aria-labelledby="fit-guide-heading" class="scroll-mt-24">
-      <h2 id="fit-guide-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-2">Which product fits your application?</h2>
-      <p class="text-sm text-sms-charcoal-500 mb-6 max-w-[68ch]">
+  </div>
+
+  {/* The page's one dark band. The two audience sections above are context;
+      this is the table someone actually came to read. */}
+  <DarkBand labelledby="fit-guide-heading" id="fit-guide">
+      <h2 id="fit-guide-heading" class="text-2xl font-bold text-white mb-2">Which product fits your application?</h2>
+      <p class="text-sm text-sms-charcoal-100 mb-6 max-w-[68ch]">
         Scenario to product, quickly. Confirm against the full spec table on the product page for your
         actual depth and inlet sizes.
       </p>
-      <div class="overflow-x-auto rounded-xl border border-sms-charcoal-100">
+      <div class="overflow-x-auto rounded-xl border border-sms-charcoal-100 bg-white">
         <table class="w-full border-collapse text-sm">
           <thead>
             <tr class="bg-sms-charcoal-900 text-white">
@@ -171,8 +176,9 @@ const sections = [
           </tbody>
         </table>
       </div>
-    </section>
+  </DarkBand>
 
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
     <FaqAccordion items={faqs} />
   </div>
 
