@@ -19,7 +19,7 @@ const {
   subtitle,
   image,
   imageAlt = '',
-  primaryCta = { label: 'Enquire now', href: '/contact/' },
+  primaryCta = { label: 'Enquire', href: '/contact/' },
   secondaryCta,
   compact = false,
 } = Astro.props;
@@ -30,6 +30,11 @@ const {
 // points somewhere else entirely.
 const isEnquiryCta = primaryCta.href === '/contact/' || primaryCta.href.startsWith('/contact/?');
 const enquiryProduct = isEnquiryCta ? new URL(primaryCta.href, 'https://sewerms.com.au').searchParams.get('product') : null;
+
+// The default CTA points at /contact/, which on /contact/ itself is a button
+// to the page you are already reading. Now that it's a solid green block
+// rather than a quiet outline, that reads as a real offer and isn't one.
+const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathname !== Astro.url.pathname;
 ---
 
 {/* The contour rings are a dark-background device. On a hero carrying a
@@ -59,20 +64,23 @@ const enquiryProduct = isEnquiryCta ? new URL(primaryCta.href, 'https://sewerms.
         <slot name="title">{title}</slot>
       </h1>
       {subtitle && <p class="mt-6 text-lg text-sms-charcoal-100 leading-relaxed max-w-[65ch]">{subtitle}</p>}
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a
-          href={primaryCta.href}
-          data-enquiry-cta={isEnquiryCta ? true : undefined}
-          data-enquiry-product={enquiryProduct ?? undefined}
-          class:list={[
-            "inline-flex items-center rounded-md px-6 py-3 text-base font-semibold transition-colors",
-            image
-              ? "border-2 border-sms-green-400 bg-transparent text-sms-green-400 hover:bg-sms-green-400 hover:text-sms-charcoal-900"
-              : "bg-sms-green-600 text-sms-charcoal-900 shadow-sm hover:bg-sms-green-700",
-          ]}
-        >
-          {primaryCta.label}
-        </a>
+      <div class:list={[(showPrimaryCta || secondaryCta) && "mt-8 flex flex-wrap gap-4"]}>
+        {/* The photo variant used to be a transparent button with a green
+            outline, which made the page's main action lighter than the dark
+            solid Enquire in the header, and left its legibility to whatever
+            the photograph happened to be doing behind it. Solid green on a
+            charcoal label is the same button on both grounds, and it paints
+            its own background so the photo underneath stops mattering. */}
+        {showPrimaryCta && (
+          <a
+            href={primaryCta.href}
+            data-enquiry-cta={isEnquiryCta ? true : undefined}
+            data-enquiry-product={enquiryProduct ?? undefined}
+            class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-sms-charcoal-900 shadow-sm hover:bg-sms-green-700 transition-colors"
+          >
+            {primaryCta.label}
+          </a>
+        )}
         {secondaryCta && (
           <a
             href={secondaryCta.href}

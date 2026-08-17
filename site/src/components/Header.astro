@@ -37,7 +37,7 @@ const aboutMenu = [
   { label: 'The Clover group', href: '/about/#clover-heading' },
   { label: 'Where we supply', href: '/about/#coverage-heading' },
 ];
-const aboutCta = { label: 'Get in touch with the team', href: '/about/#team-heading' };
+const aboutCta = { label: 'Talk to the team', href: '/about/#team-heading' };
 
 const products = await getCollection('products');
 const productFamilies = products
@@ -62,7 +62,7 @@ const productFamilies = products
       {utilityLinks.map((item, i) => (
         <>
           {i > 0 && <span class="w-px h-3 bg-sms-charcoal-200" aria-hidden="true"></span>}
-          <a href={item.href} class="hover:text-sms-charcoal-900 transition-colors">{item.label}</a>
+          <a href={item.href} class="py-3.5 hover:text-sms-charcoal-900 transition-colors">{item.label}</a>
         </>
       ))}
     </div>
@@ -124,7 +124,7 @@ const productFamilies = products
                   </ul>
                 </div>
                 */}
-                <div class="rounded-lg bg-sms-charcoal-50 p-6 flex flex-col justify-between">
+                <div class="rounded-xl bg-sms-charcoal-50 p-6 flex flex-col justify-between">
                   <div>
                     <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
                     <p class="text-sm text-sms-charcoal-500">Compare depth ratings, load class and install method across the full range.</p>
@@ -216,7 +216,7 @@ const productFamilies = products
             data-enquiry-cta
             class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-charcoal-700 transition-colors"
           >
-            Enquire Now
+            Enquire
           </a>
 
           {/* Six items in a wrapped row made the sticky bar two rows tall and left

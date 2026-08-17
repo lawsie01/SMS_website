@@ -5,12 +5,24 @@ interface Props {
   heading?: string;
   subtitle?: string;
   productContext?: string;
+  /* Product pages already carry an enquiry card in the sidebar with the
+     product attached to it, so a second enquiry band a screen below repeats
+     the same offer in different words. Passing a primaryCta here gives the
+     band a different job — on product pages, the paperwork. */
+  primaryCta?: { label: string; href: string };
 }
 const {
   heading = 'Talk to us about your next structure',
   subtitle = 'Send through your depth, inlet sizes and load rating. We\'ll confirm the configuration and lead time within 2 business days.',
   productContext,
+  primaryCta,
 } = Astro.props;
+
+// One vocabulary for the enquiry action across the site: Enquire, or Request
+// pricing where a product is actually attached to the link.
+const enquiryHref = productContext ? `/contact/?product=${productContext}` : '/contact/';
+const enquiryLabel = productContext ? 'Request pricing' : 'Enquire';
+const isEnquiry = !primaryCta;
 ---
 
 <section class="bg-sms-charcoal-900">
@@ -21,12 +33,12 @@ const {
     </div>
     <div class="flex flex-wrap justify-center gap-4 shrink-0">
       <a
-        href={productContext ? `/contact/?product=${productContext}` : '/contact/'}
-        data-enquiry-cta
-        data-enquiry-product={productContext ?? undefined}
+        href={primaryCta?.href ?? enquiryHref}
+        data-enquiry-cta={isEnquiry ? true : undefined}
+        data-enquiry-product={isEnquiry ? (productContext ?? undefined) : undefined}
         class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-sms-charcoal-900 hover:bg-sms-green-700 transition-colors"
       >
-        Get in Touch Today
+        {primaryCta?.label ?? enquiryLabel}
       </a>
       <a
         href={`tel:${company.phoneHref}`}

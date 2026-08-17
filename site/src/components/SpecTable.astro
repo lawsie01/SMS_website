@@ -17,7 +17,7 @@ const { sections } = Astro.props;
   {sections.map((section) => (
     <div>
       <h3 class="text-lg font-bold text-sms-charcoal-900 mb-3">{section.heading}</h3>
-      <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100">
+      <div class="overflow-x-auto rounded-xl border border-sms-charcoal-100">
         <table class="w-full border-collapse text-sm">
           <tbody>
             {section.rows.map((row, i) => (

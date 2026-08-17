@@ -18,7 +18,7 @@ const { groups, intro } = Astro.props;
 ---
 
 <div>
-  {intro && <p class="text-sms-charcoal-500 mb-4">{intro}</p>}
+  {intro && <p class="text-sms-charcoal-500 mb-4 max-w-[68ch]">{intro}</p>}
   <div class="config-accordion divide-y divide-sms-charcoal-100 border-t border-b border-sms-charcoal-100">
     {groups.map((group, i) => (
       <details class="group config-item" open={i === 0}>
@@ -27,7 +27,7 @@ const { groups, intro } = Astro.props;
           <span class="shrink-0 text-sms-charcoal-900 transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
         </summary>
         <div class="config-panel overflow-hidden">
-          <div class="overflow-x-auto rounded-lg border border-sms-charcoal-100 mb-5">
+          <div class="overflow-x-auto rounded-xl border border-sms-charcoal-100 mb-5">
             <table class="w-full border-collapse text-sm">
               <thead>
                 <tr class="bg-sms-charcoal-900 text-white">

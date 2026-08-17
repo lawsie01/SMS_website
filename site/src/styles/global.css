@@ -244,9 +244,12 @@ html {
       border-left: 1px solid var(--color-sms-charcoal-100);
     }
   }
+  /* 11px is the floor for functional text. The labels were set at 9.5px to
+     keep the widest strip on one line at 640px; the grid below sm handles
+     that case now, so the size no longer has to pay for it. */
   .sms-stat__label {
     font-family: var(--font-mono);
-    font-size: 9.5px;
+    font-size: 11px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--color-sms-slate-500);
@@ -297,11 +300,30 @@ html {
      without ever being the text colour, which is what keeps a 1.7:1 accent
      usable. */
   .sms-link {
+    position: relative;
     color: var(--color-sms-charcoal-900);
     text-decoration: none;
     border-bottom: 2px solid var(--color-sms-green-400);
     padding-bottom: 1px;
     transition: border-color 0.15s ease-out, color 0.15s ease-out;
+  }
+  /* The link's own box is the height of its text, which lands at 18-23px and
+     misses the 24px WCAG 2.2 target minimum. Padding would push the green
+     rule away from the baseline it belongs to, so the target is extended with
+     an invisible overlay instead: nothing moves, the rule stays where it is,
+     and the hit area clears 28px. 5px each way stays inside the leading of a
+     paragraph, so an sms-link inside running text doesn't steal clicks from
+     the lines above and below it. */
+  .sms-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -6px;
+    /* Offsets are measured from the padding box, and the 2px green rule sits
+       outside it — so the bottom needs the extra 2px to reach the same clear
+       distance below the rule as the top gets above the cap height. */
+    bottom: -8px;
   }
   .sms-link:hover {
     border-bottom-color: var(--color-sms-charcoal-900);
@@ -367,6 +389,16 @@ html {
     text-wrap: balance;
   }
 
+  /* h3 was inheriting the 16px body size, so the third heading level and the
+     paragraph under it were separated by weight alone. 18px restores the step
+     without touching h1 or h2. Components that deliberately set a size — the
+     small uppercase labels on Applications, the 18px card titles — keep
+     theirs, because a utility beats a base rule. */
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.25;
+  }
+
   h4,
   h5,
   h6 {
@@ -388,6 +420,25 @@ html {
   th,
   .eyebrow {
     font-family: var(--font-sans);
+  }
+
+  /* The site was running on the browser's own focus ring, which is a
+     different colour and thickness in every engine and disappears entirely
+     against the charcoal sections. Green at 1.7:1 on white is not enough on
+     its own, so the ring is ink with a white gap holding it off the control;
+     on dark grounds the two swap. focus-visible only, so a mouse click on a
+     button doesn't leave a ring behind. */
+  :focus-visible {
+    outline: 2px solid var(--color-sms-charcoal-900);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .bg-sms-charcoal-900 :focus-visible,
+  .sms-contour :focus-visible,
+  .sms-dotfield :focus-visible,
+  footer .bg-sms-charcoal-900 :focus-visible {
+    outline-color: var(--color-sms-green-400);
   }
 
   /* Data, not decoration: part codes, standard references and dimensions get

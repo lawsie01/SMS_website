@@ -1,2 +1,7 @@
 # local Claude Code settings (per-session permission cache, not project config)
 .claude/settings.local.json
+
+# skill installs (npx skills add) — tooling for the design audits, not project config
+.agents/
+.claude/skills/
+skills-lock.json

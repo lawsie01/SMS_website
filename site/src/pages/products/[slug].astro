@@ -77,7 +77,7 @@ const assemblySizes =
     subtitle={data.shortDescription}
     image={data.heroImage}
     imageAlt={data.heroImageAlt}
-    primaryCta={{ label: 'Request Pricing', href: `/contact/?product=${product.id}` }}
+    primaryCta={{ label: 'Request pricing', href: `/contact/?product=${product.id}` }}
     compact
   />
 
@@ -117,7 +117,7 @@ const assemblySizes =
           <section aria-labelledby="config-heading">
             <h2 id="config-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Configurations & part codes</h2>
             {data.configDiagram && (
-              <figure class="mb-8 rounded-lg border border-sms-charcoal-100 bg-white p-4 sm:p-6">
+              <figure class="mb-8 rounded-xl border border-sms-charcoal-100 bg-white p-6 sm:p-8">
                 {/* The 8-panel diagram's per-icon angle labels get illegibly small if
                     forced to shrink to a narrow viewport — scroll it horizontally
                     below the breakpoint where 520px stops being "full width" instead,
@@ -132,7 +132,7 @@ const assemblySizes =
                   />
                 </div>
                 {data.configDiagramCaption && (
-                  <figcaption class="mt-3 text-sm text-sms-charcoal-400">{data.configDiagramCaption}</figcaption>
+                  <figcaption class="mt-3 text-sm text-sms-charcoal-400 max-w-[68ch]">{data.configDiagramCaption}</figcaption>
                 )}
               </figure>
             )}
@@ -160,7 +160,7 @@ const assemblySizes =
                           ratio, so a plain w-full/h-auto tile would render each photo
                           at a different height. This guarantees every tile in the
                           gallery is the same size, with the photo centred inside. */}
-                      <div class="aspect-square rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
+                      <div class="aspect-square rounded-xl border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
                         <Image src={photo.image} alt={photo.alt} class="max-h-full max-w-full w-full h-full object-contain p-4" widths={[400, 640]} sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 90vw" />
                       </div>
                       {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
@@ -190,7 +190,7 @@ const assemblySizes =
                           hang outside the box the drawing is centred in.
                           Every callout coordinate is a percentage of the image
                           box, which keeps it locked to the part at any width. */}
-                      <div class="rounded-lg border border-sms-charcoal-100 bg-white py-5 pl-16 pr-6">
+                      <div class="rounded-xl border border-sms-charcoal-100 bg-white py-5 pl-16 pr-6">
                         <div class="relative">
                           <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[320, 640, 960]} sizes={assemblySizes} />
                           {r.callouts.map((c) => (
@@ -236,9 +236,9 @@ const assemblySizes =
               {data.installationSections.map((s) => (
                 <div>
                   <h3 class="font-semibold text-sms-charcoal-900 mb-2">{s.heading}</h3>
-                  <p class="text-sms-charcoal-500 leading-relaxed">{s.body}</p>
+                  <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch]">{s.body}</p>
                   {s.bullets && (
-                    <ul class="sms-list mt-3 text-sms-charcoal-500">
+                    <ul class="sms-list mt-3 text-sms-charcoal-500 max-w-[68ch]">
                       {s.bullets.map((b) => <li>{b}</li>)}
                     </ul>
                   )}
@@ -246,7 +246,7 @@ const assemblySizes =
                     <div class:list={["mt-4 grid gap-4", s.images.length > 1 ? "sm:grid-cols-2" : "max-w-sm"]}>
                       {s.images.map((photo) => (
                         <figure>
-                          <div class="aspect-square rounded-lg border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
+                          <div class="aspect-square rounded-xl border border-sms-charcoal-100 overflow-hidden bg-white flex items-center justify-center">
                             <Image src={photo.image} alt={photo.alt} class="max-h-full max-w-full w-full h-full object-contain p-4" widths={[400, 640]} sizes="(min-width: 1024px) 380px, 90vw" />
                           </div>
                           {photo.caption && <figcaption class="mt-2 text-sm text-sms-charcoal-400">{photo.caption}</figcaption>}
@@ -287,7 +287,7 @@ const assemblySizes =
             href={`/contact/?product=${product.id}`}
             class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
           >
-            Get Pricing &amp; Lead Time &rarr;
+            Request pricing &rarr;
           </a>
         </div>
 
@@ -345,9 +345,13 @@ const assemblySizes =
     </div>
   </div>
 
+  {/* The sidebar card above already asks for the enquiry, with the product
+      attached to the link. Repeating that here put three versions of the same
+      offer in one viewport, so this band takes the other job a specifier has
+      at the foot of the page: getting the certificate into their submission. */}
   <CtaBand
-    heading={`Ready to spec the ${data.title}?`}
-    subtitle="Send us your project depth, inlet sizes and load rating requirements and we'll confirm the right configuration."
-    productContext={product.id}
+    heading="Need the paperwork for your submission?"
+    subtitle="The current WSAA PA 1317 certificate and the product brochures download straight from the resources hub. Drawings and CAD go out on request."
+    primaryCta={{ label: 'Technical resources', href: '/technical-resources/' }}
   />
 </BaseLayout>

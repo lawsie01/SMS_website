@@ -9,8 +9,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "design:check": "impeccable detect src/",
-    "design:check:live": "impeccable detect http://localhost:4321/ http://localhost:4321/products/dn1000-maintenance-hole/ http://localhost:4321/contact/"
+    "design:check": "node scripts/design-check.mjs",
+    "design:check:src": "impeccable detect src/"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
