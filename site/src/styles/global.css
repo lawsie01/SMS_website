@@ -379,6 +379,41 @@ html {
     border-radius: 1px;
   }
 
+  /* Hero scrim. The old treatment dropped the photograph to 60% and washed
+     an even gradient over the whole thing, which is fine for a photo that is
+     only texture but flattens one that is the product. This darkens where the
+     text actually sits — the left — and lets the right side of the frame stay
+     close to full strength, so the structure in the shot still reads.
+
+     The horizontal ramp only works while the text sits in the left of the
+     frame. The text column is max-w-3xl inside max-w-7xl, so it only stops
+     spanning the full width once the viewport passes about 830px; below lg it
+     runs edge to edge and a horizontal ramp would leave the end of every line
+     on an unprotected part of the photo. Below lg, an even bottom-up wash. */
+  .sms-hero-scrim {
+    background:
+      linear-gradient(
+        to right,
+        rgba(31, 25, 37, 0.96) 0%,
+        rgba(31, 25, 37, 0.94) 55%,
+        rgba(31, 25, 37, 0.9) 78%,
+        rgba(31, 25, 37, 0.45) 94%,
+        rgba(31, 25, 37, 0.28) 100%
+      ),
+      linear-gradient(to top, rgba(31, 25, 37, 0.5), rgba(31, 25, 37, 0) 60%);
+  }
+  @media (max-width: 1023px) {
+    .sms-hero-scrim {
+      background:
+        linear-gradient(
+          to top,
+          rgba(31, 25, 37, 0.88) 0%,
+          rgba(31, 25, 37, 0.78) 55%,
+          rgba(31, 25, 37, 0.62) 100%
+        );
+    }
+  }
+
   /* Device 3c — the cluster spaced into a dot field. Dark panels only, and
      counts as the section's one device — never combined with the contour. */
   .sms-dotfield {
