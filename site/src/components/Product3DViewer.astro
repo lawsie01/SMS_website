@@ -22,13 +22,22 @@ const modelUrl = MODEL_URLS[product];
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
       <h2 id="viewer-heading" class="text-xl font-bold text-sms-charcoal-900">Explore the {title} in 3D</h2>
-      <p class="text-xs text-sms-charcoal-500">Drag to rotate &middot; scroll or pinch to zoom</p>
+      <p class="text-xs text-sms-charcoal-500">Drag or use the buttons to rotate &middot; scroll, pinch or zoom buttons to scale</p>
     </div>
 
+    {/* Rotating the model was a pointer drag and nothing else: no keyboard
+        path in, no buttons, and the canvas wasn't focusable, so a keyboard
+        user tabbed straight past a 480px block of the page. WCAG 2.2 (2.5.7)
+        also wants a single-pointer alternative to any drag. The buttons below
+        drive the same orbit the drag does, and they double as the affordance
+        a mouse user previously had to guess at. */}
     <div
       class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-sms-charcoal-50 overflow-hidden"
       data-product={product}
       data-model-url={modelUrl}
+      tabindex="0"
+      role="application"
+      aria-label={`Interactive 3D model of the SMS ${title}. Use the arrow keys to rotate, plus and minus to zoom.`}
       style="height: 480px;"
     >
       <div class="viewer-loading absolute inset-0 flex items-center justify-center text-sms-charcoal-400 text-sm">
@@ -39,6 +48,43 @@ const modelUrl = MODEL_URLS[product];
           Enable JavaScript to view the interactive 3D model.
         </div>
       </noscript>
+    </div>
+
+    <div class="viewer-controls mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Model controls">
+      <button type="button" data-viewer-act="left" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate left">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" data-viewer-act="right" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate right">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" data-viewer-act="up" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt up">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4.5 12.5 10 7l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" data-viewer-act="down" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt down">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4.5 7.5 10 13l5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="w-px h-5 bg-sms-charcoal-200 mx-1" aria-hidden="true"></span>
+      <button type="button" data-viewer-act="in" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom in">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button type="button" data-viewer-act="out" class="viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom out">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button type="button" data-viewer-act="reset" class="viewer-btn inline-flex items-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-xs font-semibold text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors">
+        Reset view
+      </button>
     </div>
 
     {modelUrl ? (
@@ -290,6 +336,10 @@ const modelUrl = MODEL_URLS[product];
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 0, 0);
+    // Where "Reset view" and the Home key return to. Re-captured in
+    // frameObject, because a real asset reframes the shot once it loads.
+    const homePosition = camera.position.clone();
+    const homeTarget = controls.target.clone();
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.enablePan = false;
@@ -308,6 +358,68 @@ const modelUrl = MODEL_URLS[product];
       if (e.matches) controls.autoRotate = false;
     });
 
+    // ---- keyboard + button orbit -------------------------------------------
+    // OrbitControls' own key handling only pans, and panning is disabled here,
+    // so rotation is driven directly. Both the buttons and the arrow keys call
+    // the same three functions, which keeps the two paths identical rather
+    // than approximately similar.
+    const ORBIT_STEP = Math.PI / 18; // 10 degrees
+    const ZOOM_STEP = 1.15;
+
+    function orbit(dTheta: number, dPhi: number): void {
+      controls.autoRotate = false;
+      const offset = camera.position.clone().sub(controls.target);
+      const spherical = new THREE.Spherical().setFromVector3(offset);
+      spherical.theta += dTheta;
+      // Keep the camera off the poles, where the model flips over.
+      spherical.phi = Math.max(0.15, Math.min(Math.PI - 0.15, spherical.phi + dPhi));
+      camera.position.copy(controls.target.clone().add(new THREE.Vector3().setFromSpherical(spherical)));
+      camera.lookAt(controls.target);
+      controls.update();
+    }
+
+    function zoom(factor: number): void {
+      controls.autoRotate = false;
+      const offset = camera.position.clone().sub(controls.target);
+      const target = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
+      camera.position.copy(controls.target.clone().add(offset.setLength(target)));
+      controls.update();
+    }
+
+    function resetView(): void {
+      controls.autoRotate = false;
+      camera.position.copy(homePosition);
+      controls.target.copy(homeTarget);
+      controls.update();
+    }
+
+    const ACTIONS: Record<string, () => void> = {
+      left: () => orbit(-ORBIT_STEP, 0),
+      right: () => orbit(ORBIT_STEP, 0),
+      up: () => orbit(0, -ORBIT_STEP),
+      down: () => orbit(0, ORBIT_STEP),
+      in: () => zoom(1 / ZOOM_STEP),
+      out: () => zoom(ZOOM_STEP),
+      reset: resetView,
+    };
+
+    container.parentElement?.querySelectorAll<HTMLButtonElement>('[data-viewer-act]').forEach((btn) => {
+      btn.addEventListener('click', () => ACTIONS[btn.dataset.viewerAct!]?.());
+    });
+
+    const KEYS: Record<string, string> = {
+      ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down',
+      '+': 'in', '=': 'in', '-': 'out', '_': 'out', Home: 'reset',
+    };
+    container.addEventListener('keydown', (e) => {
+      const act = KEYS[e.key];
+      if (!act) return;
+      // Only claim keys the viewer actually uses, so Tab and Escape still work
+      // and the page can still be scrolled from anywhere else.
+      e.preventDefault();
+      ACTIONS[act]();
+    });
+
     // Frames the camera/controls around whatever's actually in the scene, so a
     // real asset's true dimensions (unknown until it loads) drive the shot
     // instead of the procedural placeholder's hand-tuned cameraDistance.
@@ -324,6 +436,8 @@ const modelUrl = MODEL_URLS[product];
       controls.minDistance = sphere.radius * 1.1;
       controls.maxDistance = sphere.radius * 6;
       controls.update();
+      homePosition.copy(camera.position);
+      homeTarget.copy(controls.target);
     }
 
     // Every real asset is molded polypropylene, never metal, but the source

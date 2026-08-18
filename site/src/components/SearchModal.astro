@@ -26,9 +26,12 @@
         <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/>
         <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
+      {/* The placeholder is the only visible cue and it disappears on the
+          first keystroke, so the control needs a name that does not. */}
       <input
         id="search-input"
         type="text"
+        aria-label="Search products, part codes and standards"
         placeholder="Search products, part codes, standards..."
         autocomplete="off"
         spellcheck="false"

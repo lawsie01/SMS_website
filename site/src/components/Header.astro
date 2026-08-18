@@ -39,6 +39,21 @@ const aboutMenu = [
 ];
 const aboutCta = { label: 'Talk to the team', href: '/about/#team-heading' };
 
+// Which top-level nav section the current page belongs to. The four desktop
+// triggers are buttons, not links, so they can't take aria-current="page" —
+// they get aria-current="true" plus a persistent rule and a heavier weight,
+// so the marker isn't carried by colour alone. Real links (utility strip,
+// panel items, mobile list) take aria-current="page" on an exact match.
+const path = Astro.url.pathname;
+const NAV_SECTIONS: Record<string, string> = {
+  products: '/products/',
+  plastic: '/why-plastic-vs-concrete/',
+  applications: '/applications/',
+  about: '/about/',
+};
+const currentSection = Object.entries(NAV_SECTIONS).find(([, base]) => path.startsWith(base))?.[0] ?? null;
+const isCurrent = (href: string): boolean => path === new URL(href, 'https://sewerms.com.au').pathname;
+
 const products = await getCollection('products');
 const productFamilies = products
   .filter((p) => p.data.category !== 'accessory')
@@ -70,7 +85,8 @@ const productFamilies = products
       {utilityLinks.map((item, i) => (
         <>
           {i > 0 && <span class="w-px h-3 bg-sms-charcoal-200" aria-hidden="true"></span>}
-          <a href={item.href} class="py-3.5 hover:text-sms-charcoal-900 transition-colors">{item.label}</a>
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
+             class:list={["py-3.5 hover:text-sms-charcoal-900 transition-colors", isCurrent(item.href) && "text-sms-charcoal-900 font-semibold"]}>{item.label}</a>
         </>
       ))}
     </div>
@@ -82,15 +98,17 @@ const productFamilies = products
   <div id="main-bar" class="bg-white border-b border-sms-charcoal-100 transition-shadow duration-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-20 items-center justify-between gap-4">
-        <a href="/" class="flex items-center gap-2 shrink-0" aria-label="SMS home">
-          <Image src={logo} alt="SMS" width={110} height={54} />
+        <a href="/" aria-current={isCurrent('/') ? 'page' : undefined} class="flex items-center gap-2 shrink-0" aria-label="SMS home">
+          {/* Above the fold on every route, so never deferred. */}
+          <Image src={logo} alt="SMS" width={110} height={54} loading="eager" />
         </a>
 
         <nav class="hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-700" aria-label="Main">
           {/* Products — full-width mega panel */}
-          <div class="nav-parent relative">
+          <div class="nav-parent relative" data-current={currentSection === 'products' ? true : undefined}>
             <button
               type="button"
+              aria-current={currentSection === 'products' ? 'true' : undefined}
               data-nav-toggle="products"
               aria-haspopup="true"
               aria-expanded="false"
@@ -114,7 +132,7 @@ const productFamilies = products
                   <ul class="space-y-3">
                     {productFamilies.map((p) => (
                       <li>
-                        <a href={`/products/${p.id}/`} class="block group">
+                        <a href={`/products/${p.id}/`} aria-current={isCurrent(`/products/${p.id}/`) ? 'page' : undefined} class="block group">
                           <span class="font-semibold text-sms-charcoal-900 transition-colors">{p.data.title}</span>
                           {p.data.cardUseCase && <span class="block text-sm text-sms-charcoal-500 mt-0.5">{p.data.cardUseCase}</span>}
                         </a>
@@ -137,16 +155,17 @@ const productFamilies = products
                     <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
                     <p class="text-sm text-sms-charcoal-500">Compare depth ratings, load class and install method across the full range.</p>
                   </div>
-                  <a href="/products/" class="mt-4 sms-link text-sm font-semibold">View all products &rarr;</a>
+                  <a href="/products/" aria-current={isCurrent('/products/') ? 'page' : undefined} class="mt-4 sms-link text-sm font-semibold">View all products &rarr;</a>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Why Plastic vs Concrete — small menu */}
-          <div class="nav-parent relative">
+          <div class="nav-parent relative" data-current={currentSection === 'plastic' ? true : undefined}>
             <button
               type="button"
+              aria-current={currentSection === 'plastic' ? 'true' : undefined}
               data-nav-toggle="plastic"
               aria-haspopup="true"
               aria-expanded="false"
@@ -168,9 +187,10 @@ const productFamilies = products
           </div>
 
           {/* Applications — small menu */}
-          <div class="nav-parent relative">
+          <div class="nav-parent relative" data-current={currentSection === 'applications' ? true : undefined}>
             <button
               type="button"
+              aria-current={currentSection === 'applications' ? 'true' : undefined}
               data-nav-toggle="applications"
               aria-haspopup="true"
               aria-expanded="false"
@@ -192,9 +212,10 @@ const productFamilies = products
           </div>
 
           {/* About — small menu */}
-          <div class="nav-parent relative">
+          <div class="nav-parent relative" data-current={currentSection === 'about' ? true : undefined}>
             <button
               type="button"
+              aria-current={currentSection === 'about' ? 'true' : undefined}
               data-nav-toggle="about"
               aria-haspopup="true"
               aria-expanded="false"
@@ -280,7 +301,7 @@ const productFamilies = products
               ))}
               */}
               <li>
-                <a href="/products/" class="block py-2 text-sm font-semibold text-sms-charcoal-900">
+                <a href="/products/" aria-current={isCurrent('/products/') ? 'page' : undefined} class="block py-2 text-sm font-semibold text-sms-charcoal-900">
                   View all products &rarr;
                 </a>
               </li>
@@ -292,7 +313,9 @@ const productFamilies = products
             { label: 'About', href: '/about/' },
           ].map((item) => (
             <li>
-              <a href={item.href} class="block py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-charcoal-900 transition-colors">
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
+                 class:list={["block py-3 text-base font-medium hover:text-sms-charcoal-900 transition-colors",
+                              isCurrent(item.href) ? "text-sms-charcoal-900 font-semibold border-l-2 border-sms-green-600 -ml-3 pl-3" : "text-sms-charcoal-700"]}>
                 {item.label}
               </a>
             </li>
@@ -304,7 +327,9 @@ const productFamilies = products
         <ul class="mt-2 pt-2 border-t border-sms-charcoal-100 space-y-0.5">
           {utilityLinks.map((item) => (
             <li>
-              <a href={item.href} class="block py-2 text-sm text-sms-charcoal-500 hover:text-sms-charcoal-900 transition-colors">
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
+                 class:list={["block py-2 text-sm hover:text-sms-charcoal-900 transition-colors",
+                              isCurrent(item.href) ? "text-sms-charcoal-900 font-semibold" : "text-sms-charcoal-500"]}>
                 {item.label}
               </a>
             </li>
@@ -338,6 +363,23 @@ const productFamilies = products
   .nav-trigger:hover::after,
   .nav-parent[data-open] .nav-trigger::after {
     transform: scaleX(1);
+  }
+
+  /* Current section. The rule stays up permanently rather than on hover, and
+     the label goes heavier — the state has to survive a reader who can't tell
+     the green from the grey, so weight carries it as well as colour. */
+  .nav-parent[data-current] .nav-trigger::after {
+    transform: scaleX(1);
+  }
+  .nav-parent[data-current] .nav-trigger {
+    color: var(--color-sms-charcoal-900);
+    font-weight: 600;
+  }
+
+  /* A link inside a panel or list that points at the page being read. */
+  .nav-panel a[aria-current="page"] {
+    color: var(--color-sms-charcoal-900);
+    font-weight: 600;
   }
 
   /* Anchored overlay: scale reads as "emerging from the trigger", not just

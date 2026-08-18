@@ -76,7 +76,7 @@ const applications = [
     </p>
     <div id="range-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {families.map((p, i) => (
-        <div class="range-tile" style={`transition-delay: ${i * 60}ms`}>
+        <div class="range-tile" style={`transition-delay: ${i * 50}ms`}>
           <ProductCard
             href={`/products/${p.id}/`}
             title={p.data.title}
@@ -96,7 +96,8 @@ const applications = [
     .range-tile {
       opacity: 0;
       transform: translateY(2.5rem);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition: opacity var(--sms-motion-slow) var(--sms-ease-out),
+                  transform var(--sms-motion-slow) var(--sms-ease-out);
     }
     .range-tile.is-visible {
       opacity: 1;

@@ -89,6 +89,25 @@ html {
 :root {
   --sms-ink: #1f1925;
   --sms-dark-bg: #1f1925;
+
+  /* Two motion durations for the whole site, so nothing invents its own.
+     Fast is for a state change under the pointer — hover, focus, a border
+     picking up colour. Slow is for something entering the page. Easing is
+     shared: deceleration on arrival, which is what every transition here is
+     doing. */
+  --sms-motion-fast: 150ms;
+  --sms-motion-slow: 500ms;
+  --sms-ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Reduced motion is honoured per-component where a reveal would otherwise
+   move something; this is the blanket backstop for anything using the
+   tokens above. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sms-motion-fast: 1ms;
+    --sms-motion-slow: 1ms;
+  }
 }
 
 @layer components {
@@ -312,7 +331,8 @@ html {
     text-decoration: none;
     border-bottom: 2px solid var(--color-sms-green-400);
     padding-bottom: 1px;
-    transition: border-color 0.15s ease-out, color 0.15s ease-out;
+    transition: border-color var(--sms-motion-fast) var(--sms-ease-out),
+                color var(--sms-motion-fast) var(--sms-ease-out);
   }
   /* The link's own box is the height of its text, which lands at 18-23px and
      misses the 24px WCAG 2.2 target minimum. Padding would push the green
@@ -376,6 +396,17 @@ html {
   body {
     @apply bg-white text-sms-charcoal-900 font-sans antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Tailwind v3's reset put cursor: pointer on buttons; v4 dropped it back to
+     the browser default. Every anchor on the site already shows a pointer, so
+     without this the four nav menus read as inert next to the links beside
+     them. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  label[for],
+  summary {
+    cursor: pointer;
   }
 
   /* Headings take the display face site-wide by default; font-size is left

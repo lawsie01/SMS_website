@@ -50,28 +50,28 @@ const sortedProducts = products
         >
           <input type="hidden" name="form-name" value="enquiry" />
           <p class="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            <label>Don't fill this out if you're human: <input name="bot-field" autocomplete="off" tabindex="-1" /></label>
           </p>
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="eq-name" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Name *</label>
-              <input type="text" id="eq-name" name="name" required autocomplete="name" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+              <input type="text" id="eq-name" name="name" required autocomplete="name" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
             </div>
             <div>
               <label for="eq-company" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Company</label>
-              <input type="text" id="eq-company" name="company" autocomplete="organization" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+              <input type="text" id="eq-company" name="company" autocomplete="organization" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
             </div>
           </div>
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="eq-email" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Email *</label>
-              <input type="email" id="eq-email" name="email" required autocomplete="email" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+              <input type="email" id="eq-email" name="email" required autocomplete="email" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
             </div>
             <div>
               <label for="eq-phone" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Phone</label>
-              <input type="tel" id="eq-phone" name="phone" autocomplete="tel" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
+              <input type="tel" id="eq-phone" name="phone" autocomplete="tel" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" />
             </div>
           </div>
 
@@ -109,7 +109,7 @@ const sortedProducts = products
 
           <div>
             <label for="eq-message" class="block text-sm font-medium text-sms-charcoal-700 mb-1">Project details *</label>
-            <textarea id="eq-message" name="message" required rows="4" placeholder="Install depth, inlet sizes, load rating, timeframe, location..." class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"></textarea>
+            <textarea id="eq-message" name="message" required rows="4" placeholder="Install depth, inlet sizes, load rating, timeframe, location..." class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"></textarea>
           </div>
 
           <div>
@@ -128,9 +128,11 @@ const sortedProducts = products
               <span class="text-sm font-semibold text-sms-charcoal-700">Drop site plans or photos here</span>
               <span class="text-xs text-sms-charcoal-400">or <button type="button" id="enquiry-file-browse" class="sms-link font-semibold">browse files</button>. PDF, JPG, PNG or DWG, up to 15MB each</span>
             </div>
-            <input id="enquiry-file-input" name="attachment" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg" class="sr-only" />
+            {/* Visually replaced by the dropzone above, but still in the tab order,
+                so it carries the same name the dropzone does. */}
+            <input id="enquiry-file-input" name="attachment" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg" aria-labelledby="enquiry-file-label" class="sr-only" />
             <ul id="enquiry-file-list" class="mt-2.5 space-y-1.5"></ul>
-            <p id="enquiry-file-error" hidden class="mt-1.5 text-xs text-red-700"></p>
+            <p id="enquiry-file-error" role="alert" hidden class="mt-1.5 text-xs text-red-700"></p>
           </div>
 
           <p id="enquiry-submit-error" hidden class="text-sm text-red-700">
