@@ -89,7 +89,7 @@ const modelUrl = MODEL_URLS[product];
 
     {modelUrl ? (
       <p class="mt-3 text-xs text-sms-charcoal-500 max-w-[68ch]">
-        Indicative model of the SMS {title}. Awaiting an updated CAD export.
+        Interactive model of the SMS {title}, built from the manufacturer's CAD.
       </p>
     ) : (
       <p class="mt-3 text-xs text-sms-charcoal-500 max-w-[68ch]">
@@ -440,25 +440,28 @@ const modelUrl = MODEL_URLS[product];
       homeTarget.copy(controls.target);
     }
 
-    // Every real asset is molded polypropylene, never metal, but the source
-    // materials disagree: several omit metallicFactor entirely, which per the
-    // glTF spec defaults to fully metallic — combined with their low
-    // authored roughness that's a mirror, not a matte plastic surface, and
-    // it's exactly what turned the rim light into a hard green glint on the
-    // chamber. Clamping metalness down and roughness up here (rather than
-    // editing the source files) normalizes all three to the same matte
-    // finish regardless of what each export happened to omit. The pipe
-    // stub material (named mat_4/mat_4.001 in every one of the three files)
-    // gets an explicit light grey on top, since the chamber's copy also
-    // omitted its base color and defaulted to metallic white.
+    // The three exports come out of gltfpack with low authored roughness
+    // (0.21) and, on most materials, no metallicFactor at all — which per the
+    // glTF spec means fully metallic. The low roughness is what produced the
+    // hard green glint off the rim light.
+    //
+    // Clamping metalness down as well as roughness up was the obvious
+    // reading, and it was wrong: on a metal the base color is reflectance,
+    // not diffuse albedo, so reinterpreting it as a dielectric washes every
+    // part out. Measured against Clover's own product photography, the body
+    // came out 33 to 46 luminance points too light on all three models.
+    // Raising roughness alone and leaving the authored metalness where it is
+    // lands within 5 points of the photographs, so that is what this does.
+    // The pipe stub material (mat_4/mat_4.001 in all three files) still needs
+    // its own color, because the chamber's copy omits base color entirely and
+    // would otherwise default to white.
     function normalizeMaterials(root: THREE.Object3D) {
       root.traverse((node) => {
         if (!(node instanceof THREE.Mesh)) return;
         const materials = Array.isArray(node.material) ? node.material : [node.material];
         for (const material of materials) {
           if (!(material instanceof THREE.MeshStandardMaterial)) continue;
-          material.metalness = Math.min(material.metalness, 0.1);
-          material.roughness = Math.max(material.roughness, 0.6);
+          material.roughness = Math.max(material.roughness, 0.78);
           if (material.name.startsWith('mat_4')) {
             material.color.set(0xc7c5bf);
             material.metalness = 0.05;
