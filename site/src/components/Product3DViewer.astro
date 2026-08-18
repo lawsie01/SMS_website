@@ -35,6 +35,7 @@ const modelUrl = MODEL_URLS[product];
       class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-sms-charcoal-50 overflow-hidden"
       data-product={product}
       data-model-url={modelUrl}
+      data-model-path={modelUrl}
       tabindex="0"
       role="application"
       aria-label={`Interactive 3D model of the SMS ${title}. Use the arrow keys to rotate, plus and minus to zoom.`}
@@ -471,21 +472,42 @@ const modelUrl = MODEL_URLS[product];
       });
     }
 
-    if (modelUrl) {
+    function useModel(gltf: { scene: THREE.Object3D }): void {
+      normalizeMaterials(gltf.scene);
+      frameObject(gltf.scene);
+      scene.add(gltf.scene);
+      clearLoading();
+    }
+
+    function useFallback(reason: string, error: unknown): void {
+      console.error(`3D viewer: ${reason}, falling back to placeholder geometry.`, error);
+      scene.add(buildProceduralGroup(config));
+      clearLoading();
+    }
+
+    // The single-file preview bundle can't fetch anything — its CSP has no
+    // connect-src, so even a blob: URL is refused, GLTFLoader's request fails
+    // and every product page silently drops to the procedural placeholder.
+    // When a host has already decoded the GLB it hands the ArrayBuffer over
+    // here, keyed by the model's normal path, and we parse what we were given
+    // instead of asking the network for it. The deployed site never sets this
+    // and takes the load() branch below.
+    const preloaded = (window as unknown as { __MODEL_BUFFERS__?: Record<string, ArrayBuffer> })
+      .__MODEL_BUFFERS__?.[container.dataset.modelPath || modelUrl || ''];
+
+    if (preloaded) {
+      getGltfLoader().parse(
+        preloaded,
+        '',
+        useModel,
+        (error) => useFallback('failed to parse the preloaded model', error),
+      );
+    } else if (modelUrl) {
       getGltfLoader().load(
         modelUrl,
-        (gltf) => {
-          normalizeMaterials(gltf.scene);
-          frameObject(gltf.scene);
-          scene.add(gltf.scene);
-          clearLoading();
-        },
+        useModel,
         undefined,
-        (error) => {
-          console.error(`3D viewer: failed to load ${modelUrl}, falling back to placeholder geometry.`, error);
-          scene.add(buildProceduralGroup(config));
-          clearLoading();
-        },
+        (error) => useFallback(`failed to load ${modelUrl}`, error),
       );
     } else {
       scene.add(buildProceduralGroup(config));
