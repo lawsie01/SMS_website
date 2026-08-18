@@ -24,11 +24,18 @@ const whyPlasticMenu = [
 ];
 const whyPlasticCta = { label: 'View full comparison', href: '/why-plastic-vs-concrete/' };
 
+// The four top-level nav items are disclosure buttons, not links, so the
+// only way to the section's own page is from inside its panel. Every panel
+// therefore ends with a link to that page — the section anchors above it go
+// to a place on the page, this one goes to the page. Products and Why
+// Plastic already worked this way; Applications and About used the slot for
+// another anchor instead, which left their pages unreachable from the nav.
 const applicationsMenu = [
   { label: 'Water utilities & asset owners', href: '/applications/#utilities' },
   { label: 'Civil contractors & plumbers', href: '/applications/#contractors' },
+  { label: 'Which product fits?', href: '/applications/#fit-guide' },
 ];
-const applicationsCta = { label: 'Which product fits?', href: '/applications/#fit-guide' };
+const applicationsCta = { label: 'View all applications', href: '/applications/' };
 
 const aboutMenu = [
   { label: 'The complete range', href: '/about/#range-heading' },
@@ -36,8 +43,9 @@ const aboutMenu = [
   { label: 'Manufacturing partners', href: '/about/#manufacturing-heading' },
   { label: 'The Clover group', href: '/about/#clover-heading' },
   { label: 'Where we supply', href: '/about/#coverage-heading' },
+  { label: 'Talk to the team', href: '/about/#team-heading' },
 ];
-const aboutCta = { label: 'Talk to the team', href: '/about/#team-heading' };
+const aboutCta = { label: 'About SMS', href: '/about/' };
 
 // Which top-level nav section the current page belongs to. The four desktop
 // triggers are buttons, not links, so they can't take aria-current="page" —
