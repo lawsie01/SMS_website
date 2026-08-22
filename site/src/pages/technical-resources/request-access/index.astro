@@ -13,7 +13,7 @@ const sortedProducts = products
 
 <BaseLayout
   title="Request CAD/BIM & Engineering Drawings | SMS Technical Resources"
-  description="Request CAD/BIM models and full engineering drawings for SMS AXEDO and SMS ROMOLD maintenance structures. Commercial-in-confidence assets, verified and sent directly to your project team."
+  description="Request CAD/BIM models and engineering drawings for SMS AXEDO and SMS ROMOLD maintenance shafts, chambers and holes."
   canonicalPath="/technical-resources/request-access/"
 >
   <Breadcrumbs
@@ -24,7 +24,7 @@ const sortedProducts = products
   />
   <Hero
     title="Request CAD/BIM files and engineering drawings"
-    subtitle="Full dimensional CAD/BIM models and engineering drawings are commercial-in-confidence and supplied directly to the engineer or contractor working on a specific project. Tell us what you need and we'll verify and send it through."
+    subtitle="Tell us what you need and we'll send it through. Most requests go out within one business day."
     compact
   />
 
@@ -32,8 +32,7 @@ const sortedProducts = products
     <div class="lg:col-span-3">
       <h2 class="text-2xl font-bold text-sms-charcoal-900 mb-2">Request access</h2>
       <p class="text-sm text-sms-charcoal-500 mb-6">
-        Fields marked * are required. We'll only use these details to verify your request and send
-        the files. See our note on data use below the form.
+        Fields marked * are required.
       </p>
 
       <form
@@ -120,9 +119,7 @@ const sortedProducts = products
         <label class="flex items-start gap-2 text-sm text-sms-charcoal-500">
           <input type="checkbox" name="consent" required class="mt-1 rounded border-sms-charcoal-300 text-sms-green-600 focus:ring-sms-green-600" />
           <span>
-            I understand SMS CAD/BIM files and engineering drawings are commercial-in-confidence,
-            provided for use on a specific project, and my details will be used to verify this
-            request and get the right files to me. *
+            These files are commercial-in-confidence and not for redistribution. *
           </span>
         </label>
 
@@ -149,30 +146,13 @@ const sortedProducts = products
       </script>
     </div>
 
-    <div class="lg:col-span-2 space-y-8">
+    <div class="lg:col-span-2">
       <div class="border-t border-sms-charcoal-100 pt-5">
-        <h2 class="font-bold text-sms-charcoal-900 mb-3">Why this is a request form, not a direct download</h2>
-        <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-          CAD/BIM models and full engineering drawings are commercial-in-confidence documents. They
-          go directly to the specifier or contractor working on a real project, not into a public
-          download library. Most requests are reviewed and sent within one business day.
-        </p>
-      </div>
-
-      <div class="border-t border-sms-charcoal-100 pt-5">
-        <h2 class="font-bold text-sms-charcoal-900 mb-3">In a hurry?</h2>
+        <h2 class="font-bold text-sms-charcoal-900 mb-3">Call instead</h2>
         <p class="text-sm text-sms-charcoal-500 leading-relaxed mb-4">
-          Call the team directly and we'll get the right file moving straight away.
+          Ring the team and we'll get the right file moving straight away.
         </p>
         <a href={`tel:${company.phoneHref}`} class="sms-link font-semibold">{company.phone}</a>
-      </div>
-
-      <div class="border-t border-sms-charcoal-100 pt-5">
-        <h2 class="font-bold text-sms-charcoal-900 mb-3">Already public</h2>
-        <p class="text-sm text-sms-charcoal-500 leading-relaxed">
-          Product brochures and the WSAA appraisal certificate don't need a request. Download them
-          directly from the <a href="/technical-resources/" class="sms-link font-medium">Technical Resources hub</a>.
-        </p>
       </div>
     </div>
   </div>
