@@ -17,7 +17,10 @@ export const GET: APIRoute = async () => {
     brand: p.data.brand,
     dnSize: p.data.dnSize ?? '',
     description: p.data.shortDescription,
-    partCodes: p.data.configurations.map((c) => c.code),
+    // code is optional on a configuration — riser pipe and a few other parts
+    // are not coded separately — so mapping it straight through puts nulls in
+    // the index, and the client normalises every code with toLowerCase.
+    partCodes: p.data.configurations.map((c) => c.code).filter((c): c is string => Boolean(c)),
     standardCodes: p.data.standards.map((s) => s.code),
     faqText: p.data.faqs.map((f) => `${f.question} ${f.answer}`).join(' '),
   }));

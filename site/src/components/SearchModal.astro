@@ -120,7 +120,7 @@
   function matchedCode(entry: SearchEntry, query: string): string | null {
     const q = normalize(query);
     if (!q) return null;
-    const code = [...entry.partCodes, ...entry.standardCodes].find((c) => normalize(c).includes(q) || q.includes(normalize(c)));
+    const code = [...entry.partCodes, ...entry.standardCodes].filter(Boolean).find((c) => normalize(c).includes(q) || q.includes(normalize(c)));
     return code ?? null;
   }
 
