@@ -19,7 +19,11 @@ const { items } = Astro.props;
     the rest of the stats were missing off the edge of the phone screen —
     so on mobile the row folds into a 2-column grid instead (.sms-stat-grid,
     see global.css), no scrolling required. */}
-<div class="sms-bracketed inline-block max-w-full">
+{/* max-w-full caps this at the parent's content width, but .sms-bracketed
+    then adds 16px of margin each side to make room for the corner marks, so
+    the box ended up 32px wider than its parent and leaked 8px past each page
+    edge at 640px. Subtract the margins from the cap. */}
+<div class="sms-bracketed inline-block max-w-[calc(100%-2rem)]">
   <div class="sms-bracketed__inner">
     {/* overflow-x-auto lives on its own wrapper, not .sms-bracketed__inner —
         setting only overflow-x there would force overflow-y to "auto" too

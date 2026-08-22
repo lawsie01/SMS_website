@@ -262,6 +262,14 @@ html {
   .sms-stat:first-child {
     padding-left: 0;
   }
+  /* The trailing 18px sits outside the last divider, so it is not separating
+     anything — it just makes the row wider than its content. On a product page
+     the stats share a row with the sidebar image and the widest strip was
+     landing 1px over its column, which is enough for overflow-x: auto to paint
+     a scrollbar. */
+  .sms-stat:last-child {
+    padding-right: 0;
+  }
   .sms-stat + .sms-stat {
     border-left: 1px solid var(--color-sms-charcoal-100);
   }

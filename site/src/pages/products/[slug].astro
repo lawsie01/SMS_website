@@ -91,13 +91,6 @@ const assemblySizes =
   {viewerKey && <Product3DViewer product={viewerKey} title={data.title} />}
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-    {data.atAGlance.length > 0 && (
-      <section aria-labelledby="glance-heading">
-        <h2 id="glance-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">At a glance</h2>
-        <AtAGlance items={data.atAGlance} />
-      </section>
-    )}
-
     <div class="grid lg:grid-cols-3 gap-12">
       {/* min-w-0: a grid item's default min-width is auto (= its content's
           intrinsic width), which lets a wide descendant (e.g. the config
@@ -106,6 +99,13 @@ const assemblySizes =
           has its own overflow-x-auto. min-w-0 lets the column shrink to
           the track's actual size so the internal scroll takes over instead. */}
       <div class="lg:col-span-2 space-y-16 min-w-0">
+        {data.atAGlance.length > 0 && (
+          <section aria-labelledby="glance-heading">
+            <h2 id="glance-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">At a glance</h2>
+            <AtAGlance items={data.atAGlance} />
+          </section>
+        )}
+
         {data.specSections.length > 0 && (
           <section aria-labelledby="specs-heading">
             <h2 id="specs-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">Full specification</h2>
@@ -278,19 +278,6 @@ const assemblySizes =
       </div>
 
       <aside class="space-y-8">
-        <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
-          <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
-          <p class="text-sm text-sms-charcoal-500 mb-4">
-            Let us know which products you need and we'll confirm configuration, lead time and price.
-          </p>
-          <a
-            href={`/contact/?product=${product.id}`}
-            class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
-          >
-            Request pricing &rarr;
-          </a>
-        </div>
-
         {sidebarImage && (
           data.productImageBackground === 'dark' ? (
             <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-900", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
@@ -337,6 +324,19 @@ const assemblySizes =
             {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
           </div>
         )}
+
+        <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
+          <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
+          <p class="text-sm text-sms-charcoal-500 mb-4">
+            Let us know which products you need and we'll confirm configuration, lead time and price.
+          </p>
+          <a
+            href={`/contact/?product=${product.id}`}
+            class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
+          >
+            Request pricing &rarr;
+          </a>
+        </div>
 
         <div class="prose prose-sm max-w-none text-sms-charcoal-500">
           <Content />
