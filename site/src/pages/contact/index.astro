@@ -76,7 +76,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
             aria-expanded="false"
             aria-controls="product-panel"
             aria-labelledby="product-label product-summary"
-            class="w-full flex items-center justify-between gap-2 rounded-md border border-sms-charcoal-200 px-3 py-2 text-sm text-left text-sms-charcoal-700 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"
+            class="sms-press w-full flex items-center justify-between gap-2 rounded-md border border-sms-charcoal-200 px-3 py-2 text-sm text-left text-sms-charcoal-700 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none"
           >
             <span id="product-summary">Select product(s) (optional)</span>
             <svg id="product-chevron" class="w-4 h-4 shrink-0 text-sms-charcoal-400 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -104,7 +104,7 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
           <textarea id="message" name="message" required rows="5" class="w-full rounded-md border border-sms-charcoal-200 px-3 py-2.5 focus:border-sms-green-600 focus:ring-1 focus:ring-sms-green-600 outline-none" placeholder="Install depth, inlet sizes, load rating, timeframe, location..."></textarea>
         </div>
 
-        <button type="submit" class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
+        <button type="submit" class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-base font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
           Send enquiry
         </button>
       </form>

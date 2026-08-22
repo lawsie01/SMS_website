@@ -108,5 +108,12 @@ detect.stdout.on('data', (d) => {
 
 const code = await new Promise((r) => detect.on('close', r));
 server.close();
+// Silence only means clean if the detector actually ran. A failed npx fetch or
+// a missing browser also prints nothing to stdout, and reporting that as a
+// pass is worse than reporting nothing at all.
+if (code !== 0) {
+  console.error(`\nDetector exited ${code} without producing findings. This is not a pass.`);
+  process.exit(code ?? 1);
+}
 if (!out.trim()) console.log(`Clean — no anti-patterns across ${urls.length} routes.`);
-process.exit(code ?? 0);
+process.exit(0);

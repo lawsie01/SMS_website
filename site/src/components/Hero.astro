@@ -83,7 +83,7 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
             href={primaryCta.href}
             data-enquiry-cta={isEnquiryCta ? true : undefined}
             data-enquiry-product={enquiryProduct ?? undefined}
-            class="inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-sms-charcoal-900 shadow-sm hover:bg-sms-green-700 transition-colors"
+            class="sms-press inline-flex items-center rounded-md bg-sms-green-600 px-6 py-3 text-base font-semibold text-sms-charcoal-900 shadow-sm hover:bg-sms-green-700 transition-colors"
           >
             {primaryCta.label}
           </a>
@@ -91,7 +91,7 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
         {secondaryCta && (
           <a
             href={secondaryCta.href}
-            class="inline-flex items-center rounded-md border border-white/40 px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors"
+            class="sms-press inline-flex items-center rounded-md border border-white/40 px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors"
           >
             {secondaryCta.label}
           </a>

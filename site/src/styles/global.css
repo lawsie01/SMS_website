@@ -111,6 +111,22 @@ html {
 }
 
 @layer components {
+  /* Nothing on the site responded to a press. Hover told you a thing was
+     live, then the click had no physical answer until the next page painted.
+     One pixel down on :active gives the button a travel, which on a touch
+     screen is the only affordance there is. Held to the same fast motion
+     token as everything else, and the reduced-motion override collapses it
+     to 1ms rather than removing it, so the state still exists. */
+  .sms-press {
+    transition: transform var(--sms-motion-fast) var(--sms-ease-out);
+  }
+  .sms-press:active {
+    transform: translateY(1px);
+  }
+  .sms-press-card:active {
+    transform: translateY(1px) scale(0.995);
+  }
+
   /* Device 1 — corrugation contour. Concentric hairline rings evoking the
      corrugated riser in plan. Dark backgrounds only — on light backgrounds
      the rings read as moiré noise. One per page: if the hero shows it,

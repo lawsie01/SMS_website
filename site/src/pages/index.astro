@@ -159,23 +159,23 @@ const applications = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="applications-heading">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-20" aria-labelledby="applications-heading">
     <h2 id="applications-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">Built for utilities and contractors</h2>
     <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-8">
       Same structure, different reasons for specifying it.
     </p>
     <div class="grid sm:grid-cols-2 gap-8">
       {applications.map((item) => (
-        <a href={item.href} class="block rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md transition-all">
+        <a href={item.href} class="sms-press sms-press-card flex h-full flex-col rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md transition-all">
           <h3 class="font-bold text-sms-charcoal-900 mb-2">{item.audience}</h3>
-          <p class="text-sm text-sms-charcoal-500 leading-relaxed">{item.body}</p>
-          <span class="mt-4 inline-block text-sm font-semibold text-sms-charcoal-900 sms-link">Learn more &rarr;</span>
+          <p class="text-sm text-sms-charcoal-500 leading-relaxed grow">{item.body}</p>
+          <span class="mt-5 self-start text-sm font-semibold text-sms-charcoal-900 sms-link">Learn more &rarr;</span>
         </a>
       ))}
     </div>
   </section>
 
-  <section class="bg-sms-charcoal-50 py-16" aria-labelledby="approvals-heading">
+  <section class="bg-sms-charcoal-50 pt-16 pb-20" aria-labelledby="approvals-heading">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <h2 id="approvals-heading" class="text-2xl sm:text-3xl font-bold text-sms-charcoal-900 mb-4">WSAA Appraised</h2>
@@ -183,7 +183,7 @@ const applications = [
           The range holds WSAA Product Appraisal PA 1317, is manufactured to WSA 137:2019 and EN 13598-2,
           and takes access covers rated to Class D maximum to AS 3996. Certificates download from this site.
         </p>
-        <a href="/approvals/" class="inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
+        <a href="/approvals/" class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-6 py-3 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors">
           View approvals & standards &rarr;
         </a>
       </div>
