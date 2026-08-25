@@ -189,7 +189,6 @@ const assemblySizes =
               </div>
             )}
 
-
             {data.configurations.length > 0 && (
               <div class="mb-12">
                 {data.configGroups.length > 0 && (
@@ -292,6 +291,18 @@ const assemblySizes =
           )
         )}
 
+        <div class="prose prose-sm max-w-none text-sms-charcoal-500">
+          <Content />
+        </div>
+
+        {data.countryOfManufacture && (
+          <div class="border-t border-sms-charcoal-100 pt-5">
+            <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
+            <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
+            {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
+          </div>
+        )}
+
         {data.downloads.length > 0 && (
           <div class="border-t border-sms-charcoal-100 pt-5">
             <h2 class="font-bold text-sms-charcoal-900 mb-4">Downloads</h2>
@@ -317,14 +328,6 @@ const assemblySizes =
           </div>
         )}
 
-        {data.countryOfManufacture && (
-          <div class="border-t border-sms-charcoal-100 pt-5">
-            <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
-            <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
-            {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
-          </div>
-        )}
-
         <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
           <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
           <p class="text-sm text-sms-charcoal-500 mb-4">
@@ -336,10 +339,6 @@ const assemblySizes =
           >
             Request pricing &rarr;
           </a>
-        </div>
-
-        <div class="prose prose-sm max-w-none text-sms-charcoal-500">
-          <Content />
         </div>
       </aside>
     </div>
