@@ -15,15 +15,10 @@ const MODEL_URLS: Partial<Record<Props['product'], string>> = {
 const modelUrl = MODEL_URLS[product];
 ---
 
-{/* Plain white ground. The grey band put a third background between the dark
-    hero and the white body inside the first 1200px of the product page, for a
-    block that is already framed by the viewer's own border. */}
-<section aria-labelledby="viewer-heading" class="bg-white">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-      <h2 id="viewer-heading" class="text-xl font-bold text-sms-charcoal-900">Explore the {title} in 3D</h2>
-      <p class="text-xs text-sms-charcoal-500">Drag or use the buttons to rotate &middot; scroll, pinch or zoom buttons to scale</p>
-    </div>
+{/* Sidebar module, not a full-width band. The model is the product image now,
+    so it takes the slot and the proportions the photograph used to have, and
+    the mega view is behind the expand button instead of being the default. */}
+<div class="viewer-shell">
 
     {/* Rotating the model was a pointer drag and nothing else: no keyboard
         path in, no buttons, and the canvas wasn't focusable, so a keyboard
@@ -32,14 +27,13 @@ const modelUrl = MODEL_URLS[product];
         drive the same orbit the drag does, and they double as the affordance
         a mouse user previously had to guess at. */}
     <div
-      class="product-3d-viewer relative rounded-xl border border-sms-charcoal-200 bg-sms-charcoal-50 overflow-hidden"
+      class="product-3d-viewer relative aspect-square rounded-xl border border-sms-charcoal-100 bg-render-bg overflow-hidden"
       data-product={product}
       data-model-url={modelUrl}
       data-model-path={modelUrl}
       tabindex="0"
       role="application"
       aria-label={`Interactive 3D model of the SMS ${title}. Use the arrow keys to rotate, plus and minus to zoom.`}
-      style="height: 480px;"
     >
       <div class="viewer-loading absolute inset-0 flex items-center justify-center text-sms-charcoal-400 text-sm">
         Loading 3D preview&hellip;
@@ -51,46 +45,57 @@ const modelUrl = MODEL_URLS[product];
       </noscript>
     </div>
 
-    <div class="viewer-controls mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Model controls">
-      <button type="button" data-viewer-act="left" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate left">
+    <div class="viewer-controls mt-3 flex flex-wrap items-center gap-1.5" role="group" aria-label="Model controls">
+      <button type="button" data-viewer-act="left" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate left">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button type="button" data-viewer-act="right" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate right">
+      <button type="button" data-viewer-act="right" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate right">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button type="button" data-viewer-act="up" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt up">
+      <button type="button" data-viewer-act="up" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt up">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M4.5 12.5 10 7l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button type="button" data-viewer-act="down" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt down">
+      <button type="button" data-viewer-act="down" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt down">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M4.5 7.5 10 13l5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <span class="w-px h-5 bg-sms-charcoal-200 mx-1" aria-hidden="true"></span>
-      <button type="button" data-viewer-act="in" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom in">
+      <span class="w-px h-5 bg-sms-charcoal-200" aria-hidden="true"></span>
+      <button type="button" data-viewer-act="in" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom in">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </button>
-      <button type="button" data-viewer-act="out" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom out">
+      <button type="button" data-viewer-act="out" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom out">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </button>
-      <button type="button" data-viewer-act="reset" class="sms-press viewer-btn inline-flex items-center rounded-md border border-sms-charcoal-200 bg-white px-3 py-2 text-xs font-semibold text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors">
-        Reset view
+      <button type="button" data-viewer-act="reset" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Reset view">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 10a6 6 0 1 0 1.8-4.3M4 4v3h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      {/* The mega view is opt-in now. Fullscreen is on the shell, not the
+          canvas box, so the controls come with it and the model can still be
+          driven once expanded. */}
+      <button type="button" data-viewer-act="expand" aria-pressed="false" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Expand to full screen">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path class="expand-open" d="M8 3H3v5M12 17h5v-5M17 8V3h-5M3 12v5h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="expand-close" d="M3 8h5V3M17 12h-5v5M12 3v5h5M8 17v-5H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
     </div>
 
     {modelUrl ? (
-      <p class="mt-3 text-xs text-sms-charcoal-500 max-w-[68ch]">
-        Interactive model of the SMS {title}, built from the manufacturer's CAD.
+      <p class="mt-2 text-xs text-sms-charcoal-400">
+        Drag to rotate, scroll to zoom. Built from the manufacturer's CAD.
       </p>
     ) : (
       <p class="mt-3 text-xs text-sms-charcoal-500 max-w-[68ch]">
@@ -99,8 +104,32 @@ const modelUrl = MODEL_URLS[product];
         the actual CAD model. Swap in the real .glb/.gltf asset when available.
       </p>
     )}
-  </div>
-</section>
+</div>
+
+<style>
+  /* The shell is what goes fullscreen, so the controls travel with the canvas.
+     The square ratio is right for a sidebar module and wrong for a full
+     screen, so it is dropped there and the box takes the height instead. */
+  .viewer-shell:fullscreen {
+    background: var(--color-render-bg);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .viewer-shell:fullscreen .product-3d-viewer {
+    aspect-ratio: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .viewer-shell .expand-close,
+  .viewer-shell:fullscreen .expand-open {
+    display: none;
+  }
+  .viewer-shell:fullscreen .expand-close {
+    display: inline;
+  }
+</style>
 
 <script>
   import * as THREE from 'three';
@@ -402,7 +431,39 @@ const modelUrl = MODEL_URLS[product];
       in: () => zoom(1 / ZOOM_STEP),
       out: () => zoom(ZOOM_STEP),
       reset: resetView,
+      expand: toggleFullscreen,
     };
+
+    // The shell carries the canvas and the controls, so expanding it keeps the
+    // model drivable at full size. The ResizeObserver below already re-fits the
+    // renderer, so nothing here has to touch the camera.
+    const shell = container.closest<HTMLElement>('.viewer-shell');
+    const expandBtn = shell?.querySelector<HTMLButtonElement>('[data-viewer-act="expand"]');
+
+    // Escape is deliberately not intercepted here. Exiting fullscreen on Escape
+    // is a user-agent behaviour, and calling exitFullscreen from a key handler
+    // as well puts two exit requests in flight, which was observed leaving the
+    // button labelled "Exit full screen" after the viewer had already
+    // collapsed. The fullscreenchange listener below is the single source of
+    // truth for the button's state whichever way the exit was triggered.
+    function toggleFullscreen(): void {
+      if (!shell) return;
+      if (document.fullscreenElement === shell) void document.exitFullscreen();
+      else void shell.requestFullscreen().catch(() => {});
+    }
+
+    // Escape and the browser's own exit both fire this, so the button's state
+    // is read off the document rather than tracked separately.
+    document.addEventListener('fullscreenchange', () => {
+      const open = document.fullscreenElement === shell;
+      expandBtn?.setAttribute('aria-pressed', String(open));
+      expandBtn?.setAttribute('aria-label', open ? 'Exit full screen' : 'Expand to full screen');
+      if (open) container.focus();
+    });
+
+    // Safari names the API differently and returns undefined for the standard
+    // one, so hide the control rather than offer a button that does nothing.
+    if (!shell?.requestFullscreen) expandBtn?.remove();
 
     container.parentElement?.querySelectorAll<HTMLButtonElement>('[data-viewer-act]').forEach((btn) => {
       btn.addEventListener('click', () => ACTIONS[btn.dataset.viewerAct!]?.());

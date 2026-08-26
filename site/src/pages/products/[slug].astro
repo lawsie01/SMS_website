@@ -88,7 +88,6 @@ const assemblySizes =
     path={path}
   />
 
-  {viewerKey && <Product3DViewer product={viewerKey} title={data.title} />}
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
     <div class="grid lg:grid-cols-3 gap-12">
@@ -277,7 +276,13 @@ const assemblySizes =
       </div>
 
       <aside class="space-y-8">
-        {sidebarImage && (
+        {/* The model is the product image on any page that has one: it shows
+            the same thing the render did and turns to answer a question the
+            photograph could not. The still is the fallback where there is no
+            model to load. */}
+        {viewerKey ? (
+          <Product3DViewer product={viewerKey} title={data.title} />
+        ) : sidebarImage && (
           data.productImageBackground === 'dark' ? (
             <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-900", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
               <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
