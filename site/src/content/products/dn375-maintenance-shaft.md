@@ -8,7 +8,7 @@ shortDescription: "Modular polypropylene maintenance shaft for gravity sewer ret
 cardUseCase: "Reticulation mains, property connections and infill maintenance access up to 4m deep."
 overview: >-
   The Axedo Maintenance Shaft 375 (MS) is a modular gravity sewer maintenance shaft
-  system with an inside nominal diameter of 400mm, suitable for depths up to 3m. It's
+  system with an inside nominal diameter of 375mm, suitable for depths up to 4m. It's
   manufactured from a polypropylene base, PVC riser pipe, and features an access cap
   and/or ductile iron access cover. The maintenance shaft provides effective surface
   access for cleaning and inspection equipment while preventing entry by persons.
@@ -42,7 +42,7 @@ specSections:
       - label: "Product family"
         value: "SMS AXEDO DN375 Maintenance Shaft"
       - label: "Material"
-        value: "Polypropylene (PP) base and riser system"
+        value: "Polypropylene (PP) base with a PVC riser pipe"
       - label: "Nominal riser sizes"
         value: "DN375, DN300, DN225"
       - label: "Jointing"

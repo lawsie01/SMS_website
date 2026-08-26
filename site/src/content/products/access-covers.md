@@ -14,7 +14,7 @@ specSections:
   - heading: "Overview"
     rows:
       - label: "Purpose"
-        value: "Access cover arrangements sit above the polypropylene structure and are engineered to distribute surface loads to the surrounding bedding/foundation, not down onto the PP riser or base"
+        value: "Access cover arrangements sit above the polypropylene structure and are engineered to distribute surface loads to the surrounding bedding/foundation, not down onto the riser or base"
       - label: "Max load"
         value: "Class D maximum (trafficable) to AS 3996 across all standard options"
       - label: "Available arrangements"
@@ -28,7 +28,7 @@ installationSections:
     body: "Access covers are installed and levelled independently of the maintenance structure itself, with a minimum clearance gap maintained between the cover assembly and the top of the riser/cone so that traffic and surface loads never transfer directly onto the polypropylene structure. Bolts are torqued to 80–100 Nm and DENSO manhole sealing grease is applied to the seating area on reinstatement."
 faqs:
   - question: "Do access covers sit directly on the polypropylene structure?"
-    answer: "No. Every SMS access cover arrangement is engineered to transfer surface and traffic loads to the surrounding bedding/foundation, with a maintained clearance gap so no load passes directly onto the PP riser, cone or base."
+    answer: "No. Every SMS access cover arrangement is engineered to transfer surface and traffic loads to the surrounding bedding/foundation, with a maintained clearance gap so no load passes directly onto the riser, cone or base."
   - question: "What load rating do SMS access covers carry?"
     answer: "Class D maximum (trafficable) to AS 3996 across the standard Top Hat, concrete cover plate and concrete load distribution ring options."
   - question: "Is a vegetation ring available?"

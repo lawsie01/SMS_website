@@ -4,7 +4,7 @@ brand: "AXEDO"
 dnSize: "DN600"
 category: "maintenance-chamber"
 order: 2
-shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum, to 6m depth."
+shortDescription: "Corrugated polyethylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum, to 6m depth."
 cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
 overview: >-
   The Axedo Maintenance Chamber 600 (MC) is a modular gravity sewer maintenance
@@ -42,7 +42,7 @@ specSections:
       - label: "Product family"
         value: "SMS AXEDO DN600 Maintenance Chamber"
       - label: "Material"
-        value: "Polypropylene base and DN600 SN8 corrugated riser pipe"
+        value: "Polypropylene base and DN600 SN8 corrugated polyethylene riser pipe"
       - label: "Jointing"
         value: "Rubber ring joint (RRJ) sockets, DN600 EPDM/SBR seals"
       - label: "Base socket tolerance"
@@ -167,7 +167,7 @@ installationSections:
   - heading: "Access cover options"
     body: "Two access cover arrangements are available, both rated to Class D maximum:"
     bullets:
-      - "Standard Top Hat access cover (with optional vegetation ring); distributes traffic load to the surrounding foundation, not the PP riser"
+      - "Standard Top Hat access cover (with optional vegetation ring); distributes traffic load to the surrounding foundation, not the PE riser"
       - "Option: concrete cover plate with cap assembly and shroud, used where a larger load-spreading footprint is specified"
   - heading: "Lateral drop-in connections"
     body: "DN100 and DN150 lateral connections can be added on-site with a hole saw (127mm/5\" for DN100, 178mm/7\" for DN150), rubber collar and straight connector. No need to return the unit to the factory."
@@ -220,6 +220,6 @@ seoTitle: "DN600 Maintenance Chamber | SMS AXEDO Polypropylene Sewer Chamber Aus
 seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber. WSAA PA 1317 appraised, Class D rated, installs to 6m depth by hand. Full specs, configurations and standards."
 ---
 
-The DN600 Chamber is a polypropylene base with a corrugated PP riser, for reticulation and trunk sewer
+The DN600 Chamber is a polypropylene base with a corrugated PE riser, for reticulation and trunk sewer
 access down to 6m. The base is 15kg and the riser runs about 20kg per metre, so it goes in without the
 lifting gear a precast concrete chamber needs. Cut the riser to length on site, on a corrugation valley.
