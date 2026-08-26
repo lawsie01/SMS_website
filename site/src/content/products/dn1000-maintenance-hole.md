@@ -6,6 +6,13 @@ category: "maintenance-hole"
 order: 3
 shortDescription: "Person-accessible polypropylene maintenance hole for trunk sewers, with a fixed ladder, 600mm clear opening and Class D maximum access cover options."
 cardUseCase: "Trunk sewer and deeper reticulation access requiring person entry, standard installation up to 6m."
+overview: >-
+  The Romold Maintenance Hole 1000 (MH) is a modular gravity sewer maintenance hole
+  system with an inside nominal diameter of 1000mm, suitable for depths up to 6m.
+  It's manufactured from a polypropylene base, polypropylene riser sections, access
+  ladders and features a ductile iron access cover. The maintenance hole provides
+  effective surface access for cleaning and inspection equipment while allowing entry
+  by persons.
 productImage: "../../assets/images/product-dn1000-hole-clover.jpg"
 productImageBackground: "light"
 productImageAlt: "SMS ROMOLD DN1000 polypropylene maintenance hole assembly with base, riser, cone and side inlets"

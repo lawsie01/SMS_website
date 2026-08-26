@@ -98,11 +98,24 @@ const assemblySizes =
           has its own overflow-x-auto. min-w-0 lets the column shrink to
           the track's actual size so the internal scroll takes over instead. */}
       <div class="lg:col-span-2 space-y-16 min-w-0">
-        {data.atAGlance.length > 0 && (
-          <section aria-labelledby="glance-heading">
-            <h2 id="glance-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">At a glance</h2>
-            <AtAGlance items={data.atAGlance} />
-          </section>
+        {/* The overview and the stats are one opening unit, so they share a
+            single slot in the column's space-y and set their own interval.
+            A negative margin on the paragraph does not work here: the
+            space-y utility is defined inside :where(), so any margin utility
+            on the child replaces its 64px outright rather than trimming it,
+            and the heading lands on top of the last line. */}
+        {(data.overview || data.atAGlance.length > 0) && (
+          <div>
+            {data.overview && (
+              <p class="text-sms-charcoal-500 leading-relaxed max-w-[68ch] mb-10">{data.overview}</p>
+            )}
+            {data.atAGlance.length > 0 && (
+              <section aria-labelledby="glance-heading">
+                <h2 id="glance-heading" class="text-2xl font-bold text-sms-charcoal-900 mb-6">At a glance</h2>
+                <AtAGlance items={data.atAGlance} />
+              </section>
+            )}
+          </div>
         )}
 
         {data.specSections.length > 0 && (

@@ -117,6 +117,10 @@ const products = defineCollection({
       order: z.number().default(99),
       shortDescription: z.string(),
       cardUseCase: z.string(),
+      // Supplied product-overview paragraph, set above At a glance. Distinct
+      // from shortDescription (the hero line) and from the markdown body
+      // (the sidebar caption).
+      overview: z.string().optional(),
       heroImage: image().optional(),
       heroImageAlt: z.string().optional(),
       productImage: image().optional(),

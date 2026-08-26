@@ -6,6 +6,12 @@ category: "maintenance-chamber"
 order: 2
 shortDescription: "Corrugated polypropylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum, to 6m depth."
 cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
+overview: >-
+  The Axedo Maintenance Chamber 600 (MC) is a modular gravity sewer maintenance
+  chamber system with an inside nominal diameter of 600mm, suitable for depths up to
+  6m. It's manufactured from a polypropylene base, corrugated polyethylene riser pipe,
+  and features a ductile iron access cover. The chamber provides effective surface
+  access for cleaning and inspection equipment while preventing entry by persons.
 productImage: "../../assets/images/product-dn600-chamber-clover.jpg"
 productImageAlt: "SMS AXEDO DN600 polypropylene maintenance chamber with corrugated riser and access cover"
 productImageBackground: "light"
