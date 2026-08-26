@@ -31,11 +31,14 @@ const resourceLinks = [
           would otherwise float above their baseline. The source PNG's own
           canvas has more empty padding below the mark than above it (68px vs
           19px), which at this display size undershoots the text's own leading
-          by ~4px — mb-1 makes up the difference so the visible ink lines up,
-          not just the two elements' invisible boxes. Verified by comparing
-          rendered pixel bounds, not eyeballed. */}
+          so the visible ink lines up, not just the two elements' invisible
+          boxes. What has to stay constant is margin plus that empty canvas,
+          and the canvas scales with the mark: 4.08px below the ink at 22px
+          tall, 4.82px at 26px. Growing the mark therefore shrinks the
+          margin, 4px to 3px, rather than growing it. Verified by comparing
+          rendered ink bounds, not eyeballed. */}
       <div class="h-6 mb-3 flex items-end">
-        <Image src={logo} alt="SMS" height={22} width={Math.round((22 * logo.width) / logo.height)} class="mb-1" />
+        <Image src={logo} alt="SMS" height={26} width={Math.round((26 * logo.width) / logo.height)} class="mb-[3px]" />
       </div>
       <p class="text-sm leading-relaxed">
         Australia's WSAA-appraised polypropylene sewer maintenance structures. Part of the
