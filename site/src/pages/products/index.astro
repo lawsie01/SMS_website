@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import heroImage from '../../assets/images/dn1000-hero-shaft-ladder.jpg';
 
 const products = await getCollection('products');
 const families = products
@@ -47,6 +48,8 @@ const whyPolypropylene = [
   <Hero
     title="Polypropylene maintenance structures, DN375 to DN1000"
     subtitle="DN375, DN600 and DN1000, all appraised under WSA 137:2019. The full range is held as stock."
+    image={heroImage}
+    imageAlt="Looking up the shaft of a ROMOLD polypropylene maintenance hole, past the fixed ladder to the open cover"
     compact
   />
 
