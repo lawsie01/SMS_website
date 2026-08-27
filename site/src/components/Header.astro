@@ -1,5 +1,5 @@
 ---
-import logo from '../assets/images/sms-logo.png';
+import logo from '../assets/images/sms-logo-reversed.png';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import SearchModal from './SearchModal.astro';
@@ -82,18 +82,18 @@ const productFamilies = products
     that strip away and leaves the main bar pinned at the top, which is what
     the two-bar layout was always meant to do. Below lg the strip is hidden,
     so the offset goes to zero. */}
-<header id="site-header" class="sticky top-0 lg:-top-[45px] z-40 bg-white">
+<header id="site-header" class="sticky top-0 lg:-top-[45px] z-40 bg-sms-charcoal-900">
   {/* Bar 1 — utility strip. Not sticky — it scrolls away with the page, so
       only bar 2 below takes up permanent header real estate once scrolled.
       Desktop/tablet only: on narrow viewports these three links move into
       the mobile disclosure instead of wrapping a thin bar into two lines. */}
-  <div class="hidden lg:block bg-sms-charcoal-50 text-sms-charcoal-500 border-b border-sms-charcoal-100">
+  <div class="hidden lg:block bg-sms-charcoal-800 text-sms-charcoal-200 border-b border-sms-charcoal-700">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-11 flex items-center justify-end gap-6 text-xs font-medium">
       {utilityLinks.map((item, i) => (
         <>
-          {i > 0 && <span class="w-px h-3 bg-sms-charcoal-200" aria-hidden="true"></span>}
+          {i > 0 && <span class="w-px h-3 bg-sms-charcoal-600" aria-hidden="true"></span>}
           <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
-             class:list={["py-3.5 hover:text-sms-charcoal-900 transition-colors", isCurrent(item.href) && "text-sms-charcoal-900 font-semibold"]}>{item.label}</a>
+             class:list={["py-3.5 hover:text-white transition-colors", isCurrent(item.href) && "text-white font-semibold"]}>{item.label}</a>
         </>
       ))}
     </div>
@@ -102,7 +102,7 @@ const productFamilies = products
   {/* Bar 2 — main nav. This is the sticky element, not the header as a
       whole — the shadow only kicks in on scroll (see script below); at rest,
       against the top of the page, the border alone is enough separation. */}
-  <div id="main-bar" class="bg-white border-b border-sms-charcoal-100 transition-shadow duration-200">
+  <div id="main-bar" class="bg-sms-charcoal-900 border-b border-sms-charcoal-700 transition-shadow duration-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-20 items-center justify-between gap-4">
         <a href="/" aria-current={isCurrent('/') ? 'page' : undefined} class="flex items-center gap-2 shrink-0" aria-label="SMS home">
@@ -110,7 +110,7 @@ const productFamilies = products
           <Image src={logo} alt="SMS" width={110} height={54} loading="eager" />
         </a>
 
-        <nav class="hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-700" aria-label="Main">
+        <nav class="hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-100" aria-label="Main">
           {/* Products — full-width mega panel */}
           <div class="nav-parent relative" data-current={currentSection === 'products' ? true : undefined}>
             <button
@@ -120,7 +120,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="products-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-white transition-colors"
             >
               Products
               <svg data-nav-chevron="products" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -177,7 +177,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="plastic-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-white transition-colors"
             >
               Why Plastic vs Concrete
               <svg data-nav-chevron="plastic" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -202,7 +202,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="applications-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-white transition-colors"
             >
               Applications
               <svg data-nav-chevron="applications" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -227,7 +227,7 @@ const productFamilies = products
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="about-nav-panel"
-              class="nav-trigger flex items-center gap-1.5 hover:text-sms-charcoal-900 transition-colors"
+              class="nav-trigger flex items-center gap-1.5 hover:text-white transition-colors"
             >
               About
               <svg data-nav-chevron="about" class="w-3.5 h-3.5 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -250,7 +250,7 @@ const productFamilies = products
           <a
             href="/contact/"
             data-enquiry-cta
-            class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sms-charcoal-700 transition-colors"
+            class="sms-press inline-flex items-center rounded-md bg-sms-green-600 px-4 py-2.5 text-sm font-semibold text-sms-charcoal-900 shadow-sm hover:bg-sms-green-700 transition-colors"
           >
             Enquire
           </a>
@@ -260,7 +260,7 @@ const productFamilies = products
           <button
             type="button"
             id="nav-toggle"
-            class="sms-press lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-md border border-sms-charcoal-200 text-sms-charcoal-700 hover:border-sms-green-400 transition-colors"
+            class="sms-press lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-md border border-sms-charcoal-600 text-sms-charcoal-200 hover:border-sms-green-400 hover:text-white transition-colors"
             aria-expanded="false"
             aria-controls="mobile-nav"
             aria-label="Open menu"
@@ -275,7 +275,7 @@ const productFamilies = products
         </div>
       </div>
 
-      <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-100 py-2" aria-label="Main">
+      <nav id="mobile-nav" hidden data-closed class="mobile-panel lg:hidden border-t border-sms-charcoal-700 py-2" aria-label="Main">
         <ul>
           <li>
             <button
@@ -283,7 +283,7 @@ const productFamilies = products
               id="mobile-products-toggle"
               aria-expanded="false"
               aria-controls="mobile-products-panel"
-              class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-700 hover:text-sms-charcoal-900 transition-colors"
+              class="flex w-full items-center justify-between py-3 text-base font-medium text-sms-charcoal-100 hover:text-white transition-colors"
             >
               <span>Products</span>
               <svg id="mobile-products-chevron" class="w-4 h-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -293,7 +293,7 @@ const productFamilies = products
             <ul id="mobile-products-panel" hidden data-closed class="mobile-panel pl-4 pb-2 space-y-1">
               {productFamilies.map((p) => (
                 <li>
-                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-charcoal-900 transition-colors">
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-200 hover:text-white transition-colors">
                     {p.data.title}
                   </a>
                 </li>
@@ -301,14 +301,14 @@ const productFamilies = products
               {/* Fittings & accessories — not ready for launch, see note above.
               {accessories.map((p) => (
                 <li>
-                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-600 hover:text-sms-charcoal-900 transition-colors">
+                  <a href={`/products/${p.id}/`} class="block py-2 text-sm text-sms-charcoal-200 hover:text-white transition-colors">
                     {p.data.title}
                   </a>
                 </li>
               ))}
               */}
               <li>
-                <a href="/products/" aria-current={isCurrent('/products/') ? 'page' : undefined} class="block py-2 text-sm font-semibold text-sms-charcoal-900">
+                <a href="/products/" aria-current={isCurrent('/products/') ? 'page' : undefined} class="block py-2 text-sm font-semibold text-white">
                   View all products &rarr;
                 </a>
               </li>
@@ -321,8 +321,8 @@ const productFamilies = products
           ].map((item) => (
             <li>
               <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
-                 class:list={["block py-3 text-base font-medium hover:text-sms-charcoal-900 transition-colors",
-                              isCurrent(item.href) ? "text-sms-charcoal-900 font-semibold border-l-2 border-sms-green-600 -ml-3 pl-3" : "text-sms-charcoal-700"]}>
+                 class:list={["block py-3 text-base font-medium hover:text-white transition-colors",
+                              isCurrent(item.href) ? "text-white font-semibold border-l-2 border-sms-green-400 -ml-3 pl-3" : "text-sms-charcoal-100"]}>
                 {item.label}
               </a>
             </li>
@@ -331,12 +331,12 @@ const productFamilies = products
         {/* Utility-strip links, folded in here since bar 1 is hidden below lg.
             Visually demoted (smaller, lighter, divider above) so the primary
             items above still read as the main menu. */}
-        <ul class="mt-2 pt-2 border-t border-sms-charcoal-100 space-y-0.5">
+        <ul class="mt-2 pt-2 border-t border-sms-charcoal-700 space-y-0.5">
           {utilityLinks.map((item) => (
             <li>
               <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}
-                 class:list={["block py-2 text-sm hover:text-sms-charcoal-900 transition-colors",
-                              isCurrent(item.href) ? "text-sms-charcoal-900 font-semibold" : "text-sms-charcoal-500"]}>
+                 class:list={["block py-2 text-sm hover:text-white transition-colors",
+                              isCurrent(item.href) ? "text-white font-semibold" : "text-sms-charcoal-200"]}>
                 {item.label}
               </a>
             </li>
@@ -379,7 +379,7 @@ const productFamilies = products
     transform: scaleX(1);
   }
   .nav-parent[data-current] .nav-trigger {
-    color: var(--color-sms-charcoal-900);
+    color: #fff;
     font-weight: 600;
   }
 

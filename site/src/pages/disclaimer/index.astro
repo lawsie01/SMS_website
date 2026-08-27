@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import company from '../../data/company.json';
 ---
@@ -10,8 +9,7 @@ import company from '../../data/company.json';
   description={`How ${company.legalName} collects, uses, stores and discloses personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles.`}
   canonicalPath="/disclaimer/"
 >
-  <Breadcrumbs items={[{ label: 'Disclaimer', href: '/disclaimer/' }]} />
-  <Hero eyebrow="Legal" title="Privacy Policy" compact />
+  <Hero eyebrow="Legal" title="Privacy Policy" compact crumbs={[{ label: 'Disclaimer', href: '/disclaimer/' }]} />
 
   <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
     <p class="text-sms-charcoal-700 leading-relaxed mb-2">

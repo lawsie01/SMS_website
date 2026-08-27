@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import company from '../../data/company.json';
 
@@ -22,11 +21,11 @@ function mapsUrl(loc: { addressLine1?: string; addressLine2?: string }): string 
   description="Enquire about SMS AXEDO and SMS ROMOLD polypropylene maintenance structures. Call 1300 482 228, email sales@sewerms.com.au, or send project details via the enquiry form."
   canonicalPath="/contact/"
 >
-  <Breadcrumbs items={[{ label: 'Contact', href: '/contact/' }]} />
   <Hero
     title="Talk to SMS about your project"
     subtitle="Send through your project details, or call. We'll confirm the configuration and the lead time."
     compact
+    crumbs={[{ label: 'Contact', href: '/contact/' }]}
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-5 gap-12">

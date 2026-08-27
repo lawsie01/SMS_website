@@ -5,8 +5,13 @@ interface Crumb {
 }
 interface Props {
   items: Crumb[]; // does not include Home, added automatically
+  // Rendered inside a Hero rather than as its own strip above it. The hero is
+  // always a dark ground, so the trail drops its background and border and
+  // takes the hero's padding instead of carrying its own. Pages with no hero
+  // (the two thank-you pages) still get the standalone light strip.
+  inHero?: boolean;
 }
-const { items } = Astro.props;
+const { items, inHero = false } = Astro.props;
 const siteUrl = 'https://sewerms.com.au';
 const allItems = [{ label: 'Home', href: '/' }, ...items];
 
@@ -22,15 +27,23 @@ const breadcrumbSchema = {
 };
 ---
 
-<nav aria-label="Breadcrumb" class="bg-sms-charcoal-50 border-b border-sms-charcoal-100">
-  <ol class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center gap-1.5 text-sm text-sms-charcoal-400">
+<nav
+  aria-label="Breadcrumb"
+  class:list={[inHero ? "mb-5" : "bg-sms-charcoal-50 border-b border-sms-charcoal-100"]}
+>
+  <ol
+    class:list={[
+      "flex flex-wrap items-center gap-1.5 text-sm",
+      inHero ? "text-sms-charcoal-200" : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 text-sms-charcoal-400",
+    ]}
+  >
     {allItems.map((item, i) => (
       <li class="flex items-center gap-1.5">
         {i > 0 && <span aria-hidden="true">/</span>}
         {i === allItems.length - 1 ? (
-          <span class="text-sms-charcoal-700 font-medium" aria-current="page">{item.label}</span>
+          <span class:list={["font-medium", inHero ? "text-white" : "text-sms-charcoal-700"]} aria-current="page">{item.label}</span>
         ) : (
-          <a href={item.href} class="inline-block py-1 hover:text-sms-charcoal-900">{item.label}</a>
+          <a href={item.href} class:list={["inline-block py-1", inHero ? "hover:text-white" : "hover:text-sms-charcoal-900"]}>{item.label}</a>
         )}
       </li>
     ))}

@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -44,13 +43,13 @@ const whyPolypropylene = [
   description="SMS AXEDO and SMS ROMOLD polypropylene maintenance shafts, chambers and holes. WSAA PA 1317 appraised, Class D rated."
   canonicalPath="/products/"
 >
-  <Breadcrumbs items={[{ label: 'Products', href: '/products/' }]} />
   <Hero
     title="Polypropylene maintenance structures, DN375 to DN1000"
     subtitle="DN375, DN600 and DN1000, all appraised under WSA 137:2019. The full range is held as stock."
     image={heroImage}
     imageAlt="Looking up the shaft of a ROMOLD polypropylene maintenance hole, past the fixed ladder to the open cover"
     compact
+    crumbs={[{ label: 'Products', href: '/products/' }]}
   />
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">

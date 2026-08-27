@@ -529,3 +529,48 @@ html {
 .skip-link {
   @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sms-green-600 focus:text-sms-charcoal-900 focus:px-4 focus:py-2 focus:rounded-md;
 }
+
+/* Product and comparison pages get printed and attached to submissions, and
+   the chrome is now dark on every one of them. Left alone that is three solid
+   blocks of toner per page, and reversed type prints as white gaps in them.
+   Print reverts the chrome to what it was: white ground, dark text. The body
+   was never dark, so nothing there needs touching. */
+@media print {
+  #site-header,
+  #main-bar,
+  #site-header > div:first-child,
+  footer,
+  footer > div,
+  section.bg-sms-charcoal-900,
+  .sms-contour,
+  main > section:first-of-type {
+    background: #fff !important;
+    background-image: none !important;
+    color: var(--color-sms-charcoal-900) !important;
+    border-color: var(--color-sms-charcoal-200) !important;
+  }
+  #site-header *,
+  footer *,
+  section.bg-sms-charcoal-900 *,
+  .sms-contour *,
+  main > section:first-of-type * {
+    color: var(--color-sms-charcoal-900) !important;
+    border-color: var(--color-sms-charcoal-200) !important;
+  }
+  /* the hero photograph is atmosphere, not information */
+  main > section:first-of-type img[role='presentation'],
+  main > section:first-of-type .absolute {
+    display: none !important;
+  }
+  /* buttons stop being actions on paper */
+  [data-enquiry-cta],
+  a[href^='tel:'] {
+    background: transparent !important;
+    border: 1px solid var(--color-sms-charcoal-400) !important;
+  }
+  /* the reversed wordmark is white ink, invisible on paper */
+  #site-header a[aria-label='SMS home'] img,
+  footer img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}

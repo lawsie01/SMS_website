@@ -1,6 +1,12 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Crumb {
+  label: string;
+  href: string;
+}
 
 interface Props {
   eyebrow?: string;
@@ -11,6 +17,10 @@ interface Props {
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   compact?: boolean;
+  // The breadcrumb trail, rendered inside the hero rather than in its own
+  // strip above it. Home is added by Breadcrumbs, so this is everything after
+  // it. Omitted on the homepage, which has no trail.
+  crumbs?: Crumb[];
 }
 
 const {
@@ -22,6 +32,7 @@ const {
   primaryCta = { label: 'Enquire', href: '/contact/' },
   secondaryCta,
   compact = false,
+  crumbs,
 } = Astro.props;
 
 // Every current primaryCta ends up at /contact/ (optionally with
@@ -64,8 +75,17 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
       <div class="absolute inset-0 bg-gradient-to-t from-sms-charcoal-900/60 via-sms-charcoal-900/45 to-sms-charcoal-900/25"></div>
     </div>
   )}
-  <div class:list={["relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", compact ? "py-16 sm:py-20" : "py-24 sm:py-32"]}>
+  {/* The trail used to sit in its own light strip between the header and this
+      section, which put a white line across the top of every page below the
+      home page. Inside the hero it reads as part of the same block. It brings
+      about 53px with it, so where it is present the top padding comes down to
+      keep the hero roughly the height it already was. */}
+  <div class:list={["relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
+                    compact
+                      ? (crumbs ? "pt-12 pb-16 sm:pt-14 sm:pb-20" : "py-16 sm:py-20")
+                      : (crumbs ? "pt-16 pb-24 sm:pt-24 sm:pb-32" : "py-24 sm:py-32")]}>
     <div class="max-w-3xl">
+      {crumbs && <Breadcrumbs items={crumbs} inHero />}
       {/* Green on the contour heroes, white wherever a photograph is behind it.
           The palette note is explicit that #38E33A is a 1.7:1 accent and never
           text that has to be read on a light ground, and a photograph is an

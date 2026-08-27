@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -92,12 +91,12 @@ const sections = [
   description="How SMS AXEDO and SMS ROMOLD polypropylene maintenance structures serve water utilities and civil contractors across Australia."
   canonicalPath="/applications/"
 >
-  <Breadcrumbs items={[{ label: 'Applications', href: '/applications/' }]} />
   <Hero
     title="Built for utilities and contractors"
     subtitle="Utilities and contractors buy these for different reasons. Here are both cases, and which size fits what."
     image={applicationsImage}
     imageAlt="Looking up through an installed SMS maintenance structure and access ladder to street level"
+    crumbs={[{ label: 'Applications', href: '/applications/' }]}
   />
 
   <nav aria-label="Jump to section" class="border-b border-sms-charcoal-100 bg-sms-charcoal-50">

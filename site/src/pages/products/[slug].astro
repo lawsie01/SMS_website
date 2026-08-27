@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import SpecTable from '../../components/SpecTable.astro';
@@ -69,7 +68,6 @@ const assemblySizes =
   description={data.seoDescription ?? data.shortDescription}
   canonicalPath={path}
 >
-  <Breadcrumbs items={[{ label: 'Products', href: '/products/' }, { label: data.title, href: path }]} />
 
   <Hero
     eyebrow={`${data.brand}${data.dnSize ? ` · ${data.dnSize}` : ''}`}
@@ -79,6 +77,7 @@ const assemblySizes =
     imageAlt={data.heroImageAlt}
     primaryCta={{ label: 'Request pricing', href: `/contact/?product=${product.id}` }}
     compact
+    crumbs={[{ label: 'Products', href: '/products/' }, { label: data.title, href: path }]}
   />
 
   <SchemaProduct

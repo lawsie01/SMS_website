@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -83,11 +82,11 @@ const faqs = [
   description="SMS polypropylene sewer maintenance structures are appraised under WSAA PA 1317 to WSA 137:2019, with access covers rated to Class D maximum to AS 3996 and construction to EN 13598-2."
   canonicalPath="/approvals/"
 >
-  <Breadcrumbs items={[{ label: 'Approvals', href: '/approvals/' }]} />
   <Hero
     title="WSAA Appraised"
     subtitle="Every claim here is tied to a named standard or appraisal. Certificates are in the Technical Resources hub."
     compact
+    crumbs={[{ label: 'Approvals', href: '/approvals/' }]}
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">

@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -33,12 +32,12 @@ const facts = [
   description="SMS has specialised in sewer maintenance shafts, chambers and holes since 2003. Part of the Clover group, with a complete range held as stock and in-house technical support."
   canonicalPath="/about/"
 >
-  <Breadcrumbs items={[{ label: 'About', href: '/about/' }]} />
   <Hero
     title="One appraised range, from reticulation shafts to person-entry trunk sewer access"
     subtitle="Since 2003 we've supplied one thing: the shafts, chambers and maintenance holes that give a sewer network its access points. Appraised to WSA 137:2019, held as stock, part of the Clover group."
     image={heroImage}
     imageAlt="SMS technician hand-installing a polypropylene maintenance structure base into a sewer trench"
+    crumbs={[{ label: 'About', href: '/about/' }]}
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">

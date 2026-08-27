@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 
@@ -28,11 +27,11 @@ const assetToParam = (label: string) =>
   description="Download SMS product brochures and the WSAA PA 1317 appraisal certificate directly, or request CAD/BIM models and full engineering drawings for an active project."
   canonicalPath="/technical-resources/"
 >
-  <Breadcrumbs items={[{ label: 'Technical Resources', href: '/technical-resources/' }]} />
   <Hero
     title="Brochures, drawings, CAD/BIM and approvals in one place"
     subtitle="Brochures and the current WSAA appraisal certificate download straight from here. CAD/BIM models and full engineering drawings are commercial-in-confidence, so those go out on request."
     compact
+    crumbs={[{ label: 'Technical Resources', href: '/technical-resources/' }]}
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">

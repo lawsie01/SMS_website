@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Hero from '../../components/Hero.astro';
 import AtAGlance from '../../components/AtAGlance.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
@@ -93,13 +92,13 @@ const faqs = [
   description="Compare polypropylene and concrete sewer maintenance structures on corrosion resistance, weight, install time, infiltration performance, load rating and standards compliance."
   canonicalPath="/why-plastic-vs-concrete/"
 >
-  <Breadcrumbs items={[{ label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' }]} />
   <Hero
     eyebrow="Comparison"
     title="Plastic vs concrete sewer maintenance structures"
     subtitle="Concrete sewer structures fail from the inside out. Sewer gas doesn't touch polypropylene. Here's the comparison, factor by factor."
     image={installImage}
     imageAlt="Row of SMS polypropylene maintenance structures installed along a sewer trench"
+    crumbs={[{ label: 'Why Plastic vs Concrete', href: '/why-plastic-vs-concrete/' }]}
   />
 
   <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 space-y-16">
