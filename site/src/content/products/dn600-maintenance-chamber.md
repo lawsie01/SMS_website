@@ -13,7 +13,7 @@ overview: >-
   and features a ductile iron access cover. The chamber provides effective surface
   access for cleaning and inspection equipment while preventing entry by persons.
 productImage: "../../assets/images/product-dn600-chamber-clover.jpg"
-productImageAlt: "SMS AXEDO DN600 polypropylene maintenance chamber with corrugated riser and access cover"
+productImageAlt: "SMS AXEDO DN600 maintenance chamber assembly: polypropylene base, corrugated polyethylene riser, Top Hat access cover and connected inlet and outlet pipes"
 productImageBackground: "light"
 heroImage: "../../assets/images/install-trench-row.jpg"
 heroImageAlt: "Row of polypropylene maintenance structures installed along a sewer trench"

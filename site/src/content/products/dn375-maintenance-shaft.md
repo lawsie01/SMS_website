@@ -13,7 +13,7 @@ overview: >-
   and/or ductile iron access cover. The maintenance shaft provides effective surface
   access for cleaning and inspection equipment while preventing entry by persons.
 productImage: "../../assets/images/product-dn375-shaft-clover.jpg"
-productImageAlt: "SMS AXEDO DN375 polypropylene maintenance shaft assembly showing base, riser and access cap"
+productImageAlt: "SMS AXEDO DN375 maintenance shaft assembly: polypropylene base, PVC riser, Top Hat access cover and connected inlet and outlet pipes"
 productImageBackground: "light"
 heroImage: "../../assets/images/hero-install-chamber.jpg"
 heroImageAlt: "SMS technician hand-installing a polypropylene maintenance structure base into a trench"

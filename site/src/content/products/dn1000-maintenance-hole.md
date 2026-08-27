@@ -15,7 +15,7 @@ overview: >-
   by persons.
 productImage: "../../assets/images/product-dn1000-hole-clover.jpg"
 productImageBackground: "light"
-productImageAlt: "SMS ROMOLD DN1000 polypropylene maintenance hole assembly with base, riser, cone and side inlets"
+productImageAlt: "SMS ROMOLD DN1000 maintenance hole assembly: polypropylene base, corrugated riser, cone reducer, Top Hat access cover and connected inlet and outlet pipes"
 productImageDetail: "../../assets/images/dn1000-assembly-ladder-cutaway.jpg"
 productImageDetailAlt: "SMS ROMOLD DN1000 maintenance hole assembly with a cutaway section revealing the fixed ladder inside"
 productImageDetailBackground: "white"
