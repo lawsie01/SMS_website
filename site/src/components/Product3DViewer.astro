@@ -96,9 +96,6 @@ const modelUrl = MODEL_URLS[product];
       </div>
     </div>
 
-    <p class="mt-2 text-xs text-sms-charcoal-400">
-      Drag to rotate, scroll to zoom.
-    </p>
 </div>
 
 {/* The expanded view is a panel over the page, not a browser takeover. A
@@ -144,10 +141,6 @@ const modelUrl = MODEL_URLS[product];
     aspect-ratio: auto;
     border: 0;
     border-radius: 0;
-  }
-  /* The caption under the module is page furniture, not part of the model. */
-  .viewer-dialog .viewer-shell > p {
-    display: none;
   }
   .expand-close {
     display: none;
@@ -422,6 +415,15 @@ const modelUrl = MODEL_URLS[product];
     // so rotation is driven directly. Both the buttons and the arrow keys call
     // the same three functions, which keeps the two paths identical rather
     // than approximately similar.
+    // Raises the model within the box so it reads centred in the area the
+    // control bar leaves visible, rather than centred in the box behind it.
+    // The bar is 46px of a 374px box, so framing to the box put the model 28px
+    // low. Calibrated rather than guessed: 0.15 of a radius moved it 23px, so
+    // 28px is 0.183. In radii rather than pixels because the camera distance
+    // is set in radii too, which keeps the shift the same across all three
+    // models regardless of how big each one is.
+    const MODEL_LIFT = 0.183;
+
     const ORBIT_STEP = Math.PI / 18; // 10 degrees
     const ZOOM_STEP = 1.15;
 
@@ -535,7 +537,8 @@ const modelUrl = MODEL_URLS[product];
       camera.near = Math.max(distance / 100, 0.01);
       camera.far = distance * 20;
       camera.updateProjectionMatrix();
-      controls.target.set(0, sphere.radius * 0.08, 0);
+      controls.target.set(0, 0, 0);
+      object.position.y += sphere.radius * MODEL_LIFT;
       controls.minDistance = sphere.radius * 1.1;
       controls.maxDistance = sphere.radius * 6;
       controls.update();
