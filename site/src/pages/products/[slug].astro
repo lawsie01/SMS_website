@@ -91,13 +91,94 @@ const assemblySizes =
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
     <div class="grid lg:grid-cols-3 gap-12">
+      {/* The sidebar leads in the DOM so that on one column, where the visual
+          order is unambiguous, it matches: the model and the summary come
+          first and the specification follows. It used to sit last, which put
+          the product's own image about 9,800px down an 11,300px page on a
+          tablet, below even the FAQ. At lg the two sit side by side and order
+          puts the specification back on the left. Reordering with the order
+          property rather than moving the markup would have left tab order
+          following the source on one column, which is the case where a
+          mismatch actually misleads. */}
+      <aside class="space-y-8 lg:order-2">
+        {/* The model is the product image on any page that has one: it shows
+            the same thing the render did and turns to answer a question the
+            photograph could not. The still is the fallback where there is no
+            model to load. */}
+        {viewerKey ? (
+          <Product3DViewer product={viewerKey} title={data.title} />
+        ) : sidebarImage && (
+          data.productImageBackground === 'dark' ? (
+            <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-900", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
+              <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+            </div>
+          ) : (
+            <div class="sms-bracketed">
+              <div class:list={["sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center", sidebarBgClass, data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
+                <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
+              </div>
+            </div>
+          )
+        )}
+
+        <div class="prose prose-sm max-w-none text-sms-charcoal-500">
+          <Content />
+        </div>
+
+        {data.countryOfManufacture && (
+          <div class="border-t border-sms-charcoal-100 pt-5">
+            <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
+            <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
+            {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
+          </div>
+        )}
+
+        {data.downloads.length > 0 && (
+          <div class="border-t border-sms-charcoal-100 pt-5">
+            <h2 class="font-bold text-sms-charcoal-900 mb-4">Downloads</h2>
+            <ul class="space-y-3">
+              {data.downloads.map((d) => (
+                <li>
+                  {d.restricted ? (
+                    <span class="text-sm text-sms-charcoal-400">
+                      {d.label}: <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="sms-link font-medium">request access</a>
+                    </span>
+                  ) : d.file ? (
+                    <a href={d.file} class="text-sm sms-link font-medium" download>
+                      {d.label} ({d.fileType})
+                    </a>
+                  ) : (
+                    <span class="text-sm text-sms-charcoal-400">
+                      {d.label} ({d.fileType}): coming soon
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
+          <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
+          <p class="text-sm text-sms-charcoal-500 mb-4">
+            Let us know which products you need and we'll confirm configuration, lead time and price.
+          </p>
+          <a
+            href={`/contact/?product=${product.id}`}
+            class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
+          >
+            Request pricing &rarr;
+          </a>
+        </div>
+      </aside>
+
       {/* min-w-0: a grid item's default min-width is auto (= its content's
           intrinsic width), which lets a wide descendant (e.g. the config
           diagram below, or the spec table) inflate this whole column and
           push the page into horizontal scroll even though that descendant
           has its own overflow-x-auto. min-w-0 lets the column shrink to
           the track's actual size so the internal scroll takes over instead. */}
-      <div class="lg:col-span-2 space-y-16 min-w-0">
+      <div class="lg:col-span-2 space-y-16 min-w-0 lg:order-1">
         {/* The overview and the stats are one opening unit, so they share a
             single slot in the column's space-y and set their own interval.
             A negative margin on the paragraph does not work here: the
@@ -287,78 +368,6 @@ const assemblySizes =
 
         {data.faqs.length > 0 && <FaqAccordion items={data.faqs} />}
       </div>
-
-      <aside class="space-y-8">
-        {/* The model is the product image on any page that has one: it shows
-            the same thing the render did and turns to answer a question the
-            photograph could not. The still is the fallback where there is no
-            model to load. */}
-        {viewerKey ? (
-          <Product3DViewer product={viewerKey} title={data.title} />
-        ) : sidebarImage && (
-          data.productImageBackground === 'dark' ? (
-            <div class:list={["rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center bg-sms-charcoal-900", data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
-              <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
-            </div>
-          ) : (
-            <div class="sms-bracketed">
-              <div class:list={["sms-bracketed__inner rounded-xl border border-sms-charcoal-100 p-6 flex items-center justify-center", sidebarBgClass, data.productImageDetail ? "aspect-3/4" : "aspect-square"]}>
-                <Image src={sidebarImage} alt={sidebarImageAlt ?? ''} class="max-h-full w-full object-contain" widths={[320, 480]} sizes="320px" />
-              </div>
-            </div>
-          )
-        )}
-
-        <div class="prose prose-sm max-w-none text-sms-charcoal-500">
-          <Content />
-        </div>
-
-        {data.countryOfManufacture && (
-          <div class="border-t border-sms-charcoal-100 pt-5">
-            <h2 class="font-bold text-sms-charcoal-900 mb-2">Manufacture</h2>
-            <p class="text-sm text-sms-charcoal-500">{data.countryOfManufacture}</p>
-            {data.manufacturerNote && <p class="text-xs text-sms-charcoal-400 mt-2">{data.manufacturerNote}</p>}
-          </div>
-        )}
-
-        {data.downloads.length > 0 && (
-          <div class="border-t border-sms-charcoal-100 pt-5">
-            <h2 class="font-bold text-sms-charcoal-900 mb-4">Downloads</h2>
-            <ul class="space-y-3">
-              {data.downloads.map((d) => (
-                <li>
-                  {d.restricted ? (
-                    <span class="text-sm text-sms-charcoal-400">
-                      {d.label}: <a href={`/technical-resources/request-access/?product=${product.id}&asset=${encodeURIComponent(d.label.toLowerCase().includes('drawing') ? 'Full engineering drawings (PDF)' : 'CAD/BIM model (DWG/RVT/IFC)')}`} class="sms-link font-medium">request access</a>
-                    </span>
-                  ) : d.file ? (
-                    <a href={d.file} class="text-sm sms-link font-medium" download>
-                      {d.label} ({d.fileType})
-                    </a>
-                  ) : (
-                    <span class="text-sm text-sms-charcoal-400">
-                      {d.label} ({d.fileType}): coming soon
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div class="rounded-xl border border-sms-green-300 bg-sms-charcoal-50 p-6">
-          <h2 class="font-bold text-sms-charcoal-900 mb-2">Interested in the {data.title}?</h2>
-          <p class="text-sm text-sms-charcoal-500 mb-4">
-            Let us know which products you need and we'll confirm configuration, lead time and price.
-          </p>
-          <a
-            href={`/contact/?product=${product.id}`}
-            class="sms-press inline-flex items-center rounded-md bg-sms-charcoal-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sms-charcoal-700 transition-colors"
-          >
-            Request pricing &rarr;
-          </a>
-        </div>
-      </aside>
     </div>
   </div>
 
