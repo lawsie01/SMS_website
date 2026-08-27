@@ -66,7 +66,15 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
   )}
   <div class:list={["relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", compact ? "py-16 sm:py-20" : "py-24 sm:py-32"]}>
     <div class="max-w-3xl">
-      {eyebrow && <p class="text-sms-green-400 font-semibold tracking-wide uppercase text-sm mb-3">{eyebrow}</p>}
+      {/* Green on the contour heroes, white wherever a photograph is behind it.
+          The palette note is explicit that #38E33A is a 1.7:1 accent and never
+          text that has to be read on a light ground, and a photograph is an
+          unknown ground: on the DN1000 channel shot the eyebrow landed on white
+          benching and measured 3.08:1 against the 4.5:1 it needs. The heading
+          and body are already white for the same reason. */}
+      {eyebrow && (
+        <p class:list={["font-semibold tracking-wide uppercase text-sm mb-3", image ? "text-white" : "text-sms-green-400"]}>{eyebrow}</p>
+      )}
       <h1 class:list={["font-bold tracking-tight", compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-6xl"]}>
         <slot name="title">{title}</slot>
       </h1>
