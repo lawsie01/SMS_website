@@ -48,50 +48,49 @@ const modelUrl = MODEL_URLS[product];
           paints a translucent white so the icons keep their contrast wherever
           the model happens to sit behind them, and it is pinned to the foot so
           it does not move when the box changes size. */}
-      <div class="viewer-controls absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center gap-1.5 bg-white/75 backdrop-blur-sm border-t border-sms-charcoal-100 px-2 py-2" role="group" aria-label="Model controls">
-        <button type="button" data-viewer-act="left" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate left">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="viewer-controls absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center gap-1 bg-render-bg/90 backdrop-blur-sm px-2 py-1.5" role="group" aria-label="Model controls">
+        <button type="button" data-viewer-act="left" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Rotate left">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
-        <button type="button" data-viewer-act="right" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Rotate right">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <button type="button" data-viewer-act="right" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Rotate right">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
-        <button type="button" data-viewer-act="up" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt up">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M4.5 12.5 10 7l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <button type="button" data-viewer-act="up" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Tilt up">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4.5 12.5 10 7l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
-        <button type="button" data-viewer-act="down" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Tilt down">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M4.5 7.5 10 13l5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <button type="button" data-viewer-act="down" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Tilt down">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4.5 7.5 10 13l5.5-5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
-        <span class="w-px h-5 bg-sms-charcoal-200" aria-hidden="true"></span>
-        <button type="button" data-viewer-act="in" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom in">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <button type="button" data-viewer-act="in" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Zoom in">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         </button>
-        <button type="button" data-viewer-act="out" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Zoom out">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <button type="button" data-viewer-act="out" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Zoom out">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 10h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         </button>
-        <button type="button" data-viewer-act="reset" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Reset view">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M4 10a6 6 0 1 0 1.8-4.3M4 4v3h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <button type="button" data-viewer-act="reset" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Reset view">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 10a6 6 0 1 0 1.8-4.3M4 4v3h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
         {/* The expanded view is opt-in. Fullscreen is on the shell, not the
           canvas box, so the controls come with it and the model can still be
           driven once expanded. */}
-        <button type="button" data-viewer-act="expand" aria-pressed="false" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md border border-sms-charcoal-200 bg-white px-2.5 py-1.5 text-sms-charcoal-700 hover:border-sms-charcoal-400 hover:text-sms-charcoal-900 transition-colors" aria-label="Expand the model">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path class="expand-open" d="M8 3H3v5M12 17h5v-5M17 8V3h-5M3 12v5h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path class="expand-close" d="M3 8h5V3M17 12h-5v5M12 3v5h5M8 17v-5H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <button type="button" data-viewer-act="expand" aria-pressed="false" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Expand the model">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path class="expand-open" d="M8 3H3v5M12 17h5v-5M17 8V3h-5M3 12v5h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="expand-close" d="M3 8h5V3M17 12h-5v5M12 3v5h5M8 17v-5H3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </button>
       </div>
