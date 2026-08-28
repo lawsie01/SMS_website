@@ -246,6 +246,12 @@ componentPhotos:
   - image: "../../assets/images/dn1000-riser-component.jpg"
     alt: "SMS ROMOLD DN1000 riser section with a fixed ladder section mounted inside it"
     caption: "MH Riser, with a fixed ladder section installed."
+  - image: "../../assets/images/dn1000-seal-1000-component.jpg"
+    alt: "Placeholder tile for the DN1000 element seal, still to be supplied"
+    caption: "Element seal, base, riser and cone joints (MHG1000). Image to come."
+  - image: "../../assets/images/dn1000-seal-0625-component.jpg"
+    alt: "Placeholder tile for the DN625 element seal, still to be supplied"
+    caption: "Element seal, cone to access cover (MHG0625). Image to come."
 configurations:
   - code: "MCCVR"
     ref: 1
