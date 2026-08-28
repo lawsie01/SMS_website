@@ -546,21 +546,14 @@ const modelUrl = MODEL_URLS[product];
       homeTarget.copy(controls.target);
     }
 
-    // The three exports come out of gltfpack with low authored roughness
-    // (0.21) and, on most materials, no metallicFactor at all — which per the
-    // glTF spec means fully metallic. The low roughness is what produced the
-    // hard green glint off the rim light.
-    //
-    // Clamping metalness down as well as roughness up was the obvious
-    // reading, and it was wrong: on a metal the base color is reflectance,
-    // not diffuse albedo, so reinterpreting it as a dielectric washes every
-    // part out. Measured against Clover's own product photography, the body
-    // came out 33 to 46 luminance points too light on all three models.
-    // Raising roughness alone and leaving the authored metalness where it is
-    // lands within 5 points of the photographs, so that is what this does.
-    // The pipe stub material (mat_4/mat_4.001 in all three files) still needs
-    // its own color, because the chamber's copy omits base color entirely and
-    // would otherwise default to white.
+    // The MS/MC/MH exports author their materials properly: every one carries
+    // an explicit metallicFactor (0 for the plastics, 1 for the cover
+    // fixings) and its own roughness. What they do not survive is this
+    // viewer's rim light. The glossy materials sit at 0.15 to 0.25 roughness,
+    // and at that value the green key throws a hard specular line down every
+    // corrugation — rendered side by side, both the authored values and a
+    // 0.45 floor glint, and only 0.78 does not. Nothing else is touched, so
+    // the colours are the ones the CAD file was built with.
     function normalizeMaterials(root: THREE.Object3D) {
       root.traverse((node) => {
         if (!(node instanceof THREE.Mesh)) return;
@@ -568,11 +561,6 @@ const modelUrl = MODEL_URLS[product];
         for (const material of materials) {
           if (!(material instanceof THREE.MeshStandardMaterial)) continue;
           material.roughness = Math.max(material.roughness, 0.78);
-          if (material.name.startsWith('mat_4')) {
-            material.color.set(0xc7c5bf);
-            material.metalness = 0.05;
-            material.roughness = 0.55;
-          }
         }
       });
     }
