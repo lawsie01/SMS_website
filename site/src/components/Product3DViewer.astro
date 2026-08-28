@@ -98,58 +98,65 @@ const modelUrl = MODEL_URLS[product];
 
 </div>
 
-{/* The expanded view is a panel over the page, not a browser takeover. A
-    dialog gets Escape, the backdrop and the focus trap without any of it being
-    hand-rolled, and the box it opens into is deliberately smaller than the
-    viewport so the page it belongs to stays visible around the edges. */}
-<dialog class="viewer-dialog" aria-label={`${title} model, expanded`}></dialog>
+{/* The expanded view is the same overlay EnquiryModal uses: a fixed sheet, a
+    charcoal backdrop, a centred white card with a titled header and a close
+    control. It was a <dialog> before, which put the whole layout at the mercy
+    of the UA modal stylesheet and of one scoped rule surviving; a card built
+    from the same utilities as the enquiry panel does not depend on either, and
+    the two overlays on the site now open the same way. */}
+<div
+  class="viewer-modal fixed inset-0 z-50 overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+  aria-label={`${title} model, expanded`}
+  hidden
+  data-closed
+>
+  <div class="viewer-modal-backdrop fixed inset-0 bg-sms-charcoal-900/50"></div>
+  {/* The centring wrapper is deliberately unpositioned and the card is the
+      one that is relative, matching EnquiryModal. Position the wrapper and it
+      paints above the fixed backdrop, swallowing every click meant for it. */}
+  <div class="flex min-h-full items-center justify-center p-4 sm:p-6">
+    <div class="viewer-modal-card relative w-full max-w-4xl rounded-xl bg-white shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between gap-4 border-b border-sms-charcoal-100 px-5 py-4">
+        <h2 class="text-lg font-bold text-sms-charcoal-900">{title}</h2>
+        <button
+          type="button"
+          data-viewer-act="collapse"
+          aria-label="Close"
+          class="sms-press shrink-0 -m-1 p-1 rounded-md text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-50"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      {/* The square ratio that suits the sidebar is dropped here. The body
+          takes a share of the viewport and the model reframes into it. */}
+      <div class="viewer-modal-body h-[min(68vh,620px)]"></div>
+    </div>
+  </div>
+</div>
 
 <style>
-  /* Roughly two thirds of the viewport, capped so it does not become silly on
-     a wide monitor, and floored so it is still usable on a phone. The square
-     ratio that suits the sidebar is dropped here: the box takes the panel's
-     height and the model reframes into whatever shape that is. */
-  .viewer-dialog {
-    /* Tailwind's preflight sets margin: 0 on everything, which removes the
-       margin: auto the UA stylesheet uses to centre a modal dialog. Without
-       this the panel opens pinned to the top left corner. */
-    margin: auto;
-    width: min(68vw, 1000px);
-    height: min(72vh, 760px);
-    max-width: calc(100vw - 2rem);
-    max-height: calc(100vh - 2rem);
-    padding: 0;
-    border: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--color-render-bg);
+  /* Same reveal as EnquiryModal, which takes it in turn from Header's
+     disclosures. Layout deliberately lives in the utility classes on the
+     markup instead: this block is a scoped per-page <style>, and losing it
+     should cost the animation, not the position of the panel. */
+  .viewer-modal-card {
+    transition: opacity 160ms ease-out, transform 160ms ease-out;
   }
-  @media (max-width: 640px) {
-    .viewer-dialog {
-      width: calc(100vw - 1.5rem);
-      height: 70vh;
+  .viewer-modal[data-closed] .viewer-modal-card {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .viewer-modal-card {
+      transition: none;
     }
-  }
-  .viewer-dialog::backdrop {
-    background: rgb(31 25 37 / 0.55);
-  }
-  .viewer-dialog .viewer-shell,
-  .viewer-dialog .product-3d-viewer {
-    height: 100%;
-  }
-  .viewer-dialog .product-3d-viewer {
-    aspect-ratio: auto;
-    border: 0;
-    border-radius: 0;
   }
   .expand-close {
     display: none;
-  }
-  .viewer-dialog .expand-open {
-    display: none;
-  }
-  .viewer-dialog .expand-close {
-    display: inline;
   }
 </style>
 
@@ -462,50 +469,117 @@ const modelUrl = MODEL_URLS[product];
       in: () => zoom(1 / ZOOM_STEP),
       out: () => zoom(ZOOM_STEP),
       reset: resetView,
-      expand: toggleFullscreen,
+      expand: openExpanded,
+      collapse: closeExpanded,
     };
 
-    // The shell carries the canvas and the controls, so expanding it keeps the
-    // model drivable at full size. The ResizeObserver below already re-fits the
-    // renderer, so nothing here has to touch the camera.
+    // The shell carries the canvas and the controls, so moving the whole thing
+    // into the panel keeps the model drivable at full size. It is moved, not
+    // cloned: a WebGL canvas survives being reparented, and a clone would not
+    // carry the context. The ResizeObserver below re-fits the renderer, so
+    // nothing here has to touch the camera.
     const shell = container.closest<HTMLElement>('.viewer-shell');
     const expandBtn = shell?.querySelector<HTMLButtonElement>('[data-viewer-act="expand"]');
-
-    // The shell moves into the dialog and back out again rather than being
-    // cloned: a WebGL canvas survives being reparented, and cloning it would
-    // not carry the context. Escape, the backdrop and the focus trap come from
-    // <dialog> itself, so none of that is hand-rolled here. The dialog's own
-    // close event is the single source of truth for the button's state,
-    // whichever way it was shut.
-    const dialog = shell?.parentElement?.querySelector<HTMLDialogElement>('.viewer-dialog')
-      ?? document.querySelector<HTMLDialogElement>('.viewer-dialog');
+    const modal = shell?.parentElement?.querySelector<HTMLElement>('.viewer-modal')
+      ?? document.querySelector<HTMLElement>('.viewer-modal');
+    // The panel is authored beside the viewer so the two stay together in the
+    // source, but it has to sit at the end of <body> to paint over the sticky
+    // header. Left where it is, it inherits the stacking context of the
+    // product column and the backdrop stops at the top of the page content.
+    // EnquiryModal is a direct child of the layout and never has this problem.
+    if (modal) document.body.appendChild(modal);
+    const modalBody = modal?.querySelector<HTMLElement>('.viewer-modal-body') ?? null;
+    const modalCard = modal?.querySelector<HTMLElement>('.viewer-modal-card') ?? null;
+    const backdrop = modal?.querySelector<HTMLElement>('.viewer-modal-backdrop') ?? null;
+    const closeBtn = modal?.querySelector<HTMLButtonElement>('[data-viewer-act="collapse"]') ?? null;
     const homeParent = shell?.parentElement ?? null;
     const homeNext = shell?.nextElementSibling ?? null;
+    let lastFocused: HTMLElement | null = null;
+    let scrollLock: [string, string] = ['', ''];
 
-    function syncExpandLabel(open: boolean): void {
-      expandBtn?.setAttribute('aria-pressed', String(open));
-      expandBtn?.setAttribute('aria-label', open ? 'Close the expanded view' : 'Expand the model');
+    // In the sidebar the viewer is a square card. In the panel it fills a body
+    // of a set height instead. Both overrides are inline rather than a class,
+    // because inline styles cannot be lost to a stylesheet that did not load.
+    function fillPanel(on: boolean): void {
+      if (shell) shell.style.height = on ? '100%' : '';
+      container.style.aspectRatio = on ? 'auto' : '';
+      container.style.height = on ? '100%' : '';
+      container.style.borderWidth = on ? '0' : '';
+      container.style.borderRadius = on ? '0' : '';
+      const open = shell?.querySelector<HTMLElement>('.expand-open');
+      const close = shell?.querySelector<HTMLElement>('.expand-close');
+      if (open) open.style.display = on ? 'none' : '';
+      if (close) close.style.display = on ? 'inline' : '';
+      expandBtn?.setAttribute('aria-pressed', String(on));
+      expandBtn?.setAttribute('aria-label', on ? 'Close the expanded view' : 'Expand the model');
     }
 
-    function toggleFullscreen(): void {
-      if (!shell || !dialog) return;
-      if (dialog.open) { dialog.close(); return; }
-      dialog.appendChild(shell);
-      dialog.showModal();
-      syncExpandLabel(true);
+    function isExpanded(): boolean {
+      return !!modal && !modal.hasAttribute('hidden');
+    }
+
+    function openExpanded(): void {
+      if (!shell || !modal || !modalBody) return;
+      if (isExpanded()) { closeExpanded(); return; }
+      lastFocused = document.activeElement as HTMLElement | null;
+      // Taking the shell out of the sidebar would collapse the column and
+      // reflow the page behind the backdrop, so the slot holds its height
+      // until the shell comes back to it.
+      if (homeParent) homeParent.style.minHeight = `${homeParent.offsetHeight}px`;
+      modalBody.appendChild(shell);
+      fillPanel(true);
+      modal.removeAttribute('hidden');
+      requestAnimationFrame(() => modal.removeAttribute('data-closed'));
+      // <dialog> held the page still and kept Tab inside the panel. Neither
+      // comes free from a plain overlay, so both are restored by hand. Taking
+      // the scrollbar away widens the page and jogs the header sideways, so
+      // its width goes back on as padding for as long as the panel is open.
+      const bar = window.innerWidth - document.documentElement.clientWidth;
+      scrollLock = [document.body.style.overflow, document.body.style.paddingRight];
+      document.body.style.overflow = 'hidden';
+      if (bar > 0) document.body.style.paddingRight = `${bar}px`;
       container.focus();
     }
 
-    dialog?.addEventListener('close', () => {
-      if (shell && homeParent) homeParent.insertBefore(shell, homeNext);
-      syncExpandLabel(false);
-      expandBtn?.focus();
+    function closeExpanded(): void {
+      if (!shell || !modal || !isExpanded()) return;
+      modal.setAttribute('data-closed', '');
+      [document.body.style.overflow, document.body.style.paddingRight] = scrollLock;
+      const finish = () => {
+        modal.setAttribute('hidden', '');
+        fillPanel(false);
+        homeParent?.insertBefore(shell, homeNext);
+        if (homeParent) homeParent.style.minHeight = '';
+        (lastFocused ?? expandBtn)?.focus();
+      };
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish();
+      else modalCard?.addEventListener('transitionend', finish, { once: true });
+    }
+
+    // A panel that cannot open is worse than no button at all.
+    if (!modal || !modalBody) expandBtn?.remove();
+
+    backdrop?.addEventListener('click', closeExpanded);
+    closeBtn?.addEventListener('click', closeExpanded);
+    // <dialog> gave Escape for free; this does not, so it is wired here. The
+    // listener is on the document because focus sits on the canvas, which
+    // claims the arrow keys and nothing else.
+    document.addEventListener('keydown', (e) => {
+      if (!isExpanded() || !modal) return;
+      if (e.key === 'Escape') { closeExpanded(); return; }
+      if (e.key !== 'Tab') return;
+      const stops = [...modal.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      )].filter((el) => !el.hasAttribute('disabled'));
+      if (!stops.length) return;
+      const first = stops[0];
+      const last = stops[stops.length - 1];
+      const here = document.activeElement;
+      if (!e.shiftKey && (here === last || !modal.contains(here))) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && (here === first || !modal.contains(here))) { e.preventDefault(); last.focus(); }
     });
 
-    // A dialog that cannot open is worse than no button at all.
-    if (!dialog || typeof dialog.showModal !== 'function') expandBtn?.remove();
-
-    container.parentElement?.querySelectorAll<HTMLButtonElement>('[data-viewer-act]').forEach((btn) => {
+    shell?.querySelectorAll<HTMLButtonElement>('[data-viewer-act]').forEach((btn) => {
       btn.addEventListener('click', () => ACTIONS[btn.dataset.viewerAct!]?.());
     });
 
