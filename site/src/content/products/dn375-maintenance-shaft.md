@@ -47,6 +47,8 @@ specSections:
         value: "DN375, DN300, DN225"
       - label: "Jointing"
         value: "Rubber ring joint (RRJ) sockets to connecting pipework"
+      - label: "Inlet/outlet sizes"
+        value: "DN150, DN225"
       - label: "Base socket tolerance"
         value: "±2° horizontal angle and ±2° gradient (simultaneous changes reduce the maximum achievable value)"
   - heading: "Chemical & structural performance"
@@ -107,11 +109,14 @@ assemblyRenders:
       - { n: 9, x: 46.6, y: 72.2 }
       - { n: 8, x: 43.4, y: 81.9 }
       - { n: 10, x: 10.6, y: 89.0 }
-assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a lateral connection, which is optional: it is not part of the base, and DN100 or DN150 laterals are drilled in on site with a hole saw and rubber collar kit."
+assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a Drop Tee, which is optional. It is a branch fitting on the riser, not part of the base."
 componentPhotos:
   - image: "../../assets/images/dn375-base-component.jpg"
     alt: "SMS AXEDO DN375 shaft base, showing the moulded channel and the inlet and outlet sockets"
-    caption: "Base (MS8 / MS9 / MS14)."
+    caption: "Base, RRJ 180° Straight (MS8 / MS14)."
+  - image: "../../assets/images/dn375-base-4way-component.jpg"
+    alt: "Placeholder tile for the MS9 four-way junction base, still to be supplied"
+    caption: "Base, RRJ Junction, 4-way (MS9). Image to come."
   - image: "../../assets/images/dn375-riser-component.jpg"
     alt: "Plain-ended DN375 polypropylene riser section"
     caption: "Riser, DN375, DN300 or DN225."
@@ -184,8 +189,8 @@ configurations:
     configuration: "Base, RRJ 180° Straight"
     size: "DN225"
   - ref: 11
-    configuration: "Lateral connection"
-    notes: "Optional; DN100 or DN150, drilled in on site"
+    configuration: "Drop Tee"
+    notes: "Optional"
 installationSections:
   - heading: "Installation depth"
     body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required, cut on the corrugation/rib line and deburred."
