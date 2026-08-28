@@ -237,12 +237,15 @@ componentPhotos:
   - image: "../../assets/images/dn1000-lateral-component.jpg"
     alt: "Lateral connection parts: a straight connector and the rubber collar it seats in"
     caption: "Lateral connection: straight connector and rubber collar."
+  - image: "../../assets/images/dn1000-base-component.jpg"
+    alt: "SMS ROMOLD DN1000 base cut away, showing the moulded anti-slip floor and the inlet sockets"
+    caption: "MH Base, showing the moulded anti-slip floor."
   - image: "../../assets/images/dn1000-cone-component.jpg"
     alt: "SMS ROMOLD DN1000 cone, reducing from the 1000mm base to the 600mm access cover"
     caption: "MH Cone (MHRC600)."
   - image: "../../assets/images/dn1000-riser-component.jpg"
-    alt: "SMS ROMOLD DN1000 riser section"
-    caption: "MH Riser, 250mm height shown."
+    alt: "SMS ROMOLD DN1000 riser section with a fixed ladder section mounted inside it"
+    caption: "MH Riser, with a fixed ladder section installed."
 configurations:
   - code: "MCCVR"
     ref: 1
