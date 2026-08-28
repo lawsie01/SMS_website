@@ -50,17 +50,24 @@ const sidebarBgClass = sidebarBackground === 'white' ? 'bg-white' : 'bg-render-b
 // One gallery of real photographs, base configurations first then individual
 // components, rendered above the assembly drawings.
 const photos = [...data.configPhotos, ...data.componentPhotos];
-// Two assembly drawings across at every size above mobile. Three across fits
-// the DN375's three riser options on one row, but at this column width that
-// leaves each drawing about 170px wide, too small to read the numbered parts.
-// Two across nearly doubles it and costs a wrapped third tile. Written out in
-// full because Tailwind scans for whole class names and will not generate one
-// assembled from a variable.
-const assemblyCols = data.assemblyRenders.length > 1 ? 'sm:grid-cols-2' : 'max-w-sm';
+// The column count follows the number of drawings so the set never wraps: the
+// DN375's three riser options sit on one row. Three across is tight, so the
+// three-up case tightens the gap and the callout gutter to buy the drawings
+// back about 30px each. The gutter cannot go below 3rem, which is where the
+// numbered badge sits. Every class is written out in full because Tailwind
+// scans for whole class names and will not generate one built from a variable.
+const assemblyCount = data.assemblyRenders.length;
+const assemblyTight = assemblyCount > 2;
+const assemblyCols =
+  assemblyCount > 2 ? 'sm:grid-cols-3' : assemblyCount > 1 ? 'sm:grid-cols-2' : 'max-w-sm';
+const assemblyGap = assemblyTight ? 'gap-4' : 'gap-5';
+const assemblyPad = assemblyTight ? 'py-4 pl-12 pr-4' : 'py-5 pl-16 pr-6';
 const assemblySizes =
-  data.assemblyRenders.length > 1
-    ? '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw'
-    : '(min-width: 640px) 320px, 90vw';
+  assemblyTight
+    ? '(min-width: 1024px) 260px, (min-width: 640px) 30vw, 90vw'
+    : assemblyCount > 1
+      ? '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw'
+      : '(min-width: 640px) 320px, 90vw';
 ---
 
 <BaseLayout
@@ -242,10 +249,7 @@ const assemblySizes =
                 {data.assemblyRendersIntro && (
                   <p class="text-sm text-sms-charcoal-500 leading-relaxed mb-5 max-w-[68ch]">{data.assemblyRendersIntro}</p>
                 )}
-                {/* Column count follows the number of drawings, so two
-                    drawings fill the same width as the part table below
-                    rather than leaving a third of the row empty. */}
-                <div class:list={["grid gap-5", assemblyCols]}>
+                <div class:list={["grid", assemblyGap, assemblyCols]}>
                   {data.assemblyRenders.map((r) => (
                     <figure class="flex h-full flex-col">
                       {/* Asymmetric on purpose. The badges sit 2.25rem (36px)
@@ -256,7 +260,7 @@ const assemblySizes =
                           hang outside the box the drawing is centred in.
                           Every callout coordinate is a percentage of the image
                           box, which keeps it locked to the part at any width. */}
-                      <div class="rounded-xl border border-sms-charcoal-100 bg-white py-5 pl-16 pr-6">
+                      <div class:list={["rounded-xl border border-sms-charcoal-100 bg-white", assemblyPad]}>
                         <div class="relative">
                           <Image src={r.image} alt={r.alt} class="w-full h-auto" widths={[320, 640, 960]} sizes={assemblySizes} />
                           {r.callouts.map((c) => (
