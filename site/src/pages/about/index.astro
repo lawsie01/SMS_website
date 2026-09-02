@@ -112,7 +112,7 @@ const facts = [
       </p>
       <div class="grid sm:grid-cols-3 gap-6">
         {families.map((p) => (
-          <a href={`/products/${p.id}/`} class="group rounded-xl border border-sms-charcoal-100 bg-white overflow-hidden hover:border-sms-green-300 hover:shadow-lg transition-all">
+          <a href={`/products/${p.id}/`} class="group rounded-xl border border-sms-charcoal-100 bg-white overflow-hidden hover:border-sms-green-300 hover:shadow-lg sms-card-hover">
             {p.data.productImage && (
               <div class:list={["aspect-4/3 flex items-center justify-center overflow-hidden", p.data.productImageBackground === 'dark' ? 'bg-sms-charcoal-900' : p.data.productImageBackground === 'white' ? 'bg-white' : 'bg-render-bg']}>
                 <Image src={p.data.productImage} alt={p.data.productImageAlt ?? ''} class="h-full w-full object-contain p-4" widths={[320, 480]} sizes="(min-width: 640px) 320px, 50vw" />

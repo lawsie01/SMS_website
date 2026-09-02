@@ -108,6 +108,19 @@ html {
     --sms-motion-fast: 1ms;
     --sms-motion-slow: 1ms;
   }
+  /* The tokens above only reach the components that use them. Tailwind's
+     transition-colors and duration-* utilities write a duration straight onto
+     the element, so 42 things on the homepage alone still animated with the
+     setting on. This catches those without touching the components that
+     already do the right thing. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer components {
@@ -125,6 +138,15 @@ html {
   }
   .sms-press-card:active {
     transform: translateY(1px) scale(0.995);
+  }
+
+  /* transition-all also transitions outline-width, so the focus ring grew from
+     0 to 2px over 150ms rather than appearing when the key was pressed. Border
+     colour and shadow are the only two properties these cards actually change
+     on hover, so they are the only two named here. */
+  .sms-card-hover {
+    transition: border-color var(--sms-motion-fast) var(--sms-ease-out),
+                box-shadow var(--sms-motion-fast) var(--sms-ease-out);
   }
 
   /* Device 1 — corrugation contour. Concentric hairline rings evoking the

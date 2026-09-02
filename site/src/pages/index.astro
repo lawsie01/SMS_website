@@ -166,7 +166,7 @@ const applications = [
     </p>
     <div class="grid sm:grid-cols-2 gap-8">
       {applications.map((item) => (
-        <a href={item.href} class="sms-press sms-press-card flex h-full flex-col rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md transition-all">
+        <a href={item.href} class="sms-press sms-press-card flex h-full flex-col rounded-xl border border-sms-charcoal-100 p-6 hover:border-sms-green-300 hover:shadow-md sms-card-hover">
           <h3 class="font-bold text-sms-charcoal-900 mb-2">{item.audience}</h3>
           <p class="text-sm text-sms-charcoal-500 leading-relaxed grow">{item.body}</p>
           <span class="mt-5 self-start text-sm font-semibold text-sms-charcoal-900 sms-link">Learn more &rarr;</span>

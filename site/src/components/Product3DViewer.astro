@@ -48,7 +48,7 @@ const modelUrl = MODEL_URLS[product];
           paints a translucent white so the icons keep their contrast wherever
           the model happens to sit behind them, and it is pinned to the foot so
           it does not move when the box changes size. */}
-      <div class="viewer-controls absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center gap-1 bg-render-bg/90 backdrop-blur-sm px-2 py-1.5" role="group" aria-label="Model controls">
+      <div class="viewer-controls absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center gap-2 bg-render-bg/90 backdrop-blur-sm px-2 py-1.5" role="group" aria-label="Model controls">
         <button type="button" data-viewer-act="left" class="sms-press viewer-btn inline-flex items-center justify-center rounded-md p-2 text-sms-charcoal-400 hover:text-sms-charcoal-900 hover:bg-sms-charcoal-900/5 transition-colors" aria-label="Rotate left">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -161,10 +161,37 @@ const modelUrl = MODEL_URLS[product];
 </style>
 
 <script>
-  import * as THREE from 'three';
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-  import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+  // three.js is 673KB and the GLB behind it up to 1.5MB. Loading both at page
+  // load put a product page at 2.5MB on a phone, most of it ahead of the spec
+  // tables people actually come for. The imports below are type-only, so they
+  // are erased at build time and cost nothing; the runtime bindings are filled
+  // by loadThree() once the viewer is close to being seen.
+  import type * as TT from 'three';
+  import type { OrbitControls as OrbitControlsT } from 'three/examples/jsm/controls/OrbitControls.js';
+  import type { GLTFLoader as GLTFLoaderT } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+  let THREE: typeof TT;
+  let OrbitControls: typeof OrbitControlsT;
+  let GLTFLoader: typeof GLTFLoaderT;
+  let MeshoptDecoder: unknown;
+  let threePromise: Promise<void> | null = null;
+
+  function loadThree(): Promise<void> {
+    if (!threePromise) {
+      threePromise = Promise.all([
+        import('three'),
+        import('three/examples/jsm/controls/OrbitControls.js'),
+        import('three/examples/jsm/loaders/GLTFLoader.js'),
+        import('three/examples/jsm/libs/meshopt_decoder.module.js'),
+      ]).then(([three, orbit, gltf, meshopt]) => {
+        THREE = three;
+        OrbitControls = orbit.OrbitControls;
+        GLTFLoader = gltf.GLTFLoader;
+        MeshoptDecoder = meshopt.MeshoptDecoder;
+      });
+    }
+    return threePromise;
+  }
 
   type ProductKey = 'shaft' | 'chamber' | 'hole';
 
@@ -220,7 +247,7 @@ const modelUrl = MODEL_URLS[product];
     },
   };
 
-  function buildGrateTexture(): THREE.CanvasTexture {
+  function buildGrateTexture(): TT.CanvasTexture {
     const size = 256;
     const canvas = document.createElement('canvas');
     canvas.width = size;
@@ -247,7 +274,7 @@ const modelUrl = MODEL_URLS[product];
     return new THREE.CanvasTexture(canvas);
   }
 
-  function buildBody(config: ProductConfig): THREE.Group {
+  function buildBody(config: ProductConfig): TT.Group {
     const group = new THREE.Group();
     const material = new THREE.MeshStandardMaterial({
       color: config.riserColor,
@@ -274,7 +301,7 @@ const modelUrl = MODEL_URLS[product];
     return group;
   }
 
-  function buildCap(config: ProductConfig): THREE.Group {
+  function buildCap(config: ProductConfig): TT.Group {
     const group = new THREE.Group();
     const capMaterial = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.5, metalness: 0.1 });
     const grateMaterial = new THREE.MeshStandardMaterial({ map: buildGrateTexture(), roughness: 0.8, metalness: 0.1 });
@@ -293,7 +320,7 @@ const modelUrl = MODEL_URLS[product];
     return group;
   }
 
-  function buildStubs(config: ProductConfig): THREE.Group {
+  function buildStubs(config: ProductConfig): TT.Group {
     const group = new THREE.Group();
     const material = new THREE.MeshStandardMaterial({ color: 0xd8d5cc, roughness: 0.55, metalness: 0.05 });
     const positions = config.stubCount === 1 ? [0] : [0, Math.PI];
@@ -311,7 +338,7 @@ const modelUrl = MODEL_URLS[product];
     return group;
   }
 
-  function buildBase(config: ProductConfig): THREE.Mesh {
+  function buildBase(config: ProductConfig): TT.Mesh {
     const material = new THREE.MeshStandardMaterial({ color: 0x2e2e2e, roughness: 0.7, metalness: 0.05 });
     const geo = new THREE.CylinderGeometry(config.bodyRadius * 1.15, config.bodyRadius * 1.2, 0.12, 32);
     const mesh = new THREE.Mesh(geo, material);
@@ -319,7 +346,7 @@ const modelUrl = MODEL_URLS[product];
     return mesh;
   }
 
-  function buildProceduralGroup(config: ProductConfig): THREE.Group {
+  function buildProceduralGroup(config: ProductConfig): TT.Group {
     const group = new THREE.Group();
     group.add(buildBody(config));
     group.add(buildCap(config));
@@ -328,11 +355,11 @@ const modelUrl = MODEL_URLS[product];
     return group;
   }
 
-  let gltfLoader: GLTFLoader | null = null;
-  function getGltfLoader(): GLTFLoader {
+  let gltfLoader: GLTFLoaderT | null = null;
+  function getGltfLoader(): GLTFLoaderT {
     if (!gltfLoader) {
       gltfLoader = new GLTFLoader();
-      gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+      gltfLoader.setMeshoptDecoder(MeshoptDecoder as never);
     }
     return gltfLoader;
   }
@@ -599,7 +626,7 @@ const modelUrl = MODEL_URLS[product];
     // Frames the camera/controls around whatever's actually in the scene, so a
     // real asset's true dimensions (unknown until it loads) drive the shot
     // instead of the procedural placeholder's hand-tuned cameraDistance.
-    function frameObject(object: THREE.Object3D) {
+    function frameObject(object: TT.Object3D) {
       const box = new THREE.Box3().setFromObject(object);
       const sphere = box.getBoundingSphere(new THREE.Sphere());
       object.position.sub(sphere.center);
@@ -628,7 +655,7 @@ const modelUrl = MODEL_URLS[product];
     // corrugation — rendered side by side, both the authored values and a
     // 0.45 floor glint, and only 0.78 does not. Nothing else is touched, so
     // the colours are the ones the CAD file was built with.
-    function normalizeMaterials(root: THREE.Object3D) {
+    function normalizeMaterials(root: TT.Object3D) {
       root.traverse((node) => {
         if (!(node instanceof THREE.Mesh)) return;
         const materials = Array.isArray(node.material) ? node.material : [node.material];
@@ -639,7 +666,7 @@ const modelUrl = MODEL_URLS[product];
       });
     }
 
-    function useModel(gltf: { scene: THREE.Object3D }): void {
+    function useModel(gltf: { scene: TT.Object3D }): void {
       normalizeMaterials(gltf.scene);
       frameObject(gltf.scene);
       scene.add(gltf.scene);
@@ -697,11 +724,35 @@ const modelUrl = MODEL_URLS[product];
     animate();
   }
 
+  // Start the download when the viewer is within 300px of the viewport, then
+  // wait for an idle moment so the spec content paints first. On a phone the
+  // viewer sits ~600px down, so nothing is fetched until it is scrolled toward.
+  function schedule(el: HTMLElement): void {
+    const start = () => {
+      const go = () => loadThree().then(() => initViewer(el));
+      if ('requestIdleCallback' in window) {
+        (window as unknown as { requestIdleCallback: (cb: () => void, o?: { timeout: number }) => void })
+          .requestIdleCallback(go, { timeout: 2000 });
+      } else {
+        setTimeout(go, 1);
+      }
+    };
+    if (!('IntersectionObserver' in window)) { start(); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        start();
+      });
+    }, { rootMargin: '300px 0px' });
+    io.observe(el);
+  }
+
   function initAll() {
     document.querySelectorAll<HTMLElement>('.product-3d-viewer').forEach((el) => {
       if (el.dataset.initialized) return;
       el.dataset.initialized = 'true';
-      initViewer(el);
+      schedule(el);
     });
   }
 
