@@ -110,9 +110,16 @@ const productFamilies = products
           <Image src={logo} alt="SMS" width={110} height={54} loading="eager" />
         </a>
 
-        <nav class="hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-100" aria-label="Main">
-          {/* Products — full-width mega panel */}
-          <div class="nav-parent relative" data-current={currentSection === 'products' ? true : undefined}>
+        {/* Relative so the Products mega panel can centre on the nav rather than
+            on its own trigger. The panel is 896px wide and the Products item sits
+            left of centre, so centring it on the trigger pushed it off the left of
+            the viewport at every width below 1440: 45px at 1280, 173px at 1024,
+            which cut the whole product list off. The nav's bottom edge is the same
+            line as the trigger's, so the panel does not move vertically. */}
+        <nav class="relative hidden lg:flex flex-1 items-center justify-center gap-8 text-[15px] font-medium text-sms-charcoal-100" aria-label="Main">
+          {/* Products, the one full-width mega panel. No `relative` here, unlike
+              the three narrow panels below, so this one anchors to the nav. */}
+          <div class="nav-parent" data-current={currentSection === 'products' ? true : undefined}>
             <button
               type="button"
               aria-current={currentSection === 'products' ? 'true' : undefined}
