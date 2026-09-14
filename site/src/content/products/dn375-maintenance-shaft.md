@@ -54,9 +54,9 @@ specSections:
   - heading: "Chemical & structural performance"
     rows:
       - label: "Chemical resistance"
-        value: "Resists pH 1–13; resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
+        value: "Resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
       - label: "Design service life"
-        value: "100 years"
+        value: "50+ years"
       - label: "Access cover load rating"
         value: "Class D maximum (trafficable) to AS 3996"
   - heading: "Access cover clear opening"

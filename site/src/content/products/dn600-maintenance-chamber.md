@@ -5,7 +5,7 @@ dnSize: "DN600"
 category: "maintenance-chamber"
 order: 2
 shortDescription: "Corrugated polyethylene riser maintenance chamber for deeper sewer connections, rated to Class D maximum, to 6m depth."
-cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m."
+cardUseCase: "Deeper reticulation and trunk sewer maintenance access, standard installation up to 6m. Up to 5m in groundwater conditions."
 overview: >-
   The Axedo Maintenance Chamber 600 (MC) is a modular gravity sewer maintenance
   chamber system with an inside nominal diameter of 600mm, suitable for depths up to
@@ -44,7 +44,7 @@ specSections:
       - label: "Material"
         value: "Polypropylene base and DN600 SN8 corrugated polyethylene riser pipe"
       - label: "Jointing"
-        value: "Rubber ring joint (RRJ) sockets, DN600 EPDM/SBR seals"
+        value: "Rubber ring joint (RRJ) sockets, DN600 EPDM or SBR seals"
       - label: "Inlet/outlet sizes"
         value: "DN150, DN225"
       - label: "Base socket tolerance"
@@ -54,9 +54,9 @@ specSections:
   - heading: "Chemical & structural performance"
     rows:
       - label: "Chemical resistance"
-        value: "Resists pH 1–13; resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
+        value: "Resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
       - label: "Design service life"
-        value: "100 years"
+        value: "50+ years"
       - label: "Access cover load rating"
         value: "Class D maximum (trafficable) to AS 3996"
   - heading: "Component weights"
@@ -96,7 +96,7 @@ configGroups:
         configuration: "RRJ 90° / 270° (90° deflection)"
 assemblyRenders:
   - image: "../../assets/images/dn600-assembly-lateral.png"
-    alt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber with Top Hat access cover, EPDM/SBR seals, corrugated riser, base and an optional lateral connection"
+    alt: "Exploded view of the SMS AXEDO DN600 Maintenance Chamber with Top Hat access cover, EPDM or SBR seals, corrugated riser, base and an optional lateral connection"
     caption: "DN600 chamber with the Top Hat access cover."
     callouts:
       - { n: 1, x: 32.2, y: 12.9 }
@@ -114,8 +114,8 @@ componentPhotos:
     alt: "DN600 corrugated polypropylene riser section"
     caption: "DN600 corrugated riser (PPPB0600)."
   - image: "../../assets/images/dn600-seal-component.jpg"
-    alt: "EPDM/SBR element seal for the DN600 chamber, a moulded rubber ring shown at an angle"
-    caption: "EPDM/SBR seal (ARH0600). One at the base joint, one under the Top Hat."
+    alt: "EPDM or SBR element seal for the DN600 chamber, a moulded rubber ring shown at an angle"
+    caption: "EPDM or SBR seal (ARH0600). One at the base joint, one under the Top Hat."
   - image: "../../assets/images/dn600-tophat-component.jpg"
     alt: "SMS Top Hat access cover for the DN600 chamber, with its ribbed load-spreading base"
     caption: "Top Hat access cover (ACCMHTHCSDMC)."
@@ -133,7 +133,7 @@ configurations:
     notes: "Class D maximum, 300mm clear opening"
   - code: "ARH0600"
     ref: 2
-    configuration: "DN600 EPDM/SBR seal"
+    configuration: "DN600 EPDM or SBR seal"
   - code: "PPPB0600"
     ref: 3
     configuration: "DN600 corrugated riser, cut to suit installation depth"
@@ -154,7 +154,7 @@ installationSections:
   - heading: "Installation depth"
     body: "Standard installation is rated to a maximum depth of 6m, reducing to a maximum of 5m in high water table/groundwater conditions. The corrugated riser is field-cut to the required length, with the cut made on a corrugation valley and deburred."
   - heading: "Bedding & backfill"
-    body: "Minimum 100mm granular bedding below the base is required. Trench width around the chamber must be at least 400mm (standard) or 500mm (groundwater conditions) at every point, compacted in 200–400mm layers to a minimum degree of compaction of DPr ≥ 97%."
+    body: "Minimum 100mm granular bedding below the base is required. Trench width around the chamber must be at least 400mm (standard) or 500mm (groundwater conditions) at every point, compacted in 200–400mm layers to a minimum degree of compaction of DPr ≥ 97%. Approved bedding and backfill material must be used, refer to SMS and local authority requirements. Contact SMS for detailed installation instructions."
   - heading: "Access cover options"
     body: "Two Top Hat arrangements are available, both rated to Class D maximum:"
     bullets:

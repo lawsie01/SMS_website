@@ -5,7 +5,7 @@ dnSize: "DN1000"
 category: "maintenance-hole"
 order: 3
 shortDescription: "Person-accessible polypropylene maintenance hole for trunk sewers, with a fixed ladder, 600mm clear opening and Class D maximum access cover options."
-cardUseCase: "Trunk sewer and deeper reticulation access requiring person entry, standard installation up to 6m."
+cardUseCase: "Trunk sewer and deeper reticulation access requiring person entry, standard installation up to 6m. Up to 5m in groundwater conditions."
 overview: >-
   The Romold Maintenance Hole 1000 (MH) is a modular gravity sewer maintenance hole
   system with an inside nominal diameter of 1000mm, suitable for depths up to 6m.
@@ -75,9 +75,9 @@ specSections:
   - heading: "Chemical & structural performance"
     rows:
       - label: "Chemical resistance"
-        value: "Resists pH 1–13; resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
+        value: "Resistant to hydrogen sulphide (H2S) and sulphuric acid (H2SO4) attack typical of sewer gas corrosion"
       - label: "Design service life"
-        value: "100 years"
+        value: "50+ years"
       - label: "Access cover load rating"
         value: "Class D maximum (trafficable) to AS 3996"
   - heading: "Component weights"
@@ -297,9 +297,9 @@ configurations:
     notes: "Class D maximum"
 installationSections:
   - heading: "Installation depth"
-    body: "Standard installation is rated to a maximum depth of 6m. That maximum does not reduce in groundwater conditions, though the surrounding trench must be wider (see Bedding & backfill below). Separately, the structure carries a buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up from base + riser(s) + cone in 250mm increments; the cone neck can additionally be trimmed up to 250mm, cut between ribs (10mm spacing) for fine height adjustment. Minimum installation depth is still to be confirmed."
+    body: "Standard installation is rated to a maximum depth of 6m, reducing to a maximum of 5m in high water table or groundwater conditions. The surrounding trench must also be wider (see Bedding & backfill below). Separately, the structure carries a buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up from base + riser(s) + cone in 250mm increments; the cone neck can additionally be trimmed up to 250mm, cut between ribs (10mm spacing) for fine height adjustment. Minimum installation depth is still to be confirmed."
   - heading: "Bedding & backfill"
-    body: "Minimum 100mm of non-cohesive granular bedding is required below the base (rounded material ≤32mm or broken gravel ≤16mm), compacted to a minimum degree of compaction of DPr ≥ 97%. The embedment zone alongside the structure (lc) must be at least 400mm wide under standard conditions, or 500mm in groundwater conditions, giving a minimum total trench width of 1930mm standard or 2130mm in groundwater."
+    body: "Minimum 100mm of non-cohesive granular bedding is required below the base (rounded material ≤32mm or broken gravel ≤16mm), compacted to a minimum degree of compaction of DPr ≥ 97%. Trench width around the chamber must be at least 400mm (standard) or 500mm (groundwater conditions) at every point, compacted in 200–400mm layers to a minimum degree of compaction of DPr ≥ 97%. Approved bedding and backfill material must be used, refer to SMS and local authority requirements. Contact SMS for detailed installation instructions."
   - heading: "Access cover options"
     body: "Three access cover arrangements are available, all rated to Class D maximum:"
     bullets:
@@ -340,7 +340,7 @@ standards:
     description: "Many water authorities maintain their own accepted-products lists, standard drawings and installation requirements. Confirm with relevant authority prior to use."
 faqs:
   - question: "What is the maximum installation depth of the DN1000 Maintenance Hole?"
-    answer: "Standard installation is rated to a maximum depth of 6m, and this doesn't reduce in groundwater conditions, though the trench must be wider to compensate. Separately, the structure carries its own buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up in 250mm riser increments plus a trimmable cone. Minimum installation depth is still being confirmed."
+    answer: "Standard installation is rated to a maximum depth of 6m. That drops to 5m in a high water table or groundwater conditions, and the trench must be wider to compensate. Separately, the structure carries its own buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up in 250mm riser increments plus a trimmable cone. Minimum installation depth is still being confirmed."
   - question: "Can someone physically enter the DN1000 Maintenance Hole?"
     answer: "Yes. It is fitted with a fixed ladder to EN 14396 and a 600mm clear opening, designed for person entry under the operator's confined space procedures. The smaller DN375 Shaft and DN600 Chamber are not person-entry structures."
   - question: "Is the DN1000 Hole rated for Class D traffic loads?"
