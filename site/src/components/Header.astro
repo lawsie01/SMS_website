@@ -164,7 +164,12 @@ const productFamilies = products
                   </ul>
                 </div>
                 */}
-                <div class="rounded-xl bg-sms-charcoal-50 p-6 flex flex-col justify-between">
+                {/* justify-center, not justify-between. The card stretches to match the
+                    product list beside it, and pushing the link to the foot of that
+                    stretched box left about 90px of empty grey between the copy and
+                    the link. Centred, the three lines read as one block and the card
+                    keeps the height that balances the column next to it. */}
+                <div class="rounded-xl bg-sms-charcoal-50 p-6 flex flex-col justify-center">
                   <div>
                     <p class="font-semibold text-sms-charcoal-900 mb-1.5">Not sure which one fits?</p>
                     <p class="text-sm text-sms-charcoal-500">Compare depth ratings, load class and install method across the full range.</p>
