@@ -22,7 +22,7 @@ manufacturer: "Dyka BV"
 manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Germany, under the AXEDO brand."
 atAGlance:
   - label: "Life"
-    value: "100 yrs"
+    value: "50+ yrs"
     icon: "service-life"
   - label: "Depth"
     value: "4m"
@@ -250,7 +250,7 @@ downloads:
     fileType: "DWG/RVT/IFC"
     restricted: true
 seoTitle: "DN375 Maintenance Shaft | SMS AXEDO Polypropylene Sewer Shaft Australia"
-seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft. WSAA PA 1317 appraised, Class D rated, 100-year design life, manual install to 4m depth. Full specs and configurations."
+seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft. WSAA PA 1317 appraised, Class D rated, 50+ year design life, manual install to 4m depth. Full specs and configurations."
 ---
 
 The DN375 Shaft is the standard choice for gravity sewer reticulation access down to 4m, in place of a small

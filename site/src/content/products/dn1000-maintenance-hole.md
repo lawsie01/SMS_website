@@ -26,7 +26,7 @@ manufacturer: "Romold GmbH"
 manufacturerNote: "Designed, engineered and manufactured by Romold GmbH, Germany."
 atAGlance:
   - label: "Life"
-    value: "100 yrs"
+    value: "50+ yrs"
     icon: "service-life"
   - label: "Depth"
     value: "6m"

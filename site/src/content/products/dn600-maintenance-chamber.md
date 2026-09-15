@@ -22,7 +22,7 @@ manufacturer: "Dyka BV"
 manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Netherlands, under the AXEDO brand."
 atAGlance:
   - label: "Life"
-    value: "100 yrs"
+    value: "50+ yrs"
     icon: "service-life"
   - label: "Depth"
     value: "6m"
