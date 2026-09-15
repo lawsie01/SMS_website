@@ -111,7 +111,7 @@ componentPhotos:
     alt: "SMS AXEDO DN600 chamber base seen from above, showing the corrugated wall and the outlet socket"
     caption: "Base (AXEDO)."
   - image: "../../assets/images/dn600-riser-component.jpg"
-    alt: "DN600 corrugated polypropylene riser section"
+    alt: "DN600 corrugated polyethylene riser section"
     caption: "DN600 corrugated riser (PPPB0600)."
   - image: "../../assets/images/dn600-seal-component.jpg"
     alt: "EPDM or SBR element seal for the DN600 chamber, a moulded rubber ring shown at an angle"

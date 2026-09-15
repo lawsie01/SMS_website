@@ -118,7 +118,7 @@ componentPhotos:
     alt: "Placeholder tile for the MS9 four-way junction base, still to be supplied"
     caption: "Base, RRJ Junction, 4-way (MS9). Image to come."
   - image: "../../assets/images/dn375-riser-component.jpg"
-    alt: "Plain-ended DN375 polypropylene riser section"
+    alt: "Plain-ended DN375 PVC riser section"
     caption: "Riser, DN375, DN300 or DN225."
   - image: "../../assets/images/dn375-seal-component.jpg"
     alt: "Moulded rubber sealing ring for the DN375 riser to Top Hat joint, shown at an angle"
@@ -193,7 +193,7 @@ configurations:
     notes: "Optional"
 installationSections:
   - heading: "Installation depth"
-    body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required, cut on the corrugation/rib line and deburred."
+    body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required. The PVC riser is plain-ended, so the cut is square and deburred."
   - heading: "Handling & weight"
     body: "DN375 Shaft components are supplied as separate base, riser and cap/access-cover elements, each light enough for one or two people to place by hand using the excavator already on site for the dig."
   - heading: "Access cover options"
