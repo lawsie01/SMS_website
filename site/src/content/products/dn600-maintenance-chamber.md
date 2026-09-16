@@ -189,7 +189,7 @@ faqs:
   - question: "What size inlet and outlet connections does the DN600 Chamber take?"
     answer: "The chamber base is available in standard RRJ configurations for DN150 and DN225 inlets/outlets, across straight, 60°/120°/150°/210°/240° angled (plus 90°/270° for DN225 only) and 4-way cross arrangements. Additional DN100/DN150 lateral drop-in connections can be added on-site."
   - question: "How much does the DN600 Chamber weigh per component?"
-    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre. Both are light enough to install and adjust by hand, with no lifting equipment beyond the excavator already on site."
+    answer: "The base weighs 15kg and the corrugated riser weighs approximately 20kg per metre. Both are light enough to install and adjust by hand."
   - question: "What angle tolerance does the DN600 Chamber base allow at pipe connections?"
     answer: "The base sockets accommodate up to ±7.5° of horizontal angle change and ±7.5° of gradient change (simultaneous changes reduce the maximum achievable value in each direction)."
   - question: "What standards does the DN600 Chamber comply with?"

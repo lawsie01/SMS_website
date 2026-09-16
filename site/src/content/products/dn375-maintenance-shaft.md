@@ -229,7 +229,7 @@ faqs:
   - question: "Is the DN375 Shaft rated for Class D traffic loads?"
     answer: "Yes. Fitted with either the standard Top Hat or the access cover with concrete surround, the DN375 Shaft is rated Class D maximum (trafficable) to AS 3996."
   - question: "How many installers does the DN375 Shaft need on site?"
-    answer: "One or two. Base, riser and access cover are separate PP/PVC components, all light enough for manual handling, and the excavator already on site for the dig covers the rest."
+    answer: "One or two. Base, riser and access cover are separate PP/PVC components, all light enough for manual handling."
   - question: "What standards does the DN375 Shaft comply with?"
     answer: "The DN375 Shaft is manufactured to WSA 137:2019 and is covered under WSAA Product Appraisal PA 1317, with access covers rated to Class D maximum to AS 3996 and seals to AS 1646."
   - question: "Can extra inlet or outlet connections be added after the shaft is installed?"

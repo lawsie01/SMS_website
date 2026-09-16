@@ -346,7 +346,7 @@ faqs:
   - question: "Is the DN1000 Hole rated for Class D traffic loads?"
     answer: "Yes, on all three cover options: the standard Top Hat, the concrete cover plate and the concrete load distribution ring."
   - question: "Are all DN1000 Hole components under 25kg?"
-    answer: "No. Component weight varies by part. The 250mm riser and cone are 15–25kg and manual-handled easily, but the base (50–65kg) and taller risers (up to 45kg for the 1000mm riser) typically need two installers. The concrete access cover options (180–200kg) need mechanical assistance to place, usually the excavator already on site for the dig."
+    answer: "No. Component weight varies by part. The 250mm riser and cone are 15–25kg and manual-handled easily, but the base (50–65kg) and taller risers (up to 45kg for the 1000mm riser) typically need two installers. The concrete access cover options (180–200kg) need mechanical assistance to place."
   - question: "What inlet/outlet sizes does the DN1000 Hole take?"
     answer: "DN150, DN225, DN300 and DN375, across the full range of RRJ angles including a 4-way cross. DN100 and DN150 laterals can be drilled in on site on top of that."
   - question: "What standards does the DN1000 Hole comply with?"
