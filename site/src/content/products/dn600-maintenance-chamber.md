@@ -19,7 +19,7 @@ heroImage: "../../assets/images/install-trench-row.jpg"
 heroImageAlt: "Row of polypropylene maintenance structures installed along a sewer trench"
 countryOfManufacture: "Netherlands"
 manufacturer: "Dyka BV"
-manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Netherlands, under the AXEDO brand."
+manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Netherlands."
 atAGlance:
   - label: "Life"
     value: "50+ yrs"
@@ -44,7 +44,7 @@ specSections:
       - label: "Material"
         value: "Polypropylene base and DN600 SN8 corrugated polyethylene riser pipe"
       - label: "Jointing"
-        value: "Rubber ring joint (RRJ) sockets, DN600 EPDM or SBR seals"
+        value: "Rubber ring joint (RRJ) sockets, DN600 rubber seals"
       - label: "Inlet/outlet sizes"
         value: "DN150, DN225"
       - label: "Base socket tolerance"
@@ -105,7 +105,7 @@ assemblyRenders:
       - { n: 3, x: 40.3, y: 52.0 }
       - { n: 2, x: 34.9, y: 73.1 }
       - { n: 4, x: 24.2, y: 85.4 }
-assemblyRendersIntro: "The chamber exploded, shown with a lateral connection. The lateral is optional and is not part of the base: DN100 and DN150 connections are drilled in on site with a hole saw, rubber collar and straight connector."
+assemblyRendersIntro: "The chamber exploded, shown below with an optional lateral connection (DN100 and DN150 available). Lateral connections are drilled in on site with a hole saw, rubber collar and straight connector."
 componentPhotos:
   - image: "../../assets/images/dn600-base-component.jpg"
     alt: "SMS AXEDO DN600 chamber base seen from above, showing the corrugated wall and the outlet socket"
@@ -212,5 +212,4 @@ seoDescription: "SMS AXEDO DN600 polypropylene maintenance chamber. WSAA PA 1317
 ---
 
 The DN600 Chamber is a polypropylene base with a corrugated PE riser, for reticulation and trunk sewer
-access down to 6m. The base is 15kg and the riser runs about 20kg per metre, so it goes in without the
-lifting gear a precast concrete chamber needs. Cut the riser to length on site, on a corrugation valley.
+access down to 6m.

@@ -19,7 +19,7 @@ heroImage: "../../assets/images/hero-install-chamber.jpg"
 heroImageAlt: "SMS technician hand-installing a polypropylene maintenance structure base into a trench"
 countryOfManufacture: "Germany"
 manufacturer: "Dyka BV"
-manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Germany, under the AXEDO brand."
+manufacturerNote: "Designed, engineered and manufactured by Dyka BV, Germany."
 atAGlance:
   - label: "Life"
     value: "50+ yrs"
@@ -84,7 +84,7 @@ assemblyRenders:
       - { n: 10, x: 8.4, y: 88.0 }
   - image: "../../assets/images/dn375-assembly-riser-dn300.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN300 riser with a PVC screw access cap and an optional lateral connection"
-    caption: "Reduced to a DN300 riser with a screw access cap."
+    caption: "DN300 riser with a screw access cap."
     callouts:
       - { n: 3, x: 29.6, y: 9.9 }
       - { n: 4, x: 42.3, y: 19.7 }
@@ -97,7 +97,7 @@ assemblyRenders:
       - { n: 10, x: 18.2, y: 88.4 }
   - image: "../../assets/images/dn375-assembly-riser-dn225.png"
     alt: "Exploded view of the SMS AXEDO DN375 Maintenance Shaft reduced to a DN225 riser with a PVC screw access cap and an optional lateral connection"
-    caption: "Reduced to a DN225 riser with a screw access cap."
+    caption: "DN225 riser with a screw access cap."
     callouts:
       - { n: 3, x: 27.1, y: 9.9 }
       - { n: 4, x: 40.0, y: 19.8 }
@@ -109,7 +109,7 @@ assemblyRenders:
       - { n: 9, x: 46.6, y: 72.2 }
       - { n: 8, x: 43.4, y: 81.9 }
       - { n: 10, x: 10.6, y: 89.0 }
-assemblyRendersIntro: "Three riser options, shown exploded. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The full-size riser takes the Top Hat access cover, with a concrete vegetation ring over it as an option. Both reduced risers take the access cover with its concrete surround, a single item. Every view includes a Drop Tee, which is optional. It is a branch fitting on the riser, not part of the base."
+assemblyRendersIntro: "Three riser options are shown below. Reducers step the DN375 riser down to DN300 (R1) or DN225 (R2) where a smaller access cap suits the job. The DN375 riser utilises the Top Hat access cover, with an optional concrete vegetation ring. Both reduced risers take the access cover with its concrete surround."
 componentPhotos:
   - image: "../../assets/images/dn375-base-component.jpg"
     alt: "SMS AXEDO DN375 shaft base, showing the moulded channel and the inlet and outlet sockets"
@@ -122,7 +122,7 @@ componentPhotos:
     caption: "Riser, DN375, DN300 or DN225."
   - image: "../../assets/images/dn375-seal-component.jpg"
     alt: "Moulded rubber sealing ring for the DN375 riser to Top Hat joint, shown at an angle"
-    caption: "Seal, riser to Top Hat."
+    caption: "DN375 Seal, riser to Top Hat."
   - image: "../../assets/images/dn375-tophat-component.jpg"
     alt: "SMS Top Hat access cover for the DN375 shaft, with its ribbed load-spreading base"
     caption: "Top Hat access cover (ACCMHTHCSDMS)."
@@ -138,7 +138,7 @@ componentPhotos:
   - image: "../../assets/images/dn375-reducer-component.jpg"
     alt: "Stepped reducer with a seal in the upper socket, taking the DN375 riser down to a smaller size"
     caption: "Reducers R1 and R2."
-configurationsIntro: "Every numbered part on the renders above is listed below, in the same order, top of the structure down to the base. Riser pipe, seals and the drop-tee branch fitting (see Bends & reducers below) are generic stock items that SMS does not code separately. Base codes are the confirmed standard configurations; contact SMS for the full matrix across all inlet angles."
+configurationsIntro: "See below for component part codes."
 configurations:
   - ref: 1
     configuration: "Concrete vegetation ring"
@@ -193,9 +193,9 @@ configurations:
     notes: "Optional"
 installationSections:
   - heading: "Installation depth"
-    body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required. The PVC riser is plain-ended, so the cut is square and deburred."
+    body: "Maximum standard installation depth is 4m. Riser height is trimmed on-site to suit the exact cover-to-invert depth required."
   - heading: "Handling & weight"
-    body: "DN375 Shaft components are supplied as separate base, riser and cap/access-cover elements, each light enough for one or two people to place by hand using the excavator already on site for the dig."
+    body: "DN375 Shaft components are supplied as separate base, riser and cap/access-cover elements, each light enough for one or two people to place by hand."
   - heading: "Access cover options"
     body: "Two access cover arrangements are available:"
     bullets:
@@ -203,7 +203,7 @@ installationSections:
       - "Option 1: access cover with concrete surround, 300mm clear opening, distributes traffic load to surrounding bedding rather than the PP structure"
       - "Option 2: access cover with concrete surround, 225mm clear opening"
   - heading: "Lateral drop-in connections"
-    body: "DN100 and DN150 lateral connections can be added on-site using an electric hand drill with a hole saw, plus a rubber collar and straight connector kit, without returning the shaft to the factory."
+    body: "DN100 and DN150 lateral connections can be added on-site using a drop tee."
   - heading: "Bends & reducers"
     body: "PVC sweep bends (1020mm radius) are available in 5°, 10°, 15°, 30° and 45° increments for angled connections. Reducers (R1: DN375–DN300, R2: DN300–DN225) step the riser diameter down where a smaller connecting pipe or access cap is required, and a Drop-Tee 87° FFF fitting adds a DN225 or DN150 branch connection to a DN375, DN300 or DN225 riser."
 standards:
@@ -254,6 +254,6 @@ seoDescription: "SMS AXEDO DN375 polypropylene maintenance shaft. WSAA PA 1317 a
 ---
 
 The DN375 Shaft is the standard choice for gravity sewer reticulation access down to 4m, in place of a small
-precast concrete maintenance hole. Base, riser and access cover come as separate elements and go together by
-hand, using the excavator already there for the dig. No cure time, and no pit-builder to book. Riser height
-is cut to suit the actual cover-to-invert depth on site.
+precast concrete maintenance hole. Base, riser and access cover come as separate components and go together by
+hand. No cure time, and no pit-builder to book. Riser height
+is cut to suit the actual depth on site.

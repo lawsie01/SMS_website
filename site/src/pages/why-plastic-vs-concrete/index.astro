@@ -16,7 +16,7 @@ const glance = [
   { label: 'Install', value: 'By hand', icon: 'feather' as const },
   { label: 'Max load', value: 'Class D', icon: 'load' as const },
   { label: 'Resists', value: 'H2S/H2SO4', icon: 'chemical' as const },
-  { label: 'Joint', value: 'Sealed RRJ', icon: 'joint' as const },
+  { label: 'Joint', value: 'RRJ', icon: 'joint' as const },
   { label: 'Appraisal', value: 'WSA 137', icon: 'wsaa' as const },
 ];
 
@@ -33,17 +33,17 @@ const rows = [
   },
   {
     factor: 'Component weight & handling',
-    plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component, handled by 1–2 installers using the excavator already on site for the dig',
-    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to multiple tonnes, usually lifted with the excavator already on site, but expensive to transport and awkward to handle, especially on remote or access-restricted sites',
+    plastic: 'Individual elements from ~15kg up to ~65kg depending on product and component, handled by 1–2 installers',
+    concrete: 'Precast sections and lids commonly weigh several hundred kilograms to tonnes, usually lifted with the excavator but expensive to transport and awkward to handle, especially on remote or access-restricted sites',
   },
   {
     factor: 'Typical install method',
     plastic: 'Modular base/riser/cover assembly, on-site height trimming, hand-placed',
-    concrete: 'In-situ: formwork, reinforcement and several days of cure time before the trench can be backfilled. Precast: sections manufactured off-site and trucked in against the supplier\'s lead time',
+    concrete: 'In-situ: formwork, reinforcement and several days of cure time before the trench can be backfilled. Precast: sections manufactured off-site',
   },
   {
     factor: 'Skilled trade required',
-    plastic: '1–2 general installers, no specialist trade needed',
+    plastic: '1–2 general installers, no specialist trades needed',
     concrete: 'In-situ pours need a qualified pit-builder/formwork crew, a limited trade that\'s often difficult to book on program',
   },
   {
@@ -143,8 +143,7 @@ const faqs = [
         <div class="border-t border-white/25 pt-5">
           <h3 class="font-bold text-white mb-2">Plant &amp; labour</h3>
           <p class="text-sm text-sms-charcoal-100 leading-relaxed">
-            No pit-builder or formwork crew to book. A standard structure goes in by hand with a general
-            crew and the excavator already there for the dig.
+            No pit-builder or formwork crew to book. A standard structure goes in by hand with a general pipe laying crew.
           </p>
         </div>
         <div class="border-t border-white/25 pt-5">
@@ -157,8 +156,7 @@ const faqs = [
         <div class="border-t border-white/25 pt-5">
           <h3 class="font-bold text-white mb-2">Whole-of-life</h3>
           <p class="text-sm text-sms-charcoal-100 leading-relaxed">
-            A 50+ year design life with no corrosion-driven relining cycle. That lands in the maintenance
-            budget, well after the install cost is forgotten.
+            A 50+ year design life with no corrosion-driven relining cycle.
           </p>
         </div>
       </div>
@@ -180,6 +178,6 @@ const faqs = [
 
   <CtaBand
     heading="Comparing options for an upcoming project?"
-    subtitle="Send us your depth, load rating and inlet requirements and we'll confirm whether an SMS structure fits your spec."
+    subtitle="Send us your project requirements and we'll confirm whether an SMS structure fits your spec."
   />
 </BaseLayout>

@@ -117,7 +117,7 @@ configPhotos:
   - image: "../../assets/images/dn1000-base-bend-benching.jpg"
     alt: "SMS ROMOLD DN1000 base seen from directly above, showing the moulded benching around a channel that turns through the structure"
     caption: "Benched base on a turning channel."
-configGroupsIntro: "The base part code encodes the inlet/outlet size and RRJ angle from the diagram above: MHB1000<size><angle>. All 32 configurations are listed below, grouped by inlet/outlet size. Expand a size to find its part code."
+configGroupsIntro: "The base part code encodes the inlet/outlet size and RRJ angle from the diagram above: Expand a size to find its part code."
 configGroups:
   - heading: "DN150 inlet/outlet"
     rows:
@@ -194,7 +194,7 @@ configGroups:
 assemblyRenders:
   - image: "../../assets/images/dn1000-assembly-lateral-external.png"
     alt: "Exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an external lateral connection passing straight through the riser wall"
-    caption: "External connection, straight through the riser wall."
+    caption: "High-level lateral connection."
     callouts:
       - { n: 1, x: 31.6, y: 8.0 }
       - { n: 2, x: 31.3, y: 13.2 }
@@ -209,7 +209,7 @@ assemblyRenders:
       - { n: 7, x: 36.6, y: 87.2 }
   - image: "../../assets/images/dn1000-assembly-lateral-internal-drop.png"
     alt: "Cutaway exploded view of the SMS ROMOLD DN1000 Maintenance Hole with an internal drop: the lateral enters the riser, turns down through a bend and runs to invert level on a bracketed drop pipe"
-    caption: "Internal drop, taking the lateral down to invert level."
+    caption: "Internal drop lateral connection."
     callouts:
       - { n: 1, x: 31.3, y: 8.0 }
       - { n: 2, x: 31.0, y: 13.2 }
@@ -223,7 +223,7 @@ assemblyRenders:
       - { n: 6, x: 30.4, y: 71.4 }
       - { n: 5, x: 33.9, y: 76.6 }
       - { n: 7, x: 36.2, y: 87.2 }
-assemblyRendersIntro: "Two ways to bring a lateral in, both optional and both added on site. The external connection passes straight through the riser wall. The internal drop turns the lateral down inside the structure and carries it to invert level on a bracketed pipe, which is what an incoming line sitting well above the outlet needs."
+assemblyRendersIntro: "Two ways to bring an optional high-level lateral connection in. The external connection passes straight through the riser wall. The internal drop turns the lateral down inside the structure and carries it to invert level on a bracketed pipe."
 componentPhotos:
   - image: "../../assets/images/dn1000-tophat-component.jpg"
     alt: "SMS Top Hat access cover for the DN1000 hole, with its ribbed load-spreading base"
@@ -297,7 +297,7 @@ configurations:
     notes: "Class D maximum"
 installationSections:
   - heading: "Installation depth"
-    body: "Standard installation is rated to a maximum depth of 6m, reducing to a maximum of 5m in high water table or groundwater conditions. The surrounding trench must also be wider (see Bedding & backfill below). Separately, the structure carries a buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up from base + riser(s) + cone in 250mm increments; the cone neck can additionally be trimmed up to 250mm, cut between ribs (10mm spacing) for fine height adjustment. Minimum installation depth is still to be confirmed."
+    body: "Standard installation is rated to a maximum depth of 6m, reducing to a maximum of 5m in high water table or groundwater conditions. The surrounding trench must also be wider (see Bedding & backfill below). Separately, the structure carries a buoyancy rating for a maximum groundwater height of 5m above the inflow pipe invert level. Depth is built up from base + riser(s) + cone in 250mm increments; the cone neck can additionally be trimmed up to 250mm, cut between ribs (10mm spacing) for fine height adjustment."
   - heading: "Bedding & backfill"
     body: "Minimum 100mm of non-cohesive granular bedding is required below the base (rounded material ≤32mm or broken gravel ≤16mm), compacted to a minimum degree of compaction of DPr ≥ 97%. Trench width around the chamber must be at least 400mm (standard) or 500mm (groundwater conditions) at every point, compacted in 200–400mm layers to a minimum degree of compaction of DPr ≥ 97%. Approved bedding and backfill material must be used, refer to SMS and local authority requirements. Contact SMS for detailed installation instructions."
   - heading: "Access cover options"
@@ -307,16 +307,16 @@ installationSections:
       - "Option 1: concrete cover plate incorporating the access cover"
       - "Option 2: concrete load distribution ring with access cover"
   - heading: "Lateral drop-in connections"
-    body: "DN100 and DN150 lateral connections can be added on-site with a matched hole saw and rubber collar kit (LC5/LC6-LAT100/150MH with LCS100/150MH hole saws), without returning the unit to the factory."
+    body: "DN100 and DN150 lateral connections can be added on-site with a matched hole saw and rubber collar kit (LC5/LC6-LAT100/150MH with LCS100/150MH hole saws)."
   - heading: "Person entry"
-    body: "Unlike the DN375 Shaft and DN600 Chamber, the DN1000 Hole is fitted with a fixed ladder to EN 14396 for safe person entry, subject to the operator's confined space entry procedures."
+    body: "DN1000 Hole is fitted with a fixed ladder to EN 14396 for safe person entry, subject to the operator's confined space entry procedures."
     images:
       - image: "../../assets/images/dn1000-ladder-cutaway-detail.jpg"
         alt: "Cutaway view of the SMS ROMOLD DN1000 riser stack showing the fixed ladder installed inside"
         caption: "The fixed ladder, as installed inside the riser stack."
       - image: "../../assets/images/dn1000-ladder-pov-inside.jpg"
         alt: "View down the fixed ladder inside an SMS ROMOLD DN1000 maintenance hole, looking at the anti-slip base floor and an inlet socket"
-        caption: "Looking down from the ladder at the anti-slip base floor and an inlet socket."
+        caption: "Anti-slip base floor and an inlet socket."
 standards:
   - code: "WSA 137:2019"
     description: "Industry standard for PVC-U, PP and PE maintenance shafts, chambers and holes for sewerage"
@@ -370,5 +370,4 @@ seoDescription: "SMS ROMOLD DN1000 polypropylene maintenance hole. WSAA PA 1317 
 
 The DN1000 Hole is the person-entry option in the range, for trunk sewer and deeper reticulation access
 down to 6m. Fixed ladder to EN 14396, 600mm clear opening, and RRJ base configurations from DN150 through
-DN375. It goes in where you'd otherwise use a precast concrete manhole, without the corrosion exposure and
-without most of the lifting.
+DN375.
