@@ -36,6 +36,39 @@ for f in sorted(DIST.rglob('*.html')):
     html[route] = f.read_text()
 routes = sorted(html)
 
+# The bundle inlines every srcset variant as base64, so the 2x variants cost
+# roughly a third more than their file size and buy nothing: the preview is
+# read in an artifact frame, not on a retina hero. Cap the widths, and move
+# any src that pointed at a dropped variant down to the largest kept one.
+SRCSET_CAP = 1600
+SRCSET = re.compile(r'srcset="([^"]+)"')
+
+def cap_srcset(text):
+    def one(m):
+        kept, dropped = [], []
+        for part in m.group(1).split(','):
+            bits = part.strip().rsplit(' ', 1)
+            if len(bits) != 2 or not bits[1].endswith('w'):
+                return m.group(0)
+            (kept if int(bits[1][:-1]) <= SRCSET_CAP else dropped).append(
+                (bits[0], int(bits[1][:-1])))
+        if not kept:
+            kept = [min(dropped, key=lambda d: d[1])]
+            dropped = [d for d in dropped if d not in kept]
+        text_out = ', '.join(f'{u} {w}w' for u, w in kept)
+        for u, _ in dropped:
+            cap_srcset.swaps[u] = max(kept, key=lambda k: k[1])[0]
+        return f'srcset="{text_out}"'
+    cap_srcset.swaps = getattr(cap_srcset, 'swaps', {})
+    return SRCSET.sub(one, text)
+
+for r in routes:
+    html[r] = cap_srcset(html[r])
+for r in routes:
+    for dropped, keep in getattr(cap_srcset, 'swaps', {}).items():
+        html[r] = html[r].replace(f'src="{dropped}"', f'src="{keep}"')
+
+
 # ---------------------------------------------------------------- assets
 REF = re.compile(r'/(?:_astro|models|fonts|images)/[A-Za-z0-9._\-]+')
 assets, stubbed, missing = {}, [], []
