@@ -51,4 +51,4 @@ PY
 
 cd "$SITE"
 npm run build 2>&1 | grep -E "^- [0-9]+ errors|Complete!" || true
-python3 "$HERE/build_preview.py" "$OUT"
+PREVIEW_EDITOR=${PREVIEW_EDITOR:-1} python3 "$HERE/build_preview.py" "$OUT"

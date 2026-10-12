@@ -12,6 +12,10 @@ import base64, json, mimetypes, os, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+# PREVIEW_EDITOR=0 drops the inline copy editor. Use it for a file shared
+# outside the organisation: the editor needs the artifact's `db` store, which
+# only organisation members can reach, so the button would be dead weight.
+WITH_EDITOR = os.environ.get('PREVIEW_EDITOR', '1') != '0'
 DIST = Path(os.environ.get('PREVIEW_DIST', ROOT / 'site' / 'dist'))
 OUT = Path(sys.argv[1] if len(sys.argv) > 1
            else os.environ.get('PREVIEW_OUT', ROOT / 'sms-site-preview.html'))
@@ -191,6 +195,11 @@ for r in routes:
 css = rewrite('\n'.join([sheets[h] for h in css_hrefs] + head_styles))
 page_scripts = {k: rewrite(v) for k, v in page_scripts.items()}
 
+edit_controls = ('''<span id="preview-edit-wrap">
+    <button type="button" id="preview-edit">Edit copy</button>
+    <button type="button" id="preview-count" hidden>0 edits</button>
+  </span>''' if WITH_EDITOR else '')
+
 shell = f"""<title>SMS site preview</title>
 <style>{css}</style>
 <style>
@@ -243,10 +252,7 @@ shell = f"""<title>SMS site preview</title>
 <div id="preview-bar">
   <span>Static preview. Route <code id="preview-route">/</code></span>
   <span id="preview-note">Forms and PDF downloads are inert. Everything else is the real build.</span>
-  <span id="preview-edit-wrap">
-    <button type="button" id="preview-edit">Edit copy</button>
-    <button type="button" id="preview-count" hidden>0 edits</button>
-  </span>
+  {edit_controls}
 </div>
 <div id="preview-edits" hidden></div>
 <script>window.__PAGES__ = {js(pages)};
@@ -597,13 +603,14 @@ editor = r"""
 </script>
 """
 
-OUT.write_text(shell + router + editor)
+OUT.write_text(shell + router + (editor if WITH_EDITOR else ''))
 size = OUT.stat().st_size
 print(f'routes      {len(pages)}')
 print(f'assets      {len(assets)} inlined, {len(stubbed)} stubbed, {len(missing)} missing')
 print(f'head css    {len(css_hrefs)} linked, {len(head_styles)} inline blocks hoisted')
 print(f'models      {len(models)}')
 print(f'page js     {len(page_scripts)}')
+print(f'editor      {"included" if WITH_EDITOR else "omitted (standalone share)"}')
 print(f'output      {OUT}  {size / 1048576:.2f} MB')
 if missing:
     print('MISSING:', missing[:10])

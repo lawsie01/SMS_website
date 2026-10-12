@@ -5,7 +5,14 @@ as a Claude Artifact and clicked through like the real thing.
 
 ```sh
 tools/preview/make_preview.sh [output.html]   # default: ./sms-site-preview.html
+PREVIEW_EDITOR=0 tools/preview/make_preview.sh share.html   # standalone share
 ```
+
+`PREVIEW_EDITOR=0` leaves out the inline copy editor. Use it for a file going
+to someone outside the organisation: the editor writes to the artifact's `db`
+store, which only organisation members can reach, so the button would be dead
+weight. The resulting file calls no capability at all and works opened
+straight from disk.
 
 The script builds the site, bundles it, and restores anything it touched on
 the way out. Nothing it changes is left in the working tree.
