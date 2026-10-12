@@ -14,6 +14,10 @@ interface Props {
   subtitle?: string;
   image?: ImageMetadata;
   imageAlt?: string;
+  // Where the cover crop sits, as a CSS object-position. Only matters on the
+  // axis the image overflows: these are portrait photos in a wide band, so on
+  // a phone the height already fits and the vertical value does nothing.
+  imagePosition?: string;
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   compact?: boolean;
@@ -29,6 +33,7 @@ const {
   subtitle,
   image,
   imageAlt = '',
+  imagePosition,
   primaryCta = { label: 'Enquire', href: '/contact/' },
   secondaryCta,
   compact = false,
@@ -67,6 +72,7 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
         alt=""
         role="presentation"
         class="h-full w-full object-cover opacity-60"
+        style={imagePosition ? `object-position:${imagePosition}` : undefined}
         widths={[640, 1024, 1600, 2000]}
         sizes="100vw"
         loading="eager"
