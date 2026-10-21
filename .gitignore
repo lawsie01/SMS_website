@@ -5,3 +5,8 @@
 .agents/
 .claude/skills/
 skills-lock.json
+
+# preview bundles built by tools/preview/make_preview.sh — 13MB of inlined
+# assets, regenerated from dist on demand and published as an artifact
+sms-site-preview.html
+*-preview.html
