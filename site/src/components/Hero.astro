@@ -79,6 +79,13 @@ const showPrimaryCta = new URL(primaryCta.href, 'https://sewerms.com.au').pathna
         fetchpriority="high"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-sms-charcoal-900/60 via-sms-charcoal-900/45 to-sms-charcoal-900/25"></div>
+      {/* The trail sits in the first 30px of the hero, where the photograph is
+          often at its brightest: on the DN1000 shot the white benching left
+          the Home link at 2.63:1 against the 4.5:1 it needs. The gradient
+          above is lightest at exactly that end, and darkening its top stop
+          would flatten every photo to fix one strip, so this is a short band
+          that has faded out by the time the heading starts. */}
+      <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-sms-charcoal-900/50 to-transparent"></div>
     </div>
   )}
   {/* The trail used to sit in its own light strip between the header and this

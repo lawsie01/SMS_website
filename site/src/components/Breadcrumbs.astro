@@ -9,6 +9,12 @@ interface Props {
   // always a dark ground, so the trail drops its background and border and
   // takes the hero's padding instead of carrying its own. Pages with no hero
   // (the two thank-you pages) still get the standalone light strip.
+  //
+  // In a hero every item is white, links included. The muted grey that marks
+  // a link in the light strip reads against a known ground; here the ground
+  // is a photograph, and on the About and DN1000 shots grey measured 2.6 to
+  // 3.9:1 where it needs 4.5. White clears it on every page we have, so the
+  // trail separates the current page by weight instead of colour.
   inHero?: boolean;
 }
 const { items, inHero = false } = Astro.props;
@@ -34,7 +40,7 @@ const breadcrumbSchema = {
   <ol
     class:list={[
       "flex flex-wrap items-center gap-1.5 text-sm",
-      inHero ? "text-sms-charcoal-200" : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 text-sms-charcoal-400",
+      inHero ? "text-white" : "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 text-sms-charcoal-400",
     ]}
   >
     {allItems.map((item, i) => (
@@ -43,7 +49,7 @@ const breadcrumbSchema = {
         {i === allItems.length - 1 ? (
           <span class:list={["font-medium", inHero ? "text-white" : "text-sms-charcoal-700"]} aria-current="page">{item.label}</span>
         ) : (
-          <a href={item.href} class:list={["inline-block py-1", inHero ? "hover:text-white" : "hover:text-sms-charcoal-900"]}>{item.label}</a>
+          <a href={item.href} class:list={["inline-block py-1", inHero ? "hover:underline" : "hover:text-sms-charcoal-900"]}>{item.label}</a>
         )}
       </li>
     ))}
