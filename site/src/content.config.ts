@@ -123,6 +123,11 @@ const products = defineCollection({
       overview: z.string().optional(),
       heroImage: image().optional(),
       heroImageAlt: z.string().optional(),
+      // CSS object-position for the hero crop, where the default centre cut
+      // loses the subject. Only the axis the photo overflows on responds, so
+      // on a wide photo in a wide band this is the horizontal value doing the
+      // work and the vertical one is along for the ride.
+      heroImagePosition: z.string().optional(),
       productImage: image().optional(),
       productImageAlt: z.string().optional(),
       // 'light' = the exact backdrop colour baked into the "-clover" 3D
